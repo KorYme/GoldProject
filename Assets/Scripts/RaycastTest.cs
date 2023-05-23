@@ -5,9 +5,22 @@ using UnityEngine;
 public class RaycastTest : MonoBehaviour
 {
     [SerializeField] GameObject _raycastTarget;
+    float _playerHitOffset;
+
+
+    private void Start()
+    {
+        
+    }
 
     private void Update()
     {
+
+        if (_raycastTarget.transform.position.x > transform.position.x)
+            _playerHitOffset = -1;
+        else
+            _playerHitOffset = 1;
+
 
         Ray ray = new Ray(transform.position, _raycastTarget.transform.position - transform.position);
         RaycastHit hit;
@@ -16,7 +29,7 @@ public class RaycastTest : MonoBehaviour
             Debug.DrawLine(ray.origin, hit.point, Color.white);
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                Ray ray2 = new Ray(hit.point, hit.collider.gameObject.GetComponent<Player>().GetMousePos() - hit.point);
+                Ray ray2 = new Ray(new Vector2(hit.point.x - _playerHitOffset, hit.point.y), hit.collider.gameObject.GetComponent<Player>().GetReflectDir() - hit.point);
                 if (Physics.Raycast(ray2, out hit))
                 {
                     if (hit.collider.gameObject.CompareTag("Target"))
@@ -33,9 +46,9 @@ public class RaycastTest : MonoBehaviour
             }
             else if (hit.collider.gameObject.CompareTag("Target"))
             {
+                hit.collider.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
                 //Do whatever we want to do with the target of the laser
             }
-
         }
         else
         {
