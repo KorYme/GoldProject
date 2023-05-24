@@ -15,7 +15,6 @@ public class GyroscopeTest : MonoBehaviour
     private void Update()
     {
         _rb.gravityScale = 0;
-        Debug.Log(Input.gyro.gravity);
         _constantForce.force = new Vector2(Input.gyro.gravity.normalized.x * 9.8f, Input.gyro.gravity.normalized.y * 9.8f);
     }
 }
