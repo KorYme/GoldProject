@@ -5,41 +5,36 @@ using UnityEngine;
 public class RaycastTest : MonoBehaviour
 {
     [SerializeField] GameObject _raycastTarget;
+    LineRenderer _lineRenderer;
+
+
+    private void Start()
+    {
+        _lineRenderer = GetComponent<LineRenderer>();
+        _lineRenderer.useWorldSpace = true;
+        _lineRenderer.startWidth = 0.08f;
+        _lineRenderer.endWidth = 0.08f;
+        _lineRenderer.startColor = Color.blue;
+        _lineRenderer.endColor = Color.blue;
+    }
 
     private void Update()
     {
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _raycastTarget.transform.position * 10000);
 
-        Ray ray = new Ray(transform.position, _raycastTarget.transform.position - transform.position);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit))
+        if (hit.collider != null)
         {
-            Debug.DrawLine(ray.origin, hit.point, Color.white);
+            _lineRenderer.SetPosition(0, transform.position);
+            _lineRenderer.SetPosition(1, hit.point);
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                Ray ray2 = new Ray(hit.point, hit.collider.gameObject.GetComponent<Player>().GetMousePos() - hit.point);
-                if (Physics.Raycast(ray2, out hit))
-                {
-                    if (hit.collider.gameObject.CompareTag("Target"))
-                    {
-                        hit.collider.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-                        //Do whatever we want to do with the target of the laser
-                    }
-                    Debug.DrawLine(ray2.origin, hit.point, Color.red);
-                }
-                else
-                {
-                    Debug.DrawLine(ray2.origin, ray2.origin + ray2.direction * 1000, Color.green);
-                }
+                hit.collider.gameObject.GetComponent<PlayerHitByRay>().HitByRay(_lineRenderer);
             }
             else if (hit.collider.gameObject.CompareTag("Target"))
             {
+               
                 //Do whatever we want to do with the target of the laser
             }
-
-        }
-        else
-        {
-            Debug.DrawLine(ray.origin, ray.origin + ray.direction * 1000, Color.green);
         }
     }
 }
