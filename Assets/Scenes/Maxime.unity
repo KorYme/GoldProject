@@ -664,7 +664,7 @@ GameObject:
   - component: {fileID: 1708269680}
   - component: {fileID: 1708269679}
   - component: {fileID: 1708269682}
-  - component: {fileID: 1708269681}
+  - component: {fileID: 1708269683}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -754,7 +754,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -786,20 +786,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1708269681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1708269676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aabc8e64a4191a74297ada85f2617a89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _rb: {fileID: 1708269679}
-  _constantForce: {fileID: 1708269682}
 --- !u!247 &1708269682
 ConstantForce2D:
   m_ObjectHideFlags: 0
@@ -811,3 +797,19 @@ ConstantForce2D:
   m_Force: {x: 0, y: 0}
   m_RelativeForce: {x: 0, y: 0}
   m_Torque: 0
+--- !u!114 &1708269683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1708269676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c42ffcb562b8f488d6066042df450a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _contantForce: {fileID: 1708269682}
+  _rb: {fileID: 1708269679}
+  _forcePower: 9.8
+  _swipeMinimumValue: 50
