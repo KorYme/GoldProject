@@ -26,12 +26,14 @@ public class ControlGravityMovement : MonoBehaviour
     private void Reset()
     {
         _movementRatio = Vector2.one;
-        _timePerUnit = 1;
+        _timePerUnit = 1f;
+        _swipeMinimumValue = 50f;
     }
 
     private void Awake()
     {
         _lerpValue = 0;
+        _initialPosition = transform.position;
     }
 
     private void Update()
@@ -73,10 +75,11 @@ public class ControlGravityMovement : MonoBehaviour
         if (_lerpValue == 1f)
         {
             //Check possibilité d'avancer
-            if (true)
+            if (Physics2D.Raycast(transform.position, _currentDirection, 1, _wallLayer))
             {
-
+                _currentDirection = Vector2.zero;
             }
+            _initialPosition = transform.position;
             _lerpValue = 0;
         }
     }

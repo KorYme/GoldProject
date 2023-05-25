@@ -13,13 +13,13 @@ TagManager:
   - Water
   - UI
   - Player
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - BasicWall
+  - BlueWall
+  - RedWall
+  - YellowWall
+  - PurpleWall
+  - GreenWall
+  - OrangeWall
   - 
   - 
   - 
