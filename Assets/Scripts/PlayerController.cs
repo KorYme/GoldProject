@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] LayerMask _wallLayer;
 
     [Header("Parameters")]
-    [SerializeField] float _swipeMinimumValue;
     [SerializeField, Tooltip("Number of unit moved by second")] float _speed;
     [SerializeField] Vector2 _movementRatio;
         
@@ -20,25 +19,22 @@ public class PlayerController : MonoBehaviour
         get => _initialPosition + new Vector2(_currentDirection.x * _movementRatio.x, _currentDirection.y * _movementRatio.y);
     }
 
-    Coroutine _controllerCoroutine;
-    public Coroutine ControllerCoroutine
+    public bool IsMoving
     {
-        get
-        {
-            return _controllerCoroutine;
-        }
-        private set
-        {
-            if (_controllerCoroutine != null) return;
-            _controllerCoroutine = value;
-        }
+        get;
+        private set;
+    }
+
+    public bool IsRotating
+    {
+        get;
+        private set;
     }
 
     private void Reset()
     {
         _movementRatio = Vector2.one;
         _speed = 1f;
-        _swipeMinimumValue = 50f;
     }
 
     private void Awake()
@@ -50,36 +46,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         ApplyMovement();
-        if (Input.touches.Length != 1) return;
-        Touch touch = Input.touches[0];
-        if (_currentDirection.magnitude > 0.01f) return;
-        if (touch.deltaPosition.magnitude < _swipeMinimumValue) return;
-        if (Mathf.Abs(touch.deltaPosition.y) > Mathf.Abs(touch.deltaPosition.x))
-        {
-            if (touch.deltaPosition.y > 0)
-            {
-                _currentDirection = Vector2.up;
-            }
-            else
-            {
-                _currentDirection = Vector2.down;
-            }
-        }
-        else
-        {
-            if (touch.deltaPosition.x > 0)
-            {
-                _currentDirection = Vector2.right;
-            }
-            else
-            {
-                _currentDirection = Vector2.left;
-            }
-        }
-        if (Physics2D.Raycast(transform.position, _currentDirection, 1, _wallLayer))
-        {
-            _currentDirection = Vector2.zero;
-        }
     }
 
     private void ApplyMovement()
@@ -89,19 +55,19 @@ public class PlayerController : MonoBehaviour
         transform.position = Vector3.Lerp(_initialPosition, PositionToGo, _lerpValue);
         if (_lerpValue == 1f)
         {
-            //Check possibilité d'avancer
             if (Physics2D.Raycast(transform.position, _currentDirection, 1, _wallLayer))
             {
                 _currentDirection = Vector2.zero;
+                IsMoving = false;
             }
             _initialPosition = transform.position;
             _lerpValue = 0;
         }
     }
 
-    public void GetNewDirection(Vector2 direction)
+    public void SetNewDirection(Vector2 direction)
     {
-        if (Physics2D.Raycast(transform.position, direction, 1, _wallLayer)) return;
+        if (IsMoving || Physics2D.Raycast(transform.position, direction, 1, _wallLayer)) return; 
         _currentDirection = direction;
     }
 }
