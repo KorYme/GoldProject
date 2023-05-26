@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,16 +21,20 @@ public class PlayerController : MonoBehaviour
         get => _initialPosition + new Vector2(_currentDirection.x * _movementRatio.x, _currentDirection.y * _movementRatio.y);
     }
 
+    bool _isMoving;
+    public Action OnMovementStopped;
     public bool IsMoving
     {
-        get;
-        private set;
-    }
-
-    public bool IsRotating
-    {
-        get;
-        private set;
+        get => _isMoving;
+        private set
+        {
+            _isMoving = value;
+            if (!value)
+            {
+                OnMovementStopped?.Invoke();
+                OnMovementStopped = null;
+            }
+        }
     }
 
     private void Reset()
@@ -51,6 +56,7 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovement()
     {
+        // A MODIFIER
         if (_currentDirection == Vector2.zero) return;
         _lerpValue = Mathf.Clamp01(_lerpValue + (Time.deltaTime * _speed));
         transform.position = Vector3.Lerp(_initialPosition, PositionToGo, _lerpValue);

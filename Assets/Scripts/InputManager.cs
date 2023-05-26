@@ -12,7 +12,8 @@ public class InputManager : MonoBehaviour
     [SerializeField] float _checkSize;
     [SerializeField] LayerMask _playerLayer;
 
-    PlayerController _playerController;
+    PlayerController _currentPlayerTouched;
+    bool _canMoveAPlayer;
 
     private void Reset()
     {
@@ -26,6 +27,7 @@ public class InputManager : MonoBehaviour
         ETouch.Touch.onFingerDown += OnInputStarted;
         ETouch.Touch.onFingerMove += OnInputPerformed;
         ETouch.Touch.onFingerUp += OnInputStopped;
+        _canMoveAPlayer = true;
     }
 
 
@@ -40,57 +42,46 @@ public class InputManager : MonoBehaviour
     private void OnInputStarted(Finger finger)
     {
         Collider2D collider2D = Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(finger.currentTouch.screenPosition), _checkSize, _playerLayer);
-        Debug.Log("Avant");
         if (collider2D is null) return;
-        Debug.Log("Ca touche");
-        _playerController = collider2D.GetComponent<PlayerController>();
-        
+        _currentPlayerTouched = collider2D.GetComponent<PlayerController>();
+        _currentPlayerTouched.OnMovementStopped += () => _canMoveAPlayer = true;
     }
 
     private void OnInputPerformed(Finger finger)
     {
-        if (_playerController is null) return;
+        if (!_canMoveAPlayer || _currentPlayerTouched is null) return;
         ETouch.Touch touch = finger.currentTouch;
-        if (touch.delta.magnitude >= _swipeMinimumValue)
+        if (touch.delta.magnitude < _swipeMinimumValue) return;
+        if (Mathf.Abs(touch.delta.y) > Mathf.Abs(touch.delta.x))
         {
-            if (touch.delta.magnitude < _swipeMinimumValue) return;
-            if (Mathf.Abs(touch.delta.y) > Mathf.Abs(touch.delta.x))
+            if (touch.delta.y > 0)
             {
-                if (touch.delta.y > 0)
-                {
-                    _playerController.SetNewDirection(Vector2.up);
-                }
-                else
-                {
-                    _playerController.SetNewDirection(Vector2.down);
-                }
+                _currentPlayerTouched.SetNewDirection(Vector2.up);
             }
             else
             {
-                if (touch.delta.x > 0)
-                {
-                    _playerController.SetNewDirection(Vector2.right);
-                }
-                else
-                {
-                    _playerController.SetNewDirection(Vector2.left);
-                }
+                _currentPlayerTouched.SetNewDirection(Vector2.down);
             }
-            _playerController = null;
         }
+        else
+        {
+            if (touch.delta.x > 0)
+            {
+                _currentPlayerTouched.SetNewDirection(Vector2.right);
+            }
+            else
+            {
+                _currentPlayerTouched.SetNewDirection(Vector2.left);
+            }
+        }
+        _currentPlayerTouched = null;
     }
 
     private void OnInputStopped(Finger finger)
     {
-        if (_playerController is null) return;
+        if (_currentPlayerTouched is null) return;
         Collider2D collider2D = Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(finger.currentTouch.screenPosition), _checkSize, _playerLayer);
         if (collider2D is null) return;
         //Rotate the player
-    }
-
-    private void Update()
-    {
-        if (_playerController is null || Input.touches.Length != 1) return;
-
     }
 }
