@@ -15,6 +15,7 @@ public class PlayerHitByRay : MonoBehaviour
 
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private PlayerColor _playerColor;
+    [SerializeField] Transform _crystal;
 
     private void Start()
     {
@@ -40,25 +41,9 @@ public class PlayerHitByRay : MonoBehaviour
 
     public void HitByRay(LineRenderer _incomingRay)
     {
+        //_lineRenderer.enabled = (Input.touchCount != 0);
 
-        foreach (Touch _touch in Input.touches)
-        {
-            if (Input.touchCount == 1)
-            {
-                if (_touch.phase == TouchPhase.Began)
-                {
-                    _reflectDir = (Camera.main.ScreenToWorldPoint(_touch.position) - transform.position);
-                }
-                else if (_touch.phase == TouchPhase.Moved)
-                {
-                    _reflectDir = (Camera.main.ScreenToWorldPoint(_touch.position) - transform.position);
-                }
-            }
-        }
-
-        _lineRenderer.enabled = (Input.touchCount != 0);
-
-        hit = Physics2D.Raycast(transform.position, _reflectDir, Mathf.Infinity, _layerMask);
+        hit = Physics2D.Raycast(_crystal.position, _crystal.position - transform.position, Mathf.Infinity, _layerMask);
         if (hit.collider != null)
         {
             _lineRenderer.SetPosition(0, transform.position);
@@ -69,7 +54,7 @@ public class PlayerHitByRay : MonoBehaviour
             }
         }
         
-        _lineRenderer.SetPosition(0, transform.position);
+        _lineRenderer.SetPosition(0, _crystal.position);
         _lineRenderer.SetPosition(1, hit.point);
         _lineRenderer.startColor = OutgoingRayColor(_incomingRay);
         _lineRenderer.endColor = OutgoingRayColor(_incomingRay);
