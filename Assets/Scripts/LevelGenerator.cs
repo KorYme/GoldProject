@@ -12,8 +12,8 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] GameObject _tilePrefab;
 
     [Header("Parameters")]
-    [SerializeField, MinMaxSlider(3,20)] Vector2Int _mapSize;
-    [SerializeField, Range(0f, 3f)] float _offsetOnSide;
+    [SerializeField, MinMaxSlider(3,9)] Vector2Int _mapSize;
+    [SerializeField, Range(0f, 2f)] float _offsetOnSide;
 
     private void Reset()
     {

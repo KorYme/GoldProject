@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Parameters")]
     [SerializeField, Tooltip("Number of unit moved by second")] float _speed;
     [SerializeField] Vector2 _movementRatio;
+    [SerializeField] AnimationCurve _movementCurve;
         
     float _lerpValue;
     Vector2 _initialPosition;
@@ -69,5 +70,6 @@ public class PlayerController : MonoBehaviour
     {
         if (IsMoving || Physics2D.Raycast(transform.position, direction, 1, _wallLayer)) return; 
         _currentDirection = direction;
+        IsMoving = true;
     }
 }

@@ -534,7 +534,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &154041068
 MonoBehaviour:
@@ -548,6 +548,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbec0a6b44842b4381a5b5ec93c399b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _touchInput: {fileID: 745546362075476671, guid: cfbb33bff111e9248920fbc207cad1c0, type: 3}
+  _swipeMinimumValue: 50
+  _checkSize: 0.1
 --- !u!1 &180007331
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,7 +2164,7 @@ Transform:
   - {fileID: 1772566403}
   - {fileID: 927294004}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &456454975
 GameObject:
@@ -2212,7 +2215,7 @@ MonoBehaviour:
   _player: {fileID: 1708269678}
   _tilePrefab: {fileID: 7251455584209451173, guid: f1aff5b576c367f48a2e57f556c5c5d6, type: 3}
   _mapSize: {x: 4, y: 8}
-  _offsetOnSide: 1
+  _offsetOnSide: 0.5
 --- !u!1 &478805312
 GameObject:
   m_ObjectHideFlags: 0
@@ -3114,7 +3117,7 @@ GameObject:
   - component: {fileID: 722935200}
   - component: {fileID: 722935199}
   - component: {fileID: 722935198}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tile(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3150,7 +3153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 722935200}
   _spriteRenderer: {fileID: 722935199}
-  _type: 0
+  _type: 5
 --- !u!212 &722935199
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3193,7 +3196,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3210,7 +3213,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 722935196}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -3409,7 +3412,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3438,7 +3441,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &794525657
 GameObject:
@@ -8024,13 +8027,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2724373515318493286, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _wallLayer.m_Bits
+      value: 10944
+      objectReference: {fileID: 0}
     - target: {fileID: 2724373515318493305, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_Name
       value: RedPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 2724373515318493307, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2724373515318493307, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_LocalPosition.x
