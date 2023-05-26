@@ -52,4 +52,10 @@ public class LevelGenerator : MonoBehaviour
             DestroyImmediate(_tilesContainer.GetChild(i).gameObject);
         }
     }
+
+    [Button]
+    private void ResizeCamera()
+    {
+        _camera.orthographicSize = _mapSize.x + _offsetOnSide * 2;
+    }
 }
