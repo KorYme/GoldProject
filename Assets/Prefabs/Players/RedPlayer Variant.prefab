@@ -7,17 +7,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2484433348921520552, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 237abf68a9deb4740a2fef512f10590f, type: 3}
     - target: {fileID: 2724373515318493286, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: _wallLayer.m_Bits
       value: 10944
       objectReference: {fileID: 0}
     - target: {fileID: 2724373515318493304, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 237abf68a9deb4740a2fef512f10590f, type: 3}
+    - target: {fileID: 2724373515318493304, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2724373515318493304, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_Color.g
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2724373515318493304, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_Color.r
@@ -25,11 +33,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2724373515318493305, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_Name
-      value: RedPlayer
+      value: RedPlayer Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2724373515318493307, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724373515318493307, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724373515318493307, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2724373515318493307, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2724373515318493307, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_LocalPosition.x

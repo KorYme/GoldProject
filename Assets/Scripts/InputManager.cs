@@ -13,7 +13,11 @@ public class InputManager : MonoBehaviour
     [SerializeField] LayerMask _playerLayer;
 
     PlayerController _currentPlayerTouched;
-    bool _canMoveAPlayer;
+    public bool CanMoveAPlayer
+    {
+        get;
+        set;
+    }
 
     private void Reset()
     {
@@ -21,13 +25,21 @@ public class InputManager : MonoBehaviour
         _checkSize = .1f;
     }
 
+    public static InputManager Instance;
+
     private void OnEnable()
     {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
         EnhancedTouchSupport.Enable();
         ETouch.Touch.onFingerDown += OnInputStarted;
         ETouch.Touch.onFingerMove += OnInputPerformed;
         ETouch.Touch.onFingerUp += OnInputStopped;
-        _canMoveAPlayer = true;
+        CanMoveAPlayer = true;
     }
 
 
@@ -41,15 +53,17 @@ public class InputManager : MonoBehaviour
     
     private void OnInputStarted(Finger finger)
     {
-        Collider2D collider2D = Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(finger.currentTouch.screenPosition), _checkSize, _playerLayer);
+        Vector2 fingerPosition = Camera.main.ScreenToWorldPoint(finger.currentTouch.screenPosition);
+        Collider2D collider2D = GetClosestCollider(Physics2D.OverlapCircleAll(fingerPosition,
+            _checkSize, _playerLayer), fingerPosition);
         if (collider2D is null) return;
         _currentPlayerTouched = collider2D.GetComponent<PlayerController>();
-        _currentPlayerTouched.OnMovementStopped += () => _canMoveAPlayer = true;
+        if (_currentPlayerTouched is null) return;
     }
 
     private void OnInputPerformed(Finger finger)
     {
-        if (!_canMoveAPlayer || _currentPlayerTouched is null) return;
+        if (!CanMoveAPlayer || _currentPlayerTouched is null) return;
         ETouch.Touch touch = finger.currentTouch;
         if (touch.delta.magnitude < _swipeMinimumValue) return;
         if (Mathf.Abs(touch.delta.y) > Mathf.Abs(touch.delta.x))
@@ -82,6 +96,24 @@ public class InputManager : MonoBehaviour
         if (_currentPlayerTouched is null) return;
         Collider2D collider2D = Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(finger.currentTouch.screenPosition), _checkSize, _playerLayer);
         if (collider2D is null) return;
-        //Rotate the player
+        //Rotate the player DEBUG FOR THE MOMENT
+        _currentPlayerTouched.transform.rotation = Quaternion.Euler(0, 0, 
+            _currentPlayerTouched.transform.rotation.eulerAngles.z + 90f);
+        _currentPlayerTouched = null;
+    }
+
+    private Collider2D GetClosestCollider(Collider2D[] colliders, Vector2 position)
+    {
+        if (colliders is null || colliders.Length == 0) return null;
+        int closestIndex = 0;
+        for (int i = 1; i < colliders.Length; i++)
+        {
+            if (Vector2.Distance(colliders[i].transform.position, position)
+                < Vector2.Distance(colliders[closestIndex].transform.position, position))
+            {
+                closestIndex = i;
+            }
+        }
+        return colliders[closestIndex];
     }
 }
