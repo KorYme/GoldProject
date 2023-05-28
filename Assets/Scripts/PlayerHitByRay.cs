@@ -8,14 +8,20 @@ using UnityEngine;
 
 public class PlayerHitByRay : MonoBehaviour
 {
-    Vector3 _reflectDir;
+    LineRenderer _incomingLaser;
     LineRenderer _lineRenderer;
+    PlayerHitByRay _tempPlayer;
+    PlayerHitByRay _currentPlayer;
     RaycastHit2D hit;
     Color _orange = new Color(1.0f, 0.64f, 0.0f);
+    bool _shouldShootLaser;
+    bool _shouldSetCrystalPosFromIncomingLaser;
 
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private PlayerColor _playerColor;
     [SerializeField] Transform _crystal;
+
+    
 
     private void Start()
     {
@@ -39,27 +45,69 @@ public class PlayerHitByRay : MonoBehaviour
         _lineRenderer.enabled = true;
     }
 
-    public void HitByRay(LineRenderer _incomingRay)
-    {
-        //_lineRenderer.enabled = (Input.touchCount != 0);
-
-        hit = Physics2D.Raycast(_crystal.position, _crystal.position - transform.position, Mathf.Infinity, _layerMask);
-        if (hit.collider != null)
-        {
-            _lineRenderer.SetPosition(0, transform.position);
-            _lineRenderer.SetPosition(1, hit.point);
-            if (hit.collider.gameObject.CompareTag("Target"))
-            {
-                hit.collider.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
-            }
-        }
-        
-        _lineRenderer.SetPosition(0, _crystal.position);
-        _lineRenderer.SetPosition(1, hit.point);
-        _lineRenderer.startColor = OutgoingRayColor(_incomingRay);
-        _lineRenderer.endColor = OutgoingRayColor(_incomingRay);
-    }
     
+
+    private void Update()
+    {
+        if (_shouldShootLaser)
+        {
+            hit = Physics2D.Raycast(_crystal.position, _crystal.position - transform.position, Mathf.Infinity, _layerMask);
+            if (hit.collider != null)
+            {
+                _lineRenderer.SetPosition(0, transform.position);
+                _lineRenderer.SetPosition(1, hit.point);
+                if (hit.collider.gameObject.CompareTag("Target"))
+                {
+                    hit.collider.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+                }
+                else if (hit.collider.gameObject.CompareTag("Player"))
+                {
+                    _tempPlayer = hit.collider.gameObject.GetComponent<PlayerHitByRay>();
+                    if (_currentPlayer == null)
+                    {
+                        _currentPlayer = _tempPlayer;
+                    }
+
+                    if (_tempPlayer != _currentPlayer)
+                    {
+                        _currentPlayer.HitByRay(_lineRenderer, false);
+                        _currentPlayer = _tempPlayer;
+                        _currentPlayer.HitByRay(_lineRenderer, true);
+                    }
+                }
+            }
+
+            _lineRenderer.enabled = true;
+            _lineRenderer.SetPosition(0, _crystal.position);
+            _lineRenderer.SetPosition(1, hit.point);
+        }
+        else
+        {
+            _lineRenderer.enabled = false;
+            _shouldSetCrystalPosFromIncomingLaser = true;
+        }
+    }
+
+    public void HitByRay(LineRenderer _laser, bool _shoot)
+    {
+        if (_shouldSetCrystalPosFromIncomingLaser)
+        {
+            _shouldSetCrystalPosFromIncomingLaser = false;
+            _crystal.gameObject.GetComponent<CrystalOrbitingPlayer>().LaserBaseDirection(_laser);
+        }
+        _incomingLaser = _laser;
+        _shouldShootLaser = _shoot;
+        _lineRenderer.startColor = OutgoingRayColor(_laser);
+        _lineRenderer.endColor = OutgoingRayColor(_laser);
+        Debug.Log(OutgoingRayColor(_laser));
+    }
+
+    public bool ShouldShootLaser
+    {
+        get => _shouldShootLaser;
+        set => _shouldShootLaser = value;
+    }
+
     private Color OutgoingRayColor(LineRenderer _incomingRay)
     {
         switch (_playerColor)
