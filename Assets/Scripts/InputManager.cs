@@ -42,7 +42,6 @@ public class InputManager : MonoBehaviour
         CanMoveAPlayer = true;
     }
 
-
     private void OnDisable()
     {
         ETouch.Touch.onFingerDown -= OnInputStarted;
@@ -97,8 +96,11 @@ public class InputManager : MonoBehaviour
         Collider2D collider2D = Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(finger.currentTouch.screenPosition), _checkSize, _playerLayer);
         if (collider2D is null) return;
         //Rotate the player DEBUG FOR THE MOMENT
-        _currentPlayerTouched.transform.rotation = Quaternion.Euler(0, 0, 
+        if (!_currentPlayerTouched.IsMoving)
+        {
+            _currentPlayerTouched.transform.rotation = Quaternion.Euler(0, 0, 
             _currentPlayerTouched.transform.rotation.eulerAngles.z + 90f);
+        }
         _currentPlayerTouched = null;
     }
 
