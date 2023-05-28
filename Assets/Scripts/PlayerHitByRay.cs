@@ -15,6 +15,7 @@ public class PlayerHitByRay : MonoBehaviour
     RaycastHit2D hit;
     Color _orange = new Color(1.0f, 0.64f, 0.0f);
     bool _shouldShootLaser;
+    bool _shouldSetCrystalPosFromIncomingLaser;
 
     [SerializeField] private LayerMask _layerMask;
     [SerializeField] private PlayerColor _playerColor;
@@ -76,13 +77,24 @@ public class PlayerHitByRay : MonoBehaviour
                 }
             }
 
+            _lineRenderer.enabled = true;
             _lineRenderer.SetPosition(0, _crystal.position);
             _lineRenderer.SetPosition(1, hit.point);
+        }
+        else
+        {
+            _lineRenderer.enabled = false;
+            _shouldSetCrystalPosFromIncomingLaser = true;
         }
     }
 
     public void HitByRay(LineRenderer _laser, bool _shoot)
     {
+        if (_shouldSetCrystalPosFromIncomingLaser)
+        {
+            _shouldSetCrystalPosFromIncomingLaser = false;
+            _crystal.gameObject.GetComponent<CrystalOrbitingPlayer>().LaserBaseDirection(_laser);
+        }
         _incomingLaser = _laser;
         _shouldShootLaser = _shoot;
         _lineRenderer.startColor = OutgoingRayColor(_laser);
