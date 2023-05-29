@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class PlayerHitByRay : MonoBehaviour
 {
-    LineRenderer _incomingLaser;
     LineRenderer _lineRenderer;
     PlayerHitByRay _tempPlayer;
     PlayerHitByRay _currentPlayer;
@@ -54,8 +53,6 @@ public class PlayerHitByRay : MonoBehaviour
             hit = Physics2D.Raycast(_crystal.position, _crystal.position - transform.position, Mathf.Infinity, _layerMask);
             if (hit.collider != null)
             {
-                _lineRenderer.SetPosition(0, transform.position);
-                _lineRenderer.SetPosition(1, hit.point);
                 if (hit.collider.gameObject.CompareTag("Target"))
                 {
                     hit.collider.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
@@ -95,11 +92,9 @@ public class PlayerHitByRay : MonoBehaviour
             _shouldSetCrystalPosFromIncomingLaser = false;
             _crystal.gameObject.GetComponent<CrystalOrbitingPlayer>().LaserBaseDirection(_laser);
         }
-        _incomingLaser = _laser;
         _shouldShootLaser = _shoot;
         _lineRenderer.startColor = OutgoingRayColor(_laser);
         _lineRenderer.endColor = OutgoingRayColor(_laser);
-        Debug.Log(OutgoingRayColor(_laser));
     }
 
     public bool ShouldShootLaser

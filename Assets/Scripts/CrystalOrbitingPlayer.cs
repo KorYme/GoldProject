@@ -66,22 +66,23 @@ public class CrystalOrbitingPlayer : MonoBehaviour
 
         foreach (Touch _touch in Input.touches)
         {
-            if (Input.touchCount == 1)
+            if (_origin.GetComponent<PlayerHitByRay>().ShouldShootLaser)
             {
-                if (_touch.phase == TouchPhase.Began)
+                if (Input.touchCount == 1)
                 {
-                    if (Camera.main.ScreenToWorldPoint(_touch.position).x > _origin.gameObject.transform.position.x - 0.2f && Camera.main.ScreenToWorldPoint(_touch.position).x < _origin.gameObject.transform.position.x + 0.2f && Camera.main.ScreenToWorldPoint(_touch.position).y > _origin.gameObject.transform.position.y - 0.2f && Camera.main.ScreenToWorldPoint(_touch.position).y < _origin.gameObject.transform.position.y + 0.2f)
+                    if (_touch.phase == TouchPhase.Began)
                     {
-                        if (_eightLaserDirections)
-                            _targetAngle -= 45;
-                        else
-                            _targetAngle -= 90;
-                        
-                        _shouldMove = true;
+                        if (Camera.main.ScreenToWorldPoint(_touch.position).x > _origin.gameObject.transform.position.x - 0.2f && Camera.main.ScreenToWorldPoint(_touch.position).x < _origin.gameObject.transform.position.x + 0.2f && Camera.main.ScreenToWorldPoint(_touch.position).y > _origin.gameObject.transform.position.y - 0.2f && Camera.main.ScreenToWorldPoint(_touch.position).y < _origin.gameObject.transform.position.y + 0.2f)
+                        {
+                            if (_eightLaserDirections)
+                                _targetAngle -= 45;
+                            else
+                                _targetAngle -= 90;
+
+                            _shouldMove = true;
+                        }
                     }
                 }
-                
-                
             }
         }
 
@@ -96,12 +97,12 @@ public class CrystalOrbitingPlayer : MonoBehaviour
     {
         if (_lineRenderer.GetPosition(0).x < _lineRenderer.GetPosition(1).x)
         {
-            if (_lineRenderer.GetPosition(0).y < _lineRenderer.GetPosition(1).y)
+            if (_lineRenderer.GetPosition(0).y < _lineRenderer.GetPosition(1).y && !(Mathf.Abs(_lineRenderer.GetPosition(0).y - _lineRenderer.GetPosition(1).y) < 0.1f))
             {
                 _angle = -315;
                 _targetAngle = -315;
             }
-            else if (_lineRenderer.GetPosition(0).y > _lineRenderer.GetPosition(1).y)
+            else if (_lineRenderer.GetPosition(0).y > _lineRenderer.GetPosition(1).y && !(Mathf.Abs(_lineRenderer.GetPosition(0).y - _lineRenderer.GetPosition(1).y) < 0.1))
             {
                 _angle = -45;
                 _targetAngle = -45;
@@ -114,12 +115,12 @@ public class CrystalOrbitingPlayer : MonoBehaviour
         }
         else if (_lineRenderer.GetPosition(0).x > _lineRenderer.GetPosition(1).x)
         {
-            if (_lineRenderer.GetPosition(0).y < _lineRenderer.GetPosition(1).y)
+            if (_lineRenderer.GetPosition(0).y < _lineRenderer.GetPosition(1).y && !(Mathf.Abs(_lineRenderer.GetPosition(0).y - _lineRenderer.GetPosition(1).y) < 0.1))
             {
                 _angle = -225;
                 _targetAngle = -225;
             }
-            else if (_lineRenderer.GetPosition(0).y > _lineRenderer.GetPosition(1).y)
+            else if (_lineRenderer.GetPosition(0).y > _lineRenderer.GetPosition(1).y && !(Mathf.Abs(_lineRenderer.GetPosition(0).y - _lineRenderer.GetPosition(1).y) < 0.1))
             {
                 _angle = -135;
                 _targetAngle = -135;
@@ -132,12 +133,12 @@ public class CrystalOrbitingPlayer : MonoBehaviour
         }
         else
         {
-            if (_lineRenderer.GetPosition(0).y < _lineRenderer.GetPosition(1).y)
+            if (_lineRenderer.GetPosition(0).y < _lineRenderer.GetPosition(1).y && (Mathf.Abs(_lineRenderer.GetPosition(0).y - _lineRenderer.GetPosition(1).y) < 0.1))
             {
                 _angle = -270;
                 _targetAngle = -270;
             }
-            else if (_lineRenderer.GetPosition(0).y > _lineRenderer.GetPosition(1).y)
+            else if (_lineRenderer.GetPosition(0).y > _lineRenderer.GetPosition(1).y && (Mathf.Abs(_lineRenderer.GetPosition(0).y - _lineRenderer.GetPosition(1).y) < 0.1))
             {
                 _angle = -90;
                 _targetAngle = -90;
