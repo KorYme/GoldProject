@@ -8,51 +8,42 @@ public class StartingLaser : MonoBehaviour
     [SerializeField] LaserDir _laserDir;
 
     LineRenderer _lineRenderer;
-    PlayerHitByRay _tempPlayer;
-    PlayerHitByRay _currentPlayer;
+    GameObject _tempPlayer;
+    GameObject _currentPlayer;
     Vector3 _raycastTarget;
-    private int _angle;
-    private float _distance;
 
     private void Start()
     {
         switch (_laserDir)
         {
             case LaserDir.Up:
-                _angle = -270;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.up;
                 break;
             case LaserDir.Down:
-                _angle = 90;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.down;
                 break;
             case LaserDir.Left:
-                _angle = -180;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.left;
                 break;
             case LaserDir.Right:
-                _angle = 0;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.right;
                 break;
             case LaserDir.UpLeft:
-                _angle = _angle = -225;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.up + Vector3.left;
                 break;
             case LaserDir.UpRight:
-                _angle = -315;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.up + Vector3.right;
                 break;
             case LaserDir.DownLeft:
-                _angle = -135;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.down + Vector3.left;
                 break;
             case LaserDir.DownRight:
-                _angle = -45;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.down + Vector3.right;
                 break;
             default:
                 break;
         }
+        _raycastTarget += transform.position;
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.useWorldSpace = true;
         _lineRenderer.startWidth = 0.08f;
@@ -63,15 +54,15 @@ public class StartingLaser : MonoBehaviour
 
     private void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, _raycastTarget - transform.position * 10000);
-
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _raycastTarget - transform.position);
+        
         if (hit.collider != null)
         {
             _lineRenderer.SetPosition(0, transform.position);
             _lineRenderer.SetPosition(1, hit.point);
             if (hit.collider.gameObject.CompareTag("Player"))
             {
-                _tempPlayer = hit.collider.gameObject.GetComponent<PlayerHitByRay>();
+                _tempPlayer = hit.collider.gameObject;
                 if (_currentPlayer == null)
                 {
                     _currentPlayer = _tempPlayer;
@@ -79,23 +70,50 @@ public class StartingLaser : MonoBehaviour
                 
                 if (_tempPlayer != _currentPlayer)
                 {
-                    _currentPlayer.HitByRay(_lineRenderer, false);
+                    _currentPlayer.GetComponent<PlayerHitByRay>().HitByRay(_lineRenderer, false);
                     _currentPlayer = _tempPlayer;
-                    _currentPlayer.HitByRay(_lineRenderer, true);
+                    _currentPlayer.GetComponent<PlayerHitByRay>().HitByRay(_lineRenderer, true);
                 }
                 else
                 {
-                    _currentPlayer.HitByRay(_lineRenderer, true);
+                    _currentPlayer.GetComponent<PlayerHitByRay>().HitByRay(_lineRenderer, true);
                 }
             }
-            else if (hit.collider.gameObject.CompareTag("Target"))
+            else if (hit.collider.gameObject.CompareTag("Mirror"))
             {
-               
-                //Do whatever we want to do with the target of the laser
+                _tempPlayer = hit.collider.gameObject;
+                if (_currentPlayer == null)
+                {
+                    _currentPlayer = _tempPlayer;
+                }
+
+                if (_tempPlayer != _currentPlayer)
+                {
+                    _currentPlayer.GetComponent<Mirror>().HitByLaser(_lineRenderer,hit.point , false);
+                    _currentPlayer = _tempPlayer;
+                    _currentPlayer.GetComponent<Mirror>().HitByLaser(_lineRenderer, hit.point, true);
+                }
+                else
+                {
+                    _currentPlayer.GetComponent<Mirror>().HitByLaser(_lineRenderer, hit.point, true);
+                }
             }
             else
             {
-                _currentPlayer.HitByRay(_lineRenderer, false);
+                if (_currentPlayer != null)
+                {
+                    if (_currentPlayer.GetComponent<Mirror>() != null)
+                    {
+                        _currentPlayer.GetComponent<Mirror>().HitByLaser(_lineRenderer, hit.point, false);
+                        _currentPlayer = null;
+                    }
+                    else if (_currentPlayer.GetComponent<PlayerHitByRay>() != null)
+                    {
+                        _currentPlayer.GetComponent<PlayerHitByRay>().HitByRay(_lineRenderer, false);
+                        _currentPlayer = null;
+                    }
+                        
+                }
             }
         }
     }
