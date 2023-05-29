@@ -1,3 +1,4 @@
+using DG.Tweening;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,6 +15,12 @@ public class LevelGenerator : MonoBehaviour
     [Header("Parameters")]
     [SerializeField, MinMaxSlider(3,9)] Vector2Int _mapSize;
     [SerializeField, Range(0f, 2f)] float _offsetOnSide;
+
+
+    [Header("TEST")]
+    [SerializeField] LayersAndColors.GAMECOLORS _color1;
+    [SerializeField] LayersAndColors.GAMECOLORS _color2;
+
 
     private void Reset()
     {
@@ -57,5 +64,11 @@ public class LevelGenerator : MonoBehaviour
     private void ResizeCamera()
     {
         _camera.orthographicSize = _mapSize.x + _offsetOnSide * 2;
+    }
+
+    [Button]
+    private void TestColorMix()
+    {
+        Debug.Log(LayersAndColors.GetMixedColor(_color1, _color2).ToString());
     }
 }

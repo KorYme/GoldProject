@@ -5,15 +5,31 @@ using UnityEngine;
 
 public class StartingLaser : MonoBehaviour
 {
-    [SerializeField] LaserDir _laserDir;
+    private enum LaserDir
+    {
+        Up,
+        UpRight,
+        UpLeft,
+        Down,
+        DownRight,
+        DownLeft,
+        Left,
+        Right
+    }
 
-    LineRenderer _lineRenderer;
-    GameObject _tempPlayer;
-    GameObject _currentPlayer;
+    [Header("References")]
+    [SerializeField] LineRenderer _lineRenderer;
+
+    [Header("Parameters")]
+    [SerializeField] LaserDir _laserDir;
+    [SerializeField] LayersAndColors.GAMECOLORS _initialColor;
+
     Vector3 _raycastTarget;
+    Reflectable _nextReflectable;
 
     private void Start()
     {
+        _nextReflectable = null;
         switch (_laserDir)
         {
             case LaserDir.Up:
@@ -43,90 +59,24 @@ public class StartingLaser : MonoBehaviour
             default:
                 break;
         }
-        _raycastTarget += transform.position;
-        _lineRenderer = GetComponent<LineRenderer>();
+        _raycastTarget.Normalize();
         _lineRenderer.useWorldSpace = true;
         _lineRenderer.startWidth = 0.08f;
         _lineRenderer.endWidth = 0.08f;
-        _lineRenderer.startColor = Color.blue;
-        _lineRenderer.endColor = Color.blue;
+        _lineRenderer.startColor = LayersAndColors.GetColor(_initialColor);
+        _lineRenderer.endColor = LayersAndColors.GetColor(_initialColor);
     }
 
     private void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, _raycastTarget - transform.position);
-        
-        if (hit.collider != null)
-        {
-            _lineRenderer.SetPosition(0, transform.position);
-            _lineRenderer.SetPosition(1, hit.point);
-            if (hit.collider.gameObject.CompareTag("Player"))
-            {
-                _tempPlayer = hit.collider.gameObject;
-                if (_currentPlayer == null)
-                {
-                    _currentPlayer = _tempPlayer;
-                }
-                
-                if (_tempPlayer != _currentPlayer)
-                {
-                    _currentPlayer.GetComponent<PlayerHitByRay>().HitByRay(_lineRenderer, false);
-                    _currentPlayer = _tempPlayer;
-                    _currentPlayer.GetComponent<PlayerHitByRay>().HitByRay(_lineRenderer, true);
-                }
-                else
-                {
-                    _currentPlayer.GetComponent<PlayerHitByRay>().HitByRay(_lineRenderer, true);
-                }
-            }
-            else if (hit.collider.gameObject.CompareTag("Mirror"))
-            {
-                _tempPlayer = hit.collider.gameObject;
-                if (_currentPlayer == null)
-                {
-                    _currentPlayer = _tempPlayer;
-                }
-
-                if (_tempPlayer != _currentPlayer)
-                {
-                    _currentPlayer.GetComponent<Mirror>().HitByLaser(_lineRenderer,hit.point , false);
-                    _currentPlayer = _tempPlayer;
-                    _currentPlayer.GetComponent<Mirror>().HitByLaser(_lineRenderer, hit.point, true);
-                }
-                else
-                {
-                    _currentPlayer.GetComponent<Mirror>().HitByLaser(_lineRenderer, hit.point, true);
-                }
-            }
-            else
-            {
-                if (_currentPlayer != null)
-                {
-                    if (_currentPlayer.GetComponent<Mirror>() != null)
-                    {
-                        _currentPlayer.GetComponent<Mirror>().HitByLaser(_lineRenderer, hit.point, false);
-                        _currentPlayer = null;
-                    }
-                    else if (_currentPlayer.GetComponent<PlayerHitByRay>() != null)
-                    {
-                        _currentPlayer.GetComponent<PlayerHitByRay>().HitByRay(_lineRenderer, false);
-                        _currentPlayer = null;
-                    }
-                        
-                }
-            }
-        }
-    }
-
-    private enum LaserDir 
-    {
-        Up,
-        UpRight,
-        UpLeft,
-        Down,
-        DownRight,
-        DownLeft,
-        Left,
-        Right
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _raycastTarget);
+        _lineRenderer.SetPosition(0, transform.position);
+        _lineRenderer.SetPosition(1, hit.collider is null ? transform.position + (Vector3)(_raycastTarget * 100f) : hit.point);
+        if (hit.collider == null) return;
+        GameObject objectHit = hit.collider.gameObject;
+        if (objectHit == (_nextReflectable?.gameObject ?? null)) return;
+        _nextReflectable?.StopReflection();
+        _nextReflectable = objectHit.GetComponent<Reflectable>();
+        _nextReflectable?.StartReflection(_raycastTarget, _initialColor, hit);
     }
 }

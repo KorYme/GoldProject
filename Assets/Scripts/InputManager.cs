@@ -95,11 +95,9 @@ public class InputManager : MonoBehaviour
         if (_currentPlayerTouched is null) return;
         Collider2D collider2D = Physics2D.OverlapCircle(Camera.main.ScreenToWorldPoint(finger.currentTouch.screenPosition), _checkSize, _playerLayer);
         if (collider2D is null) return;
-        //Rotate the player DEBUG FOR THE MOMENT
-        if (!_currentPlayerTouched.IsMoving)
+        if (collider2D.GetComponent<PlayerController>() == _currentPlayerTouched)
         {
-            _currentPlayerTouched.transform.rotation = Quaternion.Euler(0, 0, 
-            _currentPlayerTouched.transform.rotation.eulerAngles.z + 90f);
+            _currentPlayerTouched.RotatePlayer(Vector2.zero);
         }
         _currentPlayerTouched = null;
     }
