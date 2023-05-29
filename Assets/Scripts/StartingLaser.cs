@@ -11,48 +11,39 @@ public class StartingLaser : MonoBehaviour
     PlayerHitByRay _tempPlayer;
     PlayerHitByRay _currentPlayer;
     Vector3 _raycastTarget;
-    private int _angle;
-    private float _distance;
 
     private void Start()
     {
         switch (_laserDir)
         {
             case LaserDir.Up:
-                _angle = -270;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.up;
                 break;
             case LaserDir.Down:
-                _angle = 90;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.down;
                 break;
             case LaserDir.Left:
-                _angle = -180;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.left;
                 break;
             case LaserDir.Right:
-                _angle = 0;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.right;
                 break;
             case LaserDir.UpLeft:
-                _angle = _angle = -225;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.up + Vector3.left;
                 break;
             case LaserDir.UpRight:
-                _angle = -315;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.up + Vector3.right;
                 break;
             case LaserDir.DownLeft:
-                _angle = -135;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.down + Vector3.left;
                 break;
             case LaserDir.DownRight:
-                _angle = -45;
-                _raycastTarget = new Vector3(Mathf.Cos(_angle / 360 * 2 * Mathf.PI) * _distance, Mathf.Sin(_angle / 360 * 2 * Mathf.PI) * _distance) + transform.position;
+                _raycastTarget = Vector3.down + Vector3.right;
                 break;
             default:
                 break;
         }
+        _raycastTarget += transform.position;
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.useWorldSpace = true;
         _lineRenderer.startWidth = 0.08f;
@@ -63,8 +54,39 @@ public class StartingLaser : MonoBehaviour
 
     private void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, _raycastTarget - transform.position * 10000);
+        switch (_laserDir)
+        {
+            case LaserDir.Up:
+                _raycastTarget = Vector3.up;
+                break;
+            case LaserDir.Down:
+                _raycastTarget = Vector3.down;
+                break;
+            case LaserDir.Left:
+                _raycastTarget = Vector3.left;
+                break;
+            case LaserDir.Right:
+                _raycastTarget = Vector3.right;
+                break;
+            case LaserDir.UpLeft:
+                _raycastTarget = Vector3.up + Vector3.left;
+                break;
+            case LaserDir.UpRight:
+                _raycastTarget = Vector3.up + Vector3.right;
+                break;
+            case LaserDir.DownLeft:
+                _raycastTarget = Vector3.down + Vector3.left;
+                break;
+            case LaserDir.DownRight:
+                _raycastTarget = Vector3.down + Vector3.right;
+                break;
+            default:
+                break;
+        }
+        _raycastTarget += transform.position;
 
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, _raycastTarget - transform.position);
+        
         if (hit.collider != null)
         {
             _lineRenderer.SetPosition(0, transform.position);
@@ -95,7 +117,11 @@ public class StartingLaser : MonoBehaviour
             }
             else
             {
-                _currentPlayer.HitByRay(_lineRenderer, false);
+                if (_currentPlayer != null)
+                {
+                    _currentPlayer.HitByRay(_lineRenderer, false);
+                    _currentPlayer = null;
+                }
             }
         }
     }
