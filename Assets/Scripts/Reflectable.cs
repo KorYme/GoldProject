@@ -58,6 +58,7 @@ public class Reflectable : MonoBehaviour
 
     protected virtual void Awake()
     {
+        Time.timeScale = 0.2f;
         _onReflection = null;
         _nextReflectable = null;
         _lineRenderer.enabled = false;
@@ -96,7 +97,14 @@ public class Reflectable : MonoBehaviour
         _lineRenderer.SetPosition(1, hit.collider is null ? transform.position + (Vector3)(LaserDirection * 100f) : hit.point);
         if (hit.collider == null) return;
         GameObject objectHit = hit.collider.gameObject;
-        if (objectHit == (_nextReflectable?.gameObject ?? null)) return;
+        if (objectHit == (_nextReflectable?.gameObject ?? null))
+        {
+            if (_nextReflectable != null || _nextReflectable is Mirror)
+            {
+                _nextReflectable.StartReflection(LaserDirection, _outputLaserColor, hit);
+            }
+            return;
+        }
         _nextReflectable?.StopReflection();
         _nextReflectable = objectHit.GetComponent<Reflectable>();
         if ((_nextReflectable?.IsReflecting) ?? true)
