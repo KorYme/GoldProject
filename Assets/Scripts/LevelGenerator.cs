@@ -20,7 +20,7 @@ public class LevelGenerator : MonoBehaviour
     [Header("TEST")]
     [SerializeField] LayersAndColors.GAMECOLORS _color1;
     [SerializeField] LayersAndColors.GAMECOLORS _color2;
-
+    [SerializeField] LayerMask _testLayer;
 
     private void Reset()
     {
@@ -70,5 +70,11 @@ public class LevelGenerator : MonoBehaviour
     private void TestColorMix()
     {
         Debug.Log(LayersAndColors.GetMixedColor(_color1, _color2).ToString());
+    }
+    
+    [Button]
+    private void LayerTest()
+    {
+        _testLayer = LayerMask.GetMask("BasicWall", "Player");
     }
 }

@@ -71,4 +71,22 @@ public class LayersAndColors : ScriptableObject
                 return Color.white;
         }
     }
+
+    public static Dictionary<GAMECOLORS, LayerMask> MovementLayers = new Dictionary<GAMECOLORS, LayerMask>()
+    {
+        {GAMECOLORS.Red, LayerMask.GetMask("BasicWall", "Player", "BlueWall", "YellowWall", "GreenWall")},
+        {GAMECOLORS.Blue, LayerMask.GetMask("BasicWall", "Player")},
+        {GAMECOLORS.Yellow, LayerMask.GetMask("BasicWall", "Player")},
+    };
+
+    public static Dictionary<GAMECOLORS, LayerMask> LightLayers = new Dictionary<GAMECOLORS, LayerMask>()
+    {
+        {GAMECOLORS.White, LayerMask.GetMask("BasicWall", "Player")},
+        {GAMECOLORS.Red, LayerMask.GetMask("BasicWall", "Player")},
+        {GAMECOLORS.Blue, LayerMask.GetMask("BasicWall", "Player")},
+        {GAMECOLORS.Yellow, LayerMask.GetMask("BasicWall", "Player")},
+        {GAMECOLORS.Purple, LayerMask.GetMask("BasicWall", "Player")},
+        {GAMECOLORS.Orange, LayerMask.GetMask("BasicWall", "Player")},
+        {GAMECOLORS.Green, LayerMask.GetMask("BasicWall", "Player")},
+    };
 }

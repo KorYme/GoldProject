@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7315729687398283784}
   - component: {fileID: 7315729687398283787}
   - component: {fileID: 7315729687398283782}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MirrorPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}

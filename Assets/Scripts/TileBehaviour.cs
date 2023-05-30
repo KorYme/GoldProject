@@ -17,6 +17,7 @@ public class TileBehaviour : MonoBehaviour
         PurpleWall,
         GreenWall,
         OrangeWall,
+        Mud,
     }
 
     [Header("References")]
@@ -42,6 +43,11 @@ public class TileBehaviour : MonoBehaviour
         Type = TileType.Border;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        
+    }
+
     private void ChangeParameters()
     {
         switch (_type)
@@ -55,6 +61,11 @@ public class TileBehaviour : MonoBehaviour
                 _collider.enabled = true;
                 _spriteRenderer.color = Color.grey;
                 gameObject.layer = LayerMask.NameToLayer("BasicWall");
+                break;
+            case TileType.Mud:
+                _collider.enabled = true;
+                _spriteRenderer.color = Color.grey;
+                gameObject.layer = LayerMask.NameToLayer("Mud");
                 break;
             case TileType.BasicWall:
             case TileType.BlueWall:

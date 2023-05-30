@@ -8,6 +8,6 @@ public class Mirror : Reflectable
     {
         LaserOrigin = transform.position;
         LaserDirection = Vector2.Reflect(laserDirection, raycast.normal);
-        base.StartReflection(laserDirection, laserColor, raycast);
+        base.StartReflection(LaserDirection, laserColor, raycast);
     }
 }
