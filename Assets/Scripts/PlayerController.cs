@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
 
     public void RotatePlayer(Vector2 direction)
     {
+        Debug.Log("RotatePlayer");
         if (direction == Vector2.zero)
         {
             _targetAngle += _eightLaserDirections ? 45 : 90;
