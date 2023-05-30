@@ -6,8 +6,8 @@ public class Mirror : Reflectable
 {
     public override void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
     {
-        LaserOrigin = raycast.point;
+        LaserOrigin = transform.position;
         LaserDirection = Vector2.Reflect(laserDirection, raycast.normal);
-        base.StartReflection(laserDirection, _outputLaserColor, raycast);
+        base.StartReflection(laserDirection, laserColor, raycast);
     }
 }

@@ -29,7 +29,7 @@ public class Reflectable : MonoBehaviour
     protected Action _onReflection;
     protected Reflectable _nextReflectable;
     protected LayersAndColors.GAMECOLORS _inputLaserColor;
-    protected LayersAndColors.GAMECOLORS _outputLaserColor
+    protected virtual LayersAndColors.GAMECOLORS _outputLaserColor
     {
         get
         {
@@ -70,6 +70,7 @@ public class Reflectable : MonoBehaviour
     {
         if (IsReflecting) return;
         _inputLaserColor = laserColor;
+        Debug.Log($"Reflecting {laserColor} + {_reflectionColor} = {_outputLaserColor}");
         _lineRenderer.startColor = LayersAndColors.GetColor(_outputLaserColor);
         _lineRenderer.endColor = LayersAndColors.GetColor(_outputLaserColor);
         _lineRenderer.enabled = true;
