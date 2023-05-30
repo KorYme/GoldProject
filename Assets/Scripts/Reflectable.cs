@@ -16,6 +16,10 @@ public class Reflectable : MonoBehaviour
     [SerializeField] protected LayersAndColors.GAMECOLORS _reflectionColor;
     [SerializeField] protected ReflectionType _reflectionType;
 
+    public LayersAndColors.GAMECOLORS ReflectionColor
+    {
+        get => _reflectionColor;
+    }
     protected Vector2 _laserDirection;
     public virtual Vector2 LaserDirection
     {
@@ -58,7 +62,6 @@ public class Reflectable : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Time.timeScale = 0.2f;
         _onReflection = null;
         _nextReflectable = null;
         _lineRenderer.enabled = false;
@@ -94,7 +97,7 @@ public class Reflectable : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(LaserOrigin, LaserDirection, 15f, LayersAndColors.LightLayerMask);
         _lineRenderer.SetPosition(0, LaserOrigin);
-        _lineRenderer.SetPosition(1, hit.collider is null ? transform.position + (Vector3)(LaserDirection * 100f) : hit.point);
+        _lineRenderer.SetPosition(1, hit.collider is null ? transform.position + (Vector3)(LaserDirection * 100f) : hit.collider.transform.position);
         if (hit.collider == null) return;
         GameObject objectHit = hit.collider.gameObject;
         if (objectHit == (_nextReflectable?.gameObject ?? null))

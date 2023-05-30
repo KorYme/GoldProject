@@ -15,9 +15,9 @@ public class PlayerReflection : Reflectable
 
     public override void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
     {
+        ForbiddenAngle = ((int)((Mathf.Atan2(-laserDirection.y, -laserDirection.x) * Mathf.Rad2Deg) + Mathf.Epsilon) + 360) % 360;
         if (IsReflecting) return;
         base.StartReflection(laserDirection, laserColor, raycast);
-        ForbiddenAngle = ((int)((Mathf.Atan2(-laserDirection.y, -laserDirection.x) * Mathf.Rad2Deg) + Mathf.Epsilon) + 360) % 360;
         _playerController.RotatePlayer(laserDirection);
     }
 

@@ -76,7 +76,12 @@ public class PlayerController : MonoBehaviour
     IEnumerator MovementCoroutine(Vector2 direction)
     {
         InputManager.Instance.CanMoveAPlayer = false;
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, direction, 20, _wallLayer);
+        RaycastHit2D raycast = Physics2D.Raycast(transform.position, direction, 20, LayersAndColors.MovementLayers[_playerReflection.ReflectionColor]);
+        float distance = (int)raycast.distance;
+        if (raycast.collider.tag == "Mud")
+        {
+            distance++;
+        }
         Vector2 initialPosition = transform.position;
         Vector2 positionToGo = initialPosition + direction * (int)raycast.distance;
         float initialTime = Time.time;

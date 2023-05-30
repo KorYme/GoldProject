@@ -45,7 +45,7 @@ public class TileBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        //LA
     }
 
     private void ChangeParameters()
@@ -53,11 +53,13 @@ public class TileBehaviour : MonoBehaviour
         switch (_type)
         {
             case TileType.Empty:
+                tag = "Untagged";
                 gameObject.layer = LayerMask.NameToLayer("Default");
                 _collider.enabled = false;
                 _spriteRenderer.color = Color.clear;
                 break;
             case TileType.Border:
+                tag = "Untagged";
                 _collider.enabled = true;
                 _spriteRenderer.color = Color.grey;
                 gameObject.layer = LayerMask.NameToLayer("BasicWall");
@@ -65,7 +67,8 @@ public class TileBehaviour : MonoBehaviour
             case TileType.Mud:
                 _collider.enabled = true;
                 _spriteRenderer.color = Color.grey;
-                gameObject.layer = LayerMask.NameToLayer("Mud");
+                gameObject.layer = LayerMask.NameToLayer("OnlyPlayers");
+                tag = "Mud";
                 break;
             case TileType.BasicWall:
             case TileType.BlueWall:
@@ -74,6 +77,7 @@ public class TileBehaviour : MonoBehaviour
             case TileType.PurpleWall:
             case TileType.GreenWall:
             case TileType.OrangeWall:
+                tag = "Untagged";
                 _collider.enabled = true;
                 gameObject.layer = LayerMask.NameToLayer(_type.ToString());
                 _spriteRenderer.color = ChangeColor();
