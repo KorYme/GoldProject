@@ -47,7 +47,7 @@ public class Reflectable : MonoBehaviour
 
     public bool IsReflecting
     {
-        get => _lineRenderer.enabled;
+        get => _onReflection != null;
     }
 
     private void Reset()
@@ -70,7 +70,6 @@ public class Reflectable : MonoBehaviour
     {
         if (IsReflecting) return;
         _inputLaserColor = laserColor;
-        Debug.Log($"Reflecting {laserColor} + {_reflectionColor} = {_outputLaserColor}");
         _lineRenderer.startColor = LayersAndColors.GetColor(_outputLaserColor);
         _lineRenderer.endColor = LayersAndColors.GetColor(_outputLaserColor);
         _lineRenderer.enabled = true;
