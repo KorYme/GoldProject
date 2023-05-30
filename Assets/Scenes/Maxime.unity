@@ -1721,6 +1721,9 @@ MonoBehaviour:
   _offsetOnSide: 0.5
   _color1: 1
   _color2: 2
+  _testLayer:
+    serializedVersion: 2
+    m_Bits: 192
 --- !u!1 &464436453
 GameObject:
   m_ObjectHideFlags: 0

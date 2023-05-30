@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LayersAndColor", menuName = "ScriptableObjects/LayersAndColor", order = 1)]
-public class LayersAndColors : ScriptableObject
+public static class LayersAndColors
 {
     public enum GAMECOLORS
     {
@@ -75,18 +74,12 @@ public class LayersAndColors : ScriptableObject
     public static Dictionary<GAMECOLORS, LayerMask> MovementLayers = new Dictionary<GAMECOLORS, LayerMask>()
     {
         {GAMECOLORS.Red, LayerMask.GetMask("BasicWall", "Player", "BlueWall", "YellowWall", "GreenWall")},
-        {GAMECOLORS.Blue, LayerMask.GetMask("BasicWall", "Player")},
-        {GAMECOLORS.Yellow, LayerMask.GetMask("BasicWall", "Player")},
+        {GAMECOLORS.Blue, LayerMask.GetMask("BasicWall", "Player", "RedWall", "YellowWall", "OrangeWall")},
+        {GAMECOLORS.Yellow, LayerMask.GetMask("BasicWall", "Player", "RedWall", "BlueWall", "PurpleWall")},
     };
 
-    public static Dictionary<GAMECOLORS, LayerMask> LightLayers = new Dictionary<GAMECOLORS, LayerMask>()
+    public static LayerMask LightLayerMask
     {
-        {GAMECOLORS.White, LayerMask.GetMask("BasicWall", "Player")},
-        {GAMECOLORS.Red, LayerMask.GetMask("BasicWall", "Player")},
-        {GAMECOLORS.Blue, LayerMask.GetMask("BasicWall", "Player")},
-        {GAMECOLORS.Yellow, LayerMask.GetMask("BasicWall", "Player")},
-        {GAMECOLORS.Purple, LayerMask.GetMask("BasicWall", "Player")},
-        {GAMECOLORS.Orange, LayerMask.GetMask("BasicWall", "Player")},
-        {GAMECOLORS.Green, LayerMask.GetMask("BasicWall", "Player")},
-    };
+        get => LayerMask.GetMask("BasicWall", "Player", "RedWall", "BlueWall", "YellowWall", "PurpleWall", "OrangeWall", "GreenWall");
+    }
 }
