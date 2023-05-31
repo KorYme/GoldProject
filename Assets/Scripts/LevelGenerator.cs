@@ -69,7 +69,7 @@ public class LevelGenerator : MonoBehaviour
     [Button]
     private void TestColorMix()
     {
-        Debug.Log(LayersAndColors.GetMixedColor(_color1, _color2).ToString());
+        Debug.Log(LayersAndColors.GetSubtractedColor(_color1, _color2).ToString());
     }
     
     [Button]
