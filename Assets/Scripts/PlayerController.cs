@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
     
     Coroutine _movementCoroutine;
     Coroutine _rotationCoroutine;
+    Coroutine _moveCrateCoroutine;
+    RaycastHit2D _crateRay;
+
 
     public bool IsMoving
     {
@@ -91,8 +94,17 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
         }
-        InputManager.Instance.CanMoveAPlayer = true;
-        _movementCoroutine = null;
+        
+        if (raycast.collider.gameObject.CompareTag("Crate"))
+        {
+            _moveCrateCoroutine = StartCoroutine(MoveCrateCoroutine(raycast.collider.gameObject, direction));
+        }
+        else
+        {
+            _movementCoroutine = null;
+            InputManager.Instance.CanMoveAPlayer = true;
+        }
+        
     }
 
 
@@ -120,5 +132,34 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         _rotationCoroutine = null;
+    }
+
+    IEnumerator MoveCrateCoroutine(GameObject crate, Vector2 direction)
+    {
+        
+        Vector3 initialPosition = crate.transform.position;
+        CalculateCrateRay(direction, crate.transform.position);
+        float distance = ((int)_crateRay.distance + (_crateRay.collider.CompareTag("Mud") ? 1 : 0));
+        Vector3 positionToGo = initialPosition + (Vector3)direction * distance;
+        float initialTime = Time.time;
+        float lerpValue = 0f;
+        while (lerpValue < 1f)
+        {
+            lerpValue = Mathf.Clamp01(lerpValue +
+                _movementCurve.Evaluate(Mathf.Clamp(Time.time - initialTime, 0, _movementCurve.keys[_movementCurve.length - 1].time)
+                / distance * _movementSpeed));
+            crate.transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
+            yield return null;
+        }
+        _movementCoroutine = null;
+        _moveCrateCoroutine = null;
+        InputManager.Instance.CanMoveAPlayer = true;
+    }
+
+    private void CalculateCrateRay(Vector2 direction, Vector2 origin)
+    {
+        RaycastHit2D ray = Physics2D.Raycast(origin, direction, DETECTION_RANGE, LayersAndColors.MovementLayers[_playerReflection.ReflectionColor]);
+        if (!ray || (ray.distance < 1 && !ray.collider.CompareTag("Mud"))) return;
+        _crateRay = ray;
     }
 }
