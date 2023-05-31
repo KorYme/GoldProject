@@ -58,7 +58,6 @@ public class Reflectable : MonoBehaviour
 
     protected virtual void Awake()
     {
-        Time.timeScale = 0.2f;
         _onReflection = null;
         _nextReflectable = null;
         _lineRenderer.enabled = false;
