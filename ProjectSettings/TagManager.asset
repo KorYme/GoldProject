@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Target
   - Mud
+  - Crate
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,9 @@ TagManager:
     locked: 0
   - name: Tiles
     uniqueID: 976002251
+    locked: 0
+  - name: Laser
+    uniqueID: 1482015127
     locked: 0
   - name: Player
     uniqueID: 967212001
