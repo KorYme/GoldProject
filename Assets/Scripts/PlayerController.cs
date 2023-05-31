@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
     const float DETECTION_RANGE = 20f;
 
     [Header("References")]
-    [SerializeField] LayerMask _wallLayer;
     [SerializeField] Transform _crystal;
     [SerializeField] PlayerReflection _playerReflection;
 
