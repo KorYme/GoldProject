@@ -6,9 +6,10 @@ public class Mirror : Reflectable
 {
     [SerializeField] bool _isFlipped = false;
     Vector2 _normalToCheck;
-    
+
     public override void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
     {
+        _inputLaserColor = laserColor;
         LaserOrigin = transform.position;
         if (_isFlipped)
             _normalToCheck = transform.up * -1;

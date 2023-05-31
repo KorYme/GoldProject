@@ -74,10 +74,15 @@ public class Reflectable : MonoBehaviour
     {
         if (IsReflecting) return;
         _inputLaserColor = laserColor;
-        _lineRenderer.startColor = LayersAndColors.GetColor(_outputLaserColor);
-        _lineRenderer.endColor = LayersAndColors.GetColor(_outputLaserColor);
+        UpdateColorLaser();
         _lineRenderer.enabled = true;
         _onReflection += ReflectLaser;
+    }
+
+    protected virtual void UpdateColorLaser()
+    {
+        _lineRenderer.startColor = LayersAndColors.GetColor(_outputLaserColor);
+        _lineRenderer.endColor = LayersAndColors.GetColor(_outputLaserColor);
     }
 
     public virtual void StopReflection()
