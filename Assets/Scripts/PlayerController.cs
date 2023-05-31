@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    const float DETECTION_RANGE = 20f;
+
     [Header("References")]
     [SerializeField] LayerMask _wallLayer;
     [SerializeField] Transform _crystal;
@@ -45,13 +47,14 @@ public class PlayerController : MonoBehaviour
 
     public void SetNewDirection(Vector2 direction)
     {
-        if (Physics2D.Raycast(transform.position, direction, 1, _wallLayer)) return;
-        _movementCoroutine = StartCoroutine(MovementCoroutine(direction));
+        if (IsMoving) return;
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, DETECTION_RANGE, LayersAndColors.MovementLayers[_playerReflection.ReflectionColor]);
+        if (!ray || (ray.distance < 1 && !ray.collider.CompareTag("Mud"))) return;
+        _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
     }
 
     public void RotatePlayer(Vector2 direction)
     {
-        Debug.Log("RotatePlayer");
         if (direction == Vector2.zero)
         {
             _targetAngle += _eightLaserDirections ? 45 : 90;
@@ -73,30 +76,26 @@ public class PlayerController : MonoBehaviour
         _rotationCoroutine = StartCoroutine(RotationCoroutine());
     }
 
-    IEnumerator MovementCoroutine(Vector2 direction)
+    IEnumerator MovementCoroutine(Vector2 direction, RaycastHit2D raycast)
     {
         InputManager.Instance.CanMoveAPlayer = false;
-        RaycastHit2D raycast = Physics2D.Raycast(transform.position, direction, 20, LayersAndColors.MovementLayers[_playerReflection.ReflectionColor]);
-        float distance = (int)raycast.distance;
-        if (raycast.collider.tag == "Mud")
-        {
-            distance++;
-        }
-        Vector2 initialPosition = transform.position;
-        Vector2 positionToGo = initialPosition + direction * (int)raycast.distance;
+        Vector3 initialPosition = transform.position;
+        float distance = ((int)raycast.distance + (raycast.collider.CompareTag("Mud") ? 1 : 0));
+        Vector3 positionToGo = initialPosition + (Vector3)direction * distance;
         float initialTime = Time.time;
         float lerpValue = 0f;
         while (lerpValue < 1f)
         {
-            lerpValue = Mathf.Clamp01(lerpValue + 
-                (_movementCurve.Evaluate(Mathf.Clamp(Time.time - initialTime, 0, _movementCurve.keys[_movementCurve.length - 1].time) 
-                / (int)raycast.distance) * _movementSpeed));
+            lerpValue = Mathf.Clamp01(lerpValue +
+                _movementCurve.Evaluate(Mathf.Clamp(Time.time - initialTime, 0, _movementCurve.keys[_movementCurve.length - 1].time)
+                / distance * _movementSpeed));
             transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
         }
         InputManager.Instance.CanMoveAPlayer = true;
         _movementCoroutine = null;
     }
+
 
     private float LerpAngleUnclamped(float a, float b, float t)
     {

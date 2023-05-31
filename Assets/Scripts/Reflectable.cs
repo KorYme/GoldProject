@@ -97,7 +97,7 @@ public class Reflectable : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(LaserOrigin, LaserDirection, 15f, LayersAndColors.LightLayerMask);
         _lineRenderer.SetPosition(0, LaserOrigin);
-        _lineRenderer.SetPosition(1, hit.collider is null ? transform.position + (Vector3)(LaserDirection * 100f) : hit.collider.transform.position);
+        _lineRenderer.SetPosition(1, hit.point);
         if (hit.collider == null) return;
         GameObject objectHit = hit.collider.gameObject;
         if (objectHit == (_nextReflectable?.gameObject ?? null))

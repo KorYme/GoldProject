@@ -38,20 +38,43 @@ public class TileBehaviour : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (_type == TileType.Mud && collision.CompareTag("Player"))
+        {
+            gameObject.layer = LayerMask.NameToLayer("Default");
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (_type == TileType.Mud && collision.CompareTag("Player"))
+        {
+            gameObject.layer = LayerMask.NameToLayer("OnlyPlayers");
+        }
+    }
+
     private void Reset()
     {
         Type = TileType.Border;
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //LA
     }
 
     private void ChangeParameters()
     {
         switch (_type)
         {
+            case TileType.BasicWall:
+            case TileType.BlueWall:
+            case TileType.RedWall:
+            case TileType.YellowWall:
+            case TileType.PurpleWall:
+            case TileType.GreenWall:
+            case TileType.OrangeWall:
+                tag = "Untagged";
+                _collider.enabled = true;
+                gameObject.layer = LayerMask.NameToLayer(_type.ToString());
+                _spriteRenderer.color = ChangeColor();
+                break;
             case TileType.Empty:
                 tag = "Untagged";
                 gameObject.layer = LayerMask.NameToLayer("Default");
@@ -66,21 +89,9 @@ public class TileBehaviour : MonoBehaviour
                 break;
             case TileType.Mud:
                 _collider.enabled = true;
-                _spriteRenderer.color = Color.grey;
+                _spriteRenderer.color = new Color(150f / 255f, 1f / 75f / 255f, 0f);
                 gameObject.layer = LayerMask.NameToLayer("OnlyPlayers");
                 tag = "Mud";
-                break;
-            case TileType.BasicWall:
-            case TileType.BlueWall:
-            case TileType.RedWall:
-            case TileType.YellowWall:
-            case TileType.PurpleWall:
-            case TileType.GreenWall:
-            case TileType.OrangeWall:
-                tag = "Untagged";
-                _collider.enabled = true;
-                gameObject.layer = LayerMask.NameToLayer(_type.ToString());
-                _spriteRenderer.color = ChangeColor();
                 break;
             default:
                 break;
