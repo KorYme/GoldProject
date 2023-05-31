@@ -8,9 +8,30 @@ public class PlayerReflection : Reflectable
     public override Vector2 LaserOrigin { get => _crystalTransform.position; }
     public override Vector2 LaserDirection { get => _crystalTransform.position - transform.position; }
 
+    protected override LayersAndColors.GAMECOLORS _outputLaserColor {
+        get => LayersAndColors.GetSubtractedColor(base._outputLaserColor, LensColor);
+    }
+
+    LayersAndColors.GAMECOLORS _lensColor;
+    public LayersAndColors.GAMECOLORS LensColor 
+    {
+        get => _lensColor;
+        set
+        {
+            _lensColor = value;
+            UpdateColorLaser();
+        }
+    }
+
     public int ForbiddenAngle
     {
         get; private set;
+    }
+
+    protected override void Awake()
+    {
+        LensColor = LayersAndColors.GAMECOLORS.White;
+        base.Awake();
     }
 
     public override void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
