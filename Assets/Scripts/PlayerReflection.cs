@@ -45,6 +45,6 @@ public class PlayerReflection : Reflectable
     public override void StopReflection()
     {
         base.StopReflection();
-        ForbiddenAngle = -10;
+        ForbiddenAngle = -4000;
     }
 }

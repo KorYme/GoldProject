@@ -99,6 +99,7 @@ public static class Utilities
 
     public static Dictionary<GAMECOLORS, LayerMask> MovementLayers = new Dictionary<GAMECOLORS, LayerMask>()
     {
+        {GAMECOLORS.White, LayerMask.GetMask("WhiteWall", "Player", "OnlyPlayers", "Border")},
         {GAMECOLORS.Red, LayerMask.GetMask("WhiteWall", "Player", "BlueWall", "YellowWall", "GreenWall", "OnlyPlayers", "Border")},
         {GAMECOLORS.Blue, LayerMask.GetMask("WhiteWall", "Player", "RedWall", "YellowWall", "OrangeWall", "OnlyPlayers", "Border")},
         {GAMECOLORS.Yellow, LayerMask.GetMask("WhiteWall", "Player", "RedWall", "BlueWall", "PurpleWall", "OnlyPlayers", "Border")},
@@ -106,4 +107,16 @@ public static class Utilities
 
     public static LayerMask LightLayerMask = 
         LayerMask.GetMask("WhiteWall", "Player", "RedWall", "BlueWall", "YellowWall", "PurpleWall", "OrangeWall", "GreenWall", "OnlyLight", "Border");
+
+    public static int GetClosestInteger(float value)
+    {
+        if (Mathf.Abs(Mathf.Ceil(value) - value) < Mathf.Abs(Mathf.Floor(value) - value))
+        {
+            return Mathf.CeilToInt(value);
+        }
+        else
+        {
+            return Mathf.FloorToInt(value);
+        }
+    }
 }
