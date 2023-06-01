@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class TileBehaviour : MonoBehaviour
 {
@@ -10,114 +11,85 @@ public class TileBehaviour : MonoBehaviour
     {
         Empty,
         Border,
-        BasicWall,
-        BlueWall,
-        RedWall,
-        YellowWall,
-        PurpleWall,
-        GreenWall,
-        OrangeWall,
+        ColoredWall,
+        LaserStart,
+        LaserEnd,
+        Glass,
+        Mirror,
+        FilterLens,
         Mud,
+        Crate,
     }
 
     [Header("References")]
     [SerializeField] BoxCollider2D _collider;
     [SerializeField] SpriteRenderer _spriteRenderer;
+    [SerializeField] List<GameObject> _prefabs;
+
+    [Header("Current Object")]
+    [SerializeField , Tooltip("Do not touch this value, it is only useful to find the prefab instantiated here")] GameObject _currentTile;
 
     [Header("Parameters")]
-    [OnValueChanged(nameof(ChangeParameters))]
     [SerializeField] TileType _type;
 
     public TileType Type
     {
         get => _type;
-        set 
-        { 
+        set
+        {
+            if (_type == value) return;
             _type = value;
             ChangeParameters();
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    [Button("Apply Parameters")]
+    public void ChangeParameters(bool init = true)
     {
-        if (_type == TileType.Mud && collision.CompareTag("Player"))
+        if (init)
         {
-            gameObject.layer = LayerMask.NameToLayer("Default");
+            if (_currentTile != null)
+            {
+                DestroyImmediate(_currentTile);
+                _currentTile = null;
+            }
+            FindObjectsOfType<TileBehaviour>().Where(x => x != this && _currentTile != null && Type == TileType.ColoredWall).ToList().ForEach(x => x.ChangeParameters(false));
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (_type == TileType.Mud && collision.CompareTag("Player"))
+        switch (Type)
         {
-            gameObject.layer = LayerMask.NameToLayer("OnlyPlayers");
-        }
-    }
-
-    private void Reset()
-    {
-        Type = TileType.Border;
-    }
-
-    private void ChangeParameters()
-    {
-        switch (_type)
-        {
-            case TileType.BasicWall:
-            case TileType.BlueWall:
-            case TileType.RedWall:
-            case TileType.YellowWall:
-            case TileType.PurpleWall:
-            case TileType.GreenWall:
-            case TileType.OrangeWall:
-                tag = "Untagged";
-                _collider.enabled = true;
-                gameObject.layer = LayerMask.NameToLayer(_type.ToString());
-                _spriteRenderer.color = ChangeColor();
-                break;
             case TileType.Empty:
-                tag = "Untagged";
-                gameObject.layer = LayerMask.NameToLayer("Default");
                 _collider.enabled = false;
                 _spriteRenderer.color = Color.clear;
+                gameObject.layer = LayerMask.NameToLayer("Default");
                 break;
             case TileType.Border:
-                tag = "Untagged";
                 _collider.enabled = true;
                 _spriteRenderer.color = Color.grey;
-                gameObject.layer = LayerMask.NameToLayer("BasicWall");
+                gameObject.layer = LayerMask.NameToLayer("WhiteWall");
                 break;
+            case TileType.ColoredWall:
+            case TileType.LaserStart:
+            case TileType.LaserEnd:
+            case TileType.Glass:
+            case TileType.Mirror:
+            case TileType.FilterLens:
             case TileType.Mud:
-                _collider.enabled = true;
-                _spriteRenderer.color = new Color(150f / 255f, 1f / 75f / 255f, 0f);
-                gameObject.layer = LayerMask.NameToLayer("OnlyPlayers");
-                tag = "Mud";
+            case TileType.Crate:
+                _collider.enabled = false;
+                _spriteRenderer.color = Color.clear;
+                gameObject.layer = LayerMask.NameToLayer("Default");
+                if (_prefabs.Count <= (int)Type) return;
+                if (_prefabs[(int)Type] != null)
+                {
+                    _currentTile = Instantiate(_prefabs[(int)Type], transform, false);
+                }
+                else
+                {
+                    _currentTile = null;
+                }
                 break;
             default:
                 break;
-        }
-    }
-
-    private Color ChangeColor()
-    {
-        switch (_type)
-        {
-            case TileType.BasicWall:
-                return Color.grey;
-            case TileType.BlueWall:
-                return Color.blue;
-            case TileType.RedWall:
-                return Color.red;
-            case TileType.YellowWall:
-                return Color.yellow;
-            case TileType.PurpleWall:
-                return new Color(0.8f, 0.0f, 0.8f);
-            case TileType.GreenWall:
-                return Color.green;
-            case TileType.OrangeWall:
-                return new Color(1.0f, 0.64f, 0.0f);
-            default:
-                return Color.grey;
         }
     }
 }

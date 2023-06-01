@@ -1,27 +1,26 @@
+using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Mirror : Reflectable
 {
-    [SerializeField] bool _isFlipped = false;
-    Vector2 _normalToCheck;
+    [Header("Mirror Parameters")]
+    [SerializeField, OnValueChanged(nameof(FlipMirror))] bool _isFlipped;
 
     public override void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
     {
         _inputLaserColor = laserColor;
         LaserOrigin = transform.position;
-        if (_isFlipped)
-            _normalToCheck = transform.up * -1;
+        if (Vector2.Dot(laserDirection, transform.up) > 0)
+            LaserDirection = Vector2.Reflect(laserDirection, transform.up * -1);
         else
-            _normalToCheck = transform.up;
-
-
-        if (Vector2.Dot(laserDirection, _normalToCheck) > 0)
-            LaserDirection = Vector2.Reflect(laserDirection, _normalToCheck * -1);
-        else
-            LaserDirection = Vector2.Reflect(laserDirection, _normalToCheck);
-
+            LaserDirection = Vector2.Reflect(laserDirection, transform.up);
         base.StartReflection(LaserDirection, laserColor, raycast);
+    }
+
+    private void FlipMirror()
+    {
+        transform.rotation = Quaternion.Euler(0f, 0f, _isFlipped ? 45 : -45);
     }
 }

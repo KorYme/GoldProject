@@ -74,11 +74,11 @@ public static class LayersAndColors
 
     public static Dictionary<GAMECOLORS, LayerMask> MovementLayers = new Dictionary<GAMECOLORS, LayerMask>()
     {
-        {GAMECOLORS.Red, LayerMask.GetMask("BasicWall", "Player", "BlueWall", "YellowWall", "GreenWall", "OnlyPlayers")},
-        {GAMECOLORS.Blue, LayerMask.GetMask("BasicWall", "Player", "RedWall", "YellowWall", "OrangeWall", "OnlyPlayers")},
-        {GAMECOLORS.Yellow, LayerMask.GetMask("BasicWall", "Player", "RedWall", "BlueWall", "PurpleWall", "OnlyPlayers")},
+        {GAMECOLORS.Red, LayerMask.GetMask("WhiteWall", "Player", "BlueWall", "YellowWall", "GreenWall", "OnlyPlayers")},
+        {GAMECOLORS.Blue, LayerMask.GetMask("WhiteWall", "Player", "RedWall", "YellowWall", "OrangeWall", "OnlyPlayers")},
+        {GAMECOLORS.Yellow, LayerMask.GetMask("WhiteWall", "Player", "RedWall", "BlueWall", "PurpleWall", "OnlyPlayers")},
     };
 
     public static LayerMask LightLayerMask = 
-        LayerMask.GetMask("BasicWall", "Player", "RedWall", "BlueWall", "YellowWall", "PurpleWall", "OrangeWall", "GreenWall", "OnlyLight");
+        LayerMask.GetMask("WhiteWall", "Player", "RedWall", "BlueWall", "YellowWall", "PurpleWall", "OrangeWall", "GreenWall", "OnlyLight");
 }
