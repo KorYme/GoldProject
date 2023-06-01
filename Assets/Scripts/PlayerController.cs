@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
     Coroutine _moveCrateCoroutine;
     RaycastHit2D _crateRay;
 
-
+    const float ANGLE_TOLERANCE = 2f;
     public bool IsMoving
     {
         get => _movementCoroutine != null;
@@ -66,16 +66,22 @@ public class PlayerController : MonoBehaviour
         {
             _targetAngle = ((int)(Mathf.Atan2(direction.y, direction.x) + Mathf.Epsilon) + 360 ) % 360;
         }
-        if (_targetAngle == _playerReflection.ForbiddenAngle)
-        {
-            RotatePlayer(Vector2.zero);
-            return;
-        }
+        if (CheckNeededRotation()) return;
         if (_rotationCoroutine != null)
         {
             StopCoroutine(_rotationCoroutine);
         }
         _rotationCoroutine = StartCoroutine(RotationCoroutine());
+    }
+
+    public bool CheckNeededRotation()
+    {
+        if (Mathf.Abs(_targetAngle - _playerReflection.ForbiddenAngle) < ANGLE_TOLERANCE)
+        {
+            RotatePlayer(Vector2.zero);
+            return true;
+        }
+        return false;
     }
 
     IEnumerator MovementCoroutine(Vector2 direction, RaycastHit2D raycast)
