@@ -50,7 +50,7 @@ public class PlayerController : MonoBehaviour
     public void SetNewDirection(Vector2 direction)
     {
         if (IsMoving) return;
-        RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, DETECTION_RANGE, LayersAndColors.MovementLayers[_playerReflection.ReflectionColor]);
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, DETECTION_RANGE, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         if (!ray || (ray.distance < 1 && !ray.collider.CompareTag("Mud"))) return;
         _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
     }
@@ -104,7 +104,6 @@ public class PlayerController : MonoBehaviour
             _movementCoroutine = null;
             InputManager.Instance.CanMoveAPlayer = true;
         }
-        
     }
 
 
@@ -131,7 +130,16 @@ public class PlayerController : MonoBehaviour
                 Mathf.Sin(lerpAngle * Mathf.Deg2Rad) * _distance, 0) + transform.position;
             yield return null;
         }
+        _crystal.position = new Vector3(
+            GetClosest(Mathf.Cos(-_targetAngle * Mathf.Deg2Rad)) * _distance,
+            GetClosest(Mathf.Sin(-_targetAngle * Mathf.Deg2Rad)) * _distance, 0) 
+            + transform.position;
         _rotationCoroutine = null;
+    }
+
+    private float GetClosest(float value)
+    {
+        return Mathf.Abs(value) > 0.25f ? value : 0;
     }
 
     IEnumerator MoveCrateCoroutine(GameObject crate, Vector2 direction)
@@ -158,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
     private void CalculateCrateRay(Vector2 direction, Vector2 origin)
     {
-        RaycastHit2D ray = Physics2D.Raycast(origin, direction, DETECTION_RANGE, LayersAndColors.MovementLayers[_playerReflection.ReflectionColor]);
+        RaycastHit2D ray = Physics2D.Raycast(origin, direction, DETECTION_RANGE, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         if (!ray || (ray.distance < 1 && !ray.collider.CompareTag("Mud"))) return;
         _crateRay = ray;
     }

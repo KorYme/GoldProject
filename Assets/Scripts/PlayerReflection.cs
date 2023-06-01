@@ -8,12 +8,12 @@ public class PlayerReflection : Reflectable
     public override Vector2 LaserOrigin { get => _crystalTransform.position; }
     public override Vector2 LaserDirection { get => _crystalTransform.position - transform.position; }
 
-    protected override LayersAndColors.GAMECOLORS _outputLaserColor {
-        get => LayersAndColors.GetSubtractedColor(base._outputLaserColor, LensColor);
+    protected override Utilities.GAMECOLORS _outputLaserColor {
+        get => Utilities.GetSubtractedColor(base._outputLaserColor, LensColor);
     }
 
-    LayersAndColors.GAMECOLORS _lensColor;
-    public LayersAndColors.GAMECOLORS LensColor 
+    Utilities.GAMECOLORS _lensColor;
+    public Utilities.GAMECOLORS LensColor 
     {
         get => _lensColor;
         set
@@ -30,11 +30,11 @@ public class PlayerReflection : Reflectable
 
     protected override void Awake()
     {
-        LensColor = LayersAndColors.GAMECOLORS.White;
+        LensColor = Utilities.GAMECOLORS.White;
         base.Awake();
     }
 
-    public override void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
+    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast)
     {
         ForbiddenAngle = ((int)((Mathf.Atan2(-laserDirection.y, -laserDirection.x) * Mathf.Rad2Deg) + Mathf.Epsilon) + 360) % 360;
         if (IsReflecting) return;

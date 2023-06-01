@@ -8,7 +8,8 @@ public class FinalTarget : Reflectable
 {
 
     [Space(5), Header("Final Target")] 
-    [SerializeField] LayersAndColors.GAMECOLORS _targetColor;
+    [SerializeField] Utilities.GAMECOLORS _targetColor;
+    [SerializeField] Utilities.DIRECTIONS _sideTouchedNeeded;
     [SerializeField] ParticleSystem _particleSystem;
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
@@ -16,18 +17,28 @@ public class FinalTarget : Reflectable
     float _timeHitByLaser = 0;
     bool _isLevelComplete;
 
+    const float ANGLE_TOLERANCE = 3f;
+
     protected override void Awake()
     {
         _onReflection = null;
         _isLevelComplete = false;
     }
 
-    public override void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
+    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast)
     {
         if (_isLevelComplete) return;
         _inputLaserColor = laserColor;
-        if (laserColor == _targetColor && _onReflection == null)
+        LaserDirection = laserDirection;
+        if (Vector3.Angle(laserDirection, -Utilities.GetDirection(_sideTouchedNeeded)) > ANGLE_TOLERANCE)
+        {
+            if (_onReflection == null) return;
+            StopReflection();
+        }
+        else if (laserColor == _targetColor && _onReflection == null)
+        {
             _onReflection += ReflectLaser;
+        }
     }
 
     public override void StopReflection()
@@ -45,7 +56,9 @@ public class FinalTarget : Reflectable
             StopReflection();
         }
         else
+        {
             _timeHitByLaser += Time.deltaTime;
+        }
     }
 
     private void LevelCompleted()
@@ -63,7 +76,7 @@ public class FinalTarget : Reflectable
         }
         else
         {
-            _spriteRenderer.color = LayersAndColors.GetColor(_reflectionColor);
+            _spriteRenderer.color = Utilities.GetColor(_reflectionColor);
         }
         if (init)
         {
