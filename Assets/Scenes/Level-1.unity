@@ -4332,6 +4332,7 @@ MonoBehaviour:
   _reflectionColor: 0
   _reflectionType: 0
   _targetColor: 2
+  _sideTouchedNeeded: 3
   _particleSystem: {fileID: 1962144631}
   _spriteRenderer: {fileID: 722608666}
   _sprites:
