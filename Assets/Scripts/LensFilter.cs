@@ -40,7 +40,7 @@ public class LensFilter : Reflectable
     [Button]
     public void ApplyParameters(bool init = true)
     {
-        if (_sprites.Count < (int)_reflectionColor && _sprites[(int)_reflectionColor] != null)
+        if (_sprites.Count > (int)_reflectionColor && _sprites[(int)_reflectionColor] != null)
         {
             _spriteRenderer.sprite = _sprites[(int)_reflectionColor];
         }

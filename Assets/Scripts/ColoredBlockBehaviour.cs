@@ -29,7 +29,7 @@ public class ColoredBlockBehaviour : MonoBehaviour
     public void ApplyParameters(bool init = true)
     {
         gameObject.layer = LayerMask.NameToLayer(BlockColor.ToString() + "Wall");
-        if (_sprites.Count < (int)BlockColor && _sprites[(int)BlockColor] != null)
+        if (_sprites.Count > (int)BlockColor && _sprites[(int)BlockColor] != null)
         {
             _spriteRenderer.sprite = _sprites[(int)BlockColor];
         }

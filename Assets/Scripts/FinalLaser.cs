@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class FinalTarget : Reflectable
+public class FinalLaser : Reflectable
 {
 
     [Space(5), Header("Final Target")] 
@@ -70,14 +70,14 @@ public class FinalTarget : Reflectable
     [Button]
     public void ApplyParameters(bool init = true)
     {
-        if (_sprites.Count < (int)_reflectionColor && _sprites[(int)_reflectionColor] != null)
+        if (_sprites.Count > (int)_targetColor && _sprites[(int)_targetColor] != null)
         {
-            _spriteRenderer.sprite = _sprites[(int)_reflectionColor];
+            _spriteRenderer.sprite = _sprites[(int)_targetColor];
         }
         else
         {
-            _spriteRenderer.color = Utilities.GetColor(_reflectionColor);
-        }
+            _spriteRenderer.color = Utilities.GetColor(_targetColor);
+        }   
         if (init)
         {
             FindObjectsOfType<LensFilter>().Where(x => x != this).ToList().ForEach(x => x.ApplyParameters(false));
