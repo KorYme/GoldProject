@@ -13,10 +13,10 @@ public class Reflectable : MonoBehaviour
 
     [Header("References")]
     [SerializeField] protected LaserRenderer _laserRenderer;
-    [SerializeField] protected LayersAndColors.GAMECOLORS _reflectionColor;
+    [SerializeField] protected Utilities.GAMECOLORS _reflectionColor;
     [SerializeField] protected ReflectionType _reflectionType;
 
-    public LayersAndColors.GAMECOLORS ReflectionColor
+    public Utilities.GAMECOLORS ReflectionColor
     {
         get => _reflectionColor;
     }
@@ -32,17 +32,17 @@ public class Reflectable : MonoBehaviour
     }
     protected Action _onReflection;
     protected Reflectable _nextReflectable;
-    protected LayersAndColors.GAMECOLORS _inputLaserColor;
-    protected virtual LayersAndColors.GAMECOLORS _outputLaserColor
+    protected Utilities.GAMECOLORS _inputLaserColor;
+    protected virtual Utilities.GAMECOLORS _outputLaserColor
     {
         get
         {
             switch (_reflectionType)
             {
                 case ReflectionType.Additive:
-                    return LayersAndColors.GetMixedColor(_inputLaserColor, _reflectionColor);
+                    return Utilities.GetMixedColor(_inputLaserColor, _reflectionColor);
                 case ReflectionType.Substractive:
-                    return LayersAndColors.GetSubtractedColor(_inputLaserColor, _reflectionColor);
+                    return Utilities.GetSubtractedColor(_inputLaserColor, _reflectionColor);
                 default:
                     return _reflectionColor;
             }
@@ -56,7 +56,7 @@ public class Reflectable : MonoBehaviour
 
     private void Reset()
     {
-        _reflectionColor = LayersAndColors.GAMECOLORS.White;
+        _reflectionColor = Utilities.GAMECOLORS.White;
         _reflectionType = ReflectionType.Additive;
     }
 
@@ -70,7 +70,7 @@ public class Reflectable : MonoBehaviour
         _laserRenderer.LineRenderer.endWidth = 0.08f;
     }
 
-    public virtual void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
+    public virtual void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast)
     {
         if (IsReflecting) return;
         _inputLaserColor = laserColor;
@@ -81,8 +81,8 @@ public class Reflectable : MonoBehaviour
 
     protected virtual void UpdateColorLaser()
     {
-        _laserRenderer.LineRenderer.startColor = LayersAndColors.GetColor(_outputLaserColor);
-        _laserRenderer.LineRenderer.endColor = LayersAndColors.GetColor(_outputLaserColor);
+        _laserRenderer.LineRenderer.startColor = Utilities.GetColor(_outputLaserColor);
+        _laserRenderer.LineRenderer.endColor = Utilities.GetColor(_outputLaserColor);
     }
 
     public virtual void StopReflection()
@@ -100,7 +100,7 @@ public class Reflectable : MonoBehaviour
 
     protected virtual void ReflectLaser()
     {
-        RaycastHit2D hit = Physics2D.Raycast(LaserOrigin, LaserDirection, 15f, LayersAndColors.LightLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(LaserOrigin, LaserDirection, 15f, Utilities.LightLayerMask);
         _laserRenderer.LineRenderer.SetPosition(0, LaserOrigin);
         _laserRenderer.LineRenderer.SetPosition(1, hit.point);
         if (hit.collider == null) return;

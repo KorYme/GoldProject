@@ -9,9 +9,9 @@ public class ColoredBlockBehaviour : MonoBehaviour
     [Header("References")]
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
-    [SerializeField] LayersAndColors.GAMECOLORS _blockColor;
+    [SerializeField] Utilities.GAMECOLORS _blockColor;
 
-    public LayersAndColors.GAMECOLORS BlockColor
+    public Utilities.GAMECOLORS BlockColor
     {
         get => _blockColor;
         set
@@ -35,7 +35,7 @@ public class ColoredBlockBehaviour : MonoBehaviour
         }
         else
         {
-            _spriteRenderer.color = LayersAndColors.GetColor(BlockColor);
+            _spriteRenderer.color = Utilities.GetColor(BlockColor);
         }
         if (init)
         {

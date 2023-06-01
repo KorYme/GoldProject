@@ -3,8 +3,33 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public static class LayersAndColors
+public static class Utilities
 {
+    public enum DIRECTIONS
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
+
+    public static Vector2 GetDirection(DIRECTIONS direction)
+    {
+        switch (direction)
+        {
+            case DIRECTIONS.Up:
+                return Vector3.up;
+            case DIRECTIONS.Down:
+                return Vector3.down;
+            case DIRECTIONS.Left:
+                return Vector3.left;
+            case DIRECTIONS.Right:
+                return Vector3.right;
+            default:
+                return Vector2.zero;
+        }
+    }
+
     public enum GAMECOLORS
     {
         White = 0,
@@ -74,11 +99,11 @@ public static class LayersAndColors
 
     public static Dictionary<GAMECOLORS, LayerMask> MovementLayers = new Dictionary<GAMECOLORS, LayerMask>()
     {
-        {GAMECOLORS.Red, LayerMask.GetMask("WhiteWall", "Player", "BlueWall", "YellowWall", "GreenWall", "OnlyPlayers")},
-        {GAMECOLORS.Blue, LayerMask.GetMask("WhiteWall", "Player", "RedWall", "YellowWall", "OrangeWall", "OnlyPlayers")},
-        {GAMECOLORS.Yellow, LayerMask.GetMask("WhiteWall", "Player", "RedWall", "BlueWall", "PurpleWall", "OnlyPlayers")},
+        {GAMECOLORS.Red, LayerMask.GetMask("WhiteWall", "Player", "BlueWall", "YellowWall", "GreenWall", "OnlyPlayers", "Border")},
+        {GAMECOLORS.Blue, LayerMask.GetMask("WhiteWall", "Player", "RedWall", "YellowWall", "OrangeWall", "OnlyPlayers", "Border")},
+        {GAMECOLORS.Yellow, LayerMask.GetMask("WhiteWall", "Player", "RedWall", "BlueWall", "PurpleWall", "OnlyPlayers", "Border")},
     };
 
     public static LayerMask LightLayerMask = 
-        LayerMask.GetMask("WhiteWall", "Player", "RedWall", "BlueWall", "YellowWall", "PurpleWall", "OrangeWall", "GreenWall", "OnlyLight");
+        LayerMask.GetMask("WhiteWall", "Player", "RedWall", "BlueWall", "YellowWall", "PurpleWall", "OrangeWall", "GreenWall", "OnlyLight", "Border");
 }
