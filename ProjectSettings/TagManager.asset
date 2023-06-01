@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Target
+  - Mud
+  - Crate
   layers:
   - Default
   - TransparentFX
@@ -13,16 +15,16 @@ TagManager:
   - Water
   - UI
   - Player
-  - BasicWall
+  - WhiteWall
   - BlueWall
   - RedWall
   - YellowWall
   - PurpleWall
   - GreenWall
   - OrangeWall
-  - PlayerRed
-  - 
-  - 
+  - OnlyLight
+  - OnlyPlayers
+  - Border
   - 
   - 
   - 
@@ -47,6 +49,12 @@ TagManager:
     locked: 0
   - name: Tiles
     uniqueID: 976002251
+    locked: 0
+  - name: Particles
+    uniqueID: 3238556931
+    locked: 0
+  - name: Laser
+    uniqueID: 1482015127
     locked: 0
   - name: Player
     uniqueID: 967212001

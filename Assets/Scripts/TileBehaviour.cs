@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class TileBehaviour : MonoBehaviour
 {
@@ -10,88 +11,94 @@ public class TileBehaviour : MonoBehaviour
     {
         Empty,
         Border,
-        BasicWall,
-        BlueWall,
-        RedWall,
-        YellowWall,
-        PurpleWall,
-        GreenWall,
-        OrangeWall,
+        ColoredWall,
+        LaserStart,
+        LaserEnd,
+        Glass,
+        Mirror,
+        FilterLens,
+        Mud,
+        Crate,
     }
 
     [Header("References")]
     [SerializeField] BoxCollider2D _collider;
     [SerializeField] SpriteRenderer _spriteRenderer;
+    [SerializeField] List<GameObject> _prefabs;
+
+    [Header("Current Object")]
+    [SerializeField , Tooltip("Do not touch this value, it is only useful to find the prefab instantiated here")] GameObject _currentTile;
 
     [Header("Parameters")]
-    [OnValueChanged(nameof(ChangeParameters))]
     [SerializeField] TileType _type;
 
     public TileType Type
     {
         get => _type;
-        set 
-        { 
+        set
+        {
+            if (_type == value) return;
             _type = value;
             ChangeParameters();
         }
     }
 
-    private void Reset()
+    private void OnDestroy()
     {
-        Type = TileType.Border;
+        if (_currentTile == null) return;
+        DestroyImmediate(_currentTile);
     }
 
-    private void ChangeParameters()
+    #if UNITY_EDITOR
+    [Button("Apply Parameters")]
+    public void ChangeParameters(bool init = true)
     {
-        switch (_type)
+        if (init)
+        {
+            if (_currentTile != null)
+            {
+                DestroyImmediate(_currentTile);
+                _currentTile = null;
+            }
+            FindObjectsOfType<TileBehaviour>().Where(x => x != this && _currentTile != null && Type == TileType.ColoredWall).ToList().ForEach(x => x.ChangeParameters(false));
+        }
+        switch (Type)
         {
             case TileType.Empty:
-                gameObject.layer = LayerMask.NameToLayer("Default");
                 _collider.enabled = false;
                 _spriteRenderer.color = Color.clear;
+                gameObject.layer = LayerMask.NameToLayer("Default");
                 break;
             case TileType.Border:
                 _collider.enabled = true;
                 _spriteRenderer.color = Color.grey;
-                gameObject.layer = LayerMask.NameToLayer("BasicWall");
+                gameObject.layer = LayerMask.NameToLayer("Border");
                 break;
-            case TileType.BasicWall:
-            case TileType.BlueWall:
-            case TileType.RedWall:
-            case TileType.YellowWall:
-            case TileType.PurpleWall:
-            case TileType.GreenWall:
-            case TileType.OrangeWall:
-                _collider.enabled = true;
-                gameObject.layer = LayerMask.NameToLayer(_type.ToString());
-                _spriteRenderer.color = ChangeColor();
+            case TileType.ColoredWall:
+            case TileType.LaserStart:
+            case TileType.LaserEnd:
+            case TileType.Glass:
+            case TileType.Mirror:
+            case TileType.FilterLens:
+            case TileType.Mud:
+            case TileType.Crate:
+                _collider.enabled = false;
+                _spriteRenderer.color = Color.clear;
+                gameObject.layer = LayerMask.NameToLayer("Default");
+                if (_prefabs.Count <= (int)Type) return;
+                if (_prefabs[(int)Type] != null)
+                {
+                    _currentTile = UnityEditor.PrefabUtility.InstantiatePrefab(_prefabs[(int)Type]) as GameObject;
+                    _currentTile.transform.SetParent(transform, false);
+                }
+                else
+                {
+                    _currentTile = null;
+                }
                 break;
             default:
                 break;
         }
     }
-
-    private Color ChangeColor()
-    {
-        switch (_type)
-        {
-            case TileType.BasicWall:
-                return Color.grey;
-            case TileType.BlueWall:
-                return Color.blue;
-            case TileType.RedWall:
-                return Color.red;
-            case TileType.YellowWall:
-                return Color.yellow;
-            case TileType.PurpleWall:
-                return new Color(0.8f, 0.0f, 0.8f);
-            case TileType.GreenWall:
-                return Color.green;
-            case TileType.OrangeWall:
-                return new Color(1.0f, 0.64f, 0.0f);
-            default:
-                return Color.grey;
-        }
-    }
+    #endif
 }
