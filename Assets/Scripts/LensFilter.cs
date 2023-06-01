@@ -18,11 +18,11 @@ public class LensFilter : Reflectable
     public override Vector2 LaserOrigin { get => transform.position; }
     PlayerReflection _lastPlayerMet;
 
-    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast)
+    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
         _onFilteringStart.Invoke();
         LaserDirection = laserDirection;
-        base.StartReflection(LaserDirection, laserColor, raycast);
+        base.StartReflection(LaserDirection, laserColor, raycast, previous);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

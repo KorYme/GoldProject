@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -62,6 +63,11 @@ public class PlayerController : MonoBehaviour
         if (IsMoving) return;
         RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, DETECTION_RANGE, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         if (!ray) return;
+        RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position, direction, 1f, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
+        foreach (RaycastHit2D item in rays)
+        {
+            if (item.transform.CompareTag("Player")) return;
+        }
         if (ray.distance < 1f)
         {
             if (ray.collider.CompareTag("Mud"))
@@ -76,7 +82,7 @@ public class PlayerController : MonoBehaviour
         _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
     }
 
-    public void RotatePlayer(Vector2 direction)
+    public void RotateCrystal(Vector2 direction)
     {
         if (direction == Vector2.zero)
         {
@@ -99,7 +105,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Mathf.Abs(((360 - _targetAngle) % 360) - _playerReflection.ForbiddenAngle) < ANGLE_TOLERANCE)
         {
-            RotatePlayer(Vector2.zero);
+            RotateCrystal(Vector2.zero);
             return true;
         }
         return false;

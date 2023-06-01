@@ -100,7 +100,7 @@ public class InputManager : MonoBehaviour
         if (collider2D is null) return;
         if (collider2D.GetComponent<PlayerController>() == _currentPlayerTouched)
         {
-            _currentPlayerTouched.RotatePlayer(Vector2.zero);
+            _currentPlayerTouched.RotateCrystal(Vector2.zero);
         }
         _currentPlayerTouched = null;
     }
