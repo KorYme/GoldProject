@@ -34,12 +34,15 @@ public class PlayerReflection : Reflectable
         base.Awake();
     }
 
-    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast)
+    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
-        ForbiddenAngle = ((int)(Mathf.Atan2(-laserDirection.y, -laserDirection.x) * Mathf.Rad2Deg) + 360) % 360;
+        if (previous == _previousReflectable)
+        {
+            ForbiddenAngle = ((int)(Mathf.Atan2(-laserDirection.y, -laserDirection.x) * Mathf.Rad2Deg) + 360) % 360;
+        }
         _playerController?.CheckNeededRotation();
         if (IsReflecting) return;
-        base.StartReflection(laserDirection, laserColor, raycast);
+        base.StartReflection(laserDirection, laserColor, raycast, previous);
     }
 
     public override void StopReflection()

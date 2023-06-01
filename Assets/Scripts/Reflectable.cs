@@ -32,6 +32,7 @@ public class Reflectable : MonoBehaviour
     }
     protected Action _onReflection;
     protected Reflectable _nextReflectable;
+    protected Reflectable _previousReflectable;
     protected Utilities.GAMECOLORS _inputLaserColor;
     protected virtual Utilities.GAMECOLORS _outputLaserColor
     {
@@ -62,6 +63,7 @@ public class Reflectable : MonoBehaviour
 
     protected virtual void Awake()
     {
+
         _onReflection = null;
         _nextReflectable = null;
         _laserRenderer.LineRenderer.enabled = false;
@@ -70,9 +72,10 @@ public class Reflectable : MonoBehaviour
         _laserRenderer.LineRenderer.endWidth = 0.08f;
     }
 
-    public virtual void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast)
+    public virtual void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
         if (IsReflecting) return;
+        _previousReflectable = previous;
         _inputLaserColor = laserColor;
         UpdateColorLaser();
         _laserRenderer.LineRenderer.enabled = true;
@@ -109,7 +112,7 @@ public class Reflectable : MonoBehaviour
         {
             if (_nextReflectable != null || _nextReflectable is Mirror)
             {
-                _nextReflectable.StartReflection(LaserDirection, _outputLaserColor, hit);
+                _nextReflectable.StartReflection(LaserDirection, _outputLaserColor, hit, this);
             }
             return;
         }
@@ -121,7 +124,7 @@ public class Reflectable : MonoBehaviour
         }
         else
         {
-            _nextReflectable?.StartReflection(LaserDirection, _outputLaserColor, hit);
+            _nextReflectable?.StartReflection(LaserDirection, _outputLaserColor, hit, this);
         }
     }
 }

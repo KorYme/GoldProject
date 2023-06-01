@@ -25,7 +25,7 @@ public class FinalLaser : Reflectable
         _isLevelComplete = false;
     }
 
-    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast)
+    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
         if (_isLevelComplete) return;
         _inputLaserColor = laserColor;
