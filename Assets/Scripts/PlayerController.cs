@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,7 +22,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _rotationSpeed;
     [SerializeField] bool _eightLaserDirections;
     [SerializeField, Tooltip("Movement curve of the crystal")] AnimationCurve _rotationCurve;
-    
+
+    [Header("Events")]
+    [SerializeField] UnityEvent _onMoveStarted;
+    [SerializeField] UnityEvent _onMoveStopped;
+    [SerializeField] UnityEvent _OnCrateMoveStarted;
+    [SerializeField] UnityEvent _OnCrateMoveStopped;
+    [SerializeField] UnityEvent _OnRotationStarted;
+    [SerializeField] UnityEvent _OnRotationStopped;
+
     Coroutine _movementCoroutine;
     Coroutine _rotationCoroutine;
     Coroutine _moveCrateCoroutine;
@@ -86,6 +95,7 @@ public class PlayerController : MonoBehaviour
         Vector3 positionToGo = initialPosition + (Vector3)direction * distance;
         float initialTime = Time.time;
         float lerpValue = 0f;
+        _onMoveStarted.Invoke();
         while (lerpValue < 1f)
         {
             lerpValue = Mathf.Clamp01(lerpValue +
@@ -94,6 +104,7 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
         }
+        _onMoveStopped.Invoke();
         
         if (raycast.collider.gameObject.CompareTag("Crate"))
         {
@@ -120,6 +131,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator RotationCoroutine()
     {
+        _OnRotationStarted.Invoke();
         float lerpValue = 0f;
         float initialAngle = Mathf.Atan2(_crystal.position.y -  transform.position.y,
             _crystal.position.x - transform.position.x) * Mathf.Rad2Deg;
@@ -131,6 +143,7 @@ public class PlayerController : MonoBehaviour
                 Mathf.Sin(lerpAngle * Mathf.Deg2Rad) * _distance, 0) + transform.position;
             yield return null;
         }
+        _OnRotationStopped.Invoke();
         _rotationCoroutine = null;
     }
 
@@ -143,6 +156,7 @@ public class PlayerController : MonoBehaviour
         Vector3 positionToGo = initialPosition + (Vector3)direction * distance;
         float initialTime = Time.time;
         float lerpValue = 0f;
+        _OnCrateMoveStarted.Invoke();
         while (lerpValue < 1f)
         {
             lerpValue = Mathf.Clamp01(lerpValue +
@@ -151,6 +165,7 @@ public class PlayerController : MonoBehaviour
             crate.transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
         }
+        _OnCrateMoveStopped.Invoke();
         _movementCoroutine = null;
         _moveCrateCoroutine = null;
         InputManager.Instance.CanMoveAPlayer = true;

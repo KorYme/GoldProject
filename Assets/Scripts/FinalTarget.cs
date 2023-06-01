@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FinalTarget : Reflectable
 {
@@ -12,6 +13,11 @@ public class FinalTarget : Reflectable
     [SerializeField] ParticleSystem _particleSystem;
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
+
+    [Header("Events")]
+    [SerializeField] UnityEvent _onLaserStart;
+    [SerializeField] UnityEvent _onLaserStop;
+    [SerializeField] UnityEvent _onLevelComplete;
 
     float _timeHitByLaser = 0;
     bool _isLevelComplete;
@@ -27,19 +33,24 @@ public class FinalTarget : Reflectable
         if (_isLevelComplete) return;
         _inputLaserColor = laserColor;
         if (laserColor == _targetColor && _onReflection == null)
+        {
             _onReflection += ReflectLaser;
+            _onLaserStart.Invoke();
+        }
     }
 
     public override void StopReflection()
     {
         _timeHitByLaser = 0;
         _onReflection -= ReflectLaser;
+        _onLaserStop.Invoke();
     }
 
     protected override void ReflectLaser()
     {
         if (_timeHitByLaser >= 2f)
         {
+            _onLevelComplete.Invoke();
             _isLevelComplete = true;
             LevelCompleted();
             StopReflection();

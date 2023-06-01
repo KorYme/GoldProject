@@ -11,11 +11,16 @@ public class LensFilter : Reflectable
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
 
+    [Header("Events")]
+    [SerializeField] UnityEvent _onFilteringStart;
+    [SerializeField] UnityEvent _onFilteringStop;
+
     public override Vector2 LaserOrigin { get => transform.position; }
     PlayerReflection _lastPlayerMet;
 
     public override void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
     {
+        _onFilteringStart.Invoke();
         LaserDirection = laserDirection;
         base.StartReflection(LaserDirection, laserColor, raycast);
     }

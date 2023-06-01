@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
@@ -11,6 +12,8 @@ public class InputManager : MonoBehaviour
     [SerializeField] float _swipeMinimumValue;
     [SerializeField] float _checkSize;
     [SerializeField] LayerMask _playerLayer;
+
+
 
     PlayerController _currentPlayerTouched;
     public bool CanMoveAPlayer

@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerReflection : Reflectable
 {
     [SerializeField] protected Transform _crystalTransform;
     [SerializeField] protected PlayerController _playerController;
+
+    [Header("Events")]
+    [SerializeField] UnityEvent _onReflectionStarted;
 
     public override Vector2 LaserOrigin { get => _crystalTransform.position; }
     public override Vector2 LaserDirection { get => _crystalTransform.position - transform.position; }
@@ -36,6 +40,7 @@ public class PlayerReflection : Reflectable
 
     public override void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
     {
+        _onReflectionStarted.Invoke();
         ForbiddenAngle = ((int)((Mathf.Atan2(-laserDirection.y, -laserDirection.x) * Mathf.Rad2Deg) + Mathf.Epsilon) + 360) % 360;
         if (IsReflecting) return;
         base.StartReflection(laserDirection, laserColor, raycast);
