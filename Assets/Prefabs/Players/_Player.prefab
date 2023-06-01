@@ -227,6 +227,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _crystal: {fileID: 4118163585875669239}
   _playerReflection: {fileID: 9177670462990222522}
+  _animator: {fileID: 6760211404615403738}
+  _spriteRenderer: {fileID: 2484433348921520552}
   _movementSpeed: 0.1
   _movementCurve:
     serializedVersion: 2
@@ -296,6 +298,48 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _onPlayerMoveStarted:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6760211404615403738}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StartSliding
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onPlayerMoveStopped:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6760211404615403738}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: SetTrigger
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: StopSliding
+          m_BoolArgument: 0
+        m_CallState: 2
+  _onPlayerRotationStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  _onPlayerRotationStopped:
+    m_PersistentCalls:
+      m_Calls: []
+  _onCrateMoveStart:
+    m_PersistentCalls:
+      m_Calls: []
+  _onCrateMoveStop:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &9177670462990222522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +357,9 @@ MonoBehaviour:
   _reflectionType: 0
   _crystalTransform: {fileID: 4118163585875669239}
   _playerController: {fileID: 2724373515318493286}
+  _onReflect:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &4394204038695093132
 GameObject:
   m_ObjectHideFlags: 0
