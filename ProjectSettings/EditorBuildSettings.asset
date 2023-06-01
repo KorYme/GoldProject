@@ -5,24 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Maxime.unity
-    guid: 111c88bf06721da43a3083f7ac272965
-  - enabled: 1
-    path: Assets/Scenes/Level-1.unity
-    guid: 4dfd3b916b1c15b468df39b04c36ddc9
-  - enabled: 1
-    path: Assets/Scenes/Level-2.unity
-    guid: ac652d092621f5345807d8e0fd2c492e
-  - enabled: 1
-    path: Assets/Scenes/Level-3.unity
-    guid: 86dc3968a30c82c43a42b6617a1c279f
-  - enabled: 1
-    path: Assets/Scenes/Level-4.unity
-    guid: 83b2c4563d3a2424d966c01c56f25156
+    path: Assets/Scenes/LevelScenes/Main Menu.unity
+    guid: 8afc65a58ef897e4cb5506b87d09a9a9
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6677a1f346883424794346cd77a81895, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: c462a6161ac170047a7d17efcd0db9b7, type: 2}

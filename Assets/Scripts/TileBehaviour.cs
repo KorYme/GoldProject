@@ -65,7 +65,7 @@ public class TileBehaviour : MonoBehaviour
             case TileType.Border:
                 _collider.enabled = true;
                 _spriteRenderer.color = Color.grey;
-                gameObject.layer = LayerMask.NameToLayer("WhiteWall");
+                gameObject.layer = LayerMask.NameToLayer("Border");
                 break;
             case TileType.ColoredWall:
             case TileType.LaserStart:
