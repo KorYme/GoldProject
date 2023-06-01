@@ -77,7 +77,7 @@ public class FinalLaser : Reflectable
         else
         {
             _spriteRenderer.color = Utilities.GetColor(_targetColor);
-        }
+        }   
         if (init)
         {
             FindObjectsOfType<LensFilter>().Where(x => x != this).ToList().ForEach(x => x.ApplyParameters(false));
