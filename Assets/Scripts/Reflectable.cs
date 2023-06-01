@@ -63,9 +63,9 @@ public class Reflectable : MonoBehaviour
 
     protected virtual void Awake()
     {
-
         _onReflection = null;
         _nextReflectable = null;
+        if (_laserRenderer == null) return;
         _laserRenderer.LineRenderer.enabled = false;
         _laserRenderer.LineRenderer.useWorldSpace = true;
         _laserRenderer.LineRenderer.startWidth = 0.08f;
@@ -74,6 +74,7 @@ public class Reflectable : MonoBehaviour
 
     public virtual void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
+        if (!enabled) return;
         if (IsReflecting) return;
         _previousReflectable = previous;
         _inputLaserColor = laserColor;

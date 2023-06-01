@@ -10,6 +10,7 @@ public class StartingLaser : MonoBehaviour
 
     [Header("References")]
     [SerializeField] LaserRenderer _laserRenderer;
+    [SerializeField] Reflectable _thisReflectable;
 
     [Header("Starting Laser Parameters")]
     [SerializeField] Utilities.DIRECTIONS _laserDir;
@@ -46,7 +47,7 @@ public class StartingLaser : MonoBehaviour
         if (objectHit == (_nextReflectable?.gameObject ?? null)) return;
         _nextReflectable?.StopReflection();
         _nextReflectable = objectHit.GetComponent<Reflectable>();
-        _nextReflectable?.StartReflection(_raycastTarget, _initialColor, hit, new());
+        _nextReflectable?.StartReflection(_raycastTarget, _initialColor, hit, _thisReflectable);
     }
 
     [Button]

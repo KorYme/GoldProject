@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,8 +7,8 @@ public class PlayerReflection : Reflectable
     [SerializeField] protected Transform _crystalTransform;
     [SerializeField] protected PlayerController _playerController;
 
-    [Header("Events")]
-    [SerializeField] UnityEvent _onReflect;
+    [Space(10f)]
+    [SerializeField, Foldout("Events")] UnityEvent _onReflect;
 
     public override Vector2 LaserOrigin { get => _crystalTransform.position; }
     public override Vector2 LaserDirection { get => _crystalTransform.position - transform.position; }
@@ -45,7 +46,6 @@ public class PlayerReflection : Reflectable
             ForbiddenAngle = ((int)(Mathf.Atan2(-laserDirection.y, -laserDirection.x) * Mathf.Rad2Deg) + 360) % 360;
         }
         _playerController?.CheckNeededRotation();
-        if (IsReflecting) return;
         base.StartReflection(laserDirection, laserColor, raycast, previous);
     }
 
