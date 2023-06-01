@@ -3,8 +3,33 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public static class LayersAndColors
+public static class Utilities
 {
+    public enum DIRECTIONS
+    {
+        Up,
+        Down,
+        Left,
+        Right
+    }
+
+    public static Vector2 GetDirection(DIRECTIONS direction)
+    {
+        switch (direction)
+        {
+            case DIRECTIONS.Up:
+                return Vector3.up;
+            case DIRECTIONS.Down:
+                return Vector3.down;
+            case DIRECTIONS.Left:
+                return Vector3.left;
+            case DIRECTIONS.Right:
+                return Vector3.right;
+            default:
+                return Vector2.zero;
+        }
+    }
+
     public enum GAMECOLORS
     {
         White = 0,

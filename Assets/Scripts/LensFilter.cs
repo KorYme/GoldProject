@@ -14,7 +14,7 @@ public class LensFilter : Reflectable
     public override Vector2 LaserOrigin { get => transform.position; }
     PlayerReflection _lastPlayerMet;
 
-    public override void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
+    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast)
     {
         LaserDirection = laserDirection;
         base.StartReflection(LaserDirection, laserColor, raycast);
@@ -32,7 +32,7 @@ public class LensFilter : Reflectable
     {
         if (collision.CompareTag("Player"))
         {
-            _lastPlayerMet.LensColor = LayersAndColors.GAMECOLORS.White;
+            _lastPlayerMet.LensColor = Utilities.GAMECOLORS.White;
             _lastPlayerMet = null;
         }
     }
@@ -46,7 +46,7 @@ public class LensFilter : Reflectable
         }
         else
         {
-            _spriteRenderer.color = LayersAndColors.GetColor(_reflectionColor);
+            _spriteRenderer.color = Utilities.GetColor(_reflectionColor);
         }
         if (init)
         {
