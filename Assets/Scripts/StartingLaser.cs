@@ -52,15 +52,16 @@ public class StartingLaser : MonoBehaviour
     [Button]
     public void ApplyParameters(bool init = true)
     {
-        if (_sprites.Count < (int)_initialColor && _sprites[(int)_initialColor] != null)
+        if (_sprites.Count > (int)_initialColor && _sprites[(int)_initialColor] != null)
         {
             _spriteRenderer.sprite = _sprites[(int)_initialColor];
+            _spriteRenderer.color = Color.white;
         }
         else
         {
             _spriteRenderer.color = Utilities.GetColor(_initialColor);
         }
-        if (init)
+        if (init)   
         {
             FindObjectsOfType<StartingLaser>().Where(x => x != this).ToList().ForEach(x => x.ApplyParameters(false));
         }
