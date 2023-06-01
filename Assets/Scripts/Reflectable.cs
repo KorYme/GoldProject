@@ -12,7 +12,7 @@ public class Reflectable : MonoBehaviour
     }
 
     [Header("References")]
-    [SerializeField] protected LineRenderer _lineRenderer;
+    [SerializeField] protected LaserRenderer _laserRenderer;
     [SerializeField] protected LayersAndColors.GAMECOLORS _reflectionColor;
     [SerializeField] protected ReflectionType _reflectionType;
 
@@ -64,10 +64,10 @@ public class Reflectable : MonoBehaviour
     {
         _onReflection = null;
         _nextReflectable = null;
-        _lineRenderer.enabled = false;
-        _lineRenderer.useWorldSpace = true;
-        _lineRenderer.startWidth = 0.08f;
-        _lineRenderer.endWidth = 0.08f;
+        _laserRenderer.LineRenderer.enabled = false;
+        _laserRenderer.LineRenderer.useWorldSpace = true;
+        _laserRenderer.LineRenderer.startWidth = 0.08f;
+        _laserRenderer.LineRenderer.endWidth = 0.08f;
     }
 
     public virtual void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
@@ -75,20 +75,20 @@ public class Reflectable : MonoBehaviour
         if (IsReflecting) return;
         _inputLaserColor = laserColor;
         UpdateColorLaser();
-        _lineRenderer.enabled = true;
+        _laserRenderer.LineRenderer.enabled = true;
         _onReflection += ReflectLaser;
     }
 
     protected virtual void UpdateColorLaser()
     {
-        _lineRenderer.startColor = LayersAndColors.GetColor(_outputLaserColor);
-        _lineRenderer.endColor = LayersAndColors.GetColor(_outputLaserColor);
+        _laserRenderer.LineRenderer.startColor = LayersAndColors.GetColor(_outputLaserColor);
+        _laserRenderer.LineRenderer.endColor = LayersAndColors.GetColor(_outputLaserColor);
     }
 
     public virtual void StopReflection()
     {
         if (!IsReflecting) return;
-        _lineRenderer.enabled = false;
+        _laserRenderer.LineRenderer.enabled = false;
         _onReflection -= ReflectLaser;
         _nextReflectable?.StopReflection();
     }
@@ -101,8 +101,8 @@ public class Reflectable : MonoBehaviour
     protected virtual void ReflectLaser()
     {
         RaycastHit2D hit = Physics2D.Raycast(LaserOrigin, LaserDirection, 15f, LayersAndColors.LightLayerMask);
-        _lineRenderer.SetPosition(0, LaserOrigin);
-        _lineRenderer.SetPosition(1, hit.point);
+        _laserRenderer.LineRenderer.SetPosition(0, LaserOrigin);
+        _laserRenderer.LineRenderer.SetPosition(1, hit.point);
         if (hit.collider == null) return;
         GameObject objectHit = hit.collider.gameObject;
         if (objectHit == (_nextReflectable?.gameObject ?? null))

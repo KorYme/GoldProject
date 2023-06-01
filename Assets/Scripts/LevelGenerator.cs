@@ -9,18 +9,12 @@ public class LevelGenerator : MonoBehaviour
     [Header("References")]
     [SerializeField] Camera _camera;
     [SerializeField] Transform _tilesContainer;
-    [SerializeField] Transform _player;
+    [SerializeField] Transform _borderContainer;
     [SerializeField] GameObject _tilePrefab;
 
     [Header("Parameters")]
     [SerializeField, MinMaxSlider(3,9)] Vector2Int _mapSize;
     [SerializeField, Range(0f, 2f)] float _offsetOnSide;
-
-
-    [Header("TEST")]
-    [SerializeField] LayersAndColors.GAMECOLORS _color1;
-    [SerializeField] LayersAndColors.GAMECOLORS _color2;
-    [SerializeField] LayerMask _testLayer;
 
     private void Reset()
     {
@@ -32,20 +26,24 @@ public class LevelGenerator : MonoBehaviour
     private void GenerateLevel()
     {
         _camera.orthographicSize = _mapSize.x + _offsetOnSide * 2;
-        _player.position = new Vector3(((_mapSize.y + 1) % 2) * .5f, ((_mapSize.y + 1) % 2) * .5f, 0);
         for (int x = 0; x < _mapSize.x + 2; x++)
         {
             for (int y = 0; y < _mapSize.y + 2; y++)
             {
-                GameObject newTile = Instantiate(_tilePrefab, new Vector3(x - (_mapSize.x + 1) * .5f, y - (_mapSize.y + 1) * .5f, 0), 
-                    Quaternion.identity, _tilesContainer);
+                GameObject newTile;
                 if (x == 0 || y == 0 || x == _mapSize.x + 1 || y == _mapSize.y + 1)
                 {
+                    newTile = Instantiate(_tilePrefab, new Vector3(x - (_mapSize.x + 1) * .5f, y - (_mapSize.y + 1) * .5f, 0),
+                    Quaternion.identity, _borderContainer);
                     newTile.GetComponent<TileBehaviour>().Type = TileBehaviour.TileType.Border;
+                    newTile.name = $"Border ({x-1},{y-1})";
                 }
                 else
                 {
+                    newTile = Instantiate(_tilePrefab, new Vector3(x - (_mapSize.x + 1) * .5f, y - (_mapSize.y + 1) * .5f, 0),
+                    Quaternion.identity, _tilesContainer);
                     newTile.GetComponent<TileBehaviour>().Type = TileBehaviour.TileType.Empty;
+                    newTile.name = $"Tile ({x-1},{y-1})";
                 }
             }
         }
@@ -58,23 +56,15 @@ public class LevelGenerator : MonoBehaviour
         {
             DestroyImmediate(_tilesContainer.GetChild(i).gameObject);
         }
+        for (int y = _borderContainer.childCount - 1; y >= 0; y--)
+        {
+            DestroyImmediate(_borderContainer.GetChild(y).gameObject);
+        }
     }
 
     [Button]
     private void ResizeCamera()
     {
         _camera.orthographicSize = _mapSize.x + _offsetOnSide * 2;
-    }
-
-    [Button]
-    private void TestColorMix()
-    {
-        Debug.Log(LayersAndColors.GetSubtractedColor(_color1, _color2).ToString());
-    }
-    
-    [Button]
-    private void LayerTest()
-    {
-        _testLayer = LayerMask.GetMask("BasicWall", "Player");
     }
 }

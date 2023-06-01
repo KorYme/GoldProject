@@ -15,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Player
-  - BasicWall
+  - WhiteWall
   - BlueWall
   - RedWall
   - YellowWall
@@ -49,6 +49,9 @@ TagManager:
     locked: 0
   - name: Tiles
     uniqueID: 976002251
+    locked: 0
+  - name: Particles
+    uniqueID: 3238556931
     locked: 0
   - name: Laser
     uniqueID: 1482015127

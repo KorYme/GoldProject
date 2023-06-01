@@ -8,7 +8,7 @@ public class MudBehaviour : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-
+            gameObject.layer = LayerMask.NameToLayer("Default");
         }
     }
 
@@ -16,7 +16,7 @@ public class MudBehaviour : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-
+            gameObject.layer = LayerMask.NameToLayer("OnlyPlayers");
         }
     }
 }
