@@ -60,7 +60,6 @@ public static class Utilities
     /// <returns>Final color</returns>
     public static GAMECOLORS GetSubtractedColor(GAMECOLORS color1, GAMECOLORS color2)
     {
-        //return (GAMECOLORS)((int)color1 ^ ((7 - (int)color2)%7));
         int value = (int)color1 != 0 ? (int)color1 : 7;
         for (int i = 0; i < 3; i++)
         {

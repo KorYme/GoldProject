@@ -90,7 +90,10 @@ public class PlayerController : MonoBehaviour
                 CheckCrateMovement(ray.transform, direction);
             }
         }
-        _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
+        else
+        {
+            _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
+        }
     }
 
     public void RotateCrystal(Vector2 direction)

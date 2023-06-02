@@ -4888,7 +4888,13 @@ MonoBehaviour:
   _laserRenderer: {fileID: 0}
   _reflectionColor: 0
   _reflectionType: 0
-  _targetColor: 3
+  _onLaserRampUp:
+    m_PersistentCalls:
+      m_Calls: []
+  _onLaserStop:
+    m_PersistentCalls:
+      m_Calls: []
+  _targetColor: 1
   _sideTouchedNeeded: 0
   _particleSystem: {fileID: 6766991535475869501}
   _spriteRenderer: {fileID: 6564846264669077187}
@@ -4973,7 +4979,7 @@ SpriteRenderer:
   m_SortingLayerID: 976002251
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b4e26ecd3235c804cb7050ffd7644583, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2f06603a22f74f94396b1dac6ee97e5c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
