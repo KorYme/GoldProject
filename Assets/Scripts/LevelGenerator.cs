@@ -16,9 +16,11 @@ public class LevelGenerator : MonoBehaviour
     [Header("Parameters")]
     [SerializeField, MinMaxSlider(3,9)] Vector2Int _mapSize;
     [SerializeField, Range(0f, 2f)] float _offsetOnSide;
+    [SerializeField] float _cameraOffsetY;
 
     private void Reset()
     {
+        _cameraOffsetY = 0;
         _mapSize = new Vector2Int(6, 8);
         _offsetOnSide = 0;
     }
@@ -67,6 +69,7 @@ public class LevelGenerator : MonoBehaviour
     private void ResizeCamera()
     {
         _camera.orthographicSize = _mapSize.x + _offsetOnSide * 2;
+        _camera.transform.position += new Vector3(0, _cameraOffsetY, 0);
     }
 #endif
 }
