@@ -3,9 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class FinalTarget : Reflectable
+public class FinalLaser : Reflectable
 {
+    [Header("Events")]
+    [SerializeField] UnityEvent _onLaserRampUp;
+    [SerializeField] UnityEvent _onLaserStop;
 
     [Space(5), Header("Final Target")] 
     [SerializeField] Utilities.GAMECOLORS _targetColor;
@@ -25,9 +29,10 @@ public class FinalTarget : Reflectable
         _isLevelComplete = false;
     }
 
-    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast)
+    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
         if (_isLevelComplete) return;
+        _onLaserRampUp.Invoke();
         _inputLaserColor = laserColor;
         LaserDirection = laserDirection;
         if (Vector3.Angle(laserDirection, -Utilities.GetDirection(_sideTouchedNeeded)) > ANGLE_TOLERANCE)
@@ -43,6 +48,7 @@ public class FinalTarget : Reflectable
 
     public override void StopReflection()
     {
+        _onLaserStop.Invoke();
         _timeHitByLaser = 0;
         _onReflection -= ReflectLaser;
     }
@@ -70,14 +76,14 @@ public class FinalTarget : Reflectable
     [Button]
     public void ApplyParameters(bool init = true)
     {
-        if (_sprites.Count < (int)_reflectionColor && _sprites[(int)_reflectionColor] != null)
+        if (_sprites.Count > (int)_targetColor && _sprites[(int)_targetColor] != null)
         {
-            _spriteRenderer.sprite = _sprites[(int)_reflectionColor];
+            _spriteRenderer.sprite = _sprites[(int)_targetColor];
         }
         else
         {
-            _spriteRenderer.color = Utilities.GetColor(_reflectionColor);
-        }
+            _spriteRenderer.color = Utilities.GetColor(_targetColor);
+        }   
         if (init)
         {
             FindObjectsOfType<LensFilter>().Where(x => x != this).ToList().ForEach(x => x.ApplyParameters(false));

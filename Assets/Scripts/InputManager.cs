@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
@@ -12,11 +13,25 @@ public class InputManager : MonoBehaviour
     [SerializeField] float _checkSize;
     [SerializeField] LayerMask _playerLayer;
 
+    public static InputManager Instance;
+
     PlayerController _currentPlayerTouched;
+    SceneManager _currentSceneManager;
     public bool CanMoveAPlayer
     {
         get;
         set;
+    }
+
+    int _movementNumber;
+    public int MovementNumber
+    {
+        get => _movementNumber;
+        set
+        {
+            _movementNumber = value;
+            _currentSceneManager.OnSceneUpdate?.Invoke();
+        }
     }
 
     private void Reset()
@@ -25,7 +40,6 @@ public class InputManager : MonoBehaviour
         _checkSize = .1f;
     }
 
-    public static InputManager Instance;
 
     private void OnEnable()
     {
@@ -49,7 +63,13 @@ public class InputManager : MonoBehaviour
         ETouch.Touch.onFingerUp -= OnInputStopped;
         EnhancedTouchSupport.Disable();
     }
-    
+
+    public void SetUpNewLevel(SceneManager sceneManager)
+    {
+        _currentSceneManager = sceneManager;
+        _currentPlayerTouched = null;
+    }
+
     private void OnInputStarted(Finger finger)
     {
         Vector2 fingerPosition = Camera.main.ScreenToWorldPoint(finger.currentTouch.screenPosition);
@@ -97,7 +117,7 @@ public class InputManager : MonoBehaviour
         if (collider2D is null) return;
         if (collider2D.GetComponent<PlayerController>() == _currentPlayerTouched)
         {
-            _currentPlayerTouched.RotatePlayer(Vector2.zero);
+            _currentPlayerTouched.RotateCrystal(Vector2.zero);
         }
         _currentPlayerTouched = null;
     }
