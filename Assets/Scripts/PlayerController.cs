@@ -119,10 +119,6 @@ public class PlayerController : MonoBehaviour
         InputManager.Instance.CanMoveAPlayer = false;
         InputManager.Instance.MovementNumber++;
         _animator.SetFloat("DirectionY", direction.y);
-        if (direction.x > 0)
-        {
-            _animator.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-        }
         _onPlayerMoveStarted?.Invoke();
         Vector3 initialPosition = transform.position;
         float distance = ((int)raycast.distance + (raycast.collider.CompareTag("Mud") ? 1 : 0));
@@ -138,7 +134,6 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         _onPlayerMoveStopped?.Invoke();
-        _animator.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         transform.position = positionToGo;
         CheckCrateMovement(raycast.transform, direction);
     }

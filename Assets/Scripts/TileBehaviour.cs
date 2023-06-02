@@ -66,7 +66,7 @@ public class TileBehaviour : MonoBehaviour
         {
             case TileType.Empty:
                 _collider.enabled = false;
-                _spriteRenderer.color = Color.clear;
+                _spriteRenderer.color = Color.white;
                 gameObject.layer = LayerMask.NameToLayer("Default");
                 break;
             case TileType.Border:
