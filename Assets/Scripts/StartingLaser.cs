@@ -10,6 +10,7 @@ public class StartingLaser : MonoBehaviour
 
     [Header("References")]
     [SerializeField] LaserRenderer _laserRenderer;
+    [SerializeField] Reflectable _thisReflectable;
 
     [Header("Starting Laser Parameters")]
     [SerializeField] Utilities.DIRECTIONS _laserDir;
@@ -40,13 +41,13 @@ public class StartingLaser : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, _raycastTarget, 15f, Utilities.LightLayerMask);
         _laserRenderer.LineRenderer.SetPosition(0, transform.position);
-        _laserRenderer.LineRenderer.SetPosition(1, hit.collider is null ? transform.position + (Vector3)(_raycastTarget * 100f) : hit.point);
+        _laserRenderer.LineRenderer.SetPosition(1, hit.collider is null ? transform.position + (_raycastTarget * 100f) : hit.point);
         if (hit.collider == null) return;
         GameObject objectHit = hit.collider.gameObject;
         if (objectHit == (_nextReflectable?.gameObject ?? null)) return;
         _nextReflectable?.StopReflection();
         _nextReflectable = objectHit.GetComponent<Reflectable>();
-        _nextReflectable?.StartReflection(_raycastTarget, _initialColor, hit);
+        _nextReflectable?.StartReflection(_raycastTarget, _initialColor, hit, _thisReflectable);
     }
 
     [Button]

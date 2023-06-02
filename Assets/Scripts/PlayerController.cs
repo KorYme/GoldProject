@@ -1,9 +1,12 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 using static UnityEngine.UI.Image;
 
 public class PlayerController : MonoBehaviour
@@ -13,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [Header("References")]
     [SerializeField] Transform _crystal;
     [SerializeField] PlayerReflection _playerReflection;
+    [SerializeField] Animator _animator;
 
     [Header("Movement Parameters")]
     [SerializeField] float _movementSpeed;
@@ -22,7 +26,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float _rotationSpeed;
     [SerializeField] bool _eightLaserDirections;
     [SerializeField, Tooltip("Movement curve of the crystal")] AnimationCurve _rotationCurve;
-    
+
+    [Space(10f)]
+    [SerializeField, Foldout("Events")] UnityEvent _onPlayerMoveStarted;
+    [SerializeField, Foldout("Events")] UnityEvent _onPlayerMoveStopped;
+    [SerializeField, Foldout("Events")] UnityEvent _onPlayerRotationStarted;
+    [SerializeField, Foldout("Events")] UnityEvent _onPlayerRotationStopped;
+    [SerializeField, Foldout("Events")] UnityEvent _onCrateMoveStart;
+    [SerializeField, Foldout("Events")] UnityEvent _onCrateMoveStop;
+
     Coroutine _movementCoroutine;
     Coroutine _rotationCoroutine;
     Coroutine _moveCrateCoroutine;
@@ -53,6 +65,11 @@ public class PlayerController : MonoBehaviour
         if (IsMoving) return;
         RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, DETECTION_RANGE, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         if (!ray) return;
+        RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position, direction, 1f, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
+        foreach (RaycastHit2D item in rays)
+        {
+            if (item.transform.CompareTag("Player")) return;
+        }
         if (ray.distance < 1f)
         {
             if (ray.collider.CompareTag("Mud"))
@@ -67,7 +84,7 @@ public class PlayerController : MonoBehaviour
         _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
     }
 
-    public void RotatePlayer(Vector2 direction)
+    public void RotateCrystal(Vector2 direction)
     {
         if (direction == Vector2.zero)
         {
@@ -90,7 +107,8 @@ public class PlayerController : MonoBehaviour
     {
         if (Mathf.Abs(((360 - _targetAngle) % 360) - _playerReflection.ForbiddenAngle) < ANGLE_TOLERANCE)
         {
-            RotatePlayer(Vector2.zero);
+            Debug.Log("HEY");
+            RotateCrystal(Vector2.zero);
             return true;
         }
         return false;
@@ -99,6 +117,12 @@ public class PlayerController : MonoBehaviour
     IEnumerator MovementCoroutine(Vector2 direction, RaycastHit2D raycast)
     {
         InputManager.Instance.CanMoveAPlayer = false;
+        _animator.SetFloat("DirectionY", direction.y);
+        if (direction.x > 0)
+        {
+            _animator.transform.rotation = Quaternion.Euler(0f, 0f, 180f);
+        }
+        _onPlayerMoveStarted?.Invoke();
         Vector3 initialPosition = transform.position;
         float distance = ((int)raycast.distance + (raycast.collider.CompareTag("Mud") ? 1 : 0));
         Vector3 positionToGo = initialPosition + (Vector3)direction * distance;
@@ -112,6 +136,9 @@ public class PlayerController : MonoBehaviour
             transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
         }
+        _onPlayerMoveStopped?.Invoke();
+        _animator.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        transform.position = positionToGo;
         CheckCrateMovement(raycast.transform, direction);
     }
 
@@ -143,6 +170,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator RotationCoroutine()
     {
+        _onPlayerRotationStarted?.Invoke();
         float lerpValue = 0f;
         float initialAngle = Mathf.Atan2(_crystal.position.y -  transform.position.y,
             _crystal.position.x - transform.position.x) * Mathf.Rad2Deg;
@@ -155,6 +183,7 @@ public class PlayerController : MonoBehaviour
             _crystal.rotation = Quaternion.Euler(0, 0, lerpAngle);
             yield return null;
         }
+        _onPlayerRotationStopped?.Invoke();
         _crystal.position = new Vector3(
             GetClosest(Mathf.Cos(-_targetAngle * Mathf.Deg2Rad)) * _distance,
             GetClosest(Mathf.Sin(-_targetAngle * Mathf.Deg2Rad)) * _distance, 0) 
@@ -170,6 +199,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator MoveCrateCoroutine(GameObject crate, Vector2 direction)
     {
+        _onCrateMoveStart?.Invoke();
         Vector3 initialPosition = crate.transform.position;
         CalculateCrateRay(direction, crate.transform.position);
         float distance = ((int)_crateRay.distance + (_crateRay.collider.CompareTag("Mud") ? 1 : 0));
@@ -184,6 +214,7 @@ public class PlayerController : MonoBehaviour
             crate.transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
         }
+        _onCrateMoveStop?.Invoke();
         _movementCoroutine = null;
         _moveCrateCoroutine = null;
         InputManager.Instance.CanMoveAPlayer = true;

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem.EnhancedTouch;
 using ETouch = UnityEngine.InputSystem.EnhancedTouch;
 
@@ -11,6 +12,8 @@ public class InputManager : MonoBehaviour
     [SerializeField] float _swipeMinimumValue;
     [SerializeField] float _checkSize;
     [SerializeField] LayerMask _playerLayer;
+
+
 
     PlayerController _currentPlayerTouched;
     public bool CanMoveAPlayer
@@ -97,7 +100,7 @@ public class InputManager : MonoBehaviour
         if (collider2D is null) return;
         if (collider2D.GetComponent<PlayerController>() == _currentPlayerTouched)
         {
-            _currentPlayerTouched.RotatePlayer(Vector2.zero);
+            _currentPlayerTouched.RotateCrystal(Vector2.zero);
         }
         _currentPlayerTouched = null;
     }
