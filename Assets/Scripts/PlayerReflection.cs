@@ -30,7 +30,7 @@ public class PlayerReflection : Reflectable
 
     public int ForbiddenAngle
     {
-        get; private set;
+        get; set;
     }
 
     protected override void Awake()
