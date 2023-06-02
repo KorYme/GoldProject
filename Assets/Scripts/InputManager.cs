@@ -65,7 +65,7 @@ public class InputManager : MonoBehaviour
         ETouch.Touch.onFingerMove -= OnInputPerformed;
         ETouch.Touch.onFingerUp -= OnInputStopped;
         EnhancedTouchSupport.Disable();
-    }
+    } 
 
     public void SetUpNewLevel(SceneManager sceneManager)
     {
