@@ -10,6 +10,8 @@ public class GameMenuManager : MonoBehaviour
     [SerializeField] private GameObject _winMenu;
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject _gameMenu;
+
+    [SerializeField] private TextMeshProUGUI _moveText;
     
     public void PauseMenu()
     {
@@ -19,17 +21,23 @@ public class GameMenuManager : MonoBehaviour
 
     public void RestartLevelButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 
     public void MainMenuButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     public void ReturnToGameFromSettings()
     {
         _gameMenu.SetActive(true);
         _settingsMenu.SetActive(false);
+    }
+
+    public void UpdateMoveText(int moves)
+    {
+        string moveText = moves.ToString();
+       _moveText.text = moveText;
     }
 }

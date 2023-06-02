@@ -30,6 +30,8 @@ public class InputManager : MonoBehaviour
         set
         {
             _movementNumber = value;
+            GameMenuManager gameMenuManager = FindObjectOfType<GameMenuManager>();
+            gameMenuManager.UpdateMoveText(_movementNumber);
             _currentSceneManager?.OnSceneUpdate?.Invoke();
         }
     }
@@ -49,6 +51,7 @@ public class InputManager : MonoBehaviour
             return;
         }
         Instance = this;
+        Application.targetFrameRate = 60;
         EnhancedTouchSupport.Enable();
         ETouch.Touch.onFingerDown += OnInputStarted;
         ETouch.Touch.onFingerMove += OnInputPerformed;

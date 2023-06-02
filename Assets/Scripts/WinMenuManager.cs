@@ -46,7 +46,7 @@ public class WinMenuManager : MonoBehaviour
 
         _moveText.text = "Level " + _levelNumber + " - " + TextMove + " moves";
 
-        if(TotalMove <= _levelPerfectScore)//Check
+        if(TotalMove <= _levelPerfectScore)
         {
             _starOne.sprite = _starCyan;
             _starTwo.sprite = _starCyan;
