@@ -30,6 +30,8 @@ public class InputManager : MonoBehaviour
         set
         {
             _movementNumber = value;
+            GameMenuManager gameMenuManager = FindObjectOfType<GameMenuManager>();
+            gameMenuManager.UpdateMoveText(_movementNumber);
             _currentSceneManager?.OnSceneUpdate?.Invoke();
         }
     }
