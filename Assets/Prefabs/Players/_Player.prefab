@@ -228,25 +228,24 @@ MonoBehaviour:
   _crystal: {fileID: 4118163585875669239}
   _playerReflection: {fileID: 9177670462990222522}
   _animator: {fileID: 6760211404615403738}
-  _spriteRenderer: {fileID: 2484433348921520552}
-  _movementSpeed: 0.1
+  _movementSpeed: 50
   _movementCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.2
-      outSlope: 0.2
+      inSlope: 0.417388
+      outSlope: 0.417388
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 5
-      value: 1
-      inSlope: 0.2
-      outSlope: 0.2
+      time: 5.721194
+      value: 2.3879576
+      inSlope: 0.417388
+      outSlope: 0.417388
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -326,6 +325,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: StopSliding
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1324772849980800207, guid: 202d06b3de050334d9ee8c52fb44cff3, type: 3}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
   _onPlayerRotationStarted:
