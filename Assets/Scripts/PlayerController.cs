@@ -178,6 +178,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator RotationCoroutine()
     {
+        AudioManager.Instance.PlaySound("PLACEHOLDER");
         IsRotating = true;
         _onPlayerRotationStarted?.Invoke();
         float lerpValue = 0f;
