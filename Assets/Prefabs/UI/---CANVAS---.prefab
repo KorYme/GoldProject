@@ -3610,9 +3610,9 @@ MonoBehaviour:
   _moveText: {fileID: 2502637209428831426}
   _winMenu: {fileID: 2502637209797420637}
   _gameMenu: {fileID: 2502637209322936782}
-  _starGray: {fileID: 0}
-  _starYellow: {fileID: 0}
-  _starCyan: {fileID: 0}
+  _starGray: {fileID: 21300000, guid: c56c7604872b66e458c8de2989517dad, type: 3}
+  _starYellow: {fileID: 21300000, guid: 8331a8ece78b1e949a1835ac75fe1408, type: 3}
+  _starCyan: {fileID: 21300000, guid: 6e1b2b13e84c9a042a90e2b9925ffef0, type: 3}
 --- !u!114 &2502637209678875666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3628,6 +3628,7 @@ MonoBehaviour:
   _winMenu: {fileID: 2502637209797420637}
   _settingsMenu: {fileID: 2502637208646998356}
   _gameMenu: {fileID: 2502637209322936782}
+  _moveText: {fileID: 2502637209732976517}
 --- !u!114 &5857165663392768483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4027,7 +4028,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 999
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 55ffe6ae1f07a744aaaca7a71f1b5018, type: 2}
   m_sharedMaterial: {fileID: -7080715606702495126, guid: 55ffe6ae1f07a744aaaca7a71f1b5018, type: 2}
