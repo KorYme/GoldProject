@@ -28,6 +28,7 @@ public class ColoredBlockBehaviour : MonoBehaviour
     [Button]
     public void ApplyParameters(bool init = true)
     {
+        _spriteRenderer.enabled = true;
         gameObject.layer = LayerMask.NameToLayer(BlockColor.ToString() + "Wall");
         if (_sprites.Count > (int)BlockColor && _sprites[(int)BlockColor] != null)
         {
