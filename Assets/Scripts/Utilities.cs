@@ -87,9 +87,9 @@ public static class Utilities
             case GAMECOLORS.Yellow:
                 return Color.yellow;
             case GAMECOLORS.Purple:
-                return new Color(0.8f, 0.0f, 0.8f);
+                return new Color(0.8f, 0.0f, 0.8f, 1.0f);
             case GAMECOLORS.Orange:
-                return new Color(1.0f, 0.64f, 0.0f);
+                return new Color(1.0f, 0.64f, 0.0f, 1.0f);
             case GAMECOLORS.Green:
                 return Color.green;
             default:

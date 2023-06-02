@@ -23,14 +23,14 @@ public class InputManager : MonoBehaviour
         set;
     }
 
-    int _movementNumber;
+    public int _movementNumber;
     public int MovementNumber
     {
         get => _movementNumber;
         set
         {
             _movementNumber = value;
-            _currentSceneManager.OnSceneUpdate?.Invoke();
+            _currentSceneManager?.OnSceneUpdate?.Invoke();
         }
     }
 

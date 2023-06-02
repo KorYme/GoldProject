@@ -60,13 +60,14 @@ public class TileBehaviour : MonoBehaviour
                 DestroyImmediate(_currentTile);
                 _currentTile = null;
             }
-            FindObjectsOfType<TileBehaviour>().Where(x => x != this && _currentTile != null && Type == TileType.ColoredWall).ToList().ForEach(x => x.ChangeParameters(false));
+            Debug.Log("WTF");
+            FindObjectsOfType<TileBehaviour>().Where(x => x != this).ToList().ForEach(x => x.ChangeParameters(false));
         }
         switch (Type)
         {
             case TileType.Empty:
                 _collider.enabled = false;
-                _spriteRenderer.color = Color.clear;
+                _spriteRenderer.color = Color.white;
                 gameObject.layer = LayerMask.NameToLayer("Default");
                 break;
             case TileType.Border:
