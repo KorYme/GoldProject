@@ -43,7 +43,16 @@ public class PlayerController : MonoBehaviour
     const float ANGLE_TOLERANCE = 2f;
     public bool IsMoving
     {
-        get => _movementCoroutine != null;
+        get => _movementCoroutine != null || _moveCrateCoroutine != null;
+    }
+
+    public bool IsCrateMoving
+    {
+        get; private set;
+    }
+    public bool IsRotating
+    {
+        get; private set;
     }
 
     int _targetAngle;
@@ -62,7 +71,7 @@ public class PlayerController : MonoBehaviour
 
     public void SetNewDirection(Vector2 direction)
     {
-        if (IsMoving) return;
+        if (!InputManager.Instance.CanMoveAPlayer) return;
         RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, DETECTION_RANGE, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         if (!ray) return;
         RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position, direction, 1f, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
@@ -129,7 +138,7 @@ public class PlayerController : MonoBehaviour
         {
             lerpValue = Mathf.Clamp01(lerpValue +
                 _movementCurve.Evaluate(Mathf.Clamp(Time.time - initialTime, 0, _movementCurve.keys[_movementCurve.length - 1].time)
-                / distance * _movementSpeed));
+                / distance * _movementSpeed) * Time.deltaTime);
             transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
         }
@@ -166,6 +175,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator RotationCoroutine()
     {
+        IsRotating = true;
         _onPlayerRotationStarted?.Invoke();
         float lerpValue = 0f;
         float initialAngle = Mathf.Atan2(_crystal.position.y -  transform.position.y,
@@ -179,6 +189,7 @@ public class PlayerController : MonoBehaviour
             _crystal.rotation = Quaternion.Euler(0, 0, lerpAngle);
             yield return null;
         }
+        IsRotating = false;
         _onPlayerRotationStopped?.Invoke();
         _crystal.position = new Vector3(
             GetClosest(Mathf.Cos(-_targetAngle * Mathf.Deg2Rad)) * _distance,
@@ -195,6 +206,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator MoveCrateCoroutine(GameObject crate, Vector2 direction)
     {
+        IsCrateMoving = true;
         _onCrateMoveStart?.Invoke();
         Vector3 initialPosition = crate.transform.position;
         CalculateCrateRay(direction, crate.transform.position);
@@ -205,11 +217,12 @@ public class PlayerController : MonoBehaviour
         while (lerpValue < 1f)
         {
             lerpValue = Mathf.Clamp01(lerpValue +
-                _movementCurve.Evaluate(Mathf.Clamp(Time.time - initialTime, 0, _movementCurve.keys[_movementCurve.length - 1].time)
-                / distance * _movementSpeed));
+                _movementCurve.Evaluate(Mathf.Clamp(Time.time - initialTime, 0, _movementCurve.keys[_movementCurve.length - 1].time) / distance
+                * _movementSpeed * Time.deltaTime));
             crate.transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
         }   
+        IsCrateMoving = false;
         _onCrateMoveStop?.Invoke();
         _movementCoroutine = null;
         _moveCrateCoroutine = null;

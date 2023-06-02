@@ -49,6 +49,7 @@ public class InputManager : MonoBehaviour
             return;
         }
         Instance = this;
+        Application.targetFrameRate = 60;
         EnhancedTouchSupport.Enable();
         ETouch.Touch.onFingerDown += OnInputStarted;
         ETouch.Touch.onFingerMove += OnInputPerformed;
