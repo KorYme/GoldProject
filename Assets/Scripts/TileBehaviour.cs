@@ -39,7 +39,9 @@ public class TileBehaviour : MonoBehaviour
         {
             if (_type == value) return;
             _type = value;
+            #if UNITY_EDITOR
             ChangeParameters();
+            #endif
         }
     }
 
