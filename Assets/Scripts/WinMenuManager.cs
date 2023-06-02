@@ -26,11 +26,6 @@ public class WinMenuManager : MonoBehaviour
     [SerializeField] private Sprite _starYellow;
     [SerializeField] private Sprite _starCyan;
 
-    void Start()
-    {
-        Win(5);
-    }
-
     public void Win(int TotalMove)
     {
         LevelManager levelManager = GetComponent<LevelManager>();
