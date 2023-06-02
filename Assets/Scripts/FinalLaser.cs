@@ -5,7 +5,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class FinalLaser : Reflectable
+public class FinalLaser : Reflectable, IUpdateableTile
 {
     [Header("Events")]
     [SerializeField] UnityEvent _onLaserRampUp;
@@ -76,7 +76,7 @@ public class FinalLaser : Reflectable
     }
 
     [Button]
-    public void ApplyParameters(bool init = true)
+    public void UpdateTile(bool init = true)
     {
         if (_sprites.Count > (int)_targetColor && _sprites[(int)_targetColor] != null)
         {
@@ -88,7 +88,7 @@ public class FinalLaser : Reflectable
         }   
         if (init)
         {
-            FindObjectsOfType<LensFilter>().Where(x => x != this).ToList().ForEach(x => x.ApplyParameters(false));
+            FindObjectsOfType<MonoBehaviour>().Where(x => x != this).OfType<IUpdateableTile>().ToList().ForEach(x => x.UpdateTile(false));
         }
     }
 }
