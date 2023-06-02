@@ -11,13 +11,18 @@ public class LensFilter : Reflectable
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
 
+    [Header("Events")]
+    [SerializeField] UnityEvent _onFilteringStart;
+    [SerializeField] UnityEvent _onFilteringStop;
+
     public override Vector2 LaserOrigin { get => transform.position; }
     PlayerReflection _lastPlayerMet;
 
-    public override void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
+    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
+        _onFilteringStart.Invoke();
         LaserDirection = laserDirection;
-        base.StartReflection(LaserDirection, laserColor, raycast);
+        base.StartReflection(LaserDirection, laserColor, raycast, previous);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -32,7 +37,7 @@ public class LensFilter : Reflectable
     {
         if (collision.CompareTag("Player"))
         {
-            _lastPlayerMet.LensColor = LayersAndColors.GAMECOLORS.White;
+            _lastPlayerMet.LensColor = Utilities.GAMECOLORS.White;
             _lastPlayerMet = null;
         }
     }
@@ -40,13 +45,13 @@ public class LensFilter : Reflectable
     [Button]
     public void ApplyParameters(bool init = true)
     {
-        if (_sprites.Count < (int)_reflectionColor && _sprites[(int)_reflectionColor] != null)
+        if (_sprites.Count > (int)_reflectionColor && _sprites[(int)_reflectionColor] != null)
         {
             _spriteRenderer.sprite = _sprites[(int)_reflectionColor];
         }
         else
         {
-            _spriteRenderer.color = LayersAndColors.GetColor(_reflectionColor);
+            _spriteRenderer.color = Utilities.GetColor(_reflectionColor);
         }
         if (init)
         {

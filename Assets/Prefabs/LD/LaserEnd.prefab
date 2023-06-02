@@ -50,7 +50,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4888,17 +4888,18 @@ MonoBehaviour:
   _laserRenderer: {fileID: 0}
   _reflectionColor: 0
   _reflectionType: 0
-  _targetColor: 0
+  _targetColor: 3
+  _sideTouchedNeeded: 0
   _particleSystem: {fileID: 6766991535475869501}
   _spriteRenderer: {fileID: 6564846264669077187}
   _sprites:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 2f06603a22f74f94396b1dac6ee97e5c, type: 3}
+  - {fileID: 21300000, guid: 8ceb95c1303acaf44bda44b69222090d, type: 3}
+  - {fileID: 21300000, guid: b4e26ecd3235c804cb7050ffd7644583, type: 3}
+  - {fileID: 21300000, guid: 5cd0e8e017bc20144ba90fe663111abd, type: 3}
+  - {fileID: 21300000, guid: 1007e8aa690db8d458af8fc2827cc4b6, type: 3}
+  - {fileID: 21300000, guid: 1463753ecc091a74585bf69870f387e3, type: 3}
 --- !u!1 &2026199907319466802
 GameObject:
   m_ObjectHideFlags: 0
@@ -4972,7 +4973,7 @@ SpriteRenderer:
   m_SortingLayerID: 976002251
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b4e26ecd3235c804cb7050ffd7644583, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

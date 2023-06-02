@@ -43,6 +43,13 @@ public class TileBehaviour : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        if (_currentTile == null) return;
+        DestroyImmediate(_currentTile);
+    }
+
+    #if UNITY_EDITOR
     [Button("Apply Parameters")]
     public void ChangeParameters(bool init = true)
     {
@@ -59,7 +66,7 @@ public class TileBehaviour : MonoBehaviour
         {
             case TileType.Empty:
                 _collider.enabled = false;
-                _spriteRenderer.color = Color.clear;
+                _spriteRenderer.color = Color.white;
                 gameObject.layer = LayerMask.NameToLayer("Default");
                 break;
             case TileType.Border:
@@ -81,7 +88,8 @@ public class TileBehaviour : MonoBehaviour
                 if (_prefabs.Count <= (int)Type) return;
                 if (_prefabs[(int)Type] != null)
                 {
-                    _currentTile = Instantiate(_prefabs[(int)Type], transform, false);
+                    _currentTile = UnityEditor.PrefabUtility.InstantiatePrefab(_prefabs[(int)Type]) as GameObject;
+                    _currentTile.transform.SetParent(transform, false);
                 }
                 else
                 {
@@ -92,4 +100,5 @@ public class TileBehaviour : MonoBehaviour
                 break;
         }
     }
+    #endif
 }

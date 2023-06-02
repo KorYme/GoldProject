@@ -8,7 +8,7 @@ public class Mirror : Reflectable
     [Header("Mirror Parameters")]
     [SerializeField, OnValueChanged(nameof(FlipMirror))] bool _isFlipped;
 
-    public override void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
+    public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
         _inputLaserColor = laserColor;
         LaserOrigin = transform.position;
@@ -16,7 +16,7 @@ public class Mirror : Reflectable
             LaserDirection = Vector2.Reflect(laserDirection, transform.up * -1);
         else
             LaserDirection = Vector2.Reflect(laserDirection, transform.up);
-        base.StartReflection(LaserDirection, laserColor, raycast);
+        base.StartReflection(LaserDirection, laserColor, raycast, previous);
     }
 
     private void FlipMirror()
