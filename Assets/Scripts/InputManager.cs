@@ -30,7 +30,7 @@ public class InputManager : MonoBehaviour
         set
         {
             _movementNumber = value;
-            _currentSceneManager.OnSceneUpdate?.Invoke();
+            _currentSceneManager?.OnSceneUpdate?.Invoke();
         }
     }
 
