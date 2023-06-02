@@ -209,7 +209,7 @@ public class PlayerController : MonoBehaviour
                 / distance * _movementSpeed));
             crate.transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
-        }
+        }   
         _onCrateMoveStop?.Invoke();
         _movementCoroutine = null;
         _moveCrateCoroutine = null;

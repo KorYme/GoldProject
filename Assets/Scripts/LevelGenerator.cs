@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+#if UNITY_EDITOR
     [Header("References")]
     [SerializeField] Camera _camera;
     [SerializeField] Transform _tilesContainer;
@@ -22,7 +23,6 @@ public class LevelGenerator : MonoBehaviour
         _offsetOnSide = 0;
     }
 
-    #if UNITY_EDITOR
     [Button]
     private void GenerateLevel()
     {
@@ -68,5 +68,5 @@ public class LevelGenerator : MonoBehaviour
     {
         _camera.orthographicSize = _mapSize.x + _offsetOnSide * 2;
     }
-    #endif
+#endif
 }
