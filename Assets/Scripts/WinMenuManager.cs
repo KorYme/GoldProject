@@ -60,17 +60,17 @@ public class WinMenuManager : MonoBehaviour
 
     public void NextLevelButton()
     {
-        NextLevel(SceneManager.GetActiveScene().buildIndex + 1);
+        NextLevel(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
     }
     
     void NextLevel(int levelIndex)
     {
-        SceneManager.LoadScene(levelIndex);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(levelIndex);
     }
 
     public void RestartLevelButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 
 }

@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator MovementCoroutine(Vector2 direction, RaycastHit2D raycast)
     {
         InputManager.Instance.CanMoveAPlayer = false;
+        InputManager.Instance.MovementNumber++;
         _animator.SetFloat("DirectionY", direction.y);
         if (direction.x > 0)
         {
