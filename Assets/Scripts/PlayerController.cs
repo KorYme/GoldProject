@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("Acceleration over time")] AnimationCurve _movementCurve;
 
     [Header("Rotation Parameters")]
+    [SerializeField, OnValueChanged(nameof(SetUpCrystalPosition))] Utilities.DIRECTIONS _initialDirection;
+    [SerializeField, Range(0f,1f), OnValueChanged(nameof(SetUpCrystalPosition))] float _distance;
     [SerializeField] float _rotationSpeed;
     [SerializeField] bool _eightLaserDirections;
     [SerializeField, Tooltip("Movement curve of the crystal")] AnimationCurve _rotationCurve;
@@ -56,7 +58,6 @@ public class PlayerController : MonoBehaviour
     }
 
     int _targetAngle;
-    float _distance;
 
     private void Reset()
     {
@@ -65,8 +66,16 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        _distance = Vector3.Distance(_crystal.position, transform.position);
-        _targetAngle = 0;
+        Vector2 crystalDirection = _crystal.position - transform.position;
+        _targetAngle = Utilities.GetClosestInteger(Mathf.Atan2(crystalDirection.y, crystalDirection.x) * Mathf.Rad2Deg);
+        Debug.Log(name + " is aiming at " + _targetAngle + " degrees.");
+    }
+
+    private void SetUpCrystalPosition()
+    {
+        _crystal.position = (Vector3)Utilities.GetDirection(_initialDirection) * _distance + transform.position;
+        Vector2 crystalDirection = _crystal.position - transform.position;
+        _crystal.rotation = Quaternion.Euler(0, 0, Utilities.GetClosestInteger(Mathf.Atan2(crystalDirection.y, crystalDirection.x) * Mathf.Rad2Deg));
     }
 
     public void SetNewDirection(Vector2 direction)
@@ -74,7 +83,7 @@ public class PlayerController : MonoBehaviour
         if (!InputManager.Instance.CanMoveAPlayer) return;
         RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, DETECTION_RANGE, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         if (!ray) return;
-        RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position, direction, 1f, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
+        RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position, direction, 1.25f, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         foreach (RaycastHit2D item in rays)
         {
             if (item.transform.CompareTag("Player")) return;
@@ -119,7 +128,6 @@ public class PlayerController : MonoBehaviour
     {
         if (Mathf.Abs(((360 - _targetAngle) % 360) - _playerReflection.ForbiddenAngle) < ANGLE_TOLERANCE)
         {
-            Debug.Log("HEY");
             RotateCrystal(Vector2.zero);
             return true;
         }

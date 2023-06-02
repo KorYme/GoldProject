@@ -76,50 +76,59 @@ public class TileBehaviour : MonoBehaviour
                 _spriteRenderer.color = Color.grey;
                 gameObject.layer = LayerMask.NameToLayer("Border");
                 break;
+            case TileType.FilterLens:
+            case TileType.Crate:
+            case TileType.Mud:
+                _collider.enabled = false;
+                _spriteRenderer.color = Color.white;
+                gameObject.layer = LayerMask.NameToLayer("Default");
+                break;
             case TileType.ColoredWall:
             case TileType.LaserStart:
             case TileType.LaserEnd:
             case TileType.Glass:
             case TileType.Mirror:
-            case TileType.FilterLens:
-            case TileType.Mud:
-            case TileType.Crate:
                 _collider.enabled = false;
                 _spriteRenderer.color = Color.clear;
                 gameObject.layer = LayerMask.NameToLayer("Default");
-                if (init)
-                {
-                    FindObjectsOfType<MonoBehaviour>().OfType<IUpdateableTile>().ToList().ForEach( x => x.UpdateTile(false));
-                }
-                if (_prefabs.Count <= (int)Type) return;
-                if (_prefabs[(int)Type] != null)
-                {
-                    if (transform.childCount == 1)
-                    {
-                        if (transform.GetChild(0).name == _prefabs[(int)Type].name) return;
-                        DestroyImmediate(transform.GetChild(0).gameObject);
-                    }
-                    else if (transform.childCount >= 2)
-                    {
-                        for (int i = transform.childCount - 1; i >= 0; i--)
-                        {
-                            DestroyImmediate(transform.GetChild(i).gameObject);
-                        }
-                    }
-                    _currentTile = UnityEditor.PrefabUtility.InstantiatePrefab(_prefabs[(int)Type]) as GameObject;
-                    _currentTile.transform.SetParent(transform, false);
-                }
-                else
-                {
-                    for (int i = transform.childCount - 1; i >= 0; i--)
-                    {
-                        DestroyImmediate(transform.GetChild(i));
-                    }
-                    _currentTile = null;
-                }
                 break;
             default:
                 break;
+        }
+        ApplyForAll(init);
+    }
+
+    private void ApplyForAll(bool init)
+    {
+        if (init)
+        {
+            FindObjectsOfType<MonoBehaviour>().OfType<IUpdateableTile>().ToList().ForEach(x => x.UpdateTile(false));
+        }
+        if (_prefabs.Count <= (int)Type) return;
+        if (_prefabs[(int)Type] != null)
+        {
+            if (transform.childCount == 1)
+            {
+                if (transform.GetChild(0).name == _prefabs[(int)Type].name) return;
+                DestroyImmediate(transform.GetChild(0).gameObject);
+            }
+            else if (transform.childCount >= 2)
+            {
+                for (int i = transform.childCount - 1; i >= 0; i--)
+                {
+                    DestroyImmediate(transform.GetChild(i).gameObject);
+                }
+            }
+            _currentTile = UnityEditor.PrefabUtility.InstantiatePrefab(_prefabs[(int)Type]) as GameObject;
+            _currentTile.transform.SetParent(transform, false);
+        }
+        else
+        {
+            for (int i = transform.childCount - 1; i >= 0; i--)
+            {
+                DestroyImmediate(transform.GetChild(i).gameObject);
+            }
+            _currentTile = null;
         }
     }
     #endif
