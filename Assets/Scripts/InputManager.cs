@@ -23,7 +23,7 @@ public class InputManager : MonoBehaviour
         set;
     }
 
-    int _movementNumber;
+    public int _movementNumber;
     public int MovementNumber
     {
         get => _movementNumber;

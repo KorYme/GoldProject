@@ -196,6 +196,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1aff5b576c367f48a2e57f556c5c5d6, type: 3}
+--- !u!1 &62528192 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8359734098778516200, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+  m_PrefabInstance: {fileID: 414340012}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &62528197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62528192}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6410a35ad41d0045b779c32b2abfa09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _levelPerfectScore: 4
+  _levelThreeStarScore: 5
+  _levelTwoStarScore: 6
+  _levelOneStarScore: 7
+  _levelNumber: 1
 --- !u!1 &82345739 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8986039640780102430, guid: c6f8d98668cbf564093e25f611f83be8, type: 3}
@@ -667,6 +689,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8359734097754063014, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359734098362777397, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8359734098778516206, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _starCyan
+      value: 
+      objectReference: {fileID: 21300000, guid: 6e1b2b13e84c9a042a90e2b9925ffef0, type: 3}
+    - target: {fileID: 8359734098778516206, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _starGray
+      value: 
+      objectReference: {fileID: 21300000, guid: c56c7604872b66e458c8de2989517dad, type: 3}
+    - target: {fileID: 8359734098778516206, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _starYellow
+      value: 
+      objectReference: {fileID: 21300000, guid: 8331a8ece78b1e949a1835ac75fe1408, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
 --- !u!1001 &423548223
