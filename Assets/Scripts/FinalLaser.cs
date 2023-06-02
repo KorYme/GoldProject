@@ -70,7 +70,9 @@ public class FinalLaser : Reflectable
     private void LevelCompleted()
     {
         _particleSystem?.Play();
-        Debug.Log("Level fini");
+        InputManager inputManager = FindObjectOfType<InputManager>();
+        WinMenuManager winMenuManager = FindObjectOfType<WinMenuManager>();
+        winMenuManager.Win(inputManager._movementNumber);
     }
 
     [Button]
