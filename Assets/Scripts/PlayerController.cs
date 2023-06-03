@@ -68,7 +68,6 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 crystalDirection = _crystal.position - transform.position;
         _targetAngle = Utilities.GetClosestInteger(Mathf.Atan2(crystalDirection.y, crystalDirection.x) * Mathf.Rad2Deg);
-        Debug.Log(name + " is aiming at " + _targetAngle + " degrees.");
     }
 
     private void SetUpCrystalPosition()
@@ -93,15 +92,20 @@ public class PlayerController : MonoBehaviour
             if (ray.collider.CompareTag("Mud"))
             {
                 _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
+                InputManager.Instance.MovementNumber++;
             }
             else if (ray.collider.CompareTag("Crate"))
             {
-                CheckCrateMovement(ray.transform, direction);
+                if (CheckCrateMovement(ray.transform, direction))
+                {
+                    InputManager.Instance.MovementNumber++;
+                }
             }
         }
         else
         {
             _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
+            InputManager.Instance.MovementNumber++;
         }
     }
 
@@ -137,7 +141,6 @@ public class PlayerController : MonoBehaviour
     IEnumerator MovementCoroutine(Vector2 direction, RaycastHit2D raycast)
     {
         InputManager.Instance.CanMoveAPlayer = false;
-        InputManager.Instance.MovementNumber++;
         _animator.SetFloat("DirectionY", direction.y);
         _onPlayerMoveStarted?.Invoke();
         Vector3 initialPosition = transform.position;
@@ -158,18 +161,20 @@ public class PlayerController : MonoBehaviour
         CheckCrateMovement(raycast.transform, direction);
     }
 
-    private void CheckCrateMovement(Transform hitObject, Vector2 direction)
+    private bool CheckCrateMovement(Transform hitObject, Vector2 direction)
     {
         if (hitObject.CompareTag("Crate") 
             && !Physics2D.OverlapCircle((Vector2)hitObject.position + direction, .45f, Utilities.MovementLayers[Utilities.GAMECOLORS.White]))
         {
             InputManager.Instance.CanMoveAPlayer = false;
             _moveCrateCoroutine = StartCoroutine(MoveCrateCoroutine(hitObject.gameObject, direction));
+            return true;
         }
         else
         {
             _movementCoroutine = null;
             InputManager.Instance.CanMoveAPlayer = true;
+            return false;
         }
     }
 

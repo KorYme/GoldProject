@@ -16,7 +16,8 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
 
     PlayerController _currentPlayerTouched;
-    SceneManager _currentSceneManager;
+    GameMenuManager _gameMenuManager;
+
     public bool CanMoveAPlayer
     {
         get;
@@ -30,9 +31,7 @@ public class InputManager : MonoBehaviour
         set
         {
             _movementNumber = value;
-            GameMenuManager gameMenuManager = FindObjectOfType<GameMenuManager>();
-            gameMenuManager.UpdateMoveText(_movementNumber);
-            _currentSceneManager?.OnSceneUpdate?.Invoke();
+            _gameMenuManager?.UpdateMoveText(_movementNumber);
         }
     }
 
@@ -65,11 +64,11 @@ public class InputManager : MonoBehaviour
         ETouch.Touch.onFingerMove -= OnInputPerformed;
         ETouch.Touch.onFingerUp -= OnInputStopped;
         EnhancedTouchSupport.Disable();
-    } 
+    }
 
-    public void SetUpNewLevel(SceneManager sceneManager)
+    public void SetUpNewLevel(GameMenuManager gameMenuManager)
     {
-        _currentSceneManager = sceneManager;
+        _gameMenuManager = gameMenuManager;
         _currentPlayerTouched = null;
     }
 

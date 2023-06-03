@@ -11,12 +11,13 @@ public class FinalLaser : Reflectable, IUpdateableTile
     [SerializeField] UnityEvent _onLaserRampUp;
     [SerializeField] UnityEvent _onLaserStop;
 
-    [Space(5), Header("Final Target")] 
-    [SerializeField] Utilities.GAMECOLORS _targetColor;
-    [SerializeField] Utilities.DIRECTIONS _sideTouchedNeeded;
+    [Space(5), Header("Final Target References")] 
     [SerializeField] ParticleSystem _particleSystem;
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
+    [Header("Final Target Parameters")]
+    [SerializeField] Utilities.GAMECOLORS _targetColor;
+    [SerializeField, Tooltip("Not needed anymore")] Utilities.DIRECTIONS _sideTouchedNeeded;
 
     float _timeHitByLaser = 0;
     bool _isLevelComplete;
@@ -35,12 +36,13 @@ public class FinalLaser : Reflectable, IUpdateableTile
         _onLaserRampUp.Invoke();
         _inputLaserColor = laserColor;
         LaserDirection = laserDirection;
-        if (Vector3.Angle(laserDirection, -Utilities.GetDirection(_sideTouchedNeeded)) > ANGLE_TOLERANCE)
-        {
-            if (_onReflection == null) return;
-            StopReflection();
-        }
-        else if (laserColor == _targetColor && _onReflection == null)
+        //if (Vector3.Angle(laserDirection, -Utilities.GetDirection(_sideTouchedNeeded)) > ANGLE_TOLERANCE)
+        //{
+        //    if (_onReflection == null) return;
+        //    StopReflection();
+        //    return;
+        //}
+        if (laserColor == _targetColor && _onReflection == null)
         {
             _onReflection += ReflectLaser;
         }
