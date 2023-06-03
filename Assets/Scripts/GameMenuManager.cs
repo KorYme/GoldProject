@@ -10,9 +10,13 @@ public class GameMenuManager : MonoBehaviour
     [SerializeField] private GameObject _winMenu;
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject _gameMenu;
-
     [SerializeField] private TextMeshProUGUI _moveText;
-    
+
+    private void Start()
+    {
+        InputManager.Instance.SetUpNewLevel(this);
+    }
+
     public void PauseMenu()
     {
         _gameMenu.SetActive(false);

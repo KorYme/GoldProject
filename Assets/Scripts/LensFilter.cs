@@ -30,6 +30,7 @@ public class LensFilter : Reflectable, IUpdateableTile
         {
             _lastPlayerMet = collision.GetComponent<PlayerReflection>();
             _lastPlayerMet.LensColor = _reflectionColor;
+            gameObject.layer = LayerMask.NameToLayer("Default");
         }
     }
 
@@ -37,6 +38,7 @@ public class LensFilter : Reflectable, IUpdateableTile
     {
         if (collision.CompareTag("Player"))
         {
+            gameObject.layer = LayerMask.NameToLayer("OnlyLight");
             _lastPlayerMet.LensColor = Utilities.GAMECOLORS.White;
             _lastPlayerMet = null;
         }

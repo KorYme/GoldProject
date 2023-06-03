@@ -74,8 +74,7 @@ public class Reflectable : MonoBehaviour
 
     public virtual void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
-        if (!enabled) return;
-        if (IsReflecting) return;
+        if (IsReflecting || !enabled) return;
         _previousReflectable = previous;
         _inputLaserColor = laserColor;
         UpdateColorLaser();
@@ -91,6 +90,7 @@ public class Reflectable : MonoBehaviour
 
     public virtual void StopReflection()
     {
+        _previousReflectable = null;
         if (!IsReflecting) return;
         _laserRenderer.LineRenderer.enabled = false;
         _onReflection -= ReflectLaser;
