@@ -60,12 +60,7 @@ public static class Utilities
     /// <returns>Final color</returns>
     public static GAMECOLORS GetSubtractedColor(GAMECOLORS color1, GAMECOLORS color2)
     {
-        int value = (int)color1 != 0 ? (int)color1 : 7;
-        for (int i = 0; i < 3; i++)
-        {
-            value -= (((int)color1 >> i) % 2) * (((int)color2 >> i) % 2) * (int)Mathf.Pow(2, i);
-        }
-        return (GAMECOLORS)(value%7);
+        return (GAMECOLORS)((((int)color1 != 0 ? (int)color1 : 7) - (((int)color1 != 0 ? (int)color1 : 7) & (int)color2)) %7);
     }
 
     /// <summary>
