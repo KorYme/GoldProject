@@ -13,10 +13,10 @@ public class Reflectable : MonoBehaviour
 
     [Header("References")]
     [SerializeField] protected LaserRenderer _laserRenderer;
-    [SerializeField] protected LayersAndColors.GAMECOLORS _reflectionColor;
+    [SerializeField] protected Utilities.GAMECOLORS _reflectionColor;
     [SerializeField] protected ReflectionType _reflectionType;
 
-    public LayersAndColors.GAMECOLORS ReflectionColor
+    public Utilities.GAMECOLORS ReflectionColor
     {
         get => _reflectionColor;
     }
@@ -32,17 +32,18 @@ public class Reflectable : MonoBehaviour
     }
     protected Action _onReflection;
     protected Reflectable _nextReflectable;
-    protected LayersAndColors.GAMECOLORS _inputLaserColor;
-    protected virtual LayersAndColors.GAMECOLORS _outputLaserColor
+    protected Reflectable _previousReflectable;
+    protected Utilities.GAMECOLORS _inputLaserColor;
+    protected virtual Utilities.GAMECOLORS _outputLaserColor
     {
         get
         {
             switch (_reflectionType)
             {
                 case ReflectionType.Additive:
-                    return LayersAndColors.GetMixedColor(_inputLaserColor, _reflectionColor);
+                    return Utilities.GetMixedColor(_inputLaserColor, _reflectionColor);
                 case ReflectionType.Substractive:
-                    return LayersAndColors.GetSubtractedColor(_inputLaserColor, _reflectionColor);
+                    return Utilities.GetSubtractedColor(_inputLaserColor, _reflectionColor);
                 default:
                     return _reflectionColor;
             }
@@ -56,7 +57,7 @@ public class Reflectable : MonoBehaviour
 
     private void Reset()
     {
-        _reflectionColor = LayersAndColors.GAMECOLORS.White;
+        _reflectionColor = Utilities.GAMECOLORS.White;
         _reflectionType = ReflectionType.Additive;
     }
 
@@ -64,15 +65,17 @@ public class Reflectable : MonoBehaviour
     {
         _onReflection = null;
         _nextReflectable = null;
+        if (_laserRenderer == null) return;
         _laserRenderer.LineRenderer.enabled = false;
         _laserRenderer.LineRenderer.useWorldSpace = true;
         _laserRenderer.LineRenderer.startWidth = 0.08f;
         _laserRenderer.LineRenderer.endWidth = 0.08f;
     }
 
-    public virtual void StartReflection(Vector2 laserDirection, LayersAndColors.GAMECOLORS laserColor, RaycastHit2D raycast)
+    public virtual void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
-        if (IsReflecting) return;
+        if (IsReflecting || !enabled) return;
+        _previousReflectable = previous;
         _inputLaserColor = laserColor;
         UpdateColorLaser();
         _laserRenderer.LineRenderer.enabled = true;
@@ -81,12 +84,13 @@ public class Reflectable : MonoBehaviour
 
     protected virtual void UpdateColorLaser()
     {
-        _laserRenderer.LineRenderer.startColor = LayersAndColors.GetColor(_outputLaserColor);
-        _laserRenderer.LineRenderer.endColor = LayersAndColors.GetColor(_outputLaserColor);
+        _laserRenderer.LineRenderer.startColor = Utilities.GetColor(_outputLaserColor);
+        _laserRenderer.LineRenderer.endColor = Utilities.GetColor(_outputLaserColor);
     }
 
     public virtual void StopReflection()
     {
+        _previousReflectable = null;
         if (!IsReflecting) return;
         _laserRenderer.LineRenderer.enabled = false;
         _onReflection -= ReflectLaser;
@@ -100,16 +104,16 @@ public class Reflectable : MonoBehaviour
 
     protected virtual void ReflectLaser()
     {
-        RaycastHit2D hit = Physics2D.Raycast(LaserOrigin, LaserDirection, 15f, LayersAndColors.LightLayerMask);
+        RaycastHit2D hit = Physics2D.Raycast(LaserOrigin, LaserDirection, 15f, Utilities.LightLayerMask);
         _laserRenderer.LineRenderer.SetPosition(0, LaserOrigin);
-        _laserRenderer.LineRenderer.SetPosition(1, hit.point);
+        _laserRenderer.LineRenderer.SetPosition(1, hit.collider != null ? hit.point : LaserOrigin);
         if (hit.collider == null) return;
         GameObject objectHit = hit.collider.gameObject;
         if (objectHit == (_nextReflectable?.gameObject ?? null))
         {
             if (_nextReflectable != null || _nextReflectable is Mirror)
             {
-                _nextReflectable.StartReflection(LaserDirection, _outputLaserColor, hit);
+                _nextReflectable.StartReflection(LaserDirection, _outputLaserColor, hit, this);
             }
             return;
         }
@@ -121,7 +125,7 @@ public class Reflectable : MonoBehaviour
         }
         else
         {
-            _nextReflectable?.StartReflection(LaserDirection, _outputLaserColor, hit);
+            _nextReflectable?.StartReflection(LaserDirection, _outputLaserColor, hit, this);
         }
     }
 }

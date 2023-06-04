@@ -6,18 +6,21 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
+#if UNITY_EDITOR
     [Header("References")]
     [SerializeField] Camera _camera;
     [SerializeField] Transform _tilesContainer;
-    [SerializeField] Transform _borderContainer;
+    [SerializeField] Transform _bordersContainer;
     [SerializeField] GameObject _tilePrefab;
 
     [Header("Parameters")]
     [SerializeField, MinMaxSlider(3,9)] Vector2Int _mapSize;
-    [SerializeField, Range(0f, 2f)] float _offsetOnSide;
+    [SerializeField, Range(0f, 2f), OnValueChanged(nameof(ResizeCamera))] float _offsetOnSide;
+    [SerializeField, Range(-5f,5f), OnValueChanged(nameof(ReplaceCamera))] float _cameraOffsetY;
 
     private void Reset()
     {
+        _cameraOffsetY = 0;
         _mapSize = new Vector2Int(6, 8);
         _offsetOnSide = 0;
     }
@@ -30,18 +33,18 @@ public class LevelGenerator : MonoBehaviour
         {
             for (int y = 0; y < _mapSize.y + 2; y++)
             {
-                GameObject newTile;
+                GameObject newTile = UnityEditor.PrefabUtility.InstantiatePrefab(_tilePrefab) as GameObject;
                 if (x == 0 || y == 0 || x == _mapSize.x + 1 || y == _mapSize.y + 1)
                 {
-                    newTile = Instantiate(_tilePrefab, new Vector3(x - (_mapSize.x + 1) * .5f, y - (_mapSize.y + 1) * .5f, 0),
-                    Quaternion.identity, _borderContainer);
+                    newTile.transform.position = new Vector3(x - (_mapSize.x + 1) * .5f, y - (_mapSize.y + 1) * .5f, 0);
+                    newTile.transform.SetParent(_bordersContainer, false);
                     newTile.GetComponent<TileBehaviour>().Type = TileBehaviour.TileType.Border;
                     newTile.name = $"Border ({x-1},{y-1})";
                 }
                 else
                 {
-                    newTile = Instantiate(_tilePrefab, new Vector3(x - (_mapSize.x + 1) * .5f, y - (_mapSize.y + 1) * .5f, 0),
-                    Quaternion.identity, _tilesContainer);
+                    newTile.transform.position = new Vector3(x - (_mapSize.x + 1) * .5f, y - (_mapSize.y + 1) * .5f, 0);
+                    newTile.transform.SetParent(_tilesContainer, false);
                     newTile.GetComponent<TileBehaviour>().Type = TileBehaviour.TileType.Empty;
                     newTile.name = $"Tile ({x-1},{y-1})";
                 }
@@ -56,9 +59,9 @@ public class LevelGenerator : MonoBehaviour
         {
             DestroyImmediate(_tilesContainer.GetChild(i).gameObject);
         }
-        for (int y = _borderContainer.childCount - 1; y >= 0; y--)
+        for (int y = _bordersContainer.childCount - 1; y >= 0; y--)
         {
-            DestroyImmediate(_borderContainer.GetChild(y).gameObject);
+            DestroyImmediate(_bordersContainer.GetChild(y).gameObject);
         }
     }
 
@@ -67,4 +70,11 @@ public class LevelGenerator : MonoBehaviour
     {
         _camera.orthographicSize = _mapSize.x + _offsetOnSide * 2;
     }
+
+    [Button]
+    private void ReplaceCamera()
+    {
+        _camera.transform.position = new Vector3(_camera.transform.position.x, _cameraOffsetY, -10);
+    }
+#endif
 }

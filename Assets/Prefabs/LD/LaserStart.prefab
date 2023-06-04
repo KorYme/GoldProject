@@ -70,10 +70,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 976002251
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d85a3a5ff41bcde4ea14d28a309d3446, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 7251455584209451172}
   - component: {fileID: 8680267489363613403}
   - component: {fileID: 3429801988097763572}
+  - component: {fileID: 1597245897395038073}
   m_Layer: 7
   m_Name: LaserStart
   m_TagString: Untagged
@@ -158,17 +159,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _laserRenderer: {fileID: 2276019850436937612}
-  _laserDir: 3
+  _thisReflectable: {fileID: 1597245897395038073}
+  _laserDir: 1
   _initialColor: 0
   _spriteRenderer: {fileID: 3172924481358171564}
   _sprites:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: d85a3a5ff41bcde4ea14d28a309d3446, type: 3}
+  - {fileID: 21300000, guid: 95798e797cdf1d54e9510a3f26558016, type: 3}
+  - {fileID: 21300000, guid: d8d4401c032414d4e8734391abd359aa, type: 3}
+  - {fileID: 21300000, guid: d9af6d4673aa6de489e0a3351d71bd44, type: 3}
+  - {fileID: 21300000, guid: fab374d7ab94c2b4e8247ea55fe63dec, type: 3}
+  - {fileID: 21300000, guid: 93ae7ad045870ea4198663a94d24058a, type: 3}
+  - {fileID: 21300000, guid: 02f3ad6a87eaacd418eb0fe6c9bb0b98, type: 3}
+--- !u!114 &1597245897395038073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251455584209451173}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 85b9fc7df6e89064f85eb0541ae03c90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _laserRenderer: {fileID: 0}
+  _reflectionColor: 0
+  _reflectionType: 0
 --- !u!1001 &7475480585938961324
 PrefabInstance:
   m_ObjectHideFlags: 0
