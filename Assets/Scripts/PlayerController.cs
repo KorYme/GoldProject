@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform _crystal;
     [SerializeField] PlayerReflection _playerReflection;
     [SerializeField] Animator _animator;
+    [SerializeField] Transform _moveableGFX;
 
     [Header("Movement Parameters")]
     [SerializeField] float _movementSpeed;
@@ -142,6 +143,10 @@ public class PlayerController : MonoBehaviour
     {
         InputManager.Instance.CanMoveAPlayer = false;
         _animator.SetFloat("DirectionY", direction.y);
+        if (direction.x > 0)
+        {
+            _moveableGFX.rotation = Quaternion.Euler(0, 180, 0);
+        }
         _onPlayerMoveStarted?.Invoke();
         Vector3 initialPosition = transform.position;
         float distance = ((int)raycast.distance + (raycast.collider.CompareTag("Mud") ? 1 : 0));
@@ -157,6 +162,7 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         _onPlayerMoveStopped?.Invoke();
+        _moveableGFX.rotation = Quaternion.Euler(0, 0, 0);
         transform.position = positionToGo;
         CheckCrateMovement(raycast.transform, direction);
     }
