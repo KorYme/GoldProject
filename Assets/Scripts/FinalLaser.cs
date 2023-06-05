@@ -74,7 +74,10 @@ public class FinalLaser : Reflectable, IUpdateableTile
         _particleSystem?.Play();
         InputManager inputManager = FindObjectOfType<InputManager>();
         WinMenuManager winMenuManager = FindObjectOfType<WinMenuManager>();
+        LevelUIManager levelUIManager = FindObjectOfType<LevelUIManager>();
+        
         winMenuManager.Win(inputManager._movementNumber);
+
     }
 
     [Button]
