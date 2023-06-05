@@ -23,8 +23,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 718945839566483080}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.388, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.49999997, y: 0, z: 0}
   m_LocalScale: {x: 0.18, y: 0.18, z: 0.18}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -57,13 +57,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1209167227804876854}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2724373515318493307}
-  m_RootOrder: 1
+  m_Father: {fileID: 3632679165916171815}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2484433348921520552
 SpriteRenderer:
@@ -151,6 +151,7 @@ GameObject:
   - component: {fileID: 8471943029305387751}
   - component: {fileID: 2724373515318493286}
   - component: {fileID: 9177670462990222522}
+  - component: {fileID: 6311922128664357440}
   m_Layer: 6
   m_Name: _Player
   m_TagString: Player
@@ -171,7 +172,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4040242522408603394}
-  - {fileID: 8625558762639472543}
+  - {fileID: 3632679165916171815}
   - {fileID: 4118163585875669239}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -228,25 +229,26 @@ MonoBehaviour:
   _crystal: {fileID: 4118163585875669239}
   _playerReflection: {fileID: 9177670462990222522}
   _animator: {fileID: 6760211404615403738}
-  _spriteRenderer: {fileID: 2484433348921520552}
-  _movementSpeed: 0.1
+  _moveableGFX: {fileID: 3632679165916171815}
+  _animatorManager: {fileID: 6311922128664357440}
+  _movementSpeed: 50
   _movementCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.2
-      outSlope: 0.2
+      inSlope: 0.417388
+      outSlope: 0.417388
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 5
-      value: 1
-      inSlope: 0.2
-      outSlope: 0.2
+      time: 5.721194
+      value: 2.3879576
+      inSlope: 0.417388
+      outSlope: 0.417388
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -254,6 +256,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  _initialDirection: 3
+  _distance: 0.4
   _rotationSpeed: 1
   _eightLaserDirections: 0
   _rotationCurve:
@@ -300,34 +304,10 @@ MonoBehaviour:
     m_RotationOrder: 4
   _onPlayerMoveStarted:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6760211404615403738}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: StartSliding
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _onPlayerMoveStopped:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6760211404615403738}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: SetTrigger
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: StopSliding
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   _onPlayerRotationStarted:
     m_PersistentCalls:
       m_Calls: []
@@ -360,6 +340,20 @@ MonoBehaviour:
   _onReflect:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6311922128664357440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2724373515318493305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8932ac52159b10642a85927752939bfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 6760211404615403738}
+  _playerName: 
 --- !u!1 &4394204038695093132
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +438,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8525072673160206482
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3632679165916171815}
+  m_Layer: 6
+  m_Name: MovableGFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3632679165916171815
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8525072673160206482}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8625558762639472543}
+  m_Father: {fileID: 2724373515318493307}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6639699175806548839
 PrefabInstance:
   m_ObjectHideFlags: 0

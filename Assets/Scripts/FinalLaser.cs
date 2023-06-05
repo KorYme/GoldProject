@@ -5,18 +5,19 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class FinalLaser : Reflectable
+public class FinalLaser : Reflectable, IUpdateableTile
 {
     [Header("Events")]
     [SerializeField] UnityEvent _onLaserRampUp;
     [SerializeField] UnityEvent _onLaserStop;
 
-    [Space(5), Header("Final Target")] 
-    [SerializeField] Utilities.GAMECOLORS _targetColor;
-    [SerializeField] Utilities.DIRECTIONS _sideTouchedNeeded;
+    [Space(5), Header("Final Target References")] 
     [SerializeField] ParticleSystem _particleSystem;
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
+    [Header("Final Target Parameters")]
+    [SerializeField] Utilities.GAMECOLORS _targetColor;
+    [SerializeField, Tooltip("Not needed anymore")] Utilities.DIRECTIONS _sideTouchedNeeded;
 
     float _timeHitByLaser = 0;
     bool _isLevelComplete;
@@ -35,12 +36,13 @@ public class FinalLaser : Reflectable
         _onLaserRampUp.Invoke();
         _inputLaserColor = laserColor;
         LaserDirection = laserDirection;
-        if (Vector3.Angle(laserDirection, -Utilities.GetDirection(_sideTouchedNeeded)) > ANGLE_TOLERANCE)
-        {
-            if (_onReflection == null) return;
-            StopReflection();
-        }
-        else if (laserColor == _targetColor && _onReflection == null)
+        //if (Vector3.Angle(laserDirection, -Utilities.GetDirection(_sideTouchedNeeded)) > ANGLE_TOLERANCE)
+        //{
+        //    if (_onReflection == null) return;
+        //    StopReflection();
+        //    return;
+        //}
+        if (laserColor == _targetColor && _onReflection == null)
         {
             _onReflection += ReflectLaser;
         }
@@ -76,7 +78,7 @@ public class FinalLaser : Reflectable
     }
 
     [Button]
-    public void ApplyParameters(bool init = true)
+    public void UpdateTile(bool init = true)
     {
         if (_sprites.Count > (int)_targetColor && _sprites[(int)_targetColor] != null)
         {
@@ -88,7 +90,7 @@ public class FinalLaser : Reflectable
         }   
         if (init)
         {
-            FindObjectsOfType<LensFilter>().Where(x => x != this).ToList().ForEach(x => x.ApplyParameters(false));
+            FindObjectsOfType<MonoBehaviour>().Where(x => x != this).OfType<IUpdateableTile>().ToList().ForEach(x => x.UpdateTile(false));
         }
     }
 }

@@ -16,7 +16,8 @@ public class InputManager : MonoBehaviour
     public static InputManager Instance;
 
     PlayerController _currentPlayerTouched;
-    SceneManager _currentSceneManager;
+    GameMenuManager _gameMenuManager;
+
     public bool CanMoveAPlayer
     {
         get;
@@ -30,7 +31,7 @@ public class InputManager : MonoBehaviour
         set
         {
             _movementNumber = value;
-            _currentSceneManager?.OnSceneUpdate?.Invoke();
+            _gameMenuManager?.UpdateMoveText(_movementNumber);
         }
     }
 
@@ -49,6 +50,7 @@ public class InputManager : MonoBehaviour
             return;
         }
         Instance = this;
+        Application.targetFrameRate = 60;
         EnhancedTouchSupport.Enable();
         ETouch.Touch.onFingerDown += OnInputStarted;
         ETouch.Touch.onFingerMove += OnInputPerformed;
@@ -64,9 +66,9 @@ public class InputManager : MonoBehaviour
         EnhancedTouchSupport.Disable();
     }
 
-    public void SetUpNewLevel(SceneManager sceneManager)
+    public void SetUpNewLevel(GameMenuManager gameMenuManager)
     {
-        _currentSceneManager = sceneManager;
+        _gameMenuManager = gameMenuManager;
         _currentPlayerTouched = null;
     }
 
