@@ -21,16 +21,16 @@ public class PauseMenuManager : MonoBehaviour
 
     public void MainMenuButton()
     {
-        SceneManager.LoadScene("MainMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 
     public void CreditsMenuButton()
     {
-        SceneManager.LoadScene("CreditsMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("CreditsMenu");
     }
 
     public void RestartButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
     }
 }

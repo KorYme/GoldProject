@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class ColoredBlockBehaviour : MonoBehaviour
+public class ColoredBlockBehaviour : MonoBehaviour, IUpdateableTile
 {
     [Header("References")]
     [SerializeField] SpriteRenderer _spriteRenderer;
@@ -22,12 +22,13 @@ public class ColoredBlockBehaviour : MonoBehaviour
 
     private void Reset()
     {
-        ApplyParameters();
+        UpdateTile();
     }
 
     [Button]
-    public void ApplyParameters(bool init = true)
+    public void UpdateTile(bool init = true)
     {
+        _spriteRenderer.enabled = true;
         gameObject.layer = LayerMask.NameToLayer(BlockColor.ToString() + "Wall");
         if (_sprites.Count > (int)BlockColor && _sprites[(int)BlockColor] != null)
         {
@@ -39,7 +40,7 @@ public class ColoredBlockBehaviour : MonoBehaviour
         }
         if (init)
         {
-            FindObjectsOfType<LensFilter>().Where(x => x != this).ToList().ForEach(x => x.ApplyParameters(false));
+            FindObjectsOfType<MonoBehaviour>().Where(x => x != this).OfType<IUpdateableTile>().ToList().ForEach(x => x.UpdateTile(false));
         }
     }
 }
