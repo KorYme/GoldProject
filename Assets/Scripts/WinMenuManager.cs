@@ -26,6 +26,8 @@ public class WinMenuManager : MonoBehaviour
     [SerializeField] private Sprite _starYellow;
     [SerializeField] private Sprite _starCyan;
 
+    [SerializeField] public int _numberStar;
+
     public void Win(int TotalMove)
     {
         LevelManager levelManager = GetComponent<LevelManager>();
@@ -48,24 +50,28 @@ public class WinMenuManager : MonoBehaviour
 
         if(TotalMove <= _levelPerfectScore)
         {
+            _numberStar = 4;
             _starOne.sprite = _starCyan;
             _starTwo.sprite = _starCyan;
             _starThree.sprite = _starCyan;
         }
         else if(_levelPerfectScore > TotalMove || TotalMove <= _levelThreeStarScore)
         {
+            _numberStar = 3;
             _starOne.sprite = _starYellow;
             _starTwo.sprite = _starYellow;
             _starThree.sprite = _starYellow;
         }
         else if(_levelThreeStarScore > TotalMove || TotalMove <= _levelTwoStarScore)
         {
+            _numberStar = 2;
             _starOne.sprite = _starYellow;
             _starTwo.sprite = _starYellow;
             _starThree.sprite = _starGray;
         }
         else if(_levelOneStarScore <= TotalMove)
         {   
+            _numberStar = 1;
             _starOne.sprite = _starYellow;
             _starTwo.sprite = _starGray;
             _starThree.sprite = _starGray;
@@ -80,6 +86,11 @@ public class WinMenuManager : MonoBehaviour
     void NextLevel(int levelIndex)
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(levelIndex);
+    }
+
+    public void MenuButton()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     public void RestartLevelButton()

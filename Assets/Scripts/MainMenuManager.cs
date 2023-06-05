@@ -11,7 +11,11 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _levelMenu;
     [SerializeField] private GameObject _settingsMenu;
-    [SerializeField] private GameObject _gameMenu;
+    [SerializeField] private GameObject _skinMenu;
+    [SerializeField] private GameObject _leaderboardMenu;
+    [SerializeField] private GameObject _trophyMenu;
+    
+    
 
     [SerializeField] private Image _elfImage;
     [SerializeField] private Image _nainImage;
@@ -22,12 +26,14 @@ public class MainMenuManager : MonoBehaviour
 
     [SerializeField] private GameObject[] _laser;
 
+    bool _skinLevel = false;
+    bool _settingsLevel = false;
+
     void Start()
     {
         DOTween.Init();
+        _mainMenu.SetActive(true);
         _levelMenu.SetActive(false);
-        _startMirror.SetActive(false);
-        _levelMirror.SetActive(false);
     }
 
     public void UpdateStartMirror()
@@ -69,13 +75,71 @@ public class MainMenuManager : MonoBehaviour
 
     public void ReturnToMainMenuFromSettings()
     {
-        _mainMenu.SetActive(true);
-        _settingsMenu.SetActive(false);
+        if(_settingsLevel)
+        {
+            _settingsLevel = false;
+            _settingsMenu.SetActive(false);
+        }
+        else
+        {
+            _settingsMenu.SetActive(false);
+            _mainMenu.SetActive(true);
+        }
     }
 
-    public void ReturnToGameFromSettings()
+    public void SkinMenu()
     {
-        _gameMenu.SetActive(true);
-        _settingsMenu.SetActive(false);
+        _mainMenu.SetActive(false);
+        _skinMenu.SetActive(true);
+    }
+
+    public void SettingsMenuFromLevel()
+    {
+        _settingsLevel = true;
+        _settingsMenu.SetActive(true);
+    }
+
+    public void SkinMenuFromLevel()
+    {
+        _skinLevel = true;
+        _skinMenu.SetActive(true);
+    }
+
+    public void ReturnToMainMenuFromSkin()
+    {
+        if (_skinLevel)
+        {
+            _skinLevel = false;
+            _skinMenu.SetActive(false);
+        }
+        else
+        {
+            _skinMenu.SetActive(false);
+            _mainMenu.SetActive(true);
+        }
+    }
+
+    public void LeaderboardMenu()
+    {
+        _mainMenu.SetActive(false);
+        _leaderboardMenu.SetActive(true);
+    }
+
+    public void ReturnToMainMenuFromLeaderboard()
+    {
+        _mainMenu.SetActive(true);
+        _leaderboardMenu.SetActive(false);
+    }
+
+    public void TrophyMenu()
+    {
+        _mainMenu.SetActive(false);
+        _trophyMenu.SetActive(true);
+    }
+
+    public void ReturnToMainMenuFromTrophy()
+    {
+        _mainMenu.SetActive(true);
+        _trophyMenu.SetActive(false);
     }
 }
