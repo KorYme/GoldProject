@@ -42,6 +42,6 @@ public class GameMenuManager : MonoBehaviour
     public void UpdateMoveText(int moves)
     {
         string moveText = moves.ToString();
-       _moveText.text = moveText;
+       _moveText.text = moveText + " Moves";
     }
 }
