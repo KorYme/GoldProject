@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     Coroutine _movementCoroutine;
     Coroutine _rotationCoroutine;
     Coroutine _moveCrateCoroutine;
+    Coroutine _wallHitCoroutine;
     RaycastHit2D _crateRay;
 
     const float ANGLE_TOLERANCE = 2f;
@@ -143,18 +144,18 @@ public class PlayerController : MonoBehaviour
     IEnumerator MovementCoroutine(Vector2 direction, RaycastHit2D raycast)
     {
         InputManager.Instance.CanMoveAPlayer = false;
-        _moveableGFX.rotation = Quaternion.Euler(0, direction.x > 0 ? 180 : 0, 0);
+        _moveableGFX.rotation = Quaternion.Euler(0, direction.x > 0.1f ? 180 : 0, 0);
         if (direction.y == 0f)
         {
-            _animatorManager.ChangeAnimation(ANIMATION_STATES.SLIDE_SIDE);
+            _animatorManager.ChangeAnimation(ANIMATION_STATES.Slide_profil);
         }
-        else if (direction.y > 0)
+        else if (direction.y > 0f)
         {
-            _animatorManager.ChangeAnimation(ANIMATION_STATES.SLIDE_BACK);
+            _animatorManager.ChangeAnimation(ANIMATION_STATES.Slide_dos);
         }
         else
         {
-            _animatorManager.ChangeAnimation(ANIMATION_STATES.SLIDE_FACE);
+            _animatorManager.ChangeAnimation(ANIMATION_STATES.Slide_face);
         }
         _onPlayerMoveStarted?.Invoke();
         Vector3 initialPosition = transform.position;
@@ -171,10 +172,21 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         _onPlayerMoveStopped?.Invoke();
-        _moveableGFX.rotation = Quaternion.Euler(0, 0, 0);
-        _animatorManager.ChangeAnimation(ANIMATION_STATES.IDLE);
+        if (direction.y == 0f)
+        {
+            _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager.ChangeAnimation(ANIMATION_STATES.Hit_profil)));
+        }
+        else if (direction.y > 0)
+        {
+            _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager.ChangeAnimation(ANIMATION_STATES.Hit_dos)));
+        }
+        else
+        {
+            _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager.ChangeAnimation(ANIMATION_STATES.Hit_face)));
+        }
         transform.position = positionToGo;
         CheckCrateMovement(raycast.transform, direction);
+        _movementCoroutine = null;
     }
 
     private bool CheckCrateMovement(Transform hitObject, Vector2 direction)
@@ -188,8 +200,6 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            _movementCoroutine = null;
-            InputManager.Instance.CanMoveAPlayer = true;
             return false;
         }
     }
@@ -257,9 +267,11 @@ public class PlayerController : MonoBehaviour
         }   
         IsCrateMoving = false;
         _onCrateMoveStop?.Invoke();
-        _movementCoroutine = null;
         _moveCrateCoroutine = null;
-        InputManager.Instance.CanMoveAPlayer = true;
+        if (_wallHitCoroutine == null)
+        {
+            InputManager.Instance.CanMoveAPlayer = true;
+        }
     }
 
     private void CalculateCrateRay(Vector2 direction, Vector2 origin)
@@ -267,5 +279,18 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D ray = Physics2D.Raycast(origin, direction, DETECTION_RANGE, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         if (!ray || (ray.distance < 1 && !ray.collider.CompareTag("Mud"))) return;
         _crateRay = ray;
+    }
+
+    IEnumerator WallHitCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        if (_moveCrateCoroutine == null)
+        {
+            InputManager.Instance.CanMoveAPlayer = true;
+        }
+        _moveableGFX.rotation = Quaternion.Euler(0, 0, 0);
+        //_animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.REFLECTION : ANIMATION_STATES.IDLE);
+        _animatorManager.ChangeAnimation(ANIMATION_STATES.Idle);
+        _wallHitCoroutine = null;
     }
 }

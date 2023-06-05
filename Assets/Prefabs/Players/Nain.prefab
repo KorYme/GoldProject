@@ -2666,6 +2666,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2573852625995970997, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 215c06d512a26e9489e97bc19db8d13d, type: 3}
     - target: {fileID: 2724373515318493286, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: _wallLayer.m_Bits
       value: 10944
@@ -2745,6 +2749,10 @@ PrefabInstance:
     - target: {fileID: 2724373515318493307, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4118163585875669239, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.38199997
       objectReference: {fileID: 0}
     - target: {fileID: 6311922128664357440, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: _playerName
