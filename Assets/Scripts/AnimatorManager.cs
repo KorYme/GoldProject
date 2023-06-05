@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum ANIMATION_STATES
 {
-    IDLE,
-    SLIDE_FACE,
-    SLIDE_BACK,
-    SLIDE_SIDE,
-    WALLHIT_FACE,
-    WALLHIT_BACK,
-    WALLHIT_SIDE,
-    REFLECTION,
-    VICTORY,
+    Idle,
+    Slide_face,
+    Slide_dos,
+    Slide_profil,
+    Hit_face,
+    Hit_dos,
+    Hit_profil,
+    Reflection,
+    Victory,
 }
 
 public class AnimatorManager : MonoBehaviour
@@ -28,40 +29,15 @@ public class AnimatorManager : MonoBehaviour
 
     private void Awake()
     {
-        _currentState = ANIMATION_STATES.IDLE;
+        _currentState = ANIMATION_STATES.Idle;
         ChangeAnimation(_currentState);
     }
 
-    public void ChangeAnimation(ANIMATION_STATES state)
+    public float ChangeAnimation(ANIMATION_STATES state)
     {
-        if (_currentState == state) return;
+        if (_currentState == state) return 0f;
         _currentState = state;
-        switch (state)
-        {
-            case ANIMATION_STATES.IDLE:
-                _animator.Play($"Idle_{_playerName}");
-                break;
-            case ANIMATION_STATES.SLIDE_FACE:
-                _animator.Play($"Slide_face_{_playerName}");
-                break;
-            case ANIMATION_STATES.SLIDE_BACK:
-                _animator.Play($"Slide_dos_{_playerName}");
-                break;
-            case ANIMATION_STATES.SLIDE_SIDE:
-                _animator.Play($"Slide_profil_{_playerName}");
-                break;
-            case ANIMATION_STATES.WALLHIT_FACE:
-                break;
-            case ANIMATION_STATES.WALLHIT_BACK:
-                break;
-            case ANIMATION_STATES.WALLHIT_SIDE:
-                break;
-            case ANIMATION_STATES.REFLECTION:
-                break;
-            case ANIMATION_STATES.VICTORY:
-                break;
-            default:
-                break;
-        }
+        _animator.Play($"{state}_{_playerName}");
+        return _animator.runtimeAnimatorController.animationClips.First(x => x.name == $"{state}_{_playerName}").length;
     }
 }
