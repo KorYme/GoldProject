@@ -143,6 +143,10 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator MovementCoroutine(Vector2 direction, RaycastHit2D raycast)
     {
+        if (_wallHitCoroutine != null)
+        {
+            StopCoroutine(_wallHitCoroutine);
+        }
         InputManager.Instance.CanMoveAPlayer = false;
         _moveableGFX.rotation = Quaternion.Euler(0, direction.x > 0.1f ? 180 : 0, 0);
         if (direction.y == 0f)
@@ -200,6 +204,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            InputManager.Instance.CanMoveAPlayer = true;
             return false;
         }
     }
@@ -268,10 +273,7 @@ public class PlayerController : MonoBehaviour
         IsCrateMoving = false;
         _onCrateMoveStop?.Invoke();
         _moveCrateCoroutine = null;
-        if (_wallHitCoroutine == null)
-        {
-            InputManager.Instance.CanMoveAPlayer = true;
-        }
+        InputManager.Instance.CanMoveAPlayer = true;
     }
 
     private void CalculateCrateRay(Vector2 direction, Vector2 origin)
@@ -284,12 +286,8 @@ public class PlayerController : MonoBehaviour
     IEnumerator WallHitCoroutine(float time)
     {
         yield return new WaitForSeconds(time);
-        if (_moveCrateCoroutine == null)
-        {
-            InputManager.Instance.CanMoveAPlayer = true;
-        }
         _moveableGFX.rotation = Quaternion.Euler(0, 0, 0);
-        //_animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.REFLECTION : ANIMATION_STATES.IDLE);
+        //_animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
         _animatorManager.ChangeAnimation(ANIMATION_STATES.Idle);
         _wallHitCoroutine = null;
     }

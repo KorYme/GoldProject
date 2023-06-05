@@ -7,6 +7,13 @@
       "dependencies": {},
       "hash": "8a8fa5a9659a6d63f196391c71e06c4286c8acd7"
     },
+    "com.koryme.toolpackage": {
+      "version": "https://github.com/KorYme/KorYmeToolsPackage.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "dadf47b7fae1fa385d51c1b1133a82c852c7f3b7"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.10",
       "depth": 1,
