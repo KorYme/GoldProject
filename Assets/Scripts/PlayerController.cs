@@ -7,7 +7,6 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEngine.UI.Image;
 
 public class PlayerController : MonoBehaviour
 {
@@ -49,6 +48,11 @@ public class PlayerController : MonoBehaviour
     public bool IsMoving
     {
         get => _movementCoroutine != null || _moveCrateCoroutine != null;
+    }
+
+    public bool IsHittingWall
+    {
+        get => _wallHitCoroutine != null;
     }
 
     public bool IsCrateMoving
@@ -287,8 +291,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         _moveableGFX.rotation = Quaternion.Euler(0, 0, 0);
-        //_animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
-        _animatorManager.ChangeAnimation(ANIMATION_STATES.Idle);
+        _animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
         _wallHitCoroutine = null;
     }
 }
