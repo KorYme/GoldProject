@@ -31,10 +31,7 @@ public class StartingLaser : MonoBehaviour
         _nextReflectable = null;
         _raycastTarget = Utilities.GetDirection(_laserDir);
         _laserRenderer.LineRenderer.useWorldSpace = true;
-        _laserRenderer.LineRenderer.startWidth = 0.08f;
-        _laserRenderer.LineRenderer.endWidth = 0.08f;
-        _laserRenderer.LineRenderer.startColor = Utilities.GetColor(_initialColor);
-        _laserRenderer.LineRenderer.endColor = Utilities.GetColor(_initialColor);
+        _laserRenderer.ChangeLaserColor(_initialColor);
     }
 
     private void Update()
