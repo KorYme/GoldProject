@@ -24,13 +24,13 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Level-8.unity
     guid: 828c3385cd8a2a946a8de62dca2a9c98
   - enabled: 1
-    path: Assets/Scenes/LVL by ID/ID-7.unity
+    path: Assets/Scenes/GameScenes/Level-37.unity
     guid: 2943c388a2da6174c8593b2514973e93
   - enabled: 1
-    path: Assets/Scenes/LVL by ID/ID-8.unity
+    path: Assets/Scenes/GameScenes/Level-32.unity
     guid: 3754bb4ba8c14754e9536a7333415afe
   - enabled: 1
-    path: Assets/Scenes/LVL by ID/ID-11.unity
+    path: Assets/Scenes/GameScenes/Level-31.unity
     guid: fbd88b9695a0b994bb85c0467f8fae55
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-12.unity
