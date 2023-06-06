@@ -946,20 +946,16 @@ MonoBehaviour:
   _skinMenu: {fileID: 637238753}
   _leaderboardMenu: {fileID: 1354619794}
   _trophyMenu: {fileID: 831477102}
-  _elfImage: {fileID: 1759884919}
-  _nainImage: {fileID: 1758186429}
-  _ondineImage: {fileID: 2120395666}
-  _startMirror: {fileID: 862641890}
-  _levelMirror: {fileID: 1857322537}
-  _laser:
-  - {fileID: 1425712631}
-  - {fileID: 675414280}
-  - {fileID: 730991551}
-  - {fileID: 115145503}
-  - {fileID: 1072194946}
-  - {fileID: 1073190041}
-  - {fileID: 1274860520}
-  - {fileID: 1755985140}
+  _settingsCanvasGroup: {fileID: 0}
+  _skinCanvasGroup: {fileID: 0}
+  _leaderboardCanvasGroup: {fileID: 0}
+  _trophyCanvasGroup: {fileID: 0}
+  _playButton: {fileID: 0}
+  _levelButton: {fileID: 0}
+  _settingsButton: {fileID: 0}
+  _skinButton: {fileID: 0}
+  _leaderboardButton: {fileID: 0}
+  _trophyButton: {fileID: 0}
 --- !u!114 &164747385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8082,7 +8078,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1127916351
 RectTransform:
   m_ObjectHideFlags: 0

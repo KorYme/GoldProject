@@ -280,7 +280,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2387881309521512781}
         m_TargetAssemblyTypeName: LevelUIManager, Assembly-CSharp
-        m_MethodName: LoadLevel
+        m_MethodName: TweenThenLoad
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

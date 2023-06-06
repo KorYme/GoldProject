@@ -7,6 +7,8 @@ using System.Runtime.CompilerServices;
 using NaughtyAttributes;
 using UnityEngine.SceneManagement;
 using System.Linq;
+using DG.Tweening;
+using UnityEditor;
 
 public class LevelUIManager : MonoBehaviour
 {
@@ -40,16 +42,18 @@ public class LevelUIManager : MonoBehaviour
 
     void Start()
     {
-        _levelText.text = _levelNumber.ToString();
+        DOTween.Init();
         if (DataManager.Instance == null)
         {
             Debug.Log("Pas trouvé l'instance");
         }
-        if (DataManager.Instance.LevelDictionnary == null)
+        else if (DataManager.Instance.LevelDictionnary == null)
         {
             Debug.Log("Pas trouvé le dictionnaire");
         }
         UpdateStar(DataManager.Instance.LevelDictionnary.ContainsKey(LevelNumber) ? DataManager.Instance.LevelDictionnary[LevelNumber] : 0);
+        //_levelText.text = _levelNumber.ToString();
+        //_buttonImage.sprite = _isABonusLevel ? _bonusLevel : _normalLevel;
     }
 
     public void UpdateStar(int starNumber)
@@ -84,22 +88,32 @@ public class LevelUIManager : MonoBehaviour
         }
     }
 
-    public void LoadLevel()
+    public void TweenThenLoad()
     {
-        if (!CanPlay) return;
-        if (SceneManager.GetSceneByName(_isABonusLevel ? "Bonus-" : "Level-" + _levelNumber.ToString()) == null)
+        transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LoadLevel());
+    }
+
+    public TweenCallback LoadLevel()
+    {
+        if (!CanPlay) return null;
+        if (!SceneManager.GetSceneByName(_isABonusLevel ? "Bonus-" : "Level-").IsValid())
         {
-            Debug.Log("Scène pas trouvé");
-            return;
+            Debug.Log("Scène pas trouvée");
+            return null;
         }
         SceneManager.LoadScene(_isABonusLevel ? "Bonus-" : "Level-" + _levelNumber.ToString());
+        return null;
     }
 
     private void ChangeValues()
     {
         name = (_isABonusLevel ? "Bonus-" : "Level-") + _levelNumber.ToString();
         _levelText.text = _levelNumber.ToString();
-        _buttonImage.sprite = _isABonusLevel ? _bonusLevel : _normalLevel;
+        _buttonImage.sprite = _isABonusLevel ? _bonusLevel : _normalLevel;  
+#if UNITY_EDITOR
+        PrefabUtility.RecordPrefabInstancePropertyModifications(_levelText);
+        PrefabUtility.RecordPrefabInstancePropertyModifications(_buttonImage);
+#endif
     }
 
     [Button]

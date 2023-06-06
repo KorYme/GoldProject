@@ -8,14 +8,9 @@ using DG.Tweening;
 
 public class LevelMenuManager : MonoBehaviour
 {
-    void Start()
-    {
-        DOTween.Init();
-    }
-
     public void LoadSpecificLevel(int level)
-    {   
-        this.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LoadSpecificLevelButtonTween(level));
+    {
+        transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LoadSpecificLevelButtonTween(level));
     }
 
     TweenCallback LoadSpecificLevelButtonTween(int level)
@@ -30,10 +25,10 @@ public class LevelMenuManager : MonoBehaviour
 
     public void LoadSpecificBonusLevel(int level)
     {   
-        this.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LoadSpecificBonusLevelButtonTween(level));
+        transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LoadSpecificBonusLevelButtonTween(level));
     }
 
-        TweenCallback LoadSpecificBonusLevelButtonTween(int level)
+    TweenCallback LoadSpecificBonusLevelButtonTween(int level)
     {
         LevelUIManager levelUIManager = GameObject.Find($"Bonus-{level}").GetComponent<LevelUIManager>();
         if(levelUIManager.CanPlay)
@@ -42,6 +37,4 @@ public class LevelMenuManager : MonoBehaviour
         }
         return null;
     }
-
-
 }
