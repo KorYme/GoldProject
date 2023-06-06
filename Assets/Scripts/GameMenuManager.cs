@@ -43,5 +43,14 @@ public class GameMenuManager : MonoBehaviour
     {
         string moveText = moves.ToString();
        _moveText.text = moveText + " Moves";
+       if (moves == 999)
+       {
+           ReloadLevel();
+       }
+    }
+
+    public void ReloadLevel()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 }

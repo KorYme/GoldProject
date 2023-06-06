@@ -25,7 +25,14 @@ public class AudioManager : MonoBehaviour
             s._source.clip = s._clip;
             s._source.volume = s._volume;
             s._source.pitch = s._pitch;
+
+            if (s.name == "music")
+            {
+                s._source.Play();
+            }
         }
+
+        DontDestroyOnLoad(this.gameObject);
     }
 
     public void PlaySound(string name)
