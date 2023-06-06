@@ -16,5 +16,14 @@ public class LevelMenuManager : MonoBehaviour
         }
     }
 
+    public void LoadSpecificBonusLevel(int level)
+    {   
+        LevelUIManager levelUIManager = GameObject.Find($"Bonus-{level}").GetComponent<LevelUIManager>();
+        if(levelUIManager._canPlay)
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene($"Bonus-{level}");
+        }
+    }
+
 
 }
