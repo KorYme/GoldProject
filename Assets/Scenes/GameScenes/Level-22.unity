@@ -5438,6 +5438,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 983179476}
     m_Modifications:
+    - target: {fileID: 919687850144378081, guid: e7a55ff1a6464844c82e22d2704196aa, type: 3}
+      propertyPath: _targetColor
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1329555344973521796, guid: e7a55ff1a6464844c82e22d2704196aa, type: 3}
       propertyPath: m_Name
       value: LaserEnd
@@ -6947,6 +6951,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _levelOneStarScore
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _levelPerfectScore
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _levelTwoStarScore
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _levelThreeStarScore
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1101498700555979630, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.5
