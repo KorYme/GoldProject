@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
-
     [Header("Level Score")]
-    [SerializeField] public int _levelPerfectScore;
-    [SerializeField] public int _levelThreeStarScore;
-    [SerializeField] public int _levelTwoStarScore;
-    [SerializeField] public int _levelOneStarScore;
+    public int _LevelPerfectScore;
+    public int _LevelThreeStarScore;
+    public int _LevelTwoStarScore;
+
 
     [Header("Level Number")]
-    [SerializeField] public int _levelNumber;
+    [Tooltip("Positive when normal level and negative for bonus")] public int _LevelNumber;
 
 }
