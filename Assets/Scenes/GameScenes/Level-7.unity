@@ -1137,6 +1137,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _levelOneStarScore
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _levelPerfectScore
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _levelTwoStarScore
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _levelThreeStarScore
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 724292645973140185, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.8066993
@@ -1157,6 +1173,42 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -2
       objectReference: {fileID: 0}
+    - target: {fileID: 1101498700555979635, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _initialDirection
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414415649482636258, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414415649482636258, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.39999998
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414415649482636258, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1414415649482636258, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5572068046469195342, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5572068046469195342, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5572068046469195342, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5572068046469195342, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
     - target: {fileID: 5889506463730243264, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1167,6 +1219,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5889506463730243266, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5889506463730243295, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _initialDirection
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6377793739542228589, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
@@ -1264,6 +1320,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1035844039}
     m_Modifications:
+    - target: {fileID: 919687850144378081, guid: e7a55ff1a6464844c82e22d2704196aa, type: 3}
+      propertyPath: _targetColor
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919687850144378081, guid: e7a55ff1a6464844c82e22d2704196aa, type: 3}
+      propertyPath: _sideTouchedNeeded
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1329555344973521796, guid: e7a55ff1a6464844c82e22d2704196aa, type: 3}
       propertyPath: m_Name
       value: LaserEnd

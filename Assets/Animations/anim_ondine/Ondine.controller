@@ -104,6 +104,32 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1102 &-3414080996066555885
+AnimatorState:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Reflection_ondine
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: 6301b06d9a08af54a81abdfed24bc3b2, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1102 &-2756650047568580919
 AnimatorState:
   serializedVersion: 6
@@ -152,32 +178,6 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &5481651799916524966
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Victory_ondine
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 9673a730a51d7bc4495fba913609b501, type: 2}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
 --- !u!1107 &5605149810836021913
 AnimatorStateMachine:
   serializedVersion: 6
@@ -189,28 +189,28 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 7392934560683055990}
-    m_Position: {x: 320, y: 210, z: 0}
+    m_Position: {x: 240, y: 300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5807807243826021425}
-    m_Position: {x: 320, y: 90, z: 0}
+    m_Position: {x: 240, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2756650047568580919}
-    m_Position: {x: 320, y: 150, z: 0}
+    m_Position: {x: 240, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7635646448713397839}
-    m_Position: {x: 30, y: 220, z: 0}
+    m_Position: {x: 240, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7278215646103738369}
-    m_Position: {x: 560, y: 90, z: 0}
+    m_Position: {x: 480, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4826338571523103200}
-    m_Position: {x: 560, y: 150, z: 0}
+    m_Position: {x: 480, y: 180, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7307855374465445435}
-    m_Position: {x: 560, y: 210, z: 0}
+    m_Position: {x: 480, y: 240, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 5481651799916524966}
-    m_Position: {x: 595, y: 275, z: 0}
+    m_State: {fileID: -3414080996066555885}
+    m_Position: {x: 480, y: 300, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

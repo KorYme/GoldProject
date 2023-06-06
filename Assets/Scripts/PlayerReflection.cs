@@ -6,6 +6,7 @@ public class PlayerReflection : Reflectable
 {
     [SerializeField] protected Transform _crystalTransform;
     [SerializeField] protected PlayerController _playerController;
+    [SerializeField] AnimatorManager _animatorManager;
 
     [Space(10f)]
     [SerializeField, Foldout("Events")] UnityEvent _onReflect;
@@ -45,6 +46,10 @@ public class PlayerReflection : Reflectable
         if (previous == _previousReflectable)
         {
             ForbiddenAngle = ((int)(Mathf.Atan2(-laserDirection.y, -laserDirection.x) * Mathf.Rad2Deg) + 360) % 360;
+        }
+        if (!_playerController.IsMoving && !_playerController.IsHittingWall)
+        {
+            _animatorManager.ChangeAnimation(IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
         }
         _playerController?.CheckNeededRotation();
     }
