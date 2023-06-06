@@ -10,18 +10,18 @@ public class LevelMenuManager : MonoBehaviour
     public void LoadSpecificLevel(int level)
     {   
         LevelUIManager levelUIManager = GameObject.Find($"Level-{level}").GetComponent<LevelUIManager>();
-        if(levelUIManager._canPlay)
+        if(levelUIManager.CanPlay)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene($"Level-{level}");
+            SceneManager.LoadScene($"Level-{level}");
         }
     }
 
     public void LoadSpecificBonusLevel(int level)
     {   
         LevelUIManager levelUIManager = GameObject.Find($"Bonus-{level}").GetComponent<LevelUIManager>();
-        if(levelUIManager._canPlay)
+        if(levelUIManager.CanPlay)
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene($"Bonus-{level}");
+            SceneManager.LoadScene($"Bonus-{level}");
         }
     }
 

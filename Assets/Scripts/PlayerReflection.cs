@@ -58,5 +58,9 @@ public class PlayerReflection : Reflectable
     {
         base.StopReflection();
         ForbiddenAngle = -4000;
+        if (!_playerController.IsMoving)
+        {
+            _animatorManager.ChangeAnimation(ANIMATION_STATES.Idle);
+        }
     }
 }
