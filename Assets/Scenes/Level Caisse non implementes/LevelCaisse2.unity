@@ -3164,6 +3164,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 571208277054245182, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _sounds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 571208277054245182, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _sounds.Array.data[1].name
+      value: moai
+      objectReference: {fileID: 0}
+    - target: {fileID: 571208277054245182, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _sounds.Array.data[1]._clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ac62c1c278778c34f83050c29adc694c, type: 3}
+    - target: {fileID: 571208277054245182, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _sounds.Array.data[1]._pitch
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 571208277054245182, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _sounds.Array.data[1]._volume
+      value: 0.185
+      objectReference: {fileID: 0}
     - target: {fileID: 1101498700555979630, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.5
