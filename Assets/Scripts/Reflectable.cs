@@ -68,8 +68,6 @@ public class Reflectable : MonoBehaviour
         if (_laserRenderer == null) return;
         _laserRenderer.LineRenderer.enabled = false;
         _laserRenderer.LineRenderer.useWorldSpace = true;
-        _laserRenderer.LineRenderer.startWidth = 0.08f;
-        _laserRenderer.LineRenderer.endWidth = 0.08f;
     }
 
     public virtual void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
@@ -84,8 +82,7 @@ public class Reflectable : MonoBehaviour
 
     protected virtual void UpdateColorLaser()
     {
-        _laserRenderer.LineRenderer.startColor = Utilities.GetColor(_outputLaserColor);
-        _laserRenderer.LineRenderer.endColor = Utilities.GetColor(_outputLaserColor);
+        _laserRenderer.ChangeLaserColor(_outputLaserColor);
     }
 
     public virtual void StopReflection()

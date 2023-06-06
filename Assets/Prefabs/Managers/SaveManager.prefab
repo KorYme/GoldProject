@@ -76,3 +76,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968aba9d5d397584a8eb6d1fa5af52e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _levelPerStage: 5
+  _starSkippable: 7
