@@ -12,6 +12,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 
     SerializableDictionnary<int, SKINSTATE> _skinDictionnary;
     SerializableDictionnary<int, int> _levelDictionnary;
+
     public SerializableDictionnary<int, int> LevelDictionnary
     {
         get => _levelDictionnary;
@@ -37,7 +38,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     {
         if (Instance != null)
         {
-            Debug.LogError("There is already one DataManager in the scene");
+            Debug.LogWarning("There is already one DataManager in the scene");
             transform.parent = null;
             Destroy(gameObject);
             return;
@@ -53,21 +54,22 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void CompleteALevel(int levelID, int starsNumber)
     {
         if (starsNumber <= 0) return;
-        _levelDictionnary[levelID] = starsNumber;
+        _levelDictionnary[levelID] = Mathf.Clamp(starsNumber, _levelDictionnary.ContainsKey(levelID) ? _levelDictionnary[levelID] : 0, 4);
         TotalStarNumber += Mathf.Clamp(Mathf.Clamp(starsNumber, 0, 3) - Mathf.Clamp(_levelDictionnary.ContainsKey(levelID) ? _levelDictionnary[levelID] : 0, 0, 3), 0, 3);
     }
 
     public void LoadData(GameData gameData)
     {
-        //_levelDictionnary = gameData.LevelDictionnary;
+        _levelDictionnary = gameData.LevelDictionnary;
         TotalStarNumber = gameData.TotalStarNumber;
         _skinDictionnary = gameData.SkinDictionnary;
         _volume = gameData.Volume;
     }
 
+
     public void SaveData(ref GameData gameData)
     {
-        //gameData.LevelDictionnary = _levelDictionnary;
+        gameData.LevelDictionnary = _levelDictionnary;
         gameData.TotalStarNumber = TotalStarNumber;
         gameData.SkinDictionnary = _skinDictionnary;
         gameData.Volume = _volume;
@@ -76,7 +78,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void InitializeData()
     {
         TotalStarNumber = 0;
-        //_levelDictionnary = new();
+        _levelDictionnary = new();
         _skinDictionnary = new SerializableDictionnary<int, SKINSTATE>()
         {
             { 1 , SKINSTATE.ACQUIRED },

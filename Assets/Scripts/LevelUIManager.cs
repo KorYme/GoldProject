@@ -21,6 +21,11 @@ public class LevelUIManager : MonoBehaviour
         get => _levelNumber * (_isABonusLevel ? -1 : 1);
     }
 
+    public string SceneName
+    {
+        get => (_isABonusLevel ? "Bonus-" : "Level-") + _levelNumber.ToString();
+    }
+
     public bool CanPlay
     {
         get => DataManager.Instance.CanPlayThisLevel(LevelNumber);
@@ -52,8 +57,6 @@ public class LevelUIManager : MonoBehaviour
             Debug.Log("Pas trouvé le dictionnaire");
         }
         UpdateStar(DataManager.Instance.LevelDictionnary.ContainsKey(LevelNumber) ? DataManager.Instance.LevelDictionnary[LevelNumber] : 0);
-        //_levelText.text = _levelNumber.ToString();
-        //_buttonImage.sprite = _isABonusLevel ? _bonusLevel : _normalLevel;
     }
 
     public void UpdateStar(int starNumber)
@@ -96,12 +99,7 @@ public class LevelUIManager : MonoBehaviour
     public TweenCallback LoadLevel()
     {
         if (!CanPlay) return null;
-        if (!SceneManager.GetSceneByName(_isABonusLevel ? "Bonus-" : "Level-").IsValid())
-        {
-            Debug.Log("Scène pas trouvée");
-            return null;
-        }
-        SceneManager.LoadScene(_isABonusLevel ? "Bonus-" : "Level-" + _levelNumber.ToString());
+        SceneManager.LoadScene(SceneName);
         return null;
     }
 
