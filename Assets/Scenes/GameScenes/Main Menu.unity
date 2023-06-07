@@ -3556,7 +3556,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isUnlocked: 1
   _skinImage: {fileID: 0}
-  _skinSelection: {fileID: 0}
 --- !u!114 &578912121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4280,6 +4279,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a38926247a81d41a23022f2552a44a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ondineSkin1: {fileID: 0}
+  _ondineSkin2: {fileID: 0}
+  _nainSkin1: {fileID: 0}
+  _nainSkin2: {fileID: 0}
+  _elfSkin1: {fileID: 0}
+  _elfSkin2: {fileID: 0}
 --- !u!114 &767898254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4855,7 +4860,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isUnlocked: 0
   _skinImage: {fileID: 0}
-  _skinSelection: {fileID: 0}
 --- !u!114 &830731429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5823,7 +5827,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isUnlocked: 1
   _skinImage: {fileID: 0}
-  _skinSelection: {fileID: 0}
 --- !u!114 &934728623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8009,7 +8012,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isUnlocked: 1
   _skinImage: {fileID: 0}
-  _skinSelection: {fileID: 0}
 --- !u!114 &1124087622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13592,7 +13594,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isUnlocked: 0
   _skinImage: {fileID: 0}
-  _skinSelection: {fileID: 0}
 --- !u!114 &1899462170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13607,7 +13608,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isUnlocked: 0
   _skinImage: {fileID: 0}
-  _skinSelection: {fileID: 0}
 --- !u!114 &1899462171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13848,7 +13848,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _isUnlocked: 0
   _skinImage: {fileID: 0}
-  _skinSelection: {fileID: 0}
 --- !u!114 &1937915857
 MonoBehaviour:
   m_ObjectHideFlags: 0

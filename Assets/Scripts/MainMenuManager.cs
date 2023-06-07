@@ -54,7 +54,7 @@ public class MainMenuManager : MonoBehaviour
 
     TweenCallback StarButtonTween()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Level-1");
+        SceneManager.LoadScene("Level-1");
         return null;
     }
 
