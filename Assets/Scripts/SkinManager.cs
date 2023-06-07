@@ -50,6 +50,4 @@ public class SkinManager : MonoBehaviour
                 break;
         }
     }
-
-
 }
