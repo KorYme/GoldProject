@@ -8,6 +8,7 @@ using DG.Tweening;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [Header("Menu")]
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _levelMenu;
     [SerializeField] private GameObject _settingsMenu;
