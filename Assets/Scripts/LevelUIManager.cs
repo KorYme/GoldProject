@@ -50,17 +50,20 @@ public class LevelUIManager : MonoBehaviour
         DOTween.Init();
         if (DataManager.Instance == null)
         {
-            Debug.Log("Pas trouvé l'instance");
+            Debug.Log("Pas trouvï¿½ l'instance");
         }
         else if (DataManager.Instance.LevelDictionnary == null)
         {
-            Debug.Log("Pas trouvé le dictionnaire");
+            Debug.Log("Pas trouvï¿½ le dictionnaire");
         }
         UpdateStar(DataManager.Instance.LevelDictionnary.ContainsKey(LevelNumber) ? DataManager.Instance.LevelDictionnary[LevelNumber] : 0);
     }
 
     public void UpdateStar(int starNumber)
     {
+        Debug.Log(DataManager.Instance.TotalStarNumber);
+        MainMenuManager mainMenuManager = FindObjectOfType<MainMenuManager>();
+        mainMenuManager.UpdateTotalStarText(DataManager.Instance.TotalStarNumber.ToString() + "/120");
         switch (starNumber)
         {
             case 0:
@@ -93,7 +96,8 @@ public class LevelUIManager : MonoBehaviour
 
     public void TweenThenLoad()
     {
-        transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LoadLevel());
+        transform.localScale = new Vector3 (0.7f, 0.7f, 0.7f);
+        transform.DOScale(1f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LoadLevel());
     }
 
     public TweenCallback LoadLevel()
