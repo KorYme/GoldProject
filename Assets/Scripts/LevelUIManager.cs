@@ -96,12 +96,17 @@ public class LevelUIManager : MonoBehaviour
 
     public void TweenThenLoad()
     {
-        transform.localScale = new Vector3 (0.7f, 0.7f, 0.7f);
         transform.DOScale(1f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LoadLevel());
+    }
+
+    public void Resize()
+    {
+        transform.localScale = new Vector3 (0.7f, 0.7f, 0.7f);
     }
 
     public TweenCallback LoadLevel()
     {
+        Resize();
         if (!CanPlay) return null;
         SceneManager.LoadScene(SceneName);
         return null;
