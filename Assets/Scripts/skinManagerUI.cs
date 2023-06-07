@@ -7,7 +7,6 @@ public class skinManagerUI : MonoBehaviour
 {
     public bool _isUnlocked = false;
     [SerializeField] private Image _skinImage;
-    [SerializeField] private Image _skinSelection;
 
     void Start()
     {
