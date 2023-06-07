@@ -253,7 +253,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/max22/OneDrive - De Vinci/Projets/Mobile_Gold/IIMCertificate.keystore
+  AndroidKeystoreName: E:/OneDrive - DeVinci/OneDrive - De Vinci/Projets/Mobile_Gold/IIMCertificate.keystore
   AndroidKeyaliasName: iimjv
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
