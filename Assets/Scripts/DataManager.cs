@@ -55,21 +55,14 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void CompleteALevel(int levelID, int starsNumber)
     {
         if (starsNumber <= 0) return;
-        if (_levelDictionnary.ContainsKey(levelID))
+        if (!_levelDictionnary.ContainsKey(levelID))
         {
-            _levelDictionnary[levelID] = Mathf.Clamp(starsNumber - _levelDictionnary[levelID], 0, 4);
-            if (levelID > 0)
-            {
-                TotalStarNumber += Mathf.Clamp(starsNumber - _levelDictionnary[levelID], 0 , 3);
-            }
+            _levelDictionnary[levelID] = 0;
         }
-        else
+        _levelDictionnary[levelID] += Mathf.Clamp(starsNumber - _levelDictionnary[levelID], 0, 4);
+        if (levelID > 0)
         {
-            _levelDictionnary[levelID] = starsNumber;
-            if (levelID > 0)
-            {
-                TotalStarNumber += Mathf.Clamp(starsNumber, 0 , 3);
-            }
+            TotalStarNumber += Mathf.Clamp(starsNumber - _levelDictionnary[levelID], 0 , 3);
         }
     }
 
