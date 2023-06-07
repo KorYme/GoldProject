@@ -3,64 +3,141 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Runtime.CompilerServices;
+using NaughtyAttributes;
+using UnityEngine.SceneManagement;
+using System.Linq;
+using DG.Tweening;
+using UnityEditor;
 
 public class LevelUIManager : MonoBehaviour
 {
     [Header("Level")]
-    public bool _canPlay = false;
+    [SerializeField, OnValueChanged(nameof(ChangeValues))] int _levelNumber;
+    [SerializeField, OnValueChanged(nameof(ChangeValues))] bool _isABonusLevel;
 
-    [Header("LevelText")]
-    [SerializeField] private TextMeshProUGUI levelText;
-    private int _starNumber;
+    public int LevelNumber
+    {
+        get => _levelNumber * (_isABonusLevel ? -1 : 1);
+    }
 
-    [Header("Stars")]
-    [SerializeField] private Image star1;
-    [SerializeField] private Image star2;
-    [SerializeField] private Image star3;
+    public string SceneName
+    {
+        get => (_isABonusLevel ? "Bonus-" : "Level-") + _levelNumber.ToString();
+    }
 
-    [Header("StarImage")]
-    [SerializeField] private Sprite starImageGray;
-    [SerializeField] private Sprite starImageYellow;
-    [SerializeField] private Sprite starImageCyan;
+    public bool CanPlay
+    {
+        get => DataManager.Instance.CanPlayThisLevel(LevelNumber);
+    }
+
+    [SerializeField, Foldout("References")] private TextMeshProUGUI _levelText;
+    [SerializeField, Foldout("References")] private Image _buttonImage;
+
+    [SerializeField, Foldout("Image")] private Sprite _normalLevel;
+    [SerializeField, Foldout("Image")] private Sprite _bonusLevel;
+
+    [SerializeField, Foldout("StarImages")] private Image _star1;
+    [SerializeField, Foldout("StarImages")] private Image _star2;
+    [SerializeField, Foldout("StarImages")] private Image _star3;
+
+    [SerializeField, Foldout("StarSprites")] private Sprite _starImageGray;
+    [SerializeField, Foldout("StarSprites")] private Sprite _starImageYellow;
+    [SerializeField, Foldout("StarSprites")] private Sprite _starImageCyan;
 
     void Start()
     {
-        string levelName = gameObject.name;
-        levelName = levelName.Replace("Level-", "");
-        levelName = levelName.Replace("Bonus-", "");
-        levelText.text = levelName;
-        UpdateStar(0);
+        DOTween.Init();
+        if (DataManager.Instance == null)
+        {
+            Debug.Log("Pas trouvé l'instance");
+        }
+        else if (DataManager.Instance.LevelDictionnary == null)
+        {
+            Debug.Log("Pas trouvé le dictionnaire");
+        }
+        UpdateStar(DataManager.Instance.LevelDictionnary.ContainsKey(LevelNumber) ? DataManager.Instance.LevelDictionnary[LevelNumber] : 0);
     }
 
-    public void UpdateStar(int _starNumber)
+    public void UpdateStar(int starNumber)
     {
-        switch (_starNumber)
+        switch (starNumber)
         {
             case 0:
-                star1.sprite = starImageGray;
-                star2.sprite = starImageGray;
-                star3.sprite = starImageGray;
+                _star1.sprite = _starImageGray;
+                _star2.sprite = _starImageGray;
+                _star3.sprite = _starImageGray;
                 break;
             case 1:
-                star1.sprite = starImageGray;
-                star2.sprite = starImageYellow;
-                star3.sprite = starImageGray;
+                _star1.sprite = _starImageGray;
+                _star2.sprite = _starImageYellow;
+                _star3.sprite = _starImageGray;
                 break;
             case 2:
-                star1.sprite = starImageYellow;
-                star2.sprite = starImageGray;
-                star3.sprite = starImageYellow;
+                _star1.sprite = _starImageYellow;
+                _star2.sprite = _starImageGray;
+                _star3.sprite = _starImageYellow;
                 break;
             case 3:
-                star1.sprite = starImageYellow;
-                star2.sprite = starImageYellow;
-                star3.sprite = starImageYellow;
+                _star1.sprite = _starImageYellow;
+                _star2.sprite = _starImageYellow;
+                _star3.sprite = _starImageYellow;
                 break;
             case 4:
-                star1.sprite = starImageCyan;
-                star2.sprite = starImageCyan;
-                star3.sprite = starImageCyan;
+                _star1.sprite = _starImageCyan;
+                _star2.sprite = _starImageCyan;
+                _star3.sprite = _starImageCyan;
                 break;
         }
+    }
+
+    public void TweenThenLoad()
+    {
+        transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LoadLevel());
+    }
+
+    public TweenCallback LoadLevel()
+    {
+        if (!CanPlay) return null;
+        SceneManager.LoadScene(SceneName);
+        return null;
+    }
+
+    private void ChangeValues()
+    {
+        name = (_isABonusLevel ? "Bonus-" : "Level-") + _levelNumber.ToString();
+        _levelText.text = _levelNumber.ToString();
+        _buttonImage.sprite = _isABonusLevel ? _bonusLevel : _normalLevel;  
+#if UNITY_EDITOR
+        PrefabUtility.RecordPrefabInstancePropertyModifications(_levelText);
+        PrefabUtility.RecordPrefabInstancePropertyModifications(_buttonImage);
+#endif
+    }
+
+    [Button]
+    private void IncrementLevelValue()
+    {
+        _levelNumber++;
+        ChangeValues();
+    }
+
+    [Button]
+    public void SetUpVariables()
+    {
+        if (_levelText == null)
+        {
+            _levelText = transform.GetComponentInChildren<TextMeshProUGUI>();
+        }
+        if (_buttonImage == null)
+        {
+            _buttonImage = GetComponent<Image>();
+        }
+        ChangeValues();
+    }
+
+    [Button]
+    private void UpdateAll()
+    {
+        FindObjectsOfType<LevelUIManager>().ToList().ForEach(x => x.SetUpVariables());
     }
 }

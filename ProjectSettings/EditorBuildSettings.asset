@@ -10,37 +10,46 @@ EditorBuildSettings:
     guid: 8afc65a58ef897e4cb5506b87d09a9a9
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-1.unity
-    guid: 4dfd3b916b1c15b468df39b04c36ddc9
+    guid: 4439d355ce6aacd499104723343d4f4f
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-2.unity
     guid: f405eac7669113347997ff5a81dc5832
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-3.unity
-    guid: 8f32d1923b4a58349ae347a687fc3844
-  - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-4.unity
     guid: 843c294224804cb45b7e674eebff1ac2
   - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-4.unity
+    guid: acaafd7bbd393334b93b409604db3eaf
+  - enabled: 1
     path: Assets/Scenes/GameScenes/Level-6.unity
-    guid: 828c3385cd8a2a946a8de62dca2a9c98
+    guid: 2db596d864ac8f74191ad1bc8873b911
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-7.unity
-    guid: 2943c388a2da6174c8593b2514973e93
+    guid: 66fcd9ce0e7e07c41a563dab37163914
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-8.unity
-    guid: 3754bb4ba8c14754e9536a7333415afe
-  - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-12.unity
-    guid: 25e2f5a662e14ae4eb988e1161da1f1b
+    guid: 828c3385cd8a2a946a8de62dca2a9c98
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-13.unity
     guid: 67b3f925ffaba1a42be0da28361c8490
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-20.unity
-    guid: f3928a1ffc1af454d8ea8db9f7b840be
+    path: Assets/Scenes/GameScenes/Level-14.unity
+    guid: 8f32d1923b4a58349ae347a687fc3844
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-22.unity
     guid: 600b0b0d19c54e845955a095ff496608
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-31.unity
+    guid: fbd88b9695a0b994bb85c0467f8fae55
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-32.unity
+    guid: 3754bb4ba8c14754e9536a7333415afe
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-33.unity
+    guid: 25e2f5a662e14ae4eb988e1161da1f1b
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-37.unity
+    guid: 2943c388a2da6174c8593b2514973e93
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6677a1f346883424794346cd77a81895, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: c462a6161ac170047a7d17efcd0db9b7, type: 2}

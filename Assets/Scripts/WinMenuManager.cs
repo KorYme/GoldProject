@@ -8,6 +8,7 @@ using TMPro;
 public class WinMenuManager : MonoBehaviour
 {
     [Header("Win Menu")]
+    [SerializeField] LevelManager _levelManager;
     [SerializeField] private Image _starOne;
     [SerializeField] private TextMeshProUGUI _starOneText;
     [SerializeField] private Image _starTwo;
@@ -26,25 +27,22 @@ public class WinMenuManager : MonoBehaviour
     [SerializeField] private Sprite _starYellow;
     [SerializeField] private Sprite _starCyan;
 
-    [SerializeField] public int _numberStar;
+    int _numberStar;
 
-    public void Win(int TotalMove)
+    public void Win(int totalMove)
     {
-        LevelManager levelManager = GetComponent<LevelManager>();
-        string TextMove = TotalMove.ToString();
         _winMenu.SetActive(true);
         _gameMenu.SetActive(false);
-        WinMenu(levelManager._levelNumber , levelManager._levelPerfectScore, levelManager._levelThreeStarScore, levelManager._levelTwoStarScore, levelManager._levelOneStarScore, TextMove, TotalMove);
+        UpdateWinMenu(_levelManager._LevelNumber , _levelManager._LevelPerfectScore, _levelManager._LevelThreeStarScore, _levelManager._LevelTwoStarScore, totalMove.ToString(), totalMove);
     }
 
-    void WinMenu(int _levelNumber, int _levelPerfectScore, int _levelThreeStarScore, int _levelTwoStarScore, int _levelOneStarScore, string TextMove, int TotalMove)
+    void UpdateWinMenu(int _levelNumber, int _levelPerfectScore, int _levelThreeStarScore, int _levelTwoStarScore,  string TextMove, int TotalMove)
     {
-
         _starThreeText.text = "Less than " + _levelThreeStarScore + " moves";
 
         _starTwoText.text = "Less than " + _levelTwoStarScore + " moves";
 
-        _starOneText.text = "Less than " + _levelOneStarScore + " moves";
+        _starOneText.text = "Finish the level"; 
 
         _moveText.text = "Level " + _levelNumber + " - " + TextMove + " moves";
 
@@ -55,47 +53,48 @@ public class WinMenuManager : MonoBehaviour
             _starTwo.sprite = _starCyan;
             _starThree.sprite = _starCyan;
         }
-        else if(_levelPerfectScore > TotalMove || TotalMove <= _levelThreeStarScore)
+        else if(TotalMove <= _levelThreeStarScore)
         {
             _numberStar = 3;
             _starOne.sprite = _starYellow;
             _starTwo.sprite = _starYellow;
             _starThree.sprite = _starYellow;
         }
-        else if(_levelThreeStarScore > TotalMove || TotalMove <= _levelTwoStarScore)
+        else if(TotalMove <= _levelTwoStarScore)
         {
             _numberStar = 2;
             _starOne.sprite = _starYellow;
             _starTwo.sprite = _starYellow;
             _starThree.sprite = _starGray;
         }
-        else if(_levelOneStarScore <= TotalMove)
-        {   
+        else
+        {
             _numberStar = 1;
             _starOne.sprite = _starYellow;
             _starTwo.sprite = _starGray;
             _starThree.sprite = _starGray;
         }
+        DataManager.Instance.CompleteALevel(_levelNumber, _numberStar);
     }
 
     public void NextLevelButton()
     {
-        NextLevel(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+        NextLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
     
     void NextLevel(int levelIndex)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadScene(levelIndex);
     }
 
     public void MenuButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 
     public void RestartLevelButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }
