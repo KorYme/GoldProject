@@ -28,6 +28,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         private set
         {
             if (_totalStarNumber == value) return;
+            Debug.Log(value);
             _totalStarNumber = value;
         }
     }
@@ -54,8 +55,22 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void CompleteALevel(int levelID, int starsNumber)
     {
         if (starsNumber <= 0) return;
-        _levelDictionnary[levelID] = Mathf.Clamp(starsNumber, _levelDictionnary.ContainsKey(levelID) ? _levelDictionnary[levelID] : 0, 4);
-        TotalStarNumber += Mathf.Clamp(Mathf.Clamp(starsNumber, 0, 3) - Mathf.Clamp(_levelDictionnary.ContainsKey(levelID) ? _levelDictionnary[levelID] : 0, 0, 3), 0, 3);
+        if (_levelDictionnary.ContainsKey(levelID))
+        {
+            _levelDictionnary[levelID] = Mathf.Clamp(starsNumber - _levelDictionnary[levelID], 0, 4);
+            if (levelID > 0)
+            {
+                TotalStarNumber += Mathf.Clamp(starsNumber - _levelDictionnary[levelID], 0 , 3);
+            }
+        }
+        else
+        {
+            _levelDictionnary[levelID] = starsNumber;
+            if (levelID > 0)
+            {
+                TotalStarNumber += Mathf.Clamp(starsNumber, 0 , 3);
+            }
+        }
     }
 
     public void LoadData(GameData gameData)
