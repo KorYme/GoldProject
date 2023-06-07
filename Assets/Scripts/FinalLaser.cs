@@ -72,11 +72,8 @@ public class FinalLaser : Reflectable, IUpdateableTile
     private void LevelCompleted()
     {
         _particleSystem?.Play();
-        InputManager inputManager = FindObjectOfType<InputManager>();
-        WinMenuManager winMenuManager = FindObjectOfType<WinMenuManager>();
-        LevelUIManager levelUIManager = FindObjectOfType<LevelUIManager>();
-        
-        winMenuManager.Win(inputManager._movementNumber);
+        WinMenuManager winMenuManager = FindObjectOfType<WinMenuManager>();     // A changer   
+        winMenuManager.Win(InputManager.Instance.MovementNumber);
 
     }
 
