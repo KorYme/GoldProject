@@ -27,8 +27,6 @@ public class WinMenuManager : MonoBehaviour
     [SerializeField] private Sprite _starYellow;
     [SerializeField] private Sprite _starCyan;
 
-    int _numberStar;
-
     public void Win(int totalMove)
     {
         _winMenu.SetActive(true);
@@ -45,36 +43,34 @@ public class WinMenuManager : MonoBehaviour
         _starOneText.text = "Finish the level"; 
 
         _moveText.text = "Level " + _levelNumber + " - " + TextMove + " moves";
-
         if(TotalMove <= _levelPerfectScore)
         {
-            _numberStar = 4;
+            DataManager.Instance.CompleteALevel(_levelNumber, 4);
             _starOne.sprite = _starCyan;
             _starTwo.sprite = _starCyan;
             _starThree.sprite = _starCyan;
         }
         else if(TotalMove <= _levelThreeStarScore)
         {
-            _numberStar = 3;
+            DataManager.Instance.CompleteALevel(_levelNumber, 3);
             _starOne.sprite = _starYellow;
             _starTwo.sprite = _starYellow;
             _starThree.sprite = _starYellow;
         }
         else if(TotalMove <= _levelTwoStarScore)
         {
-            _numberStar = 2;
+            DataManager.Instance.CompleteALevel(_levelNumber, 2);
             _starOne.sprite = _starYellow;
             _starTwo.sprite = _starYellow;
             _starThree.sprite = _starGray;
         }
         else
         {
-            _numberStar = 1;
+            DataManager.Instance.CompleteALevel(_levelNumber, 1);
             _starOne.sprite = _starYellow;
             _starTwo.sprite = _starGray;
             _starThree.sprite = _starGray;
         }
-        DataManager.Instance.CompleteALevel(_levelNumber, _numberStar);
     }
 
     public void NextLevelButton()

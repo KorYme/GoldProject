@@ -1,4 +1,5 @@
 using KorYmeLibrary.SaveSystem;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,27 +10,33 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     [SerializeField] private int _levelPerStage;
     [SerializeField] private int _starSkippable;
 
-
     SerializableDictionnary<int, SKINSTATE> _skinDictionnary;
     SerializableDictionnary<int, int> _levelDictionnary;
+    public Action<int> OnTotalStarChange
+    {
+        get; set;
+    }
 
     public SerializableDictionnary<int, int> LevelDictionnary
     {
         get => _levelDictionnary;
     }
 
-    int _totalStarNumber;
     public int TotalStarNumber
     {
         get
         {
-            return _totalStarNumber;
-        }
-        private set
-        {
-            if (_totalStarNumber == value) return;
-            Debug.Log(value);
-            _totalStarNumber = value;
+            if (LevelDictionnary == null) return 0;
+            int value = 0;
+            foreach (var item in LevelDictionnary)
+            {
+                if (item.Key > 0)
+                {
+                    value += Mathf.Clamp(item.Value, 0, 3);
+                }
+            }
+            OnTotalStarChange?.Invoke(value);
+            return value;
         }
     }
     float _volume;
@@ -55,21 +62,16 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void CompleteALevel(int levelID, int starsNumber)
     {
         if (starsNumber <= 0) return;
-        if (!_levelDictionnary.ContainsKey(levelID))
+        if (!LevelDictionnary.ContainsKey(levelID))
         {
-            _levelDictionnary[levelID] = 0;
+            LevelDictionnary[levelID] = 0;
         }
-        _levelDictionnary[levelID] += Mathf.Clamp(starsNumber - _levelDictionnary[levelID], 0, 4);
-        if (levelID > 0)
-        {
-            TotalStarNumber += Mathf.Clamp(starsNumber - _levelDictionnary[levelID], 0 , 3);
-        }
+        LevelDictionnary[levelID] += Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4);
     }
 
     public void LoadData(GameData gameData)
     {
         _levelDictionnary = gameData.LevelDictionnary;
-        TotalStarNumber = gameData.TotalStarNumber;
         _skinDictionnary = gameData.SkinDictionnary;
         _volume = gameData.Volume;
     }
@@ -78,14 +80,12 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void SaveData(ref GameData gameData)
     {
         gameData.LevelDictionnary = _levelDictionnary;
-        gameData.TotalStarNumber = TotalStarNumber;
         gameData.SkinDictionnary = _skinDictionnary;
         gameData.Volume = _volume;
     }
 
     public void InitializeData()
     {
-        TotalStarNumber = 0;
         _levelDictionnary = new();
         _skinDictionnary = new SerializableDictionnary<int, SKINSTATE>()
         {
