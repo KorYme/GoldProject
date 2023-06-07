@@ -50,3 +50,98 @@ MonoBehaviour:
     _volume: 0.185
     _pitch: 1.05
     _source: {fileID: 0}
+  - name: RayonRecoitBonneCouleur
+    _clip: {fileID: 8300000, guid: 8a4aef2103ff35f46be9cd95d37a9854, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: RayonRecoitMauvaiseCouleur
+    _clip: {fileID: 8300000, guid: 1093c60985545d6489d8b8959250e6bd, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: RayonTouchePerso1
+    _clip: {fileID: 8300000, guid: aec9b0822fed00b499ab1e30dad6bf9b, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: RayonTouchePerso2
+    _clip: {fileID: 8300000, guid: d4f694e1a6d59f84fbbe001c16387e16, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: RayonTouchePerso3
+    _clip: {fileID: 8300000, guid: 66208fc278a208849a5b01b4a7eeeabc, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: RayonRedirection
+    _clip: {fileID: 8300000, guid: cdf912a5287b87943a1130ce77249cb1, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: NainHitWall
+    _clip: {fileID: 8300000, guid: b3db7686a283c3242913c7f457869df8, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: SireneHitWall
+    _clip: {fileID: 8300000, guid: e3f2a65450806e545bac05c75c80ba7f, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: ElfeHitWall
+    _clip: {fileID: 8300000, guid: d796ebacb72134d458a60555ba9aaf8c, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: CantMove
+    _clip: {fileID: 8300000, guid: cd254b6ae58aed94589ba4eb2e1ad8ae, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: RayonTraverseNuageLentille
+    _clip: {fileID: 8300000, guid: 6632404227ddeaa4688c5c9b0512a4ae, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: Boue
+    _clip: {fileID: 8300000, guid: 2b5119f883b8dde4c9b59b4833694728, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: CrateSlide
+    _clip: {fileID: 8300000, guid: 59b06cdcbbf20a9409ebdb3887a2e663, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: CrateHitWall
+    _clip: {fileID: 8300000, guid: 3a5c8b24f82fcca4d899d42d13e6bbcb, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: ButtonWood
+    _clip: {fileID: 8300000, guid: b3eff60dcd7c4ac418ce471012a22a99, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: DingStar1
+    _clip: {fileID: 8300000, guid: b5c3bf9af4433604cb6c2878d77c0503, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: DingStar2
+    _clip: {fileID: 8300000, guid: 5898edc5f3c04c54689ad776e92260f5, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: DingStar3
+    _clip: {fileID: 8300000, guid: c3a18ce31fc07bc4c9f8670a799e1d5f, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: DingStarSpecial
+    _clip: {fileID: 8300000, guid: c3a18ce31fc07bc4c9f8670a799e1d5f, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
