@@ -894,6 +894,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FilterLens
       objectReference: {fileID: 0}
+    - target: {fileID: 3436104866264135190, guid: 72e06e517dd0c274993d41099ed41995, type: 3}
+      propertyPath: _reflectionColor
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72e06e517dd0c274993d41099ed41995, type: 3}
 --- !u!1001 &255835376
@@ -1120,12 +1124,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3436104866264135190, guid: 72e06e517dd0c274993d41099ed41995, type: 3}
       propertyPath: _reflectionColor
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4755988755999539062, guid: 72e06e517dd0c274993d41099ed41995, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 8c93def764fea214480f23abded4834b, type: 3}
+      objectReference: {fileID: 21300000, guid: d3fb07a57bf47f94cad75dfc28b7b6cd, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72e06e517dd0c274993d41099ed41995, type: 3}
 --- !u!4 &300050669 stripped
@@ -2189,14 +2193,14 @@ PrefabInstance:
     - target: {fileID: 3172924481358171564, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 95798e797cdf1d54e9510a3f26558016, type: 3}
+      objectReference: {fileID: 21300000, guid: 93ae7ad045870ea4198663a94d24058a, type: 3}
     - target: {fileID: 3429801988097763572, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: _laserDir
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3429801988097763572, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: _initialColor
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7251455584209451172, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: m_RootOrder
