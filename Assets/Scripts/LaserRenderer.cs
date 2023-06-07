@@ -15,12 +15,23 @@ public class LaserRenderer : MonoBehaviour
 
     public LineRenderer LineRenderer
     {
-        get => _lineRenderer; 
+        get => _lineRenderer;
     }
+    bool _isTouchingWall;
 
     private void Start()
     {
         ChangeValues();
+    }
+
+    public void ChangeSecondPosition(Vector2 position, bool isWall = false)
+    {
+        if (isWall && !_isTouchingWall)
+        {
+            // LA 
+        }
+        LineRenderer.SetPosition(1, position);
+        _isTouchingWall = isWall;
     }
 
     public void ChangeLaserColor(Utilities.GAMECOLORS color)

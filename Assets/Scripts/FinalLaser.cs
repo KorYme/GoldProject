@@ -36,12 +36,6 @@ public class FinalLaser : Reflectable, IUpdateableTile
         _onLaserRampUp.Invoke();
         _inputLaserColor = laserColor;
         LaserDirection = laserDirection;
-        //if (Vector3.Angle(laserDirection, -Utilities.GetDirection(_sideTouchedNeeded)) > ANGLE_TOLERANCE)
-        //{
-        //    if (_onReflection == null) return;
-        //    StopReflection();
-        //    return;
-        //}
         if (laserColor == _targetColor && _onReflection == null)
         {
             _onReflection += ReflectLaser;
@@ -74,7 +68,6 @@ public class FinalLaser : Reflectable, IUpdateableTile
         _particleSystem?.Play();
         WinMenuManager winMenuManager = FindObjectOfType<WinMenuManager>();     // A changer   
         winMenuManager.Win(InputManager.Instance.MovementNumber);
-
     }
 
     [Button]
