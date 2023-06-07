@@ -29,7 +29,13 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Button _leaderboardButton;
     [SerializeField] private Button _trophyButton;
 
+    [Header("Level")]
+    [SerializeField] private TextMeshProUGUI _totalStarText;
 
+    public void UpdateTotalStarText(string text)
+    {
+        _totalStarText.text = text;
+    }
 
     bool _skinLevel = false;
     bool _settingsLevel = false;
@@ -104,6 +110,7 @@ public class MainMenuManager : MonoBehaviour
     
     TweenCallback SkinMenuButtonTween()
     {
+        _skinButton.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);;
         _mainMenu.SetActive(false);
         _skinMenu.SetActive(true);
         return null;
@@ -116,6 +123,7 @@ public class MainMenuManager : MonoBehaviour
 
     TweenCallback SettingsMenuFromLevelButtonTween()
     {
+        _settingsButton.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);;
         _settingsLevel = true;
         _settingsMenu.SetActive(true);
         return null;
@@ -123,13 +131,14 @@ public class MainMenuManager : MonoBehaviour
 
     public void SkinMenuFromLevel()
     {
-        _settingsButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SkinMenuFromLevelButtonTween());
+        _skinButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SkinMenuFromLevelButtonTween());
         _skinLevel = true;
         _skinMenu.SetActive(true);
     }
 
     TweenCallback SkinMenuFromLevelButtonTween()
     {
+        _skinButton.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
         _skinLevel = true;
         _skinMenu.SetActive(true);
         return null;
@@ -156,6 +165,7 @@ public class MainMenuManager : MonoBehaviour
 
     TweenCallback LeaderboardMenuButtonTween()
     {
+        _trophyButton.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);;
         _mainMenu.SetActive(false);
         _leaderboardMenu.SetActive(true);
         return null;
@@ -174,6 +184,7 @@ public class MainMenuManager : MonoBehaviour
 
     TweenCallback TrophyMenuButtonTween()
     {
+        _trophyButton.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);;
         _mainMenu.SetActive(false);
         _trophyMenu.SetActive(true);
         return null;
