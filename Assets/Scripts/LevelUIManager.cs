@@ -61,9 +61,6 @@ public class LevelUIManager : MonoBehaviour
 
     public void UpdateStar(int starNumber)
     {
-        Debug.Log(DataManager.Instance.TotalStarNumber);
-        MainMenuManager mainMenuManager = FindObjectOfType<MainMenuManager>();
-        mainMenuManager.UpdateTotalStarText(DataManager.Instance.TotalStarNumber.ToString() + "/120");
         switch (starNumber)
         {
             case 0:
