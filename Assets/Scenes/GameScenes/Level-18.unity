@@ -989,6 +989,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _LevelNumber
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _LevelPerfectScore
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _LevelTwoStarScore
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _LevelThreeStarScore
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 724292645973140185, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.3666995
@@ -1108,11 +1124,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6410a35ad41d0045b779c32b2abfa09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelPerfectScore: 4
-  _levelThreeStarScore: 5
-  _levelTwoStarScore: 6
-  _levelOneStarScore: 7
-  _levelNumber: 2
+  _LevelPerfectScore: 0
+  _LevelThreeStarScore: 0
+  _LevelTwoStarScore: 0
+  _LevelNumber: 0
 --- !u!1001 &428606980
 PrefabInstance:
   m_ObjectHideFlags: 0
