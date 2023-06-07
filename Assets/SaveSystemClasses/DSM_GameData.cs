@@ -14,8 +14,8 @@ namespace KorYmeLibrary.SaveSystem
    {
         // Create the values you want to save here
         public SerializableDictionnary<int, int> LevelDictionnary;
-        public int StarNumber;
         public SerializableDictionnary<int, SKINSTATE> SkinDictionnary;
+        public float Volume;
    }
 
     public enum SKINSTATE

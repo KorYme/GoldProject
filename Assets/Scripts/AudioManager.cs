@@ -31,8 +31,8 @@ public class AudioManager : MonoBehaviour
                 s._source.Play();
             }
         }
-
-        DontDestroyOnLoad(this.gameObject);
+        transform.parent = null;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void PlaySound(string name)
