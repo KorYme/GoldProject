@@ -32,9 +32,9 @@ public class MainMenuManager : MonoBehaviour
     [Header("Level")]
     [SerializeField] private TextMeshProUGUI _totalStarText;
 
-    public void UpdateTotalStarText(string text)
+    public void UpdateTotalStarText(int totalStarNumber)
     {
-        _totalStarText.text = text;
+        _totalStarText.text = totalStarNumber.ToString() + "/120";
     }
 
     bool _skinLevel = false;
@@ -45,6 +45,8 @@ public class MainMenuManager : MonoBehaviour
         DOTween.Init();
         _mainMenu.SetActive(true);
         _levelMenu.SetActive(false);
+        UpdateTotalStarText(DataManager.Instance.TotalStarNumber);
+        DataManager.Instance.OnTotalStarChange += UpdateTotalStarText;
     }
 
     public void StartLevel()

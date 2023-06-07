@@ -13,7 +13,6 @@ namespace KorYmeLibrary.SaveSystem
    public class GameData : GameDataTemplate
    {
         // Create the values you want to save here
-        public int TotalStarNumber;
         public SerializableDictionnary<int, int> LevelDictionnary;
         public SerializableDictionnary<int, SKINSTATE> SkinDictionnary;
         public float Volume;
