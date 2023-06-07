@@ -14,7 +14,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] GameObject _tilePrefab;
 
     [Header("Parameters")]
-    [SerializeField, MinMaxSlider(3,9)] Vector2Int _mapSize;
+    [SerializeField, MinMaxSlider(1,16)] Vector2Int _mapSize;
     [SerializeField, Range(0f, 2f), OnValueChanged(nameof(ResizeCamera))] float _offsetOnSide;
     [SerializeField, Range(-5f,5f), OnValueChanged(nameof(ReplaceCamera))] float _cameraOffsetY;
 

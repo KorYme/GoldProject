@@ -14,17 +14,22 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject _skinMenu;
     [SerializeField] private GameObject _leaderboardMenu;
     [SerializeField] private GameObject _trophyMenu;
-    
-    
 
-    [SerializeField] private Image _elfImage;
-    [SerializeField] private Image _nainImage;
-    [SerializeField] private Image _ondineImage;
+    [Header("Tweening")]
+    [SerializeField] private CanvasGroup _settingsCanvasGroup;
+    [SerializeField] private CanvasGroup _skinCanvasGroup;
+    [SerializeField] private CanvasGroup _leaderboardCanvasGroup;
+    [SerializeField] private CanvasGroup _trophyCanvasGroup;
 
-    [SerializeField] private GameObject _startMirror;
-    [SerializeField] private GameObject _levelMirror;
+    [Header("Tweening Button")]
+    [SerializeField] private Button _playButton;
+    [SerializeField] private Button _levelButton;
+    [SerializeField] private Button _settingsButton;
+    [SerializeField] private Button _skinButton;
+    [SerializeField] private Button _leaderboardButton;
+    [SerializeField] private Button _trophyButton;
 
-    [SerializeField] private GameObject[] _laser;
+
 
     bool _skinLevel = false;
     bool _settingsLevel = false;
@@ -36,41 +41,46 @@ public class MainMenuManager : MonoBehaviour
         _levelMenu.SetActive(false);
     }
 
-    public void UpdateStartMirror()
+    public void StartLevel()
     {
-        //_startMirror.SetActive(true);
-        //_startMirror.transform.DOMoveX(60, 1f);
-        //_levelMirror.transform.DOMoveX(-250, 1f);
-        //_levelMirror.SetActive(false);
-        StartGame();
+        _playButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => StarButtonTween());
     }
 
-    public void UpdateLevelMirror()
+    TweenCallback StarButtonTween()
     {
-        //_levelMirror.SetActive(true);
-        //_levelMirror.transform.DOMoveX(60, 1f);
-        //_startMirror.transform.DOMoveX(-250, 1f);
-        //_startMirror.SetActive(false);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level-1");
+        return null;
+    }
 
+    public void LevelMenu()
+    {
+        _levelButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LevelButtonTween());
+    }
+
+    TweenCallback LevelButtonTween()
+    {
         _mainMenu.SetActive(false);
         _levelMenu.SetActive(true);
+        return null;
     }
 
     public void ReturnToMainMenu()
     {
         _mainMenu.SetActive(true);
-        _levelMenu.SetActive(false);
-    }
-
-    public void StartGame()
-    {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Level-1");
+        _levelMenu.SetActive(false);    
     }
 
     public void SettingsMenu()
     {
+        _settingsButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SettingsButtonTween());
+    }
+
+    TweenCallback SettingsButtonTween()
+    {
         _mainMenu.SetActive(false);
         _settingsMenu.SetActive(true);
+        _settingsCanvasGroup.DOFade(1, 1f);
+        return null;
     }
 
     public void ReturnToMainMenuFromSettings()
@@ -89,20 +99,40 @@ public class MainMenuManager : MonoBehaviour
 
     public void SkinMenu()
     {
+        _skinButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SkinMenuButtonTween());
+    }
+    
+    TweenCallback SkinMenuButtonTween()
+    {
         _mainMenu.SetActive(false);
         _skinMenu.SetActive(true);
+        return null;
     }
 
     public void SettingsMenuFromLevel()
     {
+        _settingsButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SettingsMenuFromLevelButtonTween());
+    }
+
+    TweenCallback SettingsMenuFromLevelButtonTween()
+    {
         _settingsLevel = true;
         _settingsMenu.SetActive(true);
+        return null;
     }
 
     public void SkinMenuFromLevel()
     {
+        _settingsButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SkinMenuFromLevelButtonTween());
         _skinLevel = true;
         _skinMenu.SetActive(true);
+    }
+
+    TweenCallback SkinMenuFromLevelButtonTween()
+    {
+        _skinLevel = true;
+        _skinMenu.SetActive(true);
+        return null;
     }
 
     public void ReturnToMainMenuFromSkin()
@@ -121,8 +151,14 @@ public class MainMenuManager : MonoBehaviour
 
     public void LeaderboardMenu()
     {
+        _leaderboardButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LeaderboardMenuButtonTween());
+    }
+
+    TweenCallback LeaderboardMenuButtonTween()
+    {
         _mainMenu.SetActive(false);
         _leaderboardMenu.SetActive(true);
+        return null;
     }
 
     public void ReturnToMainMenuFromLeaderboard()
@@ -133,8 +169,14 @@ public class MainMenuManager : MonoBehaviour
 
     public void TrophyMenu()
     {
+        _trophyButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => TrophyMenuButtonTween());
+    }
+
+    TweenCallback TrophyMenuButtonTween()
+    {
         _mainMenu.SetActive(false);
         _trophyMenu.SetActive(true);
+        return null;
     }
 
     public void ReturnToMainMenuFromTrophy()
