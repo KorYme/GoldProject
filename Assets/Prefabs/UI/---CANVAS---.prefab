@@ -3772,11 +3772,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelManager: {fileID: 5857165663392768483}
-  _starOne: {fileID: 2502637210220079875}
+  _starOne: {fileID: 2502637210220079873}
   _starOneText: {fileID: 2502637209708439459}
-  _starTwo: {fileID: 2502637209536563208}
+  _starTwo: {fileID: 2502637209536563318}
   _starTwoText: {fileID: 2502637208880624523}
-  _starThree: {fileID: 2502637208709322578}
+  _starThree: {fileID: 2502637208709322576}
   _starThreeText: {fileID: 2502637208356307832}
   _moveText: {fileID: 2502637209428831426}
   _winMenu: {fileID: 2502637209797420637}
