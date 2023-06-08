@@ -16,7 +16,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
     [Header("Final Target Parameters")]
-    [SerializeField] Utilities.GAMECOLORS _targetColor;
+    [SerializeField, OnValueChanged(nameof(ApplyChange))] Utilities.GAMECOLORS _targetColor;
     [SerializeField, Tooltip("Not needed anymore")] Utilities.DIRECTIONS _sideTouchedNeeded;
 
     float _timeHitByLaser = 0;
@@ -28,6 +28,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
     {
         _onReflection = null;
         _isLevelComplete = false;
+        UpdateTile(false);
     }
 
     public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
@@ -83,6 +84,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
         if (_sprites.Count > (int)_targetColor && _sprites[(int)_targetColor] != null)
         {
             _spriteRenderer.sprite = _sprites[(int)_targetColor];
+            _spriteRenderer.color = Color.white;
         }
         else
         {
@@ -92,5 +94,10 @@ public class FinalLaser : Reflectable, IUpdateableTile
         {
             FindObjectsOfType<MonoBehaviour>().Where(x => x != this).OfType<IUpdateableTile>().ToList().ForEach(x => x.UpdateTile(false));
         }
+    }
+
+    private void ApplyChange()
+    {
+        UpdateTile(true);
     }
 }

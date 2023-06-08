@@ -203,6 +203,7 @@ public class PlayerController : MonoBehaviour
             && !Physics2D.OverlapCircle((Vector2)hitObject.position + direction, .45f, Utilities.MovementLayers[Utilities.GAMECOLORS.White]))
         {
             InputManager.Instance.CanMoveAPlayer = false;
+            hitObject.GetComponentInChildren<Animator>()?.SetTrigger(direction.x != 0 ? "HorizontalMovement" : "VerticalMovement");
             _moveCrateCoroutine = StartCoroutine(MoveCrateCoroutine(hitObject.gameObject, direction));
             return true;
         }
@@ -272,7 +273,8 @@ public class PlayerController : MonoBehaviour
                 * _movementSpeed * Time.deltaTime));
             crate.transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
-        }   
+        }
+        crate.GetComponentInChildren<Animator>()?.SetTrigger("StopMovement");
         IsCrateMoving = false;
         _onCrateMoveStop?.Invoke();
         _moveCrateCoroutine = null;

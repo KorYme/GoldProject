@@ -32,6 +32,7 @@ public class StartingLaser : MonoBehaviour
         _raycastTarget = Utilities.GetDirection(_laserDir);
         _laserRenderer.LineRenderer.useWorldSpace = true;
         _laserRenderer.ChangeLaserColor(_initialColor);
+        ApplyParameters(false);
     }
 
     private void Update()
