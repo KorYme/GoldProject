@@ -1171,11 +1171,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 724292645973140185, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8066993
+      value: 2.01
       objectReference: {fileID: 0}
     - target: {fileID: 724292645973140190, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: orthographic size
-      value: 5
+      value: 5.02
       objectReference: {fileID: 0}
     - target: {fileID: 1101498700555979628, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_IsActive
@@ -1263,11 +1263,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6723023923992784599, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _offsetOnSide
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6723023923992784599, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _cameraOffsetY
-      value: 1.4
+      value: 2.01
       objectReference: {fileID: 0}
     - target: {fileID: 6723023925934460676, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_Name
