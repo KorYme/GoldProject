@@ -103,6 +103,11 @@ public static class Utilities
     public static LayerMask LightLayerMask = 
         LayerMask.GetMask("WhiteWall", "Player", "RedWall", "BlueWall", "YellowWall", "PurpleWall", "OrangeWall", "GreenWall", "OnlyLight", "Border");
 
+    public static List<string> AllBrakeTags = new List<string>
+    {
+        "Mud", "Hole"
+    };
+
     public static int GetClosestInteger(float value)
     {
         if (Mathf.Abs(Mathf.Ceil(value) - value) < Mathf.Abs(Mathf.Floor(value) - value))

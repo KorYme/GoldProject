@@ -4,9 +4,13 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class WinMenuManager : MonoBehaviour
 {
+    [Header("Parameters")]
+    [SerializeField] float _victoryScreenDelay;
+
     [Header("Win Menu")]
     [SerializeField] LevelManager _levelManager;
     [SerializeField] private Image _starOne;
@@ -27,8 +31,27 @@ public class WinMenuManager : MonoBehaviour
     [SerializeField] private Sprite _starYellow;
     [SerializeField] private Sprite _starCyan;
 
+    bool _isLevelComplete;
+
+    private void Awake()
+    {
+        _isLevelComplete = false;
+    }
+
     public void Win(int totalMove)
     {
+        if (_isLevelComplete) return;
+        _isLevelComplete = true;
+        InputManager.Instance.DisableInputs();
+        float time = 0;
+        FindObjectsOfType<AnimatorManager>().ToList().ForEach(x => time = x.ChangeAnimation(ANIMATION_STATES.Victory));
+        StartCoroutine(VictoryScreenAppearance(totalMove));
+        
+    }
+
+    IEnumerator VictoryScreenAppearance(int totalMove)
+    {
+        yield return new WaitForSeconds(_victoryScreenDelay);
         _winMenu.SetActive(true);
         _gameMenu.SetActive(false);
         UpdateWinMenu(_levelManager._LevelNumber , _levelManager._LevelPerfectScore, _levelManager._LevelThreeStarScore, _levelManager._LevelTwoStarScore, totalMove.ToString(), totalMove);

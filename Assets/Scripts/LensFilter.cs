@@ -37,9 +37,9 @@ public class LensFilter : Reflectable, IUpdateableTile
         if (collision.CompareTag("Player"))
         {
             //_animator.Play("Lens_Spread_" + _reflectionColor.ToString());
-            _idleAnimationCoroutine = StartCoroutine(IdleSpreadAnimation(
-                _animator.runtimeAnimatorController.animationClips
-                .First(x => x.name == "Lens_Spread_" + _reflectionColor.ToString()).length));
+            //_idleAnimationCoroutine = StartCoroutine(IdleSpreadAnimation(
+            //    _animator.runtimeAnimatorController.animationClips
+            //    .First(x => x.name == "Lens_Spread_" + _reflectionColor.ToString()).length));
             _lastPlayerMet = collision.GetComponent<PlayerReflection>();
             _lastPlayerMet.LensColor = _reflectionColor;
             gameObject.layer = LayerMask.NameToLayer("Default");

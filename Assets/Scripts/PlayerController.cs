@@ -182,15 +182,18 @@ public class PlayerController : MonoBehaviour
         _onPlayerMoveStopped?.Invoke();
         if (direction.y == 0f)
         {
-            _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager.ChangeAnimation(ANIMATION_STATES.Hit_profil)));
+            _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager
+                .ChangeAnimation(Utilities.AllBrakeTags.Find(x => x == raycast.collider.tag) == default ? ANIMATION_STATES.Hit_profil : ANIMATION_STATES.Frein_profil)));
         }
         else if (direction.y > 0)
         {
-            _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager.ChangeAnimation(ANIMATION_STATES.Hit_dos)));
+            _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager
+                .ChangeAnimation(Utilities.AllBrakeTags.Find(x => x == raycast.collider.tag) == default ? ANIMATION_STATES.Hit_dos : ANIMATION_STATES.Frein_dos)));
         }
         else
         {
-            _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager.ChangeAnimation(ANIMATION_STATES.Hit_face)));
+            _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager
+                .ChangeAnimation(Utilities.AllBrakeTags.Find(x => x == raycast.collider.tag) == default ? ANIMATION_STATES.Hit_face : ANIMATION_STATES.Frein_face)));
         }
         transform.position = positionToGo;
         CheckCrateMovement(raycast.transform, direction);
