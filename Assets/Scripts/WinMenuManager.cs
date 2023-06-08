@@ -36,6 +36,16 @@ public class WinMenuManager : MonoBehaviour
 
     public void Win(int totalMove)
     {
+        if (_isLevelComplete) return;
+        _isLevelComplete = true;
+        InputManager.Instance.DisableInputs();
+        FindObjectsOfType<AnimatorManager>().ToList().ForEach(x => x.ChangeAnimation(ANIMATION_STATES.Victory));
+        StartCoroutine(VictoryScreenAppearance(totalMove));
+    }
+
+    IEnumerator VictoryScreenAppearance(int totalMove)
+    {
+        yield return new WaitForSeconds(_victoryScreenDelay);
         _winMenu.SetActive(true);
         _gameMenu.SetActive(false);
         UpdateWinMenu(_levelManager._LevelNumber , _levelManager._LevelPerfectScore, _levelManager._LevelThreeStarScore, _levelManager._LevelTwoStarScore, totalMove.ToString(), totalMove);
