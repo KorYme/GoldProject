@@ -36,7 +36,7 @@ public class LensFilter : Reflectable, IUpdateableTile
     {
         if (collision.CompareTag("Player"))
         {
-            _animator.Play("Lens_Spread_" + _reflectionColor.ToString());
+            //_animator.Play("Lens_Spread_" + _reflectionColor.ToString());
             _idleAnimationCoroutine = StartCoroutine(IdleSpreadAnimation(
                 _animator.runtimeAnimatorController.animationClips
                 .First(x => x.name == "Lens_Spread_" + _reflectionColor.ToString()).length));
@@ -54,7 +54,7 @@ public class LensFilter : Reflectable, IUpdateableTile
             {
                 StopCoroutine(_idleAnimationCoroutine);
             }
-            _animator.Play("Lens_Unspread_" + _reflectionColor.ToString());
+            //_animator.Play("Lens_Unspread_" + _reflectionColor.ToString());
             gameObject.layer = LayerMask.NameToLayer("OnlyLight");
             _lastPlayerMet.LensColor = Utilities.GAMECOLORS.White;
             _lastPlayerMet = null;
@@ -64,7 +64,7 @@ public class LensFilter : Reflectable, IUpdateableTile
     IEnumerator IdleSpreadAnimation(float time)
     {
         yield return new WaitForSeconds(time);
-        _animator.Play("Lens_Spread_Idle_" + _reflectionColor.ToString());
+        //_animator.Play("Lens_Spread_Idle_" + _reflectionColor.ToString());
     }
 
     [Button]
