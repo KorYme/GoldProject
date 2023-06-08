@@ -12,6 +12,10 @@ public enum ANIMATION_STATES
     Hit_face,
     Hit_dos,
     Hit_profil,
+    Frein_face,
+    Frein_dos,
+    Frein_profil,
+    Refuse,
     Reflection,
     Victory,
 }

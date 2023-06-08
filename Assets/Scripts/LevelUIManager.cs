@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using DG.Tweening;
 using UnityEditor;
+using KorYmeLibrary.SaveSystem;
 
 public class LevelUIManager : MonoBehaviour
 {
@@ -49,13 +50,9 @@ public class LevelUIManager : MonoBehaviour
     void Start()
     {
         DOTween.Init();
-        if (DataManager.Instance == null)
+        if (DataManager.Instance.LevelDictionnary == null)
         {
-            Debug.Log("Pas trouv� l'instance");
-        }
-        else if (DataManager.Instance.LevelDictionnary == null)
-        {
-            Debug.Log("Pas trouv� le dictionnaire");
+            DataSaveManager<GameData>.Instance.NewGame();
         }
         UpdateStar(DataManager.Instance.LevelDictionnary.ContainsKey(LevelNumber) ? DataManager.Instance.LevelDictionnary[LevelNumber] : 0);
     }

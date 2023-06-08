@@ -8,6 +8,7 @@ TagManager:
   - Mud
   - Crate
   - Mirror
+  - Hole
   layers:
   - Default
   - TransparentFX
