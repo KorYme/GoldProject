@@ -44,7 +44,7 @@ public class StartingLaser : MonoBehaviour
         if (objectHit == (_nextReflectable?.gameObject ?? null)) return;
         _nextReflectable?.StopReflection();
         _nextReflectable = objectHit.GetComponent<Reflectable>();
-        _laserRenderer.ChangeSecondPosition(hit.collider is null ? transform.position + (_raycastTarget * 100f) : hit.point, _nextReflectable == null);
+        _laserRenderer.ChangeSecondPosition(hit.collider is null ? transform.position + (_raycastTarget * 100f) : hit.point, hit.normal ,_nextReflectable == null);
         _nextReflectable?.StartReflection(_raycastTarget, _initialColor, hit, _thisReflectable);
     }
 

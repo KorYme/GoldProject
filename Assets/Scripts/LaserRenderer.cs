@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class LaserRenderer : MonoBehaviour
 {
+    [SerializeField] ParticleSystem _particleSystem;
+
     [Header("References")]
     [SerializeField] LineRenderer _lineRenderer;
     [SerializeField] List<Material> _materialsLaser;
@@ -24,11 +26,26 @@ public class LaserRenderer : MonoBehaviour
         ChangeValues();
     }
 
-    public void ChangeSecondPosition(Vector2 position, bool isWall = false)
+    public void ChangeSecondPosition(Vector2 position, Vector2 normal, bool isWall = false)
     {
         if (isWall && !_isTouchingWall)
         {
-            // LA 
+
+            switch (Vector3.Dot(normal, LineRenderer.GetPosition(1) - LineRenderer.GetPosition(0)) >1)
+            {
+                case true:
+                    _particleSystem.transform.LookAt(LineRenderer.GetPosition(1) * -1);
+                    break;
+                case false:
+                    _particleSystem.transform.LookAt(LineRenderer.GetPosition(1) * -1);
+                    break;
+                }
+            _particleSystem.transform.position = position;
+            _particleSystem.Play();
+        }
+        else if (!isWall && _isTouchingWall)
+        {
+            _particleSystem.Stop();
         }
         LineRenderer.SetPosition(1, position);
         _isTouchingWall = isWall;

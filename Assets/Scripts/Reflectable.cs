@@ -111,7 +111,7 @@ public class Reflectable : MonoBehaviour
             {
                 _nextReflectable.StartReflection(LaserDirection, _outputLaserColor, hit, this);
             }
-            _laserRenderer.ChangeSecondPosition(hit.collider != null ? hit.point : LaserOrigin);
+            _laserRenderer.ChangeSecondPosition(hit.collider != null ? hit.point : LaserOrigin, hit.normal);
             return;
         }
         _nextReflectable?.StopReflection();
@@ -120,18 +120,18 @@ public class Reflectable : MonoBehaviour
         {
             if (_nextReflectable == null)
             {
-                _laserRenderer.ChangeSecondPosition(hit.collider != null ? hit.point : LaserOrigin, true);
+                _laserRenderer.ChangeSecondPosition(hit.collider != null ? hit.point : LaserOrigin, hit.normal, true);
             }
             else
             {
-                _laserRenderer.ChangeSecondPosition(hit.collider != null ? hit.point : LaserOrigin);
+                _laserRenderer.ChangeSecondPosition(hit.collider != null ? hit.point : LaserOrigin,hit.normal);
                 _nextReflectable = null;
             }
         }
         else
         {
             _nextReflectable?.StartReflection(LaserDirection, _outputLaserColor, hit, this);
-            _laserRenderer.ChangeSecondPosition(hit.collider != null ? hit.point : LaserOrigin);
+            _laserRenderer.ChangeSecondPosition(hit.collider != null ? hit.point : LaserOrigin, hit.normal);
         }
     }
 }
