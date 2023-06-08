@@ -50,3 +50,28 @@ MonoBehaviour:
     _volume: 0.185
     _pitch: 1.05
     _source: {fileID: 0}
+  - name: StarOne
+    _clip: {fileID: 8300000, guid: 7619c432508a5964daf826f088f077fb, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: StarTwo
+    _clip: {fileID: 8300000, guid: 1c6f2e8f25045604cb51f804a3355e2e, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: StarThree
+    _clip: {fileID: 8300000, guid: 64b0a279364204045843ddb950de2d0f, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: StarPlat
+    _clip: {fileID: 8300000, guid: 7e2a3eb8ee276db4f93020327eb06d9d, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: StarFail
+    _clip: {fileID: 0}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}

@@ -59,6 +59,10 @@ public class MainMenuManager : MonoBehaviour
     TweenCallback StarButtonTween()
     {
         int latestLevel = DataManager.Instance.LevelDictionnary.Count;
+        if(latestLevel == null)
+        {
+            latestLevel = 1;
+        }
         Debug.Log(latestLevel);
         SceneManager.LoadScene($"Level-{latestLevel + 1}");
         return null;
