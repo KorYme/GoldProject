@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: a8d5bf5d937bfb9428498e43e9a66cc6
+guid: 3201580bf62f4824ebf392a3a6464073
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,55 +105,97 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: cil_g
+      name: hair_top
       rect:
         serializedVersion: 2
-        x: 288
-        y: 897
-        width: 67
-        height: 39
+        x: 304
+        y: 791
+        width: 175
+        height: 110
       alignment: 9
-      pivot: {x: 0.3989376, y: 0.4995321}
+      pivot: {x: 0.41883126, y: 0.20064808}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7f5f419380a19c94cb84e66df33625b9
-      internalID: 475208928
+      spriteID: 737cdcd9bdce54d46a5e146bad4c6564
+      internalID: 560371620
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: cil_d
+      name: ear
       rect:
         serializedVersion: 2
-        x: 418
-        y: 894
-        width: 67
-        height: 39
+        x: 588
+        y: 758
+        width: 45
+        height: 90
       alignment: 9
-      pivot: {x: 0.602176, y: 0.4918839}
+      pivot: {x: 0.32065022, y: 0.8658746}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8511294043b9c5a41854382d9b923fcc
-      internalID: 540983168
+      spriteID: 9568ff94f10571e4a85213f42faf5b83
+      internalID: 556991754
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: eye_g
+      name: couette_g
       rect:
         serializedVersion: 2
-        x: 555
-        y: 894
-        width: 18
-        height: 25
+        x: 723
+        y: 769
+        width: 22
+        height: 52
+      alignment: 9
+      pivot: {x: 0.43793002, y: 0.8764085}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a21b533d578efd4c87b12b34ae9a97a
+      internalID: 883114013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: couette_top_g
+      rect:
+        serializedVersion: 2
+        x: 832
+        y: 764
+        width: 59
+        height: 87
+      alignment: 9
+      pivot: {x: 0.48641294, y: 0.8178662}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 971bdbf84af08d248b78a5a89b754520
+      internalID: -1441368440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye_open
+      rect:
+        serializedVersion: 2
+        x: 107
+        y: 610
+        width: 22
+        height: 40
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,20 +203,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b3fd20ba3c7d1294d83b4cdad466d2a2
-      internalID: 418916032
+      spriteID: 1fe635f9ebda3334384014dfca36b81e
+      internalID: 1816942200
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: eye_d
+      name: eye_close
       rect:
         serializedVersion: 2
-        x: 627
-        y: 890
-        width: 19
-        height: 26
+        x: 178
+        y: 612
+        width: 22
+        height: 41
+      alignment: 9
+      pivot: {x: 0.39053553, y: 0.5117456}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2841703db98f34a4d9439058ef824e05
+      internalID: -540324306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bouche_1
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 615
+        width: 20
+        height: 10
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,29 +245,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 756639974f1053e4a818689981cf3aef
-      internalID: -1365757603
+      spriteID: 5b59c0a297215074094684cccc883ec5
+      internalID: -1500401004
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: barbe
+      name: bouche_2
       rect:
         serializedVersion: 2
-        x: 709
-        y: 846
-        width: 135
-        height: 94
-      alignment: 9
-      pivot: {x: 0.5031327, y: 0.5359893}
+        x: 319
+        y: 614
+        width: 16
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: de3d15057d4e65e4db78364b27f5b31d
-      internalID: -1282054707
+      spriteID: 40da10fd023d61b439fa6ae83f50e32a
+      internalID: 575159256
       vertices: []
       indices: 
       edges: []
@@ -213,82 +276,19 @@ TextureImporter:
       name: tete
       rect:
         serializedVersion: 2
-        x: 59
-        y: 480
-        width: 186
-        height: 183
+        x: 410
+        y: 546
+        width: 171
+        height: 162
       alignment: 9
-      pivot: {x: 0.4580753, y: 0.05382784}
+      pivot: {x: 0.587125, y: 0.09500235}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5fab10c3a75c6eb488075c864b798ada
-      internalID: -1023477137
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: torse
-      rect:
-        serializedVersion: 2
-        x: 359
-        y: 481
-        width: 110
-        height: 97
-      alignment: 9
-      pivot: {x: 0.4846036, y: 0.06350771}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84b4d20a4da4235468f3308e1607dde8
-      internalID: 2123982883
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: leg_g
-      rect:
-        serializedVersion: 2
-        x: 581
-        y: 490
-        width: 47
-        height: 55
-      alignment: 9
-      pivot: {x: 0.5209792, y: 0.8630171}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: eb61e2fa7d0bc034ea8160906c65edc7
-      internalID: -131226575
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: leg_d
-      rect:
-        serializedVersion: 2
-        x: 731
-        y: 488
-        width: 50
-        height: 55
-      alignment: 9
-      pivot: {x: 0.4771606, y: 0.8495294}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cbd05b7fb7d141840a1395db0b0c48b1
-      internalID: -1905126753
+      spriteID: 5847806890d614d4e8c720c548b431b2
+      internalID: 321792874
       vertices: []
       indices: 
       edges: []
@@ -297,19 +297,103 @@ TextureImporter:
       name: arm_g
       rect:
         serializedVersion: 2
-        x: 127
-        y: 216
-        width: 47
-        height: 63
+        x: 657
+        y: 566
+        width: 42
+        height: 70
       alignment: 9
-      pivot: {x: 0.70683, y: 0.7778761}
+      pivot: {x: 0.40147328, y: 0.8439436}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efaf9e22c5450f746a4c77732ed7f15c
-      internalID: 1412816422
+      spriteID: 8393b756ca1f4cf4e9f91f2ca3c78b22
+      internalID: 1949491976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torse
+      rect:
+        serializedVersion: 2
+        x: 770
+        y: 561
+        width: 84
+        height: 86
+      alignment: 9
+      pivot: {x: 0.5101682, y: 0.09776626}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0efe928863b2bb64fb20f306d9fef27b
+      internalID: -373305488
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robe
+      rect:
+        serializedVersion: 2
+        x: 917
+        y: 555
+        width: 92
+        height: 59
+      alignment: 9
+      pivot: {x: 0.50000066, y: 0.75334245}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 602dc131a9c354f4fbf70b1398a0d354
+      internalID: 1119266870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: couette_d
+      rect:
+        serializedVersion: 2
+        x: 109
+        y: 362
+        width: 22
+        height: 52
+      alignment: 9
+      pivot: {x: 0.47509316, y: 0.8530144}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75125d9c6057aaf4ba4a71bb93ff5aed
+      internalID: -982759805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: couette_top_d
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 326
+        width: 59
+        height: 87
+      alignment: 9
+      pivot: {x: 0.5058408, y: 0.8010191}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 009c0e76652023a43bb29a155eb5459b
+      internalID: 1917875564
       vertices: []
       indices: 
       edges: []
@@ -318,19 +402,19 @@ TextureImporter:
       name: arm_d
       rect:
         serializedVersion: 2
-        x: 355
-        y: 218
-        width: 46
-        height: 62
+        x: 500
+        y: 329
+        width: 42
+        height: 70
       alignment: 9
-      pivot: {x: 0.311873, y: 0.7791556}
+      pivot: {x: 0.38359433, y: 0.802659}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 763832e795f02974ebf1ed6e44cfb912
-      internalID: 1934964656
+      spriteID: 387b82b9bfc072b40a78b523dfe79321
+      internalID: 1131251681
       vertices: []
       indices: 
       edges: []
@@ -350,8 +434,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0a91fa1b7c0f49246a915f690b6233af
-      internalID: 1718155209
+      spriteID: f2d2c624ae814d54c80e99e4fa708835
+      internalID: 1100493322
       vertices: []
       indices: 
       edges: []
@@ -367,18 +451,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      arm_d: 1934964656
-      arm_g: 1412816422
-      barbe: -1282054707
-      cil_d: 540983168
-      cil_g: 475208928
-      eye_d: -1365757603
-      eye_g: 418916032
-      leg_d: -1905126753
-      leg_g: -131226575
-      shadow: 1718155209
-      tete: -1023477137
-      torse: 2123982883
+      arm_d: 1131251681
+      arm_g: 1949491976
+      bouche_1: -1500401004
+      bouche_2: 575159256
+      couette_d: -982759805
+      couette_g: 883114013
+      couette_top_d: 1917875564
+      couette_top_g: -1441368440
+      ear: 556991754
+      eye_close: -540324306
+      eye_open: 1816942200
+      hair_top: 560371620
+      robe: 1119266870
+      shadow: 1100493322
+      tete: 321792874
+      torse: -373305488
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
