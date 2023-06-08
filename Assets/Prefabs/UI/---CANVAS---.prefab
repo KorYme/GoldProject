@@ -3771,7 +3771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a791227313b6e1a499f9db1736da9800, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _victoryScreenDelay: 2
+  _victoryScreenDelay: 2.5
   _levelManager: {fileID: 5857165663392768483}
   _starOne: {fileID: 2502637210220079873}
   _starOneText: {fileID: 2502637209708439459}
