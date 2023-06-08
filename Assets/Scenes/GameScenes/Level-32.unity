@@ -418,7 +418,7 @@ PrefabInstance:
     - target: {fileID: 6564846264669077187, guid: e7a55ff1a6464844c82e22d2704196aa, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 1007e8aa690db8d458af8fc2827cc4b6, type: 3}
+      objectReference: {fileID: 21300000, guid: 90742e556db84da4eb7a837b65b2d76a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a55ff1a6464844c82e22d2704196aa, type: 3}
 --- !u!1001 &112912627
@@ -3024,9 +3024,13 @@ PrefabInstance:
       propertyPath: _LevelThreeStarScore
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 724292645973140185, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.62
+      objectReference: {fileID: 0}
     - target: {fileID: 724292645973140190, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: orthographic size
-      value: 7
+      value: 6.46
       objectReference: {fileID: 0}
     - target: {fileID: 1101498700555979630, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3059,6 +3063,14 @@ PrefabInstance:
     - target: {fileID: 6723023923992784599, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _mapSize.x
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723023923992784599, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _offsetOnSide
+      value: 0.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6723023923992784599, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _cameraOffsetY
+      value: 2.62
       objectReference: {fileID: 0}
     - target: {fileID: 6723023925934460676, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_Name

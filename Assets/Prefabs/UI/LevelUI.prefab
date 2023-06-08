@@ -308,6 +308,7 @@ MonoBehaviour:
   _buttonImage: {fileID: 2387881309521512783}
   _normalLevel: {fileID: 21300000, guid: b8eac4aa7f5ded748bdb7fe56809dc94, type: 3}
   _bonusLevel: {fileID: 21300000, guid: dba4f8288da51a74ead8c9a5a3f20cfa, type: 3}
+  _lockedLevel: {fileID: 21300000, guid: 720fcf31869c6124088bf856a61d7f8c, type: 3}
   _star1: {fileID: 2387881308414031587}
   _star2: {fileID: 2387881310119652371}
   _star3: {fileID: 2387881309384034719}
