@@ -36,6 +36,7 @@ public class LevelUIManager : MonoBehaviour
 
     [SerializeField, Foldout("Image")] private Sprite _normalLevel;
     [SerializeField, Foldout("Image")] private Sprite _bonusLevel;
+    [SerializeField, Foldout("Image")] private Sprite _lockedLevel;
 
     [SerializeField, Foldout("StarImages")] private Image _star1;
     [SerializeField, Foldout("StarImages")] private Image _star2;
@@ -61,6 +62,11 @@ public class LevelUIManager : MonoBehaviour
 
     public void UpdateStar(int starNumber)
     {
+        if(!CanPlay)
+        {
+            _buttonImage.sprite = _lockedLevel;
+            _levelText.text = "";
+        }
         switch (starNumber)
         {
             case 0:
