@@ -60,7 +60,8 @@ public static class Utilities
     /// <returns>Final color</returns>
     public static GAMECOLORS GetSubtractedColor(GAMECOLORS color1, GAMECOLORS color2)
     {
-        return (GAMECOLORS)((((int)color1 != 0 ? (int)color1 : 7) - (((int)color1 != 0 ? (int)color1 : 7) & (int)color2)) %7);
+        return color1 - (int)(color1 & color2);
+        //return (GAMECOLORS)((((int)color1 != 0 ? (int)color1 : 7) - (((int)color1 != 0 ? (int)color1 : 7) & (int)color2)) %7);
     }
 
     /// <summary>
@@ -101,6 +102,11 @@ public static class Utilities
 
     public static LayerMask LightLayerMask = 
         LayerMask.GetMask("WhiteWall", "Player", "RedWall", "BlueWall", "YellowWall", "PurpleWall", "OrangeWall", "GreenWall", "OnlyLight", "Border");
+
+    public static List<string> AllBrakeTags = new List<string>
+    {
+        "Mud", "Hole"
+    };
 
     public static int GetClosestInteger(float value)
     {
