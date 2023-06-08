@@ -5,9 +5,13 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System.Linq;
 
 public class WinMenuManager : MonoBehaviour
 {
+    [Header("Parameters")]
+    [SerializeField] float _victoryScreenDelay;
+    
     [Header("Win Menu")]
     [SerializeField] LevelManager _levelManager;
     [SerializeField] private GameObject _starOne;
@@ -28,7 +32,8 @@ public class WinMenuManager : MonoBehaviour
     [SerializeField] private Sprite _starYellow;
     [SerializeField] private Sprite _starCyan;
 
-
+    bool _isLevelComplete;
+    
     void Start()
     {
         DOTween.Init();
