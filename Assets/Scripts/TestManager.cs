@@ -1,6 +1,7 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class TestManager : MonoBehaviour
@@ -27,5 +28,11 @@ public class TestManager : MonoBehaviour
     private void LayerTest()
     {
         _testLayer = LayerMask.GetMask("BasicWall", "Player");
+    }
+
+    [Button]
+    private void Victory()
+    {
+        FindObjectsOfType<AnimatorManager>().ToList().ForEach(animator => animator.ChangeAnimation(ANIMATION_STATES.Victory));
     }
 }

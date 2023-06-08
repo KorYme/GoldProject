@@ -43,10 +43,8 @@ public class WinMenuManager : MonoBehaviour
         if (_isLevelComplete) return;
         _isLevelComplete = true;
         InputManager.Instance.DisableInputs();
-        float time = 0;
-        FindObjectsOfType<AnimatorManager>().ToList().ForEach(x => time = x.ChangeAnimation(ANIMATION_STATES.Victory));
+        FindObjectsOfType<AnimatorManager>().ToList().ForEach(x => x.ChangeAnimation(ANIMATION_STATES.Victory));
         StartCoroutine(VictoryScreenAppearance(totalMove));
-        
     }
 
     IEnumerator VictoryScreenAppearance(int totalMove)

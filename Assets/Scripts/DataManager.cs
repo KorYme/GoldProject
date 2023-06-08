@@ -52,6 +52,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
             return;
         }
         Instance = this;
+        transform.parent = null;
         DontDestroyOnLoad(gameObject);
         if (LevelDictionnary == null)
         {
