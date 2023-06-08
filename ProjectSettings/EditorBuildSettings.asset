@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Main Menu.unity
     guid: 8afc65a58ef897e4cb5506b87d09a9a9
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-1.unity
+    path: Assets/Scenes/LVL by ID/Level-1.unity
     guid: 4439d355ce6aacd499104723343d4f4f
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-2.unity
+    guid: f405eac7669113347997ff5a81dc5832
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-3.unity
     guid: 843c294224804cb45b7e674eebff1ac2
@@ -36,7 +39,7 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Level-21.unity
     guid: 3ff937faaa5e16947902db061cafd6a8
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-22.unity
+    path: Assets/Scenes/GameScenes/Level-37.unity
     guid: 600b0b0d19c54e845955a095ff496608
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-26.unity
@@ -51,10 +54,10 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Level-33.unity
     guid: 25e2f5a662e14ae4eb988e1161da1f1b
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-37.unity
+    path: Assets/Scenes/GameScenes/Level-38.unity
     guid: 2943c388a2da6174c8593b2514973e93
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-40.unity
+    path: Assets/Scenes/LVL by ID/Level-40.unity
     guid: f12b38665a1d0504ca4e40033aae2368
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6677a1f346883424794346cd77a81895, type: 2}
