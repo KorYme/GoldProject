@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 {
@@ -52,6 +53,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
             return;
         }
         Instance = this;
+        transform.parent = null;
         DontDestroyOnLoad(gameObject);
         if (LevelDictionnary == null)
         {
@@ -74,6 +76,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         _levelDictionnary = gameData.LevelDictionnary;
         _skinDictionnary = gameData.SkinDictionnary;
         _volume = gameData.Volume;
+        CheckLevels();
     }
 
 
@@ -120,6 +123,24 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
                 value += LevelDictionnary[i];
             }
             return value >= (levelStage * _levelPerStage * 3) - _starSkippable;
+        }
+    }
+
+    private void CheckLevels()
+    {
+        for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            if (LevelDictionnary.ContainsKey(i) && !CanPlayThisLevel(i))
+            {
+                LevelDictionnary[i] = 0;
+            }
+        }
+        for (int i = -1; i > -10; i--)
+        {
+            if (LevelDictionnary.ContainsKey(i) && !CanPlayThisLevel(i))
+            {
+                LevelDictionnary[i] = 0;
+            }
         }
     }
 }

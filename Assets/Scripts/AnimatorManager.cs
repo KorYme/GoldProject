@@ -12,6 +12,10 @@ public enum ANIMATION_STATES
     Hit_face,
     Hit_dos,
     Hit_profil,
+    Frein_face,
+    Frein_dos,
+    Frein_profil,
+    Refuse,
     Reflection,
     Victory,
 }
@@ -36,6 +40,11 @@ public class AnimatorManager : MonoBehaviour
     public float ChangeAnimation(ANIMATION_STATES state)
     {
         if (_currentState == state) return 0f;
+        if (state == ANIMATION_STATES.Victory)
+        {
+            _animator.SetTrigger("Victory");
+            return 2f;
+        }
         _currentState = state;
         _animator.Play($"{state}_{_playerName}");
         return _animator.runtimeAnimatorController.animationClips.First(x => x.name == $"{state}_{_playerName}").length;

@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using KorYmeLibrary.SaveSystem;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [Header("Menu")]
     [SerializeField] private GameObject _mainMenu;
     [SerializeField] private GameObject _levelMenu;
     [SerializeField] private GameObject _settingsMenu;
@@ -56,7 +58,13 @@ public class MainMenuManager : MonoBehaviour
 
     TweenCallback StarButtonTween()
     {
-        SceneManager.LoadScene("Level-1");
+        int latestLevel = DataManager.Instance.LevelDictionnary.Count;
+        if(latestLevel == null)
+        {
+            latestLevel = 1;
+        }
+        Debug.Log(latestLevel);
+        SceneManager.LoadScene($"Level-{latestLevel + 1}");
         return null;
     }
 

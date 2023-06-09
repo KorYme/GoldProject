@@ -10,10 +10,10 @@ EditorBuildSettings:
     guid: 8afc65a58ef897e4cb5506b87d09a9a9
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-1.unity
-    guid: 4439d355ce6aacd499104723343d4f4f
+    guid: 2c7cbf9b5f728ad4eb93bad68fc41ddb
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-2.unity
-    guid: 4dfd3b916b1c15b468df39b04c36ddc9
+    guid: f405eac7669113347997ff5a81dc5832
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-3.unity
     guid: 843c294224804cb45b7e674eebff1ac2
@@ -21,44 +21,80 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Level-4.unity
     guid: acaafd7bbd393334b93b409604db3eaf
   - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-5.unity
+    guid: 7a51c6b550d901744a7d9a50a5090f38
+  - enabled: 1
     path: Assets/Scenes/GameScenes/Level-6.unity
-    guid: 2db596d864ac8f74191ad1bc8873b911
+    guid: 623a8547054a3bf4aa426ba9f688c1d6
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-7.unity
-    guid: 66fcd9ce0e7e07c41a563dab37163914
+    guid: f4f97f4003ee50349a908d5e6e7c3ee5
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-8.unity
+    guid: 66fcd9ce0e7e07c41a563dab37163914
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-9.unity
     guid: 828c3385cd8a2a946a8de62dca2a9c98
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-26.unity
-    guid: 67b3f925ffaba1a42be0da28361c8490
+    path: Assets/Scenes/GameScenes/Level-10.unity
+    guid: 4cda520da55fc1e43b3fabf2b7e469d5
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-14.unity
+    path: Assets/Scenes/GameScenes/Level-11.unity
+    guid: 42f3eef8885b23948befb28d35db569b
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-12.unity
+    guid: 870cad6eb4cdb33468fee01587811a46
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-13.unity
+    guid: 9930eab4ae87ba442aca0046ec3059ed
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-15.unity
+    guid: 99d6f9fcdc89aff4fa97cf4c9671131a
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-16.unity
+    guid: d2339b5f5cd8b1b439a41268d22b878a
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-17.unity
     guid: 8f32d1923b4a58349ae347a687fc3844
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-18.unity
-    guid: 3b87e4ec8e71ea7419115278af74d6dc
+    path: Assets/Scenes/GameScenes/Level-20.unity
+    guid: 8665116cf8e0de14388c48ef8d8b7231
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-21.unity
     guid: 3ff937faaa5e16947902db061cafd6a8
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-22.unity
-    guid: 600b0b0d19c54e845955a095ff496608
+    guid: 3b87e4ec8e71ea7419115278af74d6dc
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-31.unity
-    guid: fbd88b9695a0b994bb85c0467f8fae55
+    path: Assets/Scenes/GameScenes/Level-29.unity
+    guid: 67b3f925ffaba1a42be0da28361c8490
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-30.unity
+    guid: 34e99b113917eef439d6f9d085a456e1
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-32.unity
     guid: 3754bb4ba8c14754e9536a7333415afe
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-33.unity
+    path: Assets/Scenes/GameScenes/Level-34.unity
+    guid: fbd88b9695a0b994bb85c0467f8fae55
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-36.unity
     guid: 25e2f5a662e14ae4eb988e1161da1f1b
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-37.unity
+    path: Assets/Scenes/GameScenes/Level-38.unity
+    guid: a54e4a2999f5ba9459611fdf0c0a7f30
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-39.unity
+    guid: 600b0b0d19c54e845955a095ff496608
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Level-40.unity
     guid: 2943c388a2da6174c8593b2514973e93
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Bonus -1.unity
+    guid: 9cf15df96bad78244b1942c1bb93538e
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Bonus -2.unity
+    guid: 4d30e5d187d2d2640ab9247936bc4d44
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6677a1f346883424794346cd77a81895, type: 2}
     com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: c462a6161ac170047a7d17efcd0db9b7, type: 2}
