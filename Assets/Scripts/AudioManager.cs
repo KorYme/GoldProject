@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -7,7 +8,11 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
+    int _nbOfPlayersReflecting = 0;
+
     [SerializeField] Sound[] _sounds;
+
+    public int NbOfPlayersReflecting { get => _nbOfPlayersReflecting; set => _nbOfPlayersReflecting = value; }
 
     private void Awake()
     {
@@ -57,6 +62,25 @@ public class AudioManager : MonoBehaviour
         if (s == null)
         {
             Debug.Log(name + " sound was not found.");
+        }
+    }
+
+    public void PlayPlayerReflectSound()
+    {
+        switch (_nbOfPlayersReflecting)
+        {
+            case 1:
+                PlaySound("PlayerReflect1");
+                break;
+            case 2:
+                PlaySound("PlayerReflect2");
+                break;
+            case 3:
+                PlaySound("PlayerReflect3");
+                Debug.Log("3 joueurs");
+                break;
+            default:
+                break;
         }
     }
 }

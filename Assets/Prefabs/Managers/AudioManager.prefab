@@ -125,3 +125,23 @@ MonoBehaviour:
     _volume: 0.185
     _pitch: 1.05
     _source: {fileID: 0}
+  - name: PlayerRotate
+    _clip: {fileID: 8300000, guid: cdf912a5287b87943a1130ce77249cb1, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: PlayerReflect1
+    _clip: {fileID: 8300000, guid: aec9b0822fed00b499ab1e30dad6bf9b, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: PlayerReflect2
+    _clip: {fileID: 8300000, guid: d4f694e1a6d59f84fbbe001c16387e16, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: PlayerReflect3
+    _clip: {fileID: 8300000, guid: 66208fc278a208849a5b01b4a7eeeabc, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}

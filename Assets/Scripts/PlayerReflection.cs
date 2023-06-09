@@ -46,7 +46,8 @@ public class PlayerReflection : Reflectable
     {
         if (_shouldPlayStartReflectSound)
         {
-            AudioManager.Instance.PlaySound("PlayerHitByLaser1");
+            AudioManager.Instance.NbOfPlayersReflecting++;
+            AudioManager.Instance.PlayPlayerReflectSound();
             _shouldPlayStartReflectSound = false;
         }
         base.StartReflection(laserDirection, laserColor, raycast, previous);
@@ -69,6 +70,7 @@ public class PlayerReflection : Reflectable
         {
             _animatorManager.ChangeAnimation(ANIMATION_STATES.Idle);
         }
+        AudioManager.Instance.NbOfPlayersReflecting--;
         _shouldPlayStartReflectSound = true;
     }
 }
