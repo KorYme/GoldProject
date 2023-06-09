@@ -35,10 +35,13 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void PlaySound(string name)
+    public void PlaySound(string name, bool randomizePitch = false, float pitchRange = 1f)
     {
         Sound s = Array.Find(_sounds, sound => sound.name == name);
-        s?._source.Play();
+        if (randomizePitch)
+            s._source.pitch = UnityEngine.Random.Range(s._pitch - pitchRange, s._pitch + pitchRange);
+        else
+            s?._source.Play();
     }
 
     public void StopSound(string name)
