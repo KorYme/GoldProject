@@ -14,8 +14,10 @@ namespace KorYmeLibrary.SaveSystem
    {
         // Create the values you want to save here
         public SerializableDictionnary<int, int> LevelDictionnary;
-        public SerializableDictionnary<int, SKINSTATE> SkinDictionnary;
+        public SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> SkinEquippedDictionnary;
+        public SerializableDictionnary<SKINPACK, bool> SkinAcquiredDictionnary;
         public float Volume;
+        public string Version;
    }
 
     public enum SKINSTATE
@@ -23,5 +25,12 @@ namespace KorYmeLibrary.SaveSystem
         NOT_ACQUIRED,
         ACQUIRED,
         EQUIPPED,
+    }
+
+    public enum SKINPACK
+    {
+        BASIC,
+        CHIC,
+        CRISTAL,
     }
 }

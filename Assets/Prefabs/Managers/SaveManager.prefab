@@ -63,7 +63,6 @@ MonoBehaviour:
   _fileName: data.json
   _encryptionType: 1
   _saveOnQuit: 1
-  _isOnAndroid: 1
 --- !u!114 &7987398883163487369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,5 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 968aba9d5d397584a8eb6d1fa5af52e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dsm_GameData: {fileID: 7987398883163487370}
   _levelPerStage: 5
   _starSkippable: 7
+  _destroySaveOnNewVersion: 0
