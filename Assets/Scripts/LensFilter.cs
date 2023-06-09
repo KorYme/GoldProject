@@ -19,6 +19,7 @@ public class LensFilter : Reflectable, IUpdateableTile
     public override Vector2 LaserOrigin { get => transform.position; }
     PlayerReflection _lastPlayerMet;
     Coroutine _idleAnimationCoroutine;
+    bool _shouldPlayReflectSound = false;
 
     protected override void Awake()
     {
@@ -28,10 +29,22 @@ public class LensFilter : Reflectable, IUpdateableTile
 
     public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
+        if (_shouldPlayReflectSound)
+        {
+            AudioManager.Instance.PlaySound("LensFilter");
+            _shouldPlayReflectSound = false;
+        }
         _onFilteringStart.Invoke();
         LaserDirection = laserDirection;
         base.StartReflection(LaserDirection, laserColor, raycast, previous);
     }
+
+    public override void StopReflection()
+    {
+        base.StopReflection();
+        _shouldPlayReflectSound = true;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
