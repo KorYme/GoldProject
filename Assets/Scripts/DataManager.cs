@@ -114,7 +114,12 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     {
         if (level < 0)
         {
-            int currentStage = (level + 1) / -(_levelPerStage * 2);
+            if (level > -3)
+            {
+                Debug.Log($"Level {level}");
+                Debug.Log($"Current stage {(level + 1) / -(_levelPerStage * 2)}");
+            }
+            int currentStage = ((level + 1) * 10) / -(_levelPerStage * 2);
             for (int i = 1; i <= _levelPerStage * 2; i++)
             {
                 if (!LevelDictionnary.ContainsKey((currentStage * _levelPerStage * 2) + i) || LevelDictionnary[(currentStage * _levelPerStage * 2) + i] < 3) return false;
