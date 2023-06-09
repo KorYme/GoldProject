@@ -4277,6 +4277,26 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _skinPack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _playerReflection
+      value: 
+      objectReference: {fileID: 6225111174026394294}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _allSkins.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _allSkins.Array.data[0]
+      value: 
+      objectReference: {fileID: 934286157678804597, guid: 41304f7f3d440d44eb44e1e0e8366f12, type: 3}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _allSkins.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2573852625995970997, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -4415,6 +4435,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+--- !u!114 &6225111174026394294 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9177670462990222522, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+  m_PrefabInstance: {fileID: 2970593481468739084}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc74d18e8c66c704d83684934e1b7bc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6813252404770425235 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8625558762639472543, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}

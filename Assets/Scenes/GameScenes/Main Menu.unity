@@ -4679,6 +4679,7 @@ GameObject:
   - component: {fileID: 578912123}
   - component: {fileID: 578912122}
   - component: {fileID: 578912121}
+  - component: {fileID: 578912120}
   m_Layer: 0
   m_Name: Nain-1
   m_TagString: Untagged
@@ -4719,6 +4720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &578912121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6135,6 +6137,7 @@ GameObject:
   - component: {fileID: 830731431}
   - component: {fileID: 830731430}
   - component: {fileID: 830731429}
+  - component: {fileID: 830731428}
   m_Layer: 0
   m_Name: Ondine-2
   m_TagString: Untagged
@@ -6175,6 +6178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &830731429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7221,6 +7225,7 @@ GameObject:
   - component: {fileID: 934728625}
   - component: {fileID: 934728624}
   - component: {fileID: 934728623}
+  - component: {fileID: 934728622}
   m_Layer: 0
   m_Name: Ondine-1
   m_TagString: Untagged
@@ -7261,6 +7266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &934728623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10065,6 +10071,7 @@ GameObject:
   - component: {fileID: 1124087624}
   - component: {fileID: 1124087623}
   - component: {fileID: 1124087622}
+  - component: {fileID: 1124087621}
   m_Layer: 0
   m_Name: Elf-1
   m_TagString: Untagged
@@ -10105,6 +10112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &1124087622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16182,6 +16190,7 @@ GameObject:
   - component: {fileID: 1899462172}
   - component: {fileID: 1899462171}
   - component: {fileID: 1899462169}
+  - component: {fileID: 1899462170}
   m_Layer: 0
   m_Name: Nain-2
   m_TagString: Untagged
@@ -16222,6 +16231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &1899462170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16234,6 +16244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &1899462171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16569,6 +16580,7 @@ GameObject:
   - component: {fileID: 1937915859}
   - component: {fileID: 1937915858}
   - component: {fileID: 1937915857}
+  - component: {fileID: 1937915856}
   m_Layer: 0
   m_Name: Elf-2
   m_TagString: Untagged
@@ -16609,6 +16621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &1937915857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16786,6 +16799,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7987398883163487370, guid: 109336d91abaf974e961c82cfe18445e, type: 3}
+      propertyPath: _encryptionType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7987398883163487372, guid: 109336d91abaf974e961c82cfe18445e, type: 3}
       propertyPath: m_RootOrder
       value: 4

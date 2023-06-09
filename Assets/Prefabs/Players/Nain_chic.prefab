@@ -2666,6 +2666,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _skinPack
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _allSkins.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _allSkins.Array.data[0]
+      value: 
+      objectReference: {fileID: 5910329752897196622, guid: c677908e759cf3a4faa9de208c4e0d73, type: 3}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _allSkins.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2573852625995970997, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -2692,7 +2708,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2724373515318493305, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_Name
-      value: Nain_skin
+      value: Nain_chic
       objectReference: {fileID: 0}
     - target: {fileID: 2724373515318493307, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_RootOrder

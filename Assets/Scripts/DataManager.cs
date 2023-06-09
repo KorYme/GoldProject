@@ -1,3 +1,4 @@
+using DG.Tweening.Core;
 using KorYmeLibrary.SaveSystem;
 using System;
 using System.Collections;
@@ -21,9 +22,24 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         get; set;
     }
 
-    SerializableDictionnary<SKINPACK, bool> _skinAcquiredDictionnary;
-    SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> _skinEquippedDictionnary;
+    
+    // SKIN DICTIONNARIES
+    SerializableDictionnary<int, bool> _skinAcquiredDictionnary;
+    public SerializableDictionnary<int, bool> SkinAcquiredDictionnary
+    {
+        get => _skinAcquiredDictionnary;
+        set => _skinAcquiredDictionnary = value;
+    }
 
+    SerializableDictionnary<int, int> _skinEquippedDictionnary;
+    public SerializableDictionnary<int, int> SkinEquippedDictionnary
+    {
+        get => _skinEquippedDictionnary;
+        private set => _skinEquippedDictionnary = value;
+    }
+
+
+    // LEVEL DICTIONNARY
     SerializableDictionnary<int, int> _levelDictionnary;
     public SerializableDictionnary<int, int> LevelDictionnary
     {
@@ -80,6 +96,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 
     public void LoadData(GameData gameData)
     {
+        Debug.Log("Load");
         if (_destroySaveOnNewVersion && gameData.Version != Application.version)
         {
             FileDataHandler<GameData>.DestroyOldData();
@@ -101,12 +118,28 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         gameData.SkinEquippedDictionnary = _skinEquippedDictionnary;
         gameData.Volume = _volume;
         gameData.Version = Application.version;
+        Debug.Log("Save");
     }
 
     public void InitializeData()
     {
-        _levelDictionnary = new();
-
+        _levelDictionnary = new SerializableDictionnary<int, int>()
+        {
+            { 0, 1 },
+        };
+        _skinAcquiredDictionnary = new SerializableDictionnary<int, bool>()
+        {
+            { (int)SKINPACK.BASIC, true },
+            { (int)SKINPACK.CHIC, true },
+            { (int)SKINPACK.CRISTAL, true },
+        };
+        _skinEquippedDictionnary = new SerializableDictionnary<int, int>
+        {
+            { (int)Utilities.GAMECOLORS.Red, (int)SKINPACK.BASIC },
+            { (int)Utilities.GAMECOLORS.Blue, (int)SKINPACK.BASIC },
+            { (int)Utilities.GAMECOLORS.Yellow, (int)SKINPACK.CHIC },
+        };
+        Debug.Log("Initialize");
         _volume = 0.8f;
     }
 
@@ -114,11 +147,6 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     {
         if (level < 0)
         {
-            if (level > -3)
-            {
-                Debug.Log($"Level {level}");
-                Debug.Log($"Current stage {(level + 1) / -(_levelPerStage * 2)}");
-            }
             int currentStage = ((level + 1) * 10) / -(_levelPerStage * 2);
             for (int i = 1; i <= _levelPerStage * 2; i++)
             {

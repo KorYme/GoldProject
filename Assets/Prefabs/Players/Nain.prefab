@@ -2666,6 +2666,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _allSkins.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _allSkins.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _allSkins.Array.data[1]
+      value: 
+      objectReference: {fileID: 5910329752897196622, guid: daddc1d0788fbe74fa7219853d2411e9, type: 3}
     - target: {fileID: 2573852625995970997, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: m_Sprite
       value: 
