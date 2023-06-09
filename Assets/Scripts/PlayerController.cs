@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     Coroutine _moveCrateCoroutine;
     Coroutine _wallHitCoroutine;
     RaycastHit2D _crateRay;
+    bool _playerStoppedByMud = false;
 
     const float ANGLE_TOLERANCE = 2f;
     public bool IsMoving
@@ -98,6 +99,7 @@ public class PlayerController : MonoBehaviour
         {
             if (ray.collider.CompareTag("Mud"))
             {
+                _playerStoppedByMud = true;
                 _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
                 InputManager.Instance.MovementNumber++;
             }
@@ -180,6 +182,28 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         _onPlayerMoveStopped?.Invoke();
+        if (_playerStoppedByMud)
+        {
+            AudioManager.Instance.PlaySound("PlayerInMud");
+            _playerStoppedByMud = false;
+        }
+        else
+        {
+            switch (_playerReflection.ReflectionColor)
+            {
+                case Utilities.GAMECOLORS.Red:
+                    AudioManager.Instance.PlaySound("RedHitsWall");
+                    break;
+                case Utilities.GAMECOLORS.Blue:
+                    AudioManager.Instance.PlaySound("BlueHitsWall");
+                    break;
+                case Utilities.GAMECOLORS.Yellow:
+                    AudioManager.Instance.PlaySound("YellowHitsWall");
+                    break;
+                default:
+                    break;
+            }
+        }
         if (direction.y == 0f)
         {
             _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager
@@ -230,6 +254,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator RotationCoroutine()
     {
+        AudioManager.Instance.PlaySound("PlayerRotate");
         IsRotating = true;
         _onPlayerRotationStarted?.Invoke();
         float lerpValue = 0f;
@@ -261,6 +286,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator MoveCrateCoroutine(GameObject crate, Vector2 direction)
     {
+        AudioManager.Instance.PlaySound("CrateMoving");
         IsCrateMoving = true;
         _onCrateMoveStart?.Invoke();
         Vector3 initialPosition = crate.transform.position;
@@ -277,6 +303,8 @@ public class PlayerController : MonoBehaviour
             crate.transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
         }
+        AudioManager.Instance.StopSound("CrateMoving");
+        AudioManager.Instance.PlaySound("CrateStopping");
         crate.GetComponentInChildren<Animator>()?.SetTrigger("StopMovement");
         IsCrateMoving = false;
         _onCrateMoveStop?.Invoke();
