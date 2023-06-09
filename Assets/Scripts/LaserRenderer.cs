@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class LaserRenderer : MonoBehaviour
 {
+    //Tout ce qui est en commentaire est le systeme de particules qui bug -> voir base de bugs
+    
+    [SerializeField] ParticleSystem _particleSystemPrefab;
+    ParticleSystem _pSystem;
+
     [Header("References")]
     [SerializeField] LineRenderer _lineRenderer;
     [SerializeField] List<Material> _materialsLaser;
@@ -15,12 +20,34 @@ public class LaserRenderer : MonoBehaviour
 
     public LineRenderer LineRenderer
     {
-        get => _lineRenderer; 
+        get => _lineRenderer;
     }
+    bool _isTouchingWall;
 
     private void Start()
     {
         ChangeValues();
+        //_pSystem = Instantiate(_particleSystemPrefab);
+        //_pSystem.Stop();
+    }
+
+    public void ChangeSecondPosition(Vector2 position, Vector2 normal, bool isWall = false)
+    {
+        //if (isWall && !_isTouchingWall)
+        //{
+
+            
+        //    _pSystem.transform.position = position;
+        //    _pSystem.Play();
+        //    Debug.Log("start");
+        //}
+        //else if (!isWall && _isTouchingWall)
+        //{
+        //    _pSystem.Stop();
+        //    Debug.Log("stop");
+        //}
+        //LineRenderer.SetPosition(1, position);
+        //_isTouchingWall = isWall;
     }
 
     public void ChangeLaserColor(Utilities.GAMECOLORS color)
