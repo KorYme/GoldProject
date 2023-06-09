@@ -32,6 +32,8 @@ public class FinalLaser : Reflectable, IUpdateableTile
     {
         _pSystem = Instantiate(_particleSystem);
         _pSystem.Stop();
+        _pSystem.transform.position = transform.position;
+        _pSystem.startColor = Utilities.GetColor(_targetColor);
     }
 
     protected override void Awake()
@@ -89,6 +91,9 @@ public class FinalLaser : Reflectable, IUpdateableTile
         _onLaserStop.Invoke();
         _timeHitByLaser = 0;
         _onReflection -= ReflectLaser;
+        _pSystem.Stop();
+        AudioManager.Instance.StopSound("ReceiveRightColor");
+        AudioManager.Instance.PlaySound("ReceiveWrongColor");
         _shouldPlayWrongColorSound = true;
     }
 
@@ -98,7 +103,6 @@ public class FinalLaser : Reflectable, IUpdateableTile
         {
             _isLevelComplete = true;
             LevelCompleted();
-            StopReflection();
         }
         else
         {
@@ -108,7 +112,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
 
     private void LevelCompleted()
     {
-        _particleSystem?.Play();
+
         _winMenuManager.Win(InputManager.Instance.MovementNumber);
     }
 

@@ -4884,7 +4884,7 @@ MonoBehaviour:
   _onLaserStop:
     m_PersistentCalls:
       m_Calls: []
-  _particleSystem: {fileID: 6766991535475869501}
+  _particleSystem: {fileID: 1363349456849845664, guid: b86252c20d9d23a4da96f235f71d13f6, type: 3}
   _spriteRenderer: {fileID: 6564846264669077187}
   _sprites:
   - {fileID: 21300000, guid: 4a2766ddb6c9e384ea51fc4c785b73b7, type: 3}
