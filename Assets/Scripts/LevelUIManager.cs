@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 using System.Linq;
 using DG.Tweening;
 using UnityEditor;
+using KorYmeLibrary.SaveSystem;
 
 public class LevelUIManager : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class LevelUIManager : MonoBehaviour
 
     [SerializeField, Foldout("Image")] private Sprite _normalLevel;
     [SerializeField, Foldout("Image")] private Sprite _bonusLevel;
+    [SerializeField, Foldout("Image")] private Sprite _lockedLevel;
 
     [SerializeField, Foldout("StarImages")] private Image _star1;
     [SerializeField, Foldout("StarImages")] private Image _star2;
@@ -48,19 +50,20 @@ public class LevelUIManager : MonoBehaviour
     void Start()
     {
         DOTween.Init();
-        if (DataManager.Instance == null)
+        if (DataManager.Instance.LevelDictionnary == null)
         {
-            Debug.Log("Pas trouv� l'instance");
-        }
-        else if (DataManager.Instance.LevelDictionnary == null)
-        {
-            Debug.Log("Pas trouv� le dictionnaire");
+            DataSaveManager<GameData>.Instance.NewGame();
         }
         UpdateStar(DataManager.Instance.LevelDictionnary.ContainsKey(LevelNumber) ? DataManager.Instance.LevelDictionnary[LevelNumber] : 0);
     }
 
     public void UpdateStar(int starNumber)
     {
+        if(!CanPlay)
+        {
+            _buttonImage.sprite = _lockedLevel;
+            _levelText.text = "";
+        }
         switch (starNumber)
         {
             case 0:

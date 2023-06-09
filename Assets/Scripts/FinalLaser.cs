@@ -15,9 +15,11 @@ public class FinalLaser : Reflectable, IUpdateableTile
     [SerializeField] ParticleSystem _particleSystem;
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
+
     [Header("Final Target Parameters")]
-    [SerializeField] Utilities.GAMECOLORS _targetColor;
+    [SerializeField, OnValueChanged(nameof(ApplyChange))] Utilities.GAMECOLORS _targetColor;
     [SerializeField, Tooltip("Not needed anymore")] Utilities.DIRECTIONS _sideTouchedNeeded;
+    [SerializeField] WinMenuManager _winMenuManager;
 
     float _timeHitByLaser = 0;
     bool _isLevelComplete;
@@ -28,6 +30,12 @@ public class FinalLaser : Reflectable, IUpdateableTile
     {
         _onReflection = null;
         _isLevelComplete = false;
+        UpdateTile(false);
+    }
+
+    private void Reset()
+    {
+        _winMenuManager = FindObjectOfType<WinMenuManager>();
     }
 
     public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
@@ -36,6 +44,8 @@ public class FinalLaser : Reflectable, IUpdateableTile
         _onLaserRampUp.Invoke();
         _inputLaserColor = laserColor;
         LaserDirection = laserDirection;
+
+        // Direction checking
         //if (Vector3.Angle(laserDirection, -Utilities.GetDirection(_sideTouchedNeeded)) > ANGLE_TOLERANCE)
         //{
         //    if (_onReflection == null) return;
@@ -57,7 +67,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
 
     protected override void ReflectLaser()
     {
-        if (_timeHitByLaser >= 2f)
+        if (_timeHitByLaser >= 2f && InputManager.Instance.CanMoveAPlayer)
         {
             _isLevelComplete = true;
             LevelCompleted();
@@ -72,17 +82,19 @@ public class FinalLaser : Reflectable, IUpdateableTile
     private void LevelCompleted()
     {
         _particleSystem?.Play();
-        WinMenuManager winMenuManager = FindObjectOfType<WinMenuManager>();     // A changer   
-        winMenuManager.Win(InputManager.Instance.MovementNumber);
-
+        _winMenuManager.Win(InputManager.Instance.MovementNumber);
     }
+
+
 
     [Button]
     public void UpdateTile(bool init = true)
     {
+        _winMenuManager = FindObjectOfType<WinMenuManager>();
         if (_sprites.Count > (int)_targetColor && _sprites[(int)_targetColor] != null)
         {
             _spriteRenderer.sprite = _sprites[(int)_targetColor];
+            _spriteRenderer.color = Color.white;
         }
         else
         {
@@ -92,5 +104,10 @@ public class FinalLaser : Reflectable, IUpdateableTile
         {
             FindObjectsOfType<MonoBehaviour>().Where(x => x != this).OfType<IUpdateableTile>().ToList().ForEach(x => x.UpdateTile(false));
         }
+    }
+
+    private void ApplyChange()
+    {
+        UpdateTile(true);
     }
 }

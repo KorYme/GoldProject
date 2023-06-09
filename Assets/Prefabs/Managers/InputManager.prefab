@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5bbec0a6b44842b4381a5b5ec93c399b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _swipeMinimumValue: 40
+  _swipeMinimumValue: 35
   _checkSize: 0.2
   _playerLayer:
     serializedVersion: 2
