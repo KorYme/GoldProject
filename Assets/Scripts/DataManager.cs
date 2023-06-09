@@ -3,21 +3,28 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 {
     [Header("Parameters")]
-    [SerializeField] private int _levelPerStage;
-    [SerializeField] private int _starSkippable;
+    [SerializeField] DSM_GameData dsm_GameData;
+    [SerializeField] int _levelPerStage;
+    [SerializeField] int _starSkippable;
 
-    SerializableDictionnary<int, SKINSTATE> _skinDictionnary;
-    SerializableDictionnary<int, int> _levelDictionnary;
+    [Header("SaveParameters")]
+    [SerializeField] bool _destroySaveOnNewVersion;
+
     public Action<int> OnTotalStarChange
     {
         get; set;
     }
 
+    SerializableDictionnary<SKINPACK, bool> _skinAcquiredDictionnary;
+    SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> _skinEquippedDictionnary;
+
+    SerializableDictionnary<int, int> _levelDictionnary;
     public SerializableDictionnary<int, int> LevelDictionnary
     {
         get => _levelDictionnary;
@@ -73,8 +80,15 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 
     public void LoadData(GameData gameData)
     {
+        if (_destroySaveOnNewVersion && gameData.Version != Application.version)
+        {
+            FileDataHandler<GameData>.DestroyOldData();
+            dsm_GameData.NewGame();
+            return;
+        }
         _levelDictionnary = gameData.LevelDictionnary;
-        _skinDictionnary = gameData.SkinDictionnary;
+        _skinAcquiredDictionnary = gameData.SkinAcquiredDictionnary;
+        _skinEquippedDictionnary = gameData.SkinEquippedDictionnary;
         _volume = gameData.Volume;
         CheckLevels();
     }
@@ -83,22 +97,16 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void SaveData(ref GameData gameData)
     {
         gameData.LevelDictionnary = _levelDictionnary;
-        gameData.SkinDictionnary = _skinDictionnary;
+        gameData.SkinAcquiredDictionnary = _skinAcquiredDictionnary;
+        gameData.SkinEquippedDictionnary = _skinEquippedDictionnary;
         gameData.Volume = _volume;
+        gameData.Version = Application.version;
     }
 
     public void InitializeData()
     {
         _levelDictionnary = new();
-        _skinDictionnary = new SerializableDictionnary<int, SKINSTATE>()
-        {
-            { 1 , SKINSTATE.ACQUIRED },
-            { 2 , SKINSTATE.NOT_ACQUIRED }, 
-            { 3 , SKINSTATE.ACQUIRED },
-            { 4 , SKINSTATE.NOT_ACQUIRED },
-            { 5 , SKINSTATE.ACQUIRED },
-            { 6 , SKINSTATE.NOT_ACQUIRED },
-        };
+
         _volume = 0.8f;
     }
 
