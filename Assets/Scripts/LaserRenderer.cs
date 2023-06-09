@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class LaserRenderer : MonoBehaviour
 {
-    [SerializeField] ParticleSystem _particleSystem;
+    //Tout ce qui est en commentaire est le systeme de particules qui bug -> voir base de bugs
+    
+    [SerializeField] ParticleSystem _particleSystemPrefab;
+    ParticleSystem _pSystem;
 
     [Header("References")]
     [SerializeField] LineRenderer _lineRenderer;
@@ -24,31 +27,27 @@ public class LaserRenderer : MonoBehaviour
     private void Start()
     {
         ChangeValues();
+        //_pSystem = Instantiate(_particleSystemPrefab);
+        //_pSystem.Stop();
     }
 
     public void ChangeSecondPosition(Vector2 position, Vector2 normal, bool isWall = false)
     {
-        if (isWall && !_isTouchingWall)
-        {
+        //if (isWall && !_isTouchingWall)
+        //{
 
-            switch (Vector3.Dot(normal, LineRenderer.GetPosition(1) - LineRenderer.GetPosition(0)) >1)
-            {
-                case true:
-                    _particleSystem.transform.LookAt(LineRenderer.GetPosition(1) * -1);
-                    break;
-                case false:
-                    _particleSystem.transform.LookAt(LineRenderer.GetPosition(1) * -1);
-                    break;
-                }
-            _particleSystem.transform.position = position;
-            _particleSystem.Play();
-        }
-        else if (!isWall && _isTouchingWall)
-        {
-            _particleSystem.Stop();
-        }
-        LineRenderer.SetPosition(1, position);
-        _isTouchingWall = isWall;
+            
+        //    _pSystem.transform.position = position;
+        //    _pSystem.Play();
+        //    Debug.Log("start");
+        //}
+        //else if (!isWall && _isTouchingWall)
+        //{
+        //    _pSystem.Stop();
+        //    Debug.Log("stop");
+        //}
+        //LineRenderer.SetPosition(1, position);
+        //_isTouchingWall = isWall;
     }
 
     public void ChangeLaserColor(Utilities.GAMECOLORS color)
