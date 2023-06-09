@@ -8,7 +8,10 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
+    Sound _music;
     int _nbOfPlayersReflecting = 0;
+    float _musicVolume = 0.5f;
+    float _sfxVolume = 0.5f;
 
     [SerializeField] Sound[] _sounds;
 
@@ -33,7 +36,8 @@ public class AudioManager : MonoBehaviour
 
             if (s.name == "music")
             {
-                s._source.Play();
+                _music = s;
+                _music._source.Play();
             }
         }
         transform.parent = null;
@@ -43,6 +47,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(string name, bool randomizePitch = false, float pitchRange = 1f)
     {
         Sound s = Array.Find(_sounds, sound => sound.name == name);
+        s._volume = _sfxVolume;
         if (randomizePitch)
             s._source.pitch = UnityEngine.Random.Range(s._pitch - pitchRange, s._pitch + pitchRange);
         else
@@ -82,5 +87,15 @@ public class AudioManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void ChangeMusicVolume(Slider slider)
+    {
+        _musicVolume = slider.value;
+    }
+
+    public void ChangeSFXVolume(Slider slider)
+    {
+        _sfxVolume = slider.value;
     }
 }
