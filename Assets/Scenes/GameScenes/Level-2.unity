@@ -3191,6 +3191,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919687850144378081, guid: e7a55ff1a6464844c82e22d2704196aa, type: 3}
+      propertyPath: _particleSystem
+      value: 
+      objectReference: {fileID: 1363349456849845664, guid: b86252c20d9d23a4da96f235f71d13f6, type: 3}
+    - target: {fileID: 919687850144378081, guid: e7a55ff1a6464844c82e22d2704196aa, type: 3}
       propertyPath: _sideTouchedNeeded
       value: 3
       objectReference: {fileID: 0}
@@ -3420,7 +3424,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7251455584209451172, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7251455584209451172, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: m_LocalPosition.x

@@ -32,7 +32,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
     {
         _pSystem = Instantiate(_particleSystem);
         _pSystem.Stop();
-        _pSystem.transform.position = transform.position;
+        _pSystem.transform.position = transform.position;// :) coucou Maxime
         _pSystem.startColor = Utilities.GetColor(_targetColor);
     }
 
