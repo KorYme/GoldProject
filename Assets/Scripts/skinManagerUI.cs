@@ -2,21 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System.Runtime.CompilerServices;
+using NaughtyAttributes;
+using System.Linq;
+using UnityEditor;
 
 public class SkinManagerUI : MonoBehaviour
 {
-    [SerializeField] bool _isUnlocked = false;
-    [SerializeField] private Image _skinImage;
+    [SerializeField] GameObject[] Skins;
+    [SerializeField] GameObject[] boolSkins;
 
     void Start()
     {
-        if (_isUnlocked)
+        foreach (GameObject boolskins in boolSkins)
         {
-            _skinImage.color = Color.white;
+            if(boolskins == true)
+            {
+                Debug.Log("true");
+            }
         }
-        else
-        {
-            _skinImage.color = Color.gray;
-        }
+    }
+
+    public void ChooseSkin(int SkinNumber)
+    {
+
     }
 }
