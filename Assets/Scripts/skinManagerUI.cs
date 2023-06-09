@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class skinManagerUI : MonoBehaviour
+public class SkinManagerUI : MonoBehaviour
 {
-    public bool _isUnlocked = false;
+    [SerializeField] bool _isUnlocked = false;
     [SerializeField] private Image _skinImage;
 
     void Start()
