@@ -46,7 +46,7 @@ public class LaserRenderer : MonoBehaviour
         //    _pSystem.Stop();
         //    Debug.Log("stop");
         //}
-        //LineRenderer.SetPosition(1, position);
+        LineRenderer.SetPosition(1, position);
         //_isTouchingWall = isWall;
     }
 

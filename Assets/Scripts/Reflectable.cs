@@ -92,7 +92,6 @@ public class Reflectable : MonoBehaviour
         _laserRenderer.LineRenderer.enabled = false;
         _onReflection -= ReflectLaser;
         _nextReflectable?.StopReflection();
-        _nextReflectable = null;
     }
 
     protected void Update()
