@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4687795781205523784}
-  - component: {fileID: 4687795781205523787}
+  - component: {fileID: 6286611286561792842}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4687795781205523787
+--- !u!114 &6286611286561792842
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -51,27 +51,77 @@ MonoBehaviour:
     _pitch: 1.05
     _source: {fileID: 0}
   - name: StarOne
-    _clip: {fileID: 8300000, guid: 7619c432508a5964daf826f088f077fb, type: 3}
+    _clip: {fileID: 8300000, guid: b5c3bf9af4433604cb6c2878d77c0503, type: 3}
     _volume: 0.185
     _pitch: 1.05
     _source: {fileID: 0}
   - name: StarTwo
-    _clip: {fileID: 8300000, guid: 1c6f2e8f25045604cb51f804a3355e2e, type: 3}
+    _clip: {fileID: 8300000, guid: 5898edc5f3c04c54689ad776e92260f5, type: 3}
     _volume: 0.185
     _pitch: 1.05
     _source: {fileID: 0}
   - name: StarThree
-    _clip: {fileID: 8300000, guid: 64b0a279364204045843ddb950de2d0f, type: 3}
+    _clip: {fileID: 8300000, guid: 27d04b73d5f25824f95f90d485a586e9, type: 3}
     _volume: 0.185
     _pitch: 1.05
     _source: {fileID: 0}
   - name: StarPlat
-    _clip: {fileID: 8300000, guid: 7e2a3eb8ee276db4f93020327eb06d9d, type: 3}
+    _clip: {fileID: 8300000, guid: c3a18ce31fc07bc4c9f8670a799e1d5f, type: 3}
     _volume: 0.185
     _pitch: 1.05
     _source: {fileID: 0}
   - name: StarFail
-    _clip: {fileID: 0}
+    _clip: {fileID: 8300000, guid: e26ea6ac3133edc448abfca193bf5690, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: ReceiveRightColor
+    _clip: {fileID: 8300000, guid: 8a4aef2103ff35f46be9cd95d37a9854, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: ReceiveWrongColor
+    _clip: {fileID: 8300000, guid: 1093c60985545d6489d8b8959250e6bd, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: RedHitsWall
+    _clip: {fileID: 8300000, guid: b3db7686a283c3242913c7f457869df8, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: BlueHitsWall
+    _clip: {fileID: 8300000, guid: e3f2a65450806e545bac05c75c80ba7f, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: YellowHitsWall
+    _clip: {fileID: 8300000, guid: d796ebacb72134d458a60555ba9aaf8c, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: PlayerCantMove
+    _clip: {fileID: 8300000, guid: cd254b6ae58aed94589ba4eb2e1ad8ae, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: LensFilter
+    _clip: {fileID: 8300000, guid: 6632404227ddeaa4688c5c9b0512a4ae, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: PlayerInMud
+    _clip: {fileID: 8300000, guid: 2b5119f883b8dde4c9b59b4833694728, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: CrateMoving
+    _clip: {fileID: 8300000, guid: 59b06cdcbbf20a9409ebdb3887a2e663, type: 3}
+    _volume: 0.185
+    _pitch: 1.05
+    _source: {fileID: 0}
+  - name: CrateStopping
+    _clip: {fileID: 8300000, guid: 3a5c8b24f82fcca4d899d42d13e6bbcb, type: 3}
     _volume: 0.185
     _pitch: 1.05
     _source: {fileID: 0}

@@ -4,6 +4,8 @@ using UnityEngine.Events;
 
 public class PlayerReflection : Reflectable
 {
+    bool _shouldPlayStartReflectSound = true;
+    
     [SerializeField] protected Transform _crystalTransform;
     [SerializeField] protected PlayerController _playerController;
     [SerializeField] AnimatorManager _animatorManager;
@@ -42,6 +44,11 @@ public class PlayerReflection : Reflectable
 
     public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
+        if (_shouldPlayStartReflectSound)
+        {
+            AudioManager.Instance.PlaySound("PlayerHitByLaser1");
+            _shouldPlayStartReflectSound = false;
+        }
         base.StartReflection(laserDirection, laserColor, raycast, previous);
         if (previous == _previousReflectable)
         {
@@ -62,5 +69,6 @@ public class PlayerReflection : Reflectable
         {
             _animatorManager.ChangeAnimation(ANIMATION_STATES.Idle);
         }
+        _shouldPlayStartReflectSound = true;
     }
 }

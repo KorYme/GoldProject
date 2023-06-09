@@ -23,8 +23,16 @@ public class FinalLaser : Reflectable, IUpdateableTile
 
     float _timeHitByLaser = 0;
     bool _isLevelComplete;
+    bool _shouldPlayWrongColorSound = true;
+    ParticleSystem _pSystem;
 
     const float ANGLE_TOLERANCE = 3f;
+
+    private void Start()
+    {
+        _pSystem = Instantiate(_particleSystem);
+        _pSystem.Stop();
+    }
 
     protected override void Awake()
     {
@@ -52,9 +60,27 @@ public class FinalLaser : Reflectable, IUpdateableTile
         //    StopReflection();
         //    return;
         //}
-        if (laserColor == _targetColor && _onReflection == null)
+        if ( _onReflection == null)
         {
-            _onReflection += ReflectLaser;
+            
+            
+            if (laserColor == _targetColor)
+            {
+                if (!_pSystem.isPlaying)
+                {
+                    _pSystem.Play();
+                    AudioManager.Instance.PlaySound("ReceiveRightColor");
+                    _onReflection += ReflectLaser;
+                }
+            }
+            else
+            {
+                if (_shouldPlayWrongColorSound)
+                {
+                    AudioManager.Instance.PlaySound("ReceiveWrongColor");
+                    _shouldPlayWrongColorSound = false;
+                }
+            }
         }
     }
 
@@ -63,6 +89,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
         _onLaserStop.Invoke();
         _timeHitByLaser = 0;
         _onReflection -= ReflectLaser;
+        _shouldPlayWrongColorSound = true;
     }
 
     protected override void ReflectLaser()
