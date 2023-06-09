@@ -17,7 +17,7 @@ public class InputManager : MonoBehaviour
 
     PlayerController _currentPlayerTouched;
     GameMenuManager _gameMenuManager;
-
+    
     public bool CanMoveAPlayer
     {
         get;
@@ -58,12 +58,18 @@ public class InputManager : MonoBehaviour
         CanMoveAPlayer = true;
     }
 
-    private void OnDisable()
+    public void DisableInputs()
     {
         ETouch.Touch.onFingerDown -= OnInputStarted;
         ETouch.Touch.onFingerMove -= OnInputPerformed;
         ETouch.Touch.onFingerUp -= OnInputStopped;
         EnhancedTouchSupport.Disable();
+    }
+
+    private void OnDisable()
+    {
+        if (!EnhancedTouchSupport.enabled) return;
+        DisableInputs();
     }
 
     public void SetUpNewLevel(GameMenuManager gameMenuManager)

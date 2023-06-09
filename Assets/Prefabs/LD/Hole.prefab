@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1220609764360219282}
   - component: {fileID: 1220609764360219280}
   m_Layer: 15
-  m_Name: Glass
-  m_TagString: Untagged
+  m_Name: Hole
+  m_TagString: Hole
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
