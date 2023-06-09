@@ -3082,7 +3082,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &367797401
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -4721,7 +4721,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUnlocked: 1
-  _skinImage: {fileID: 578912122}
+  _skinImage: []
+  _ondineSkin1: {fileID: 0}
+  _ondineSkin2: {fileID: 0}
+  _nainSkin1: {fileID: 0}
+  _nainSkin2: {fileID: 0}
+  _elfSkin1: {fileID: 0}
+  _elfSkin2: {fileID: 0}
 --- !u!114 &578912121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4766,8 +4772,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 767898253}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+      - m_Target: {fileID: 1000309208}
+        m_TargetAssemblyTypeName: SkinManagerUI, Assembly-CSharp
         m_MethodName: ChooseSkin
         m_Mode: 3
         m_Arguments:
@@ -5429,7 +5435,6 @@ GameObject:
   - component: {fileID: 767898257}
   - component: {fileID: 767898255}
   - component: {fileID: 767898254}
-  - component: {fileID: 767898253}
   - component: {fileID: 767898258}
   m_Layer: 0
   m_Name: ---CANVAS---
@@ -5438,24 +5443,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &767898253
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767898252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49a38926247a81d41a23022f2552a44a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _ondineSkin1: {fileID: 509961689}
-  _ondineSkin2: {fileID: 2072963586}
-  _nainSkin1: {fileID: 1618605589}
-  _nainSkin2: {fileID: 321474547}
-  _elfSkin1: {fileID: 877965693}
-  _elfSkin2: {fileID: 1853342169}
 --- !u!114 &767898254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6199,7 +6186,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUnlocked: 0
-  _skinImage: {fileID: 830731430}
+  _skinImage: []
+  _ondineSkin1: {fileID: 0}
+  _ondineSkin2: {fileID: 0}
+  _nainSkin1: {fileID: 0}
+  _nainSkin2: {fileID: 0}
+  _elfSkin1: {fileID: 0}
+  _elfSkin2: {fileID: 0}
 --- !u!114 &830731429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6244,8 +6237,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 767898253}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+      - m_Target: {fileID: 1000309208}
+        m_TargetAssemblyTypeName: SkinManagerUI, Assembly-CSharp
         m_MethodName: ChooseSkin
         m_Mode: 3
         m_Arguments:
@@ -7288,7 +7281,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUnlocked: 1
-  _skinImage: {fileID: 934728624}
+  _skinImage: []
+  _ondineSkin1: {fileID: 0}
+  _ondineSkin2: {fileID: 0}
+  _nainSkin1: {fileID: 0}
+  _nainSkin2: {fileID: 0}
+  _elfSkin1: {fileID: 0}
+  _elfSkin2: {fileID: 0}
 --- !u!114 &934728623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7333,8 +7332,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 767898253}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+      - m_Target: {fileID: 1000309208}
+        m_TargetAssemblyTypeName: SkinManagerUI, Assembly-CSharp
         m_MethodName: ChooseSkin
         m_Mode: 3
         m_Arguments:
@@ -8192,13 +8191,14 @@ GameObject:
   - component: {fileID: 1000309205}
   - component: {fileID: 1000309204}
   - component: {fileID: 1000309203}
+  - component: {fileID: 1000309208}
   m_Layer: 0
   m_Name: SkinMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!225 &1000309203
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8293,6 +8293,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1000309208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000309202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isUnlocked: 1
+  _skinImage:
+  - {fileID: 934728624}
+  - {fileID: 830731430}
+  - {fileID: 578912122}
+  - {fileID: 1899462172}
+  - {fileID: 1124087623}
+  - {fileID: 1937915858}
+  _ondineSkin1: {fileID: 509961689}
+  _ondineSkin2: {fileID: 2072963586}
+  _nainSkin1: {fileID: 1618605589}
+  _nainSkin2: {fileID: 321474547}
+  _elfSkin1: {fileID: 877965693}
+  _elfSkin2: {fileID: 1853342169}
 --- !u!1001 &1001358622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10135,7 +10161,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUnlocked: 1
-  _skinImage: {fileID: 1124087623}
+  _skinImage: []
+  _ondineSkin1: {fileID: 0}
+  _ondineSkin2: {fileID: 0}
+  _nainSkin1: {fileID: 0}
+  _nainSkin2: {fileID: 0}
+  _elfSkin1: {fileID: 0}
+  _elfSkin2: {fileID: 0}
 --- !u!114 &1124087622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10180,8 +10212,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 767898253}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+      - m_Target: {fileID: 1000309208}
+        m_TargetAssemblyTypeName: SkinManagerUI, Assembly-CSharp
         m_MethodName: ChooseSkin
         m_Mode: 3
         m_Arguments:
@@ -16236,7 +16268,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUnlocked: 0
-  _skinImage: {fileID: 0}
+  _skinImage: []
+  _ondineSkin1: {fileID: 0}
+  _ondineSkin2: {fileID: 0}
+  _nainSkin1: {fileID: 0}
+  _nainSkin2: {fileID: 0}
+  _elfSkin1: {fileID: 0}
+  _elfSkin2: {fileID: 0}
 --- !u!114 &1899462170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16250,7 +16288,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUnlocked: 0
-  _skinImage: {fileID: 1899462172}
+  _skinImage: []
+  _ondineSkin1: {fileID: 0}
+  _ondineSkin2: {fileID: 0}
+  _nainSkin1: {fileID: 0}
+  _nainSkin2: {fileID: 0}
+  _elfSkin1: {fileID: 0}
+  _elfSkin2: {fileID: 0}
 --- !u!114 &1899462171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16295,8 +16339,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 767898253}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+      - m_Target: {fileID: 1000309208}
+        m_TargetAssemblyTypeName: SkinManagerUI, Assembly-CSharp
         m_MethodName: ChooseSkin
         m_Mode: 3
         m_Arguments:
@@ -16628,7 +16672,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _isUnlocked: 0
-  _skinImage: {fileID: 1937915858}
+  _skinImage: []
+  _ondineSkin1: {fileID: 0}
+  _ondineSkin2: {fileID: 0}
+  _nainSkin1: {fileID: 0}
+  _nainSkin2: {fileID: 0}
+  _elfSkin1: {fileID: 0}
+  _elfSkin2: {fileID: 0}
 --- !u!114 &1937915857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16673,8 +16723,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 767898253}
-        m_TargetAssemblyTypeName: SkinManager, Assembly-CSharp
+      - m_Target: {fileID: 1000309208}
+        m_TargetAssemblyTypeName: SkinManagerUI, Assembly-CSharp
         m_MethodName: ChooseSkin
         m_Mode: 3
         m_Arguments:
@@ -16874,7 +16924,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1940064552
 RectTransform:
   m_ObjectHideFlags: 0
