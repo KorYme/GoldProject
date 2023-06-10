@@ -1,9 +1,9 @@
+using DG.Tweening.Core;
 using KorYmeLibrary.SaveSystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class DataManager : MonoBehaviour, IDataSaveable<GameData>
@@ -21,9 +21,24 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         get; set;
     }
 
-    SerializableDictionnary<SKINPACK, bool> _skinAcquiredDictionnary;
-    SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> _skinEquippedDictionnary;
+    
+    // SKIN DICTIONNARIES
+    List<SKINPACK> _skinAcquiredList;
+    public List<SKINPACK> SkinAcquiredList
+    {
+        get => _skinAcquiredList;
+        set => _skinAcquiredList = value;
+    }
 
+    SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> _skinEquippedDictionnary;
+    public SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> SkinEquippedDictionnary
+    {
+        get => _skinEquippedDictionnary;
+        private set => _skinEquippedDictionnary = value;
+    }
+
+
+    // LEVEL DICTIONNARY
     SerializableDictionnary<int, int> _levelDictionnary;
     public SerializableDictionnary<int, int> LevelDictionnary
     {
@@ -62,10 +77,6 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         Instance = this;
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
-        if (LevelDictionnary == null)
-        {
-            _levelDictionnary = new();
-        }
     }
 
     public void CompleteALevel(int levelID, int starsNumber)
@@ -87,7 +98,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
             return;
         }
         _levelDictionnary = gameData.LevelDictionnary;
-        _skinAcquiredDictionnary = gameData.SkinAcquiredDictionnary;
+        _skinAcquiredList = gameData.SkinAcquiredDictionnary;
         _skinEquippedDictionnary = gameData.SkinEquippedDictionnary;
         _volume = gameData.Volume;
         CheckLevels();
@@ -97,7 +108,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void SaveData(ref GameData gameData)
     {
         gameData.LevelDictionnary = _levelDictionnary;
-        gameData.SkinAcquiredDictionnary = _skinAcquiredDictionnary;
+        gameData.SkinAcquiredDictionnary = _skinAcquiredList;
         gameData.SkinEquippedDictionnary = _skinEquippedDictionnary;
         gameData.Volume = _volume;
         gameData.Version = Application.version;
@@ -105,8 +116,17 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 
     public void InitializeData()
     {
-        _levelDictionnary = new();
-
+        _levelDictionnary = new SerializableDictionnary<int, int>();
+        _skinAcquiredList = new List<SKINPACK>()
+        {
+            SKINPACK.BASIC,
+        };
+        _skinEquippedDictionnary = new SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK>
+        {
+            { Utilities.GAMECOLORS.Red, SKINPACK.BASIC },
+            { Utilities.GAMECOLORS.Blue, SKINPACK.BASIC },
+            { Utilities.GAMECOLORS.Yellow, SKINPACK.BASIC },
+        };
         _volume = 0.8f;
     }
 
@@ -114,7 +134,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     {
         if (level < 0)
         {
-            int currentStage = (level + 1) / -(_levelPerStage * 2);
+            int currentStage = ((level + 1) * 10) / -(_levelPerStage * 2);
             for (int i = 1; i <= _levelPerStage * 2; i++)
             {
                 if (!LevelDictionnary.ContainsKey((currentStage * _levelPerStage * 2) + i) || LevelDictionnary[(currentStage * _levelPerStage * 2) + i] < 3) return false;

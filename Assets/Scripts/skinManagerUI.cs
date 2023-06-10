@@ -11,21 +11,28 @@ using UnityEditor;
 public class SkinManagerUI : MonoBehaviour
 {
     [SerializeField] GameObject[] Skins;
-    [SerializeField] GameObject[] boolSkins;
 
     void Start()
     {
-        foreach (GameObject boolskins in boolSkins)
+        for (int i = 3; i < Skins.Length; i++)
         {
-            if(boolskins == true)
-            {
-                Debug.Log("true");
-            }
+            Skins[i].GetComponentInChildren<Image>().color = Color.gray;
         }
     }
-
-    public void ChooseSkin(int SkinNumber)
+    
+    public void UnlockedSkin(bool Unlocked)
     {
+        if(Unlocked)
+        {
+            GameObject SkinName = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+            for (int i = 0; i < Skins.Length; i++)
+            {
+                if (SkinName.name == Skins[i].name)
+                {
+                    Skins[i].GetComponentInChildren<Image>().color = Color.white;
+                }
+            }
 
+        }
     }
 }

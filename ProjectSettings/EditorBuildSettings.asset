@@ -87,10 +87,10 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Level-41.unity
     guid: 2943c388a2da6174c8593b2514973e93
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Bonus -1.unity
+    path: Assets/Scenes/GameScenes/Bonus-1.unity
     guid: 9cf15df96bad78244b1942c1bb93538e
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Bonus -2.unity
+    path: Assets/Scenes/GameScenes/Bonus-2.unity
     guid: 4d30e5d187d2d2640ab9247936bc4d44
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 6677a1f346883424794346cd77a81895, type: 2}

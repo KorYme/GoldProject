@@ -1,53 +1,38 @@
+using KorYmeLibrary.SaveSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-using System.Runtime.CompilerServices;
-using NaughtyAttributes;
-using System.Linq;
-using UnityEditor;
 
 public class SkinManager : MonoBehaviour
 {
+    [Header("Parameters")]
+    [SerializeField] SKINPACK _skinPack;
 
-    [SerializeField, Foldout("SkinOndine")] private GameObject _ondineSkin1;
-    [SerializeField, Foldout("SkinOndine")] private GameObject _ondineSkin2;
+    [Header("References")]
+    [SerializeField] PlayerReflection _playerReflection;
+    [SerializeField] SkinContainer _skinContainer;
 
-    [SerializeField, Foldout("SkinNain")] private GameObject _nainSkin1;
-    [SerializeField, Foldout("SkinNain")] private GameObject _nainSkin2;
-
-    [SerializeField, Foldout("SkinElf")] private GameObject _elfSkin1;
-    [SerializeField, Foldout("SkinElf")] private GameObject _elfSkin2;
-
-    public void ChooseSkin(int SkinNumber)
+    private void Start()
     {
-        switch (SkinNumber)
+        List<GameObject> allSkins;
+        switch (_playerReflection.ReflectionColor)
         {
-            case 1:
-                _ondineSkin1.SetActive(true);
-                _ondineSkin2.SetActive(false);
+            case Utilities.GAMECOLORS.Red:
+                allSkins = _skinContainer.DwarfSkins;
                 break;
-            case 2:
-                _ondineSkin1.SetActive(false);
-                _ondineSkin2.SetActive(true);
+            case Utilities.GAMECOLORS.Blue:
+                allSkins = _skinContainer.OndineSkins;
                 break;
-            case 3:
-                _nainSkin1.SetActive(true);
-                _nainSkin2.SetActive(false);
+            case Utilities.GAMECOLORS.Yellow:
+                allSkins = _skinContainer.ElfSkins;
                 break;
-            case 4:
-                _nainSkin1.SetActive(false);
-                _nainSkin2.SetActive(true);
-                break;
-            case 5:
-                _elfSkin1.SetActive(true);
-                _elfSkin2.SetActive(false);
-                break;
-            case 6:
-                _elfSkin1.SetActive(false);
-                _elfSkin2.SetActive(true);
-                break;
+            default:
+                return;
         }
+        if (DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor] == _skinPack) return;
+        if (allSkins.Count <= (int)DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor]) return;
+        Instantiate(allSkins[(int)DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor]], 
+            transform.position, Quaternion.identity, transform.parent);
+        Destroy(gameObject);
     }
 }

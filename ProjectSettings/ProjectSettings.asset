@@ -134,8 +134,10 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.9.17
-  preloadedAssets: []
+  bundleVersion: 0.9.18
+  preloadedAssets:
+  - {fileID: 3915918297723494874, guid: 6677a1f346883424794346cd77a81895, type: 2}
+  - {fileID: 11400000, guid: c462a6161ac170047a7d17efcd0db9b7, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -165,7 +167,7 @@ PlayerSettings:
     iPhone: 0
     tvOS: 0
   overrideDefaultApplicationIdentifier: 0
-  AndroidBundleVersionCode: 17
+  AndroidBundleVersionCode: 18
   AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
@@ -253,7 +255,7 @@ PlayerSettings:
   AndroidTargetDevices: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: C:/Users/max22/OneDrive - De Vinci/Projets/Mobile_Gold/IIMCertificate.keystore
+  AndroidKeystoreName: E:/OneDrive - DeVinci/OneDrive - De Vinci/Projets/Mobile_Gold/IIMCertificate.keystore
   AndroidKeyaliasName: iimjv
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0

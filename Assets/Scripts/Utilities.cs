@@ -30,6 +30,7 @@ public static class Utilities
         }
     }
 
+    [System.Serializable]
     public enum GAMECOLORS
     {
         White = 0,

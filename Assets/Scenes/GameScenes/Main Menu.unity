@@ -4720,6 +4720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &578912121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4764,17 +4765,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1000309208}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkinManagerUI, Assembly-CSharp
-        m_MethodName: ChooseSkin
-        m_Mode: 3
+        m_MethodName: UnlockedSkin
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &578912122
 MonoBehaviour:
@@ -6177,6 +6178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &830731429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6221,17 +6223,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1000309208}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkinManagerUI, Assembly-CSharp
-        m_MethodName: ChooseSkin
-        m_Mode: 3
+        m_MethodName: UnlockedSkin
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &830731430
 MonoBehaviour:
@@ -7264,6 +7266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &934728623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7308,17 +7311,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1000309208}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkinManagerUI, Assembly-CSharp
-        m_MethodName: ChooseSkin
-        m_Mode: 3
+        m_MethodName: UnlockedSkin
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &934728624
 MonoBehaviour:
@@ -8167,14 +8170,13 @@ GameObject:
   - component: {fileID: 1000309205}
   - component: {fileID: 1000309204}
   - component: {fileID: 1000309203}
-  - component: {fileID: 1000309208}
   m_Layer: 0
   m_Name: SkinMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!225 &1000309203
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -8269,18 +8271,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1000309208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000309202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1001358622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10122,6 +10112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &1124087622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10166,17 +10157,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1000309208}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkinManagerUI, Assembly-CSharp
-        m_MethodName: ChooseSkin
-        m_Mode: 3
+        m_MethodName: UnlockedSkin
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1124087623
 MonoBehaviour:
@@ -14855,6 +14846,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 300}
   m_SizeDelta: {x: 104, y: 117}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1713314755 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7987398883163487373, guid: 109336d91abaf974e961c82cfe18445e, type: 3}
+  m_PrefabInstance: {fileID: 1939230955}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1713314760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1713314755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3cc878f26b180c7468b3cf1568a81af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _color1: 0
+  _color2: 0
 --- !u!1 &1715795329
 GameObject:
   m_ObjectHideFlags: 0
@@ -16179,8 +16189,8 @@ GameObject:
   - component: {fileID: 1899462173}
   - component: {fileID: 1899462172}
   - component: {fileID: 1899462171}
-  - component: {fileID: 1899462170}
   - component: {fileID: 1899462169}
+  - component: {fileID: 1899462170}
   m_Layer: 0
   m_Name: Nain-2
   m_TagString: Untagged
@@ -16221,6 +16231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &1899462170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16233,6 +16244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &1899462171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16277,17 +16289,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1000309208}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkinManagerUI, Assembly-CSharp
-        m_MethodName: ChooseSkin
-        m_Mode: 3
+        m_MethodName: UnlockedSkin
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1899462172
 MonoBehaviour:
@@ -16609,6 +16621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Skins: []
 --- !u!114 &1937915857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16653,17 +16666,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1000309208}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SkinManagerUI, Assembly-CSharp
-        m_MethodName: ChooseSkin
-        m_Mode: 3
+        m_MethodName: UnlockedSkin
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 6
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1937915858
 MonoBehaviour:
