@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be39379e3c0ce68498bc893f570b2bdf, type: 3}
+  m_Name: SkinContainer
+  m_EditorClassIdentifier: 
+  ElfSkins:
+  - {fileID: 934286157678804597, guid: 41304f7f3d440d44eb44e1e0e8366f12, type: 3}
+  - {fileID: 6348291045926356594, guid: 296fdbf8f90f5d74dbf0aae1d470cbec, type: 3}
+  DwarfSkins:
+  - {fileID: 5910329752897196622, guid: c677908e759cf3a4faa9de208c4e0d73, type: 3}
+  - {fileID: 7069903546379953890, guid: f5f6f184b4e3b394d9fc937f3fe3eb65, type: 3}
+  OndineSkins:
+  - {fileID: 418416121790477703, guid: c2e81b072eca29949b8012997d4c7a2c, type: 3}
+  - {fileID: 4019169113128625463, guid: 65b7e1a9d01886d4c9543ab262882a3d, type: 3}

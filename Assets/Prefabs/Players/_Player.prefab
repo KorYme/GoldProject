@@ -370,7 +370,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _skinPack: 0
   _playerReflection: {fileID: 9177670462990222522}
-  _allSkins: []
+  _skinContainer: {fileID: 11400000, guid: 1bcb5f921cbe002499305aae74b2b87f, type: 2}
 --- !u!1 &4394204038695093132
 GameObject:
   m_ObjectHideFlags: 0

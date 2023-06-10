@@ -14,8 +14,8 @@ namespace KorYmeLibrary.SaveSystem
    {
         // Create the values you want to save here
         public SerializableDictionnary<int, int> LevelDictionnary;
-        public SerializableDictionnary<int, int> SkinEquippedDictionnary;
-        public SerializableDictionnary<int, bool> SkinAcquiredDictionnary;
+        public SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> SkinEquippedDictionnary;
+        public List<SKINPACK> SkinAcquiredDictionnary;
         public float Volume;
         public string Version;
    }

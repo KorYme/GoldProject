@@ -2,7 +2,6 @@ using KorYmeLibrary.SaveSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using KorYmeLibrary;
 
 public class SkinManager : MonoBehaviour
 {
@@ -11,17 +10,29 @@ public class SkinManager : MonoBehaviour
 
     [Header("References")]
     [SerializeField] PlayerReflection _playerReflection;
-    [SerializeField] List<GameObject> _allSkins;
+    [SerializeField] SkinContainer _skinContainer;
 
     private void Start()
     {
-        Debug.Log("ChangeSkin");
-        if (DataManager.Instance.SkinEquippedDictionnary[(int)_playerReflection.ReflectionColor] == (int)_skinPack) return;
-        if (_allSkins.Count <= DataManager.Instance.SkinEquippedDictionnary[(int)_playerReflection.ReflectionColor]) return;
-        Instantiate(_allSkins[DataManager.Instance.SkinEquippedDictionnary[(int)_playerReflection.ReflectionColor]], transform.position, Quaternion.identity, transform.parent);
-        // I'm disabling it before before destroy because it is way less expensive in term of calculus
-        enabled = false;
-        // But still destroy it because we never know
+        List<GameObject> allSkins;
+        switch (_playerReflection.ReflectionColor)
+        {
+            case Utilities.GAMECOLORS.Red:
+                allSkins = _skinContainer.DwarfSkins;
+                break;
+            case Utilities.GAMECOLORS.Blue:
+                allSkins = _skinContainer.OndineSkins;
+                break;
+            case Utilities.GAMECOLORS.Yellow:
+                allSkins = _skinContainer.ElfSkins;
+                break;
+            default:
+                return;
+        }
+        if (DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor] == _skinPack) return;
+        if (allSkins.Count <= (int)DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor]) return;
+        Instantiate(allSkins[(int)DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor]], 
+            transform.position, Quaternion.identity, transform.parent);
         Destroy(gameObject);
     }
 }

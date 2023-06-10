@@ -16799,10 +16799,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7987398883163487370, guid: 109336d91abaf974e961c82cfe18445e, type: 3}
-      propertyPath: _encryptionType
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7987398883163487372, guid: 109336d91abaf974e961c82cfe18445e, type: 3}
       propertyPath: m_RootOrder
       value: 4

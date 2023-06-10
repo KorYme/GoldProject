@@ -4,7 +4,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class DataManager : MonoBehaviour, IDataSaveable<GameData>
@@ -24,15 +23,15 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 
     
     // SKIN DICTIONNARIES
-    SerializableDictionnary<int, bool> _skinAcquiredDictionnary;
-    public SerializableDictionnary<int, bool> SkinAcquiredDictionnary
+    List<SKINPACK> _skinAcquiredList;
+    public List<SKINPACK> SkinAcquiredList
     {
-        get => _skinAcquiredDictionnary;
-        set => _skinAcquiredDictionnary = value;
+        get => _skinAcquiredList;
+        set => _skinAcquiredList = value;
     }
 
-    SerializableDictionnary<int, int> _skinEquippedDictionnary;
-    public SerializableDictionnary<int, int> SkinEquippedDictionnary
+    SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> _skinEquippedDictionnary;
+    public SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> SkinEquippedDictionnary
     {
         get => _skinEquippedDictionnary;
         private set => _skinEquippedDictionnary = value;
@@ -78,10 +77,6 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         Instance = this;
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
-        if (LevelDictionnary == null)
-        {
-            _levelDictionnary = new();
-        }
     }
 
     public void CompleteALevel(int levelID, int starsNumber)
@@ -96,7 +91,6 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 
     public void LoadData(GameData gameData)
     {
-        Debug.Log("Load");
         if (_destroySaveOnNewVersion && gameData.Version != Application.version)
         {
             FileDataHandler<GameData>.DestroyOldData();
@@ -104,7 +98,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
             return;
         }
         _levelDictionnary = gameData.LevelDictionnary;
-        _skinAcquiredDictionnary = gameData.SkinAcquiredDictionnary;
+        _skinAcquiredList = gameData.SkinAcquiredDictionnary;
         _skinEquippedDictionnary = gameData.SkinEquippedDictionnary;
         _volume = gameData.Volume;
         CheckLevels();
@@ -114,32 +108,25 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void SaveData(ref GameData gameData)
     {
         gameData.LevelDictionnary = _levelDictionnary;
-        gameData.SkinAcquiredDictionnary = _skinAcquiredDictionnary;
+        gameData.SkinAcquiredDictionnary = _skinAcquiredList;
         gameData.SkinEquippedDictionnary = _skinEquippedDictionnary;
         gameData.Volume = _volume;
         gameData.Version = Application.version;
-        Debug.Log("Save");
     }
 
     public void InitializeData()
     {
-        _levelDictionnary = new SerializableDictionnary<int, int>()
+        _levelDictionnary = new SerializableDictionnary<int, int>();
+        _skinAcquiredList = new List<SKINPACK>()
         {
-            { 0, 1 },
+            SKINPACK.BASIC,
         };
-        _skinAcquiredDictionnary = new SerializableDictionnary<int, bool>()
+        _skinEquippedDictionnary = new SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK>
         {
-            { (int)SKINPACK.BASIC, true },
-            { (int)SKINPACK.CHIC, true },
-            { (int)SKINPACK.CRISTAL, true },
+            { Utilities.GAMECOLORS.Red, SKINPACK.BASIC },
+            { Utilities.GAMECOLORS.Blue, SKINPACK.BASIC },
+            { Utilities.GAMECOLORS.Yellow, SKINPACK.BASIC },
         };
-        _skinEquippedDictionnary = new SerializableDictionnary<int, int>
-        {
-            { (int)Utilities.GAMECOLORS.Red, (int)SKINPACK.BASIC },
-            { (int)Utilities.GAMECOLORS.Blue, (int)SKINPACK.BASIC },
-            { (int)Utilities.GAMECOLORS.Yellow, (int)SKINPACK.CHIC },
-        };
-        Debug.Log("Initialize");
         _volume = 0.8f;
     }
 
