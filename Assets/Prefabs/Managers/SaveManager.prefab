@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7987398883163487371}
   - component: {fileID: 7987398883163487370}
   - component: {fileID: 7987398883163487369}
+  - component: {fileID: 7430398456735609543}
   m_Layer: 0
   m_Name: SaveManager
   m_TagString: Untagged
@@ -79,3 +80,16 @@ MonoBehaviour:
   _levelPerStage: 5
   _starSkippable: 7
   _destroySaveOnNewVersion: 0
+--- !u!114 &7430398456735609543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7987398883163487373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e378399e47693144fafde589d1fc0d9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _dataManager: {fileID: 7987398883163487369}
