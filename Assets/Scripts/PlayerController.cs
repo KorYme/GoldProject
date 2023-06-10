@@ -97,18 +97,18 @@ public class PlayerController : MonoBehaviour
         }
         if (ray.distance < 1f)
         {
-            if (ray.collider.CompareTag("Mud"))
-            {
-                _playerStoppedByMud = true;
-                _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
-                InputManager.Instance.MovementNumber++;
-            }
-            else if (ray.collider.CompareTag("Crate"))
+            if (ray.collider.CompareTag("Crate"))
             {
                 if (CheckCrateMovement(ray.transform, direction))
                 {
                     InputManager.Instance.MovementNumber++;
                 }
+            }
+            else if (ray.collider.CompareTag("Mud"))
+            {
+                _playerStoppedByMud = true;
+                _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
+                InputManager.Instance.MovementNumber++;
             }
         }
         else
@@ -230,7 +230,28 @@ public class PlayerController : MonoBehaviour
             && !Physics2D.OverlapCircle((Vector2)hitObject.position + direction, .45f, Utilities.MovementLayers[Utilities.GAMECOLORS.White]))
         {
             InputManager.Instance.CanMoveAPlayer = false;
-            hitObject.GetComponentInChildren<Animator>()?.SetTrigger(direction.x != 0 ? "HorizontalMovement" : "VerticalMovement");
+            if (direction.y == 0f)
+            {
+                if (direction.x > 0)
+                {
+                    hitObject.GetComponentInChildren<Animator>()?.SetTrigger("Right");
+                }
+                else
+                {
+                    hitObject.GetComponentInChildren<Animator>()?.SetTrigger("Left");
+                }
+            }
+            else
+            {
+                if (direction.y > 0)
+                {
+                    hitObject.GetComponentInChildren<Animator>()?.SetTrigger("Top");
+                }
+                else
+                {
+                    hitObject.GetComponentInChildren<Animator>()?.SetTrigger("Bot");
+                }
+            }
             _moveCrateCoroutine = StartCoroutine(MoveCrateCoroutine(hitObject.gameObject, direction));
             return true;
         }
