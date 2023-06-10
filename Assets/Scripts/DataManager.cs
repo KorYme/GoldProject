@@ -21,13 +21,22 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         get; set;
     }
 
-    
+    public Action<int> OnStarAdded
+    {
+        get; set;
+    }
+
+    public Action<int, int> OnLevelComplete
+    {
+        get; set;
+    }
+
     // SKIN DICTIONNARIES
     List<SKINPACK> _skinAcquiredList;
     public List<SKINPACK> SkinAcquiredList
     {
         get => _skinAcquiredList;
-        set => _skinAcquiredList = value;
+        private set => _skinAcquiredList = value;
     }
 
     SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> _skinEquippedDictionnary;
@@ -85,6 +94,11 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         if (!LevelDictionnary.ContainsKey(levelID))
         {
             LevelDictionnary[levelID] = 0;
+        }
+        OnLevelComplete?.Invoke(levelID, starsNumber);
+        if (levelID > 0)
+        {
+            OnStarAdded?.Invoke(Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4));
         }
         LevelDictionnary[levelID] += Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4);
     }
@@ -170,5 +184,11 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
                 LevelDictionnary[i] = 0;
             }
         }
+    }
+
+    public void UnlockNewSkin(SKINPACK skin)
+    {
+        if (SkinAcquiredList.Contains(skin)) return;
+        SkinAcquiredList.Add(skin);
     }
 }
