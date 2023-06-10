@@ -8,6 +8,12 @@ public class Mirror : Reflectable
     [Header("Mirror Parameters")]
     [SerializeField, OnValueChanged(nameof(FlipMirror))] bool _isFlipped;
 
+    protected override void Awake()
+    {
+        base.Awake();
+        FlipMirror();
+    }
+
     public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
         _inputLaserColor = laserColor;
@@ -19,8 +25,9 @@ public class Mirror : Reflectable
         base.StartReflection(LaserDirection, laserColor, raycast, previous);
     }
 
+    [Button("Update Mirror")]
     private void FlipMirror()
     {
-        transform.rotation = Quaternion.Euler(0f, 0f, _isFlipped ? 45 : -45);
+        transform.parent.rotation = Quaternion.Euler(0f, _isFlipped ? 180f : 0f, 0f);
     }
 }
