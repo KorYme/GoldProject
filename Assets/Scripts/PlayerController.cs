@@ -110,6 +110,10 @@ public class PlayerController : MonoBehaviour
                 _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
                 InputManager.Instance.MovementNumber++;
             }
+            else
+            {
+                Handheld.Vibrate();
+            }
         }
         else
         {

@@ -4,7 +4,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices.WindowsRuntime;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
+using UnityEngine.Networking;
 
 public class AchievementManager : MonoBehaviour
 {
@@ -12,18 +13,18 @@ public class AchievementManager : MonoBehaviour
 
     public void Start()
     {
+        PlayGamesPlatform.DebugLogEnabled = true;
         PlayGamesPlatform.Activate();
         PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
         if (!enabled) return;
         _dataManager.OnStarAdded += CheckForAchievement;
-        _dataManager.OnLevelComplete += Test_Perfect_1_2;
+        _dataManager.OnLevelComplete += Test_Perfect;
     }
 
     public void ShowUI(bool success)
     {
         if (success)
         {
-            Social.ShowAchievementsUI();
         } 
     }
 
@@ -38,8 +39,6 @@ public class AchievementManager : MonoBehaviour
             return;
         }
         // Continue with Play Games Services
-
-        //PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQAw", );
         Social.ReportProgress("CgkIhpOPlaMXEAIQAw", 100.0f, ShowUI);
     }
 
@@ -48,18 +47,21 @@ public class AchievementManager : MonoBehaviour
         if (starAdded > 0)
         {
             PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQAQ", starAdded, ShowUI);
-            Social.ShowAchievementsUI();
         }
     }
 
-    void Test_Perfect_1_2(int levelID, int star)
+    void Test_Perfect(int levelID, int star)
     {
         if (star != 4) return;
-        if (levelID <= 0 || levelID >= 3) return;
-        if (_dataManager.LevelDictionnary[levelID] != 4)
+        if (levelID <= 0) return;
+        if (_dataManager.LevelDictionnary[levelID] == 4) return;
+        switch ((levelID - 1) / 10)
         {
-            PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQAg", 1, ShowUI);
-            Social.ShowAchievementsUI();
+            case 0:
+                PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQAg", 1, ShowUI);
+                return;
+            default:
+                return;
         }
     }
 }
