@@ -12,9 +12,19 @@ public class AchievementManager : MonoBehaviour
 
     public void Start()
     {
+        PlayGamesPlatform.Activate();
         PlayGamesPlatform.Instance.Authenticate(ProcessAuthentication);
+        if (!enabled) return;
         _dataManager.OnStarAdded += CheckForAchievement;
         _dataManager.OnLevelComplete += Test_Perfect_1_2;
+    }
+
+    public void ShowUI(bool success)
+    {
+        if (success)
+        {
+            Social.ShowAchievementsUI();
+        } 
     }
 
     internal void ProcessAuthentication(SignInStatus status)
@@ -30,16 +40,14 @@ public class AchievementManager : MonoBehaviour
         // Continue with Play Games Services
 
         //PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQAw", );
-        Social.ReportProgress("CgkIhpOPlaMXEAIQAw", 100.0f, x => {  });
-        Social.ShowAchievementsUI();
+        Social.ReportProgress("CgkIhpOPlaMXEAIQAw", 100.0f, ShowUI);
     }
 
     void CheckForAchievement(int starAdded)
     {
-        if (!enabled) return;
         if (starAdded > 0)
         {
-            PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQAQ", starAdded, x => { });
+            PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQAQ", starAdded, ShowUI);
             Social.ShowAchievementsUI();
         }
     }
@@ -50,7 +58,7 @@ public class AchievementManager : MonoBehaviour
         if (levelID <= 0 || levelID >= 3) return;
         if (_dataManager.LevelDictionnary[levelID] != 4)
         {
-            PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQAg", 1, x => { });
+            PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQAg", 1, ShowUI);
             Social.ShowAchievementsUI();
         }
     }
