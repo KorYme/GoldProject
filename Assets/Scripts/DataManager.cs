@@ -133,10 +133,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         }
         else
         {
-            if (starsNumber >= 3)
-            {
-                UnlockNewSkin(_skinPackPerBonusLevel[levelID - 1]);
-            }
+            UnlockNewSkin(_skinPackPerBonusLevel[-levelID - 1]);
         }
         LevelDictionnary[levelID] += Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4);
     }
@@ -175,9 +172,6 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         _skinAcquiredList = new List<SKINPACK>()
         {
             SKINPACK.BASIC,
-            SKINPACK.CHIC,
-            SKINPACK.CRISTAL,
-            SKINPACK.ELEMENT,
         };
         _skinEquippedDictionnary = new SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK>
         {
