@@ -6334,9 +6334,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 956152173}
     m_Modifications:
+    - target: {fileID: 2276019850436937612, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
+      propertyPath: _laserWidth
+      value: 0.331
+      objectReference: {fileID: 0}
     - target: {fileID: 3429801988097763572, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: _laserDir
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828688377794044110, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
+      propertyPath: m_CastShadows
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828688377794044110, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828688377794044110, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828688377794044110, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6828688377794044110, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.331
       objectReference: {fileID: 0}
     - target: {fileID: 7251455584209451172, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: m_RootOrder

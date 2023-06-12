@@ -33,6 +33,7 @@ public class LevelUIManager : MonoBehaviour
     }
 
     [SerializeField, Foldout("References")] private TextMeshProUGUI _levelText;
+    [SerializeField, Foldout("References")] private GameObject _lockedImage;
     [SerializeField, Foldout("References")] private Image _buttonImage;
 
     [SerializeField, Foldout("Image")] private Sprite _normalLevel;
@@ -59,11 +60,7 @@ public class LevelUIManager : MonoBehaviour
 
     public void UpdateStar(int starNumber)
     {
-        if(!CanPlay)
-        {
-            _buttonImage.sprite = _lockedLevel;
-            _levelText.text = "";
-        }
+        _lockedImage.SetActive(!CanPlay);
         switch (starNumber)
         {
             case 0:
