@@ -79,6 +79,7 @@ MonoBehaviour:
   dsm_GameData: {fileID: 7987398883163487370}
   _levelPerStage: 5
   _starSkippable: 7
+  _lastLevelNumber: 50
   _destroySaveOnNewVersion: 0
 --- !u!114 &7430398456735609543
 MonoBehaviour:

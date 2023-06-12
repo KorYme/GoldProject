@@ -93,7 +93,11 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position, direction, 1.25f, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         foreach (RaycastHit2D item in rays)
         {
-            if (item.transform.CompareTag("Player")) return;
+            if (item.transform.CompareTag("Player"))
+            {
+                Handheld.Vibrate();
+                return;
+            }
         }
         if (ray.distance < 1f)
         {
@@ -102,6 +106,10 @@ public class PlayerController : MonoBehaviour
                 if (CheckCrateMovement(ray.transform, direction))
                 {
                     InputManager.Instance.MovementNumber++;
+                }
+                else
+                {
+                    Handheld.Vibrate();
                 }
             }
             else if (ray.collider.CompareTag("Mud"))
