@@ -14,23 +14,26 @@ public class WinMenuManager : MonoBehaviour
     
     [Header("Win Menu")]
     [SerializeField] LevelManager _levelManager;
-    [SerializeField] private GameObject _starOne;
-    [SerializeField] private TextMeshProUGUI _starOneText;
-    [SerializeField] private GameObject _starTwo;
-    [SerializeField] private TextMeshProUGUI _starTwoText;
-    [SerializeField] private GameObject _starThree;
-    [SerializeField] private TextMeshProUGUI _starThreeText;
+    [SerializeField] Transform _starOne;
+    [SerializeField] TextMeshProUGUI _starOneText;
+    [SerializeField] Image _starOneImage;
+    [SerializeField] Transform _starTwo;
+    [SerializeField] TextMeshProUGUI _starTwoText;
+    [SerializeField] Image _starTwoImage;
+    [SerializeField] Transform _starThree;
+    [SerializeField] TextMeshProUGUI _starThreeText;
+    [SerializeField] Image _starThreeImage;
 
-    [SerializeField] private TextMeshProUGUI _moveText;
+    [SerializeField] TextMeshProUGUI _moveText;
 
     [Header("Menu")]
-    [SerializeField] private GameObject _winMenu;
-    [SerializeField] private GameObject _gameMenu;
+    [SerializeField] GameObject _winMenu;
+    [SerializeField] GameObject _gameMenu;
 
     [Header("Star Image")]
-    [SerializeField] private Sprite _starGray;
-    [SerializeField] private Sprite _starYellow;
-    [SerializeField] private Sprite _starCyan;
+    [SerializeField] Sprite _starGray;
+    [SerializeField] Sprite _starYellow;
+    [SerializeField] Sprite _starCyan;
 
     bool _isLevelComplete;
     
@@ -71,46 +74,42 @@ public class WinMenuManager : MonoBehaviour
         Vector3 starTwoPosition = _starTwo.transform.position;
         Vector3 starThreePosition = _starThree.transform.position;
 
-        _starOne.GetComponent<Image>().sprite = _starYellow;
-        _starTwo.GetComponent<Image>().sprite = _starYellow;
-        _starThree.GetComponent<Image>().sprite = _starYellow;
+        _starOneImage.sprite = _starYellow;
+        _starTwoImage.sprite = _starYellow;
+        _starThreeImage.sprite = _starYellow;
 
-        _starOne.transform.position = new Vector3(0, 0, 0);
-        _starTwo.transform.position = new Vector3(0, 0, 0);
-        _starThree.transform.position = new Vector3(0, 0, 0);
+        _starOne.transform.position = new Vector3(-500, -500, 0);
+        _starTwo.transform.position = new Vector3(-500, -500, 0);
+        _starThree.transform.position = new Vector3(-500, -500, 0);
 
-        if(TotalMove <= _levelPerfectScore)
+        if (TotalMove <= _levelPerfectScore)
         {
-            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, true, 3));
-
+            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 4));
             DataManager.Instance.CompleteALevel(_levelNumber, 4);
         }
-        else if(TotalMove <= _levelThreeStarScore)
+        else if (TotalMove <= _levelThreeStarScore)
         {
-            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, false, 3));
-
+            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 3));
             DataManager.Instance.CompleteALevel(_levelNumber, 3);
         }
-        else if(TotalMove <= _levelTwoStarScore)
+        else if (TotalMove <= _levelTwoStarScore)
         {
-            _starThree.GetComponent<Image>().sprite = _starGray;
-            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, false, 2));
-
+            _starThreeImage.sprite = _starGray;
+            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 2));
             DataManager.Instance.CompleteALevel(_levelNumber, 2);
         }
         else
         {
-            _starTwo.GetComponent<Image>().sprite = _starGray;
-            _starThree.GetComponent<Image>().sprite = _starGray;
-            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, false, 1));
-
+            _starTwoImage.sprite = _starGray;
+            _starThreeImage.sprite = _starGray;
+            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 1));
             DataManager.Instance.CompleteALevel(_levelNumber, 1);
         }
     }
 
-    IEnumerator UpdateStarSound(Vector3 starOnePosition, Vector3 starTwoPosition, Vector3 starThreePosition, bool isPerfect, int numberOfStar)
+    IEnumerator UpdateStarSound(Vector3 starOnePosition, Vector3 starTwoPosition, Vector3 starThreePosition, int numberOfStar)
     {
-        if(numberOfStar == 3)
+        if(numberOfStar >= 3)
         {
             AudioManager.Instance.PlaySound("StarOne");
             _starOne.transform.DOMove(starOnePosition, 0.5f, false).OnComplete(() => 
@@ -121,6 +120,16 @@ public class WinMenuManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             _starThree.transform.DOMove(starThreePosition, 0.5f, false);
             yield return new WaitForSeconds(0.5f);
+            if (numberOfStar == 4)
+            {
+                AudioManager.Instance.PlaySound("StarPlat");
+                yield return new WaitForSeconds(0.1f);
+                _starOne.transform.DOPunchScale(new Vector3(2, 2, 2), 0.25f, 2, 0).OnComplete(() => _starOneImage.sprite = _starCyan);
+                yield return new WaitForSeconds(0.25f);
+                _starTwo.transform.DOPunchScale(new Vector3(2, 2, 2), 0.25f, 2, 0).OnComplete(() => _starTwoImage.sprite = _starCyan);
+                yield return new WaitForSeconds(0.25f);
+                _starThree.transform.DOPunchScale(new Vector3(2, 2, 2), 0.25f, 2, 0).OnComplete(() => _starThreeImage.sprite = _starCyan);
+            }
         }
         else if(numberOfStar == 2)
         {
@@ -145,24 +154,7 @@ public class WinMenuManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             _starThree.transform.DOMove(starThreePosition, 0.5f, false);
             yield return new WaitForSeconds(0.5f);
-        }
-
-        if(isPerfect)
-        {
-            StartCoroutine(UpdateStarCyan());
-        }
-        
-    }
-
-    IEnumerator UpdateStarCyan()
-    {
-        AudioManager.Instance.PlaySound("StarPlat");
-        yield return new WaitForSeconds(0.1f);
-        _starOne.transform.DOPunchScale(new Vector3 (2, 2, 2), 0.25f, 2, 0).OnComplete(() => _starOne.GetComponent<Image>().sprite = _starCyan);
-        yield return new WaitForSeconds(0.25f);
-        _starTwo.transform.DOPunchScale(new Vector3 (2, 2, 2), 0.25f, 2, 0).OnComplete(() => _starTwo.GetComponent<Image>().sprite = _starCyan);
-        yield return new WaitForSeconds(0.25f);
-        _starThree.transform.DOPunchScale(new Vector3 (2, 2, 2), 0.25f, 2, 0).OnComplete(() => _starThree.GetComponent<Image>().sprite = _starCyan);
+        }        
     }
 
     public void NextLevelButton()

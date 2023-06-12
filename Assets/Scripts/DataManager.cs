@@ -21,6 +21,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     [Header("SaveParameters")]
     [SerializeField] bool _destroySaveOnNewVersion;
 
+    #region ACTIONS
     public Action<int> OnTotalStarChange
     {
         get; set;
@@ -36,6 +37,14 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         get; set;
     }
 
+    public Action OnDataLoaded
+    { 
+        get; 
+        set;
+    }
+    #endregion
+
+    #region DATA_STORED
     // SKIN DICTIONNARIES
     List<SKINPACK> _skinAcquiredList;
     public List<SKINPACK> SkinAcquiredList
@@ -51,13 +60,24 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         private set => _skinEquippedDictionnary = value;
     }
 
-
-    // LEVEL DICTIONNARY
     SerializableDictionnary<int, int> _levelDictionnary;
     public SerializableDictionnary<int, int> LevelDictionnary
     {
         get => _levelDictionnary;
     }
+    
+    float _volume;
+    public float Volume
+    {
+        get => _volume;
+    }
+
+    bool _vibrationEnabled;
+    public bool VibrationEnabled
+    {
+        get => _vibrationEnabled;
+    }
+    #endregion
 
     public int TotalStarNumber
     {
@@ -76,9 +96,9 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
             return value;
         }
     }
-    float _volume;
 
     public static DataManager Instance;
+
     private void Awake()
     {
         if (Instance != null)
@@ -120,7 +140,9 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         _skinAcquiredList = gameData.SkinAcquiredDictionnary;
         _skinEquippedDictionnary = gameData.SkinEquippedDictionnary;
         _volume = gameData.Volume;
+        _vibrationEnabled = gameData.VibrationEnabled;
         CheckLevels();
+        OnDataLoaded?.Invoke();
     }
 
 
@@ -130,6 +152,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         gameData.SkinAcquiredDictionnary = _skinAcquiredList;
         gameData.SkinEquippedDictionnary = _skinEquippedDictionnary;
         gameData.Volume = _volume;
+        gameData.VibrationEnabled = _vibrationEnabled;
         gameData.Version = Application.version;
     }
 
@@ -147,6 +170,8 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
             { Utilities.GAMECOLORS.Yellow, SKINPACK.BASIC },
         };
         _volume = 0.8f;
+        _vibrationEnabled = true;
+        OnDataLoaded?.Invoke();
     }
 
     public bool CanPlayThisLevel(int level)
