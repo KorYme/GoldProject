@@ -33,6 +33,7 @@ public class LevelUIManager : MonoBehaviour
     }
 
     [SerializeField, Foldout("References")] private TextMeshProUGUI _levelText;
+    [SerializeField, Foldout("References")] private GameObject _lockedImage;
     [SerializeField, Foldout("References")] private Image _buttonImage;
 
     [SerializeField, Foldout("Image")] private Sprite _normalLevel;
