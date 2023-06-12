@@ -2092,7 +2092,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainMenu: {fileID: 1940064551}
-  _levelMenu: {fileID: 0}
   _settingsMenu: {fileID: 2008747037}
   _skinMenu: {fileID: 1107568207}
   _trophyMenu: {fileID: 562607446}
@@ -2104,7 +2103,6 @@ MonoBehaviour:
   _settingsButton: {fileID: 1404454396}
   _skinButton: {fileID: 1283314665}
   _trophyButton: {fileID: 1709913929}
-  _totalStarText: {fileID: 0}
 --- !u!4 &767898257
 Transform:
   m_ObjectHideFlags: 0
@@ -4470,82 +4468,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 767898257}
     m_Modifications:
-    - target: {fileID: 411799654031766742, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: ElfSummer
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654044892232, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: OndineSummer
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654044892233, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 89.13544
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654124018368, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: fd3aa1a91ccdc7048b3d393690c21e59, type: 3}
-    - target: {fileID: 411799654124018370, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: NainElement
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654137324433, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: OndineChic
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654137324438, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -62.59375
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654137324439, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 828a3b588e35aed4abf08de838162ee0, type: 3}
-    - target: {fileID: 411799654262002952, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: c2b878998bb94ab43854e29f887e18a5, type: 3}
-    - target: {fileID: 411799654262002954, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: NainCrystal
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654314830672, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: NainSummer
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654327902423, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 767898255}
-    - target: {fileID: 411799654327902423, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ReturnToMainMenuFromSkin
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654545965488, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.00012207031
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654628173948, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 76fa60c7c6098cd41a5e3845d895f141, type: 3}
-    - target: {fileID: 411799654628173950, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: ElfChic
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654628173951, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -66.4967
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654737591204, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: OndineCrystal
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654737591210, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ec4d9d9f976dde44ca1713bb4aea2df1, type: 3}
     - target: {fileID: 411799654760137956, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -4580,18 +4502,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 411799654760137956, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654760137956, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654760137956, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799654760137956, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 411799654760137956, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
@@ -4650,78 +4560,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 411799655640923940, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 180.4802
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799655640923940, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -92.94202
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799655721375965, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Sprite
+    - target: {fileID: 1536455531345351219, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 21300000, guid: 56f3b8607d2d7fa4fb59258a08906ca1, type: 3}
-    - target: {fileID: 411799655721375967, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: ElfCrystal
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799655839763244, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -66.4967
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799655839763245, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 96210f68aba9d9244a9709ecf7ec2101, type: 3}
-    - target: {fileID: 411799655839763247, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: NainChic
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799655840382204, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 1b562f2dfa59ab147b6e24bceea0fff7, type: 3}
-    - target: {fileID: 411799655840382206, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: ElfElement
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799655909010211, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799655941080094, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -0.00012207031
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799655957457570, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 176.0788
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799655957457570, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -90.132355
-      objectReference: {fileID: 0}
-    - target: {fileID: 411799656126595917, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 994686b4207696f4d845b6f394fc774f, type: 3}
-    - target: {fileID: 411799656126595919, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: OndineElement
-      objectReference: {fileID: 0}
-    - target: {fileID: 2488465283426335031, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: ElfDark
-      objectReference: {fileID: 0}
-    - target: {fileID: 5516399013545854081, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: OndineDark
-      objectReference: {fileID: 0}
-    - target: {fileID: 9045288889520342662, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
-      propertyPath: m_Name
-      value: NainDark
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 767898255}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
 --- !u!1 &1404454392
@@ -6789,7 +6631,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1940064552
 RectTransform:
   m_ObjectHideFlags: 0

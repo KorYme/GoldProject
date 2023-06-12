@@ -42,6 +42,11 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         get; 
         set;
     }
+
+    public Action OnSkinchange
+    {
+        get; set;
+    }
     #endregion
 
     #region DATA_STORED
@@ -162,6 +167,9 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         _skinAcquiredList = new List<SKINPACK>()
         {
             SKINPACK.BASIC,
+            SKINPACK.CHIC,
+            SKINPACK.CRISTAL,
+            SKINPACK.ELEMENT,
         };
         _skinEquippedDictionnary = new SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK>
         {
@@ -221,5 +229,12 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     {
         if (SkinAcquiredList.Contains(skin)) return;
         SkinAcquiredList.Add(skin);
+    }
+
+    public void EquipSkin(Utilities.GAMECOLORS playerColor, SKINPACK skin)
+    {
+        if (!SkinEquippedDictionnary.ContainsKey(playerColor) || !SkinAcquiredList.Contains(skin)) return;
+        SkinEquippedDictionnary[playerColor] = skin;
+        OnSkinchange?.Invoke();
     }
 }
