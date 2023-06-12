@@ -85,15 +85,8 @@ public class MainMenuManager : MonoBehaviour
 
     TweenCallback LevelButtonTween()
     {
-        _mainMenu.SetActive(false);
-        _levelMenu.SetActive(true);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
         return null;
-    }
-
-    public void ReturnToMainMenu()
-    {
-        _mainMenu.SetActive(true);
-        _levelMenu.SetActive(false);    
     }
 
     public void SettingsMenu()
