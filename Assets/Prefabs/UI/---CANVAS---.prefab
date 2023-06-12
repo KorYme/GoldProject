@@ -2443,7 +2443,19 @@ MonoBehaviour:
   m_Value: 80
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: ChangeSFXVolume
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2502637208861816967}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2502637208875626376
 GameObject:
   m_ObjectHideFlags: 0
@@ -3773,12 +3785,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _victoryScreenDelay: 2.5
   _levelManager: {fileID: 5857165663392768483}
-  _starOne: {fileID: 2502637210220079873}
+  _starOne: {fileID: 2502637210220079872}
   _starOneText: {fileID: 2502637209708439459}
-  _starTwo: {fileID: 2502637209536563318}
+  _starOneImage: {fileID: 2502637210220079875}
+  _starTwo: {fileID: 2502637209536563209}
   _starTwoText: {fileID: 2502637208880624523}
-  _starThree: {fileID: 2502637208709322576}
+  _starTwoImage: {fileID: 2502637209536563208}
+  _starThree: {fileID: 2502637208709322579}
   _starThreeText: {fileID: 2502637208356307832}
+  _starThreeImage: {fileID: 2502637208709322578}
   _moveText: {fileID: 2502637209428831426}
   _winMenu: {fileID: 2502637209797420637}
   _gameMenu: {fileID: 2502637209322936782}
@@ -3816,7 +3831,6 @@ MonoBehaviour:
   _LevelPerfectScore: 0
   _LevelThreeStarScore: 0
   _LevelTwoStarScore: 0
-  _LevelNumber: 0
 --- !u!114 &2152383368056324475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4459,7 +4473,19 @@ MonoBehaviour:
   m_Value: 80
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+        m_MethodName: ChangeMusicVolume
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2502637210055256010}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Slider, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2502637210146449498
 GameObject:
   m_ObjectHideFlags: 0
