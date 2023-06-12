@@ -60,11 +60,7 @@ public class LevelUIManager : MonoBehaviour
 
     public void UpdateStar(int starNumber)
     {
-        if(!CanPlay)
-        {
-            _buttonImage.sprite = _lockedLevel;
-            _levelText.text = "";
-        }
+        _lockedImage.SetActive(!CanPlay);
         switch (starNumber)
         {
             case 0:
