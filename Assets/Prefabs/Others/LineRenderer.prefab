@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ab26698ec1f87498148684941936d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _particleSystemPrefab: {fileID: 0}
+  _particleSystemPrefab: {fileID: 4355079309876472003, guid: c0a0d5448fdf91b4bb20a544535726ed, type: 3}
   _lineRenderer: {fileID: 4141730671707562850}
   _materialsLaser:
   - {fileID: 2100000, guid: 42104b8c951aa2942a7014c8b8271065, type: 2}

@@ -78,6 +78,7 @@ public class Reflectable : MonoBehaviour
         UpdateColorLaser();
         _laserRenderer.LineRenderer.enabled = true;
         _onReflection += ReflectLaser;
+        _laserRenderer.ChangeSecondPosition(LaserOrigin, LaserDirection,true);
     }
 
     protected virtual void UpdateColorLaser()
@@ -93,6 +94,7 @@ public class Reflectable : MonoBehaviour
         _onReflection -= ReflectLaser;
         _nextReflectable?.StopReflection();
         _nextReflectable = null;
+        _laserRenderer.ChangeSecondPosition(LaserOrigin, LaserDirection);
     }
 
     protected void Update()

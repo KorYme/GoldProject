@@ -4679,7 +4679,6 @@ GameObject:
   - component: {fileID: 578912123}
   - component: {fileID: 578912122}
   - component: {fileID: 578912121}
-  - component: {fileID: 578912120}
   m_Layer: 0
   m_Name: Nain-1
   m_TagString: Untagged
@@ -4708,19 +4707,6 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
---- !u!114 &578912120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 578912118}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Skins: []
 --- !u!114 &578912121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6137,7 +6123,6 @@ GameObject:
   - component: {fileID: 830731431}
   - component: {fileID: 830731430}
   - component: {fileID: 830731429}
-  - component: {fileID: 830731428}
   m_Layer: 0
   m_Name: Ondine-2
   m_TagString: Untagged
@@ -6166,19 +6151,6 @@ RectTransform:
   m_AnchoredPosition: {x: -50, y: -100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 1}
---- !u!114 &830731428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 830731426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Skins: []
 --- !u!114 &830731429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7225,7 +7197,6 @@ GameObject:
   - component: {fileID: 934728625}
   - component: {fileID: 934728624}
   - component: {fileID: 934728623}
-  - component: {fileID: 934728622}
   m_Layer: 0
   m_Name: Ondine-1
   m_TagString: Untagged
@@ -7254,19 +7225,6 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: -100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &934728622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 934728620}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Skins: []
 --- !u!114 &934728623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10071,7 +10029,6 @@ GameObject:
   - component: {fileID: 1124087624}
   - component: {fileID: 1124087623}
   - component: {fileID: 1124087622}
-  - component: {fileID: 1124087621}
   m_Layer: 0
   m_Name: Elf-1
   m_TagString: Untagged
@@ -10100,19 +10057,6 @@ RectTransform:
   m_AnchoredPosition: {x: 50, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1124087621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1124087619}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Skins: []
 --- !u!114 &1124087622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16189,8 +16133,6 @@ GameObject:
   - component: {fileID: 1899462173}
   - component: {fileID: 1899462172}
   - component: {fileID: 1899462171}
-  - component: {fileID: 1899462169}
-  - component: {fileID: 1899462170}
   m_Layer: 0
   m_Name: Nain-2
   m_TagString: Untagged
@@ -16219,32 +16161,6 @@ RectTransform:
   m_AnchoredPosition: {x: -50, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
---- !u!114 &1899462169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899462167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Skins: []
---- !u!114 &1899462170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1899462167}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Skins: []
 --- !u!114 &1899462171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16580,7 +16496,6 @@ GameObject:
   - component: {fileID: 1937915859}
   - component: {fileID: 1937915858}
   - component: {fileID: 1937915857}
-  - component: {fileID: 1937915856}
   m_Layer: 0
   m_Name: Elf-2
   m_TagString: Untagged
@@ -16609,19 +16524,6 @@ RectTransform:
   m_AnchoredPosition: {x: -50, y: 100}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0}
---- !u!114 &1937915856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1937915854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a22bd0169af992f4bb9a86081a84c245, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Skins: []
 --- !u!114 &1937915857
 MonoBehaviour:
   m_ObjectHideFlags: 0

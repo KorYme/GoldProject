@@ -4,9 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LaserRenderer : MonoBehaviour
-{
-    //Tout ce qui est en commentaire est le systeme de particules qui bug -> voir base de bugs
-    
+{   
     [SerializeField] ParticleSystem _particleSystemPrefab;
     ParticleSystem _pSystem;
 
@@ -27,25 +25,22 @@ public class LaserRenderer : MonoBehaviour
     private void Start()
     {
         ChangeValues();
-        //_pSystem = Instantiate(_particleSystemPrefab);
-        //_pSystem.Stop();
+        _pSystem = Instantiate(_particleSystemPrefab);
+        _pSystem.Stop();
     }
 
     public void ChangeSecondPosition(Vector2 position, Vector2 normal, bool isWall = false)
     {
-        //if (isWall && !_isTouchingWall)
-        //{
-
-            
-        //    _pSystem.transform.position = position;
-        //    _pSystem.Play();
-        //    Debug.Log("start");
-        //}
-        //else if (!isWall && _isTouchingWall)
-        //{
-        //    _pSystem.Stop();
-        //    Debug.Log("stop");
-        //}
+        if (isWall)
+        {
+            _pSystem.transform.position = position;
+            _pSystem.transform.LookAt(_lineRenderer.GetPosition(0));
+            _pSystem.Play();
+        }
+        else if (!isWall)
+        {
+            _pSystem.Stop();
+        }
         LineRenderer.SetPosition(1, position);
         //_isTouchingWall = isWall;
     }
@@ -62,6 +57,9 @@ public class LaserRenderer : MonoBehaviour
         LineRenderer.startWidth = _laserWidth;
         LineRenderer.startWidth = _laserWidth;
         ChangeLaserColor(_laserColor);
+        if (_pSystem != null)
+        _pSystem.startColor = Utilities.GetColor(_laserColor);
+
     }
 
 #if UNITY_EDITOR
