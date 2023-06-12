@@ -42,6 +42,7 @@ public class WinMenuManager : MonoBehaviour
     public void Win(int totalMove)
     {
         if (_isLevelComplete) return;
+        AudioManager.Instance.NbOfPlayersReflecting = 0;
         _isLevelComplete = true;
         InputManager.Instance.DisableInputs();
         FindObjectsOfType<AnimatorManager>().ToList().ForEach(x => x.ChangeAnimation(ANIMATION_STATES.Victory));
@@ -53,7 +54,7 @@ public class WinMenuManager : MonoBehaviour
         yield return new WaitForSeconds(_victoryScreenDelay);
         _winMenu.SetActive(true);
         _gameMenu.SetActive(false);
-        UpdateWinMenu(_levelManager._LevelNumber , _levelManager._LevelPerfectScore, _levelManager._LevelThreeStarScore, _levelManager._LevelTwoStarScore, totalMove.ToString(), totalMove);
+        UpdateWinMenu(_levelManager.LevelNumber , _levelManager._LevelPerfectScore, _levelManager._LevelThreeStarScore, _levelManager._LevelTwoStarScore, totalMove.ToString(), totalMove);
     }
 
     void UpdateWinMenu(int _levelNumber, int _levelPerfectScore, int _levelThreeStarScore, int _levelTwoStarScore,  string TextMove, int TotalMove)
@@ -177,11 +178,13 @@ public class WinMenuManager : MonoBehaviour
     public void MenuButton()
     {
         SceneManager.LoadScene(0);
+        AudioManager.Instance.NbOfPlayersReflecting = 0;
     }
 
     public void RestartLevelButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        AudioManager.Instance.NbOfPlayersReflecting = 0;
     }
 
 }

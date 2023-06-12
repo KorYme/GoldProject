@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     Coroutine _moveCrateCoroutine;
     Coroutine _wallHitCoroutine;
     RaycastHit2D _crateRay;
+    bool _playerStoppedByMud = false;
 
     const float ANGLE_TOLERANCE = 2f;
     public bool IsMoving
@@ -92,21 +93,34 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position, direction, 1.25f, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         foreach (RaycastHit2D item in rays)
         {
-            if (item.transform.CompareTag("Player")) return;
+            if (item.transform.CompareTag("Player"))
+            {
+                Handheld.Vibrate();
+                return;
+            }
         }
         if (ray.distance < 1f)
         {
-            if (ray.collider.CompareTag("Mud"))
-            {
-                _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
-                InputManager.Instance.MovementNumber++;
-            }
-            else if (ray.collider.CompareTag("Crate"))
+            if (ray.collider.CompareTag("Crate"))
             {
                 if (CheckCrateMovement(ray.transform, direction))
                 {
                     InputManager.Instance.MovementNumber++;
                 }
+                else
+                {
+                    Handheld.Vibrate();
+                }
+            }
+            else if (ray.collider.CompareTag("Mud"))
+            {
+                _playerStoppedByMud = true;
+                _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
+                InputManager.Instance.MovementNumber++;
+            }
+            else
+            {
+                Handheld.Vibrate();
             }
         }
         else
@@ -180,6 +194,28 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         _onPlayerMoveStopped?.Invoke();
+        if (_playerStoppedByMud)
+        {
+            AudioManager.Instance.PlaySound("PlayerInMud");
+            _playerStoppedByMud = false;
+        }
+        else
+        {
+            switch (_playerReflection.ReflectionColor)
+            {
+                case Utilities.GAMECOLORS.Red:
+                    AudioManager.Instance.PlaySound("RedHitsWall");
+                    break;
+                case Utilities.GAMECOLORS.Blue:
+                    AudioManager.Instance.PlaySound("BlueHitsWall");
+                    break;
+                case Utilities.GAMECOLORS.Yellow:
+                    AudioManager.Instance.PlaySound("YellowHitsWall");
+                    break;
+                default:
+                    break;
+            }
+        }
         if (direction.y == 0f)
         {
             _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager
@@ -206,7 +242,28 @@ public class PlayerController : MonoBehaviour
             && !Physics2D.OverlapCircle((Vector2)hitObject.position + direction, .45f, Utilities.MovementLayers[Utilities.GAMECOLORS.White]))
         {
             InputManager.Instance.CanMoveAPlayer = false;
-            hitObject.GetComponentInChildren<Animator>()?.SetTrigger(direction.x != 0 ? "HorizontalMovement" : "VerticalMovement");
+            if (direction.y == 0f)
+            {
+                if (direction.x > 0)
+                {
+                    hitObject.GetComponentInChildren<Animator>()?.SetTrigger("Right");
+                }
+                else
+                {
+                    hitObject.GetComponentInChildren<Animator>()?.SetTrigger("Left");
+                }
+            }
+            else
+            {
+                if (direction.y > 0)
+                {
+                    hitObject.GetComponentInChildren<Animator>()?.SetTrigger("Top");
+                }
+                else
+                {
+                    hitObject.GetComponentInChildren<Animator>()?.SetTrigger("Bot");
+                }
+            }
             _moveCrateCoroutine = StartCoroutine(MoveCrateCoroutine(hitObject.gameObject, direction));
             return true;
         }
@@ -230,6 +287,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator RotationCoroutine()
     {
+        AudioManager.Instance.PlaySound("PlayerRotate");
         IsRotating = true;
         _onPlayerRotationStarted?.Invoke();
         float lerpValue = 0f;
@@ -261,6 +319,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator MoveCrateCoroutine(GameObject crate, Vector2 direction)
     {
+        AudioManager.Instance.PlaySound("CrateMoving");
         IsCrateMoving = true;
         _onCrateMoveStart?.Invoke();
         Vector3 initialPosition = crate.transform.position;
@@ -277,6 +336,8 @@ public class PlayerController : MonoBehaviour
             crate.transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
         }
+        AudioManager.Instance.StopSound("CrateMoving");
+        AudioManager.Instance.PlaySound("CrateStopping");
         crate.GetComponentInChildren<Animator>()?.SetTrigger("StopMovement");
         IsCrateMoving = false;
         _onCrateMoveStop?.Invoke();

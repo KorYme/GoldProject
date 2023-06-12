@@ -2,21 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+using System.Runtime.CompilerServices;
+using NaughtyAttributes;
+using System.Linq;
+using UnityEditor;
 
-public class skinManagerUI : MonoBehaviour
+public class SkinManagerUI : MonoBehaviour
 {
-    public bool _isUnlocked = false;
-    [SerializeField] private Image _skinImage;
+    [SerializeField] GameObject[] Skins;
 
     void Start()
     {
-        if (_isUnlocked)
+        for (int i = 3; i < Skins.Length; i++)
         {
-            _skinImage.color = Color.white;
+            Skins[i].GetComponentInChildren<Image>().color = Color.gray;
         }
-        else
+    }
+    
+    public void UnlockedSkin(bool Unlocked)
+    {
+        if(Unlocked)
         {
-            _skinImage.color = Color.gray;
+            GameObject SkinName = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject;
+            for (int i = 0; i < Skins.Length; i++)
+            {
+                if (SkinName.name == Skins[i].name)
+                {
+                    Skins[i].GetComponentInChildren<Image>().color = Color.white;
+                }
+            }
+
         }
     }
 }

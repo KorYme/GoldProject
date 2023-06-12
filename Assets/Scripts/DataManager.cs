@@ -1,3 +1,4 @@
+using DG.Tweening.Core;
 using KorYmeLibrary.SaveSystem;
 using System;
 using System.Collections;
@@ -8,16 +9,51 @@ using UnityEngine.SceneManagement;
 public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 {
     [Header("Parameters")]
-    [SerializeField] private int _levelPerStage;
-    [SerializeField] private int _starSkippable;
+    [SerializeField] DSM_GameData dsm_GameData;
+    [SerializeField] int _levelPerStage;
+    [SerializeField] int _starSkippable;
+    [SerializeField] int _lastLevelNumber;
+    public int LastLevelNumber
+    {
+        get => _lastLevelNumber;
+    }
 
-    SerializableDictionnary<int, SKINSTATE> _skinDictionnary;
-    SerializableDictionnary<int, int> _levelDictionnary;
+    [Header("SaveParameters")]
+    [SerializeField] bool _destroySaveOnNewVersion;
+
     public Action<int> OnTotalStarChange
     {
         get; set;
     }
 
+    public Action<int> OnStarAdded
+    {
+        get; set;
+    }
+
+    public Action<int, int> OnLevelComplete
+    {
+        get; set;
+    }
+
+    // SKIN DICTIONNARIES
+    List<SKINPACK> _skinAcquiredList;
+    public List<SKINPACK> SkinAcquiredList
+    {
+        get => _skinAcquiredList;
+        private set => _skinAcquiredList = value;
+    }
+
+    SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> _skinEquippedDictionnary;
+    public SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> SkinEquippedDictionnary
+    {
+        get => _skinEquippedDictionnary;
+        private set => _skinEquippedDictionnary = value;
+    }
+
+
+    // LEVEL DICTIONNARY
+    SerializableDictionnary<int, int> _levelDictionnary;
     public SerializableDictionnary<int, int> LevelDictionnary
     {
         get => _levelDictionnary;
@@ -55,10 +91,6 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         Instance = this;
         transform.parent = null;
         DontDestroyOnLoad(gameObject);
-        if (LevelDictionnary == null)
-        {
-            _levelDictionnary = new();
-        }
     }
 
     public void CompleteALevel(int levelID, int starsNumber)
@@ -68,13 +100,25 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         {
             LevelDictionnary[levelID] = 0;
         }
+        OnLevelComplete?.Invoke(levelID, starsNumber);
+        if (levelID > 0)
+        {
+            OnStarAdded?.Invoke(Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4));
+        }
         LevelDictionnary[levelID] += Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4);
     }
 
     public void LoadData(GameData gameData)
     {
+        if (_destroySaveOnNewVersion && gameData.Version != Application.version)
+        {
+            FileDataHandler<GameData>.DestroyOldData();
+            dsm_GameData.NewGame();
+            return;
+        }
         _levelDictionnary = gameData.LevelDictionnary;
-        _skinDictionnary = gameData.SkinDictionnary;
+        _skinAcquiredList = gameData.SkinAcquiredDictionnary;
+        _skinEquippedDictionnary = gameData.SkinEquippedDictionnary;
         _volume = gameData.Volume;
         CheckLevels();
     }
@@ -83,30 +127,34 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void SaveData(ref GameData gameData)
     {
         gameData.LevelDictionnary = _levelDictionnary;
-        gameData.SkinDictionnary = _skinDictionnary;
+        gameData.SkinAcquiredDictionnary = _skinAcquiredList;
+        gameData.SkinEquippedDictionnary = _skinEquippedDictionnary;
         gameData.Volume = _volume;
+        gameData.Version = Application.version;
     }
 
     public void InitializeData()
     {
-        _levelDictionnary = new();
-        _skinDictionnary = new SerializableDictionnary<int, SKINSTATE>()
+        _levelDictionnary = new SerializableDictionnary<int, int>();
+        _skinAcquiredList = new List<SKINPACK>()
         {
-            { 1 , SKINSTATE.ACQUIRED },
-            { 2 , SKINSTATE.NOT_ACQUIRED }, 
-            { 3 , SKINSTATE.ACQUIRED },
-            { 4 , SKINSTATE.NOT_ACQUIRED },
-            { 5 , SKINSTATE.ACQUIRED },
-            { 6 , SKINSTATE.NOT_ACQUIRED },
+            SKINPACK.BASIC,
+        };
+        _skinEquippedDictionnary = new SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK>
+        {
+            { Utilities.GAMECOLORS.Red, SKINPACK.BASIC },
+            { Utilities.GAMECOLORS.Blue, SKINPACK.BASIC },
+            { Utilities.GAMECOLORS.Yellow, SKINPACK.BASIC },
         };
         _volume = 0.8f;
     }
 
     public bool CanPlayThisLevel(int level)
     {
+        if (level > _lastLevelNumber) return false;
         if (level < 0)
         {
-            int currentStage = (level + 1) / -(_levelPerStage * 2);
+            int currentStage = ((level + 1) * 10) / -(_levelPerStage * 2);
             for (int i = 1; i <= _levelPerStage * 2; i++)
             {
                 if (!LevelDictionnary.ContainsKey((currentStage * _levelPerStage * 2) + i) || LevelDictionnary[(currentStage * _levelPerStage * 2) + i] < 3) return false;
@@ -142,5 +190,11 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
                 LevelDictionnary[i] = 0;
             }
         }
+    }
+
+    public void UnlockNewSkin(SKINPACK skin)
+    {
+        if (SkinAcquiredList.Contains(skin)) return;
+        SkinAcquiredList.Add(skin);
     }
 }

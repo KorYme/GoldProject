@@ -31,7 +31,7 @@ public class AnimatorManager : MonoBehaviour
 
     ANIMATION_STATES _currentState;
 
-    private void Awake()
+    private void Start()
     {
         _currentState = ANIMATION_STATES.Idle;
         ChangeAnimation(_currentState);
