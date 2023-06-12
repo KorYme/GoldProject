@@ -29,23 +29,26 @@ public class AnimatorManager : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] string _playerName;
 
-    ANIMATION_STATES _currentState;
+    public ANIMATION_STATES CurrentState
+    {
+        get; private set;
+    }
 
     private void Start()
     {
-        _currentState = ANIMATION_STATES.Idle;
-        ChangeAnimation(_currentState);
+        CurrentState = ANIMATION_STATES.Idle;
+        ChangeAnimation(CurrentState);
     }
 
-    public float ChangeAnimation(ANIMATION_STATES state)
+    public float ChangeAnimation(ANIMATION_STATES state, bool isForced = false)
     {
-        if (_currentState == state) return 0f;
+        if (!isForced && CurrentState == state) return 0f;
         if (state == ANIMATION_STATES.Victory)
         {
             _animator.SetTrigger("Victory");
             return 2f;
         }
-        _currentState = state;
+        CurrentState = state;
         _animator.Play($"{state}_{_playerName}");
         return _animator.runtimeAnimatorController.animationClips.First(x => x.name == $"{state}_{_playerName}").length;
     }
