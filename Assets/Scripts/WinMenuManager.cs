@@ -4,87 +4,179 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using DG.Tweening;
+using System.Linq;
 
 public class WinMenuManager : MonoBehaviour
 {
+    [Header("Parameters")]
+    [SerializeField] float _victoryScreenDelay;
+    
     [Header("Win Menu")]
-    [SerializeField] private Image _starOne;
-    [SerializeField] private TextMeshProUGUI _starOneText;
-    [SerializeField] private Image _starTwo;
-    [SerializeField] private TextMeshProUGUI _starTwoText;
-    [SerializeField] private Image _starThree;
-    [SerializeField] private TextMeshProUGUI _starThreeText;
+    [SerializeField] LevelManager _levelManager;
+    [SerializeField] Transform _starOne;
+    [SerializeField] TextMeshProUGUI _starOneText;
+    [SerializeField] Image _starOneImage;
+    [SerializeField] Transform _starTwo;
+    [SerializeField] TextMeshProUGUI _starTwoText;
+    [SerializeField] Image _starTwoImage;
+    [SerializeField] Transform _starThree;
+    [SerializeField] TextMeshProUGUI _starThreeText;
+    [SerializeField] Image _starThreeImage;
 
-    [SerializeField] private TextMeshProUGUI _moveText;
+    [SerializeField] TextMeshProUGUI _moveText;
 
     [Header("Menu")]
-    [SerializeField] private GameObject _winMenu;
-    [SerializeField] private GameObject _gameMenu;
+    [SerializeField] GameObject _winMenu;
+    [SerializeField] GameObject _gameMenu;
 
     [Header("Star Image")]
-    [SerializeField] private Sprite _starGray;
-    [SerializeField] private Sprite _starYellow;
-    [SerializeField] private Sprite _starCyan;
+    [SerializeField] Sprite _starGray;
+    [SerializeField] Sprite _starYellow;
+    [SerializeField] Sprite _starCyan;
 
-    public void Win(int TotalMove)
+    bool _isLevelComplete;
+    
+    void Start()
     {
-        LevelManager levelManager = GetComponent<LevelManager>();
-        string TextMove = TotalMove.ToString();
-        _winMenu.SetActive(true);
-        _gameMenu.SetActive(false);
-        WinMenu(levelManager._levelNumber , levelManager._levelPerfectScore, levelManager._levelThreeStarScore, levelManager._levelTwoStarScore, levelManager._levelOneStarScore, TextMove, TotalMove);
+        DOTween.Init();
     }
 
-    void WinMenu(int _levelNumber, int _levelPerfectScore, int _levelThreeStarScore, int _levelTwoStarScore, int _levelOneStarScore, string TextMove, int TotalMove)
+    public void Win(int totalMove)
     {
+        if (_isLevelComplete) return;
+        AudioManager.Instance.NbOfPlayersReflecting = 0;
+        _isLevelComplete = true;
+        InputManager.Instance.DisableInputs();
+        FindObjectsOfType<AnimatorManager>().ToList().ForEach(x => x.ChangeAnimation(ANIMATION_STATES.Victory));
+        StartCoroutine(VictoryScreenAppearance(totalMove));
+    }
 
+    IEnumerator VictoryScreenAppearance(int totalMove)
+    {
+        yield return new WaitForSeconds(_victoryScreenDelay);
+        _winMenu.SetActive(true);
+        _gameMenu.SetActive(false);
+        UpdateWinMenu(_levelManager.LevelNumber , _levelManager._LevelPerfectScore, _levelManager._LevelThreeStarScore, _levelManager._LevelTwoStarScore, totalMove.ToString(), totalMove);
+    }
+
+    void UpdateWinMenu(int _levelNumber, int _levelPerfectScore, int _levelThreeStarScore, int _levelTwoStarScore,  string TextMove, int TotalMove)
+    {
         _starThreeText.text = "Less than " + _levelThreeStarScore + " moves";
 
         _starTwoText.text = "Less than " + _levelTwoStarScore + " moves";
 
-        _starOneText.text = "Less than " + _levelOneStarScore + " moves";
+        _starOneText.text = "Finish the level"; 
 
         _moveText.text = "Level " + _levelNumber + " - " + TextMove + " moves";
 
-        if(TotalMove <= _levelPerfectScore)
+        Vector3 starOnePosition = _starOne.transform.position;
+        Vector3 starTwoPosition = _starTwo.transform.position;
+        Vector3 starThreePosition = _starThree.transform.position;
+
+        _starOneImage.sprite = _starYellow;
+        _starTwoImage.sprite = _starYellow;
+        _starThreeImage.sprite = _starYellow;
+
+        _starOne.transform.position = new Vector3(-500, -500, 0);
+        _starTwo.transform.position = new Vector3(-500, -500, 0);
+        _starThree.transform.position = new Vector3(-500, -500, 0);
+
+        if (TotalMove <= _levelPerfectScore)
         {
-            _starOne.sprite = _starCyan;
-            _starTwo.sprite = _starCyan;
-            _starThree.sprite = _starCyan;
+            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 4));
+            DataManager.Instance.CompleteALevel(_levelNumber, 4);
         }
-        else if(_levelPerfectScore > TotalMove || TotalMove <= _levelThreeStarScore)
+        else if (TotalMove <= _levelThreeStarScore)
         {
-            _starOne.sprite = _starYellow;
-            _starTwo.sprite = _starYellow;
-            _starThree.sprite = _starYellow;
+            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 3));
+            DataManager.Instance.CompleteALevel(_levelNumber, 3);
         }
-        else if(_levelThreeStarScore > TotalMove || TotalMove <= _levelTwoStarScore)
+        else if (TotalMove <= _levelTwoStarScore)
         {
-            _starOne.sprite = _starYellow;
-            _starTwo.sprite = _starYellow;
-            _starThree.sprite = _starGray;
+            _starThreeImage.sprite = _starGray;
+            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 2));
+            DataManager.Instance.CompleteALevel(_levelNumber, 2);
         }
-        else if(_levelOneStarScore <= TotalMove)
-        {   
-            _starOne.sprite = _starYellow;
-            _starTwo.sprite = _starGray;
-            _starThree.sprite = _starGray;
+        else
+        {
+            _starTwoImage.sprite = _starGray;
+            _starThreeImage.sprite = _starGray;
+            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 1));
+            DataManager.Instance.CompleteALevel(_levelNumber, 1);
         }
+    }
+
+    IEnumerator UpdateStarSound(Vector3 starOnePosition, Vector3 starTwoPosition, Vector3 starThreePosition, int numberOfStar)
+    {
+        if(numberOfStar >= 3)
+        {
+            AudioManager.Instance.PlaySound("StarOne");
+            _starOne.transform.DOMove(starOnePosition, 0.5f, false).OnComplete(() => 
+            AudioManager.Instance.PlaySound("StarTwo"));
+            yield return new WaitForSeconds(0.5f);
+            _starTwo.transform.DOMove(starTwoPosition, 0.5f, false).OnComplete(() =>
+            AudioManager.Instance.PlaySound("StarThree"));
+            yield return new WaitForSeconds(0.5f);
+            _starThree.transform.DOMove(starThreePosition, 0.5f, false);
+            yield return new WaitForSeconds(0.5f);
+            if (numberOfStar == 4)
+            {
+                AudioManager.Instance.PlaySound("StarPlat");
+                yield return new WaitForSeconds(0.1f);
+                _starOne.transform.DOPunchScale(new Vector3(2, 2, 2), 0.25f, 2, 0).OnComplete(() => _starOneImage.sprite = _starCyan);
+                yield return new WaitForSeconds(0.25f);
+                _starTwo.transform.DOPunchScale(new Vector3(2, 2, 2), 0.25f, 2, 0).OnComplete(() => _starTwoImage.sprite = _starCyan);
+                yield return new WaitForSeconds(0.25f);
+                _starThree.transform.DOPunchScale(new Vector3(2, 2, 2), 0.25f, 2, 0).OnComplete(() => _starThreeImage.sprite = _starCyan);
+            }
+        }
+        else if(numberOfStar == 2)
+        {
+            AudioManager.Instance.PlaySound("StarOne");
+            _starOne.transform.DOMove(starOnePosition, 0.5f, false).OnComplete(() => 
+            AudioManager.Instance.PlaySound("StarTwo"));
+            yield return new WaitForSeconds(0.5f);
+            _starTwo.transform.DOMove(starTwoPosition, 0.5f, false).OnComplete(() =>
+            AudioManager.Instance.PlaySound("StarFail"));
+            yield return new WaitForSeconds(0.5f);
+            _starThree.transform.DOMove(starThreePosition, 0.5f, false);
+            yield return new WaitForSeconds(0.5f);
+        }
+        else if(numberOfStar == 1)
+        {
+            AudioManager.Instance.PlaySound("StarOne");
+            _starOne.transform.DOMove(starOnePosition, 0.5f, false).OnComplete(() => 
+            AudioManager.Instance.PlaySound("StarFail"));
+            yield return new WaitForSeconds(0.5f);
+            _starTwo.transform.DOMove(starTwoPosition, 0.5f, false).OnComplete(() =>
+            AudioManager.Instance.PlaySound("StarFail"));
+            yield return new WaitForSeconds(0.5f);
+            _starThree.transform.DOMove(starThreePosition, 0.5f, false);
+            yield return new WaitForSeconds(0.5f);
+        }        
     }
 
     public void NextLevelButton()
     {
-        NextLevel(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+        NextLevel(SceneManager.GetActiveScene().buildIndex + 1);
     }
     
     void NextLevel(int levelIndex)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadScene(levelIndex);
+    }
+
+    public void MenuButton()
+    {
+        SceneManager.LoadScene(0);
+        AudioManager.Instance.NbOfPlayersReflecting = 0;
     }
 
     public void RestartLevelButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        AudioManager.Instance.NbOfPlayersReflecting = 0;
     }
 
 }

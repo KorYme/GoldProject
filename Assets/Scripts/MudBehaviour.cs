@@ -6,7 +6,7 @@ public class MudBehaviour : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") || collision.CompareTag("Crate"))
         {
             gameObject.layer = LayerMask.NameToLayer("Default");
         }
@@ -14,7 +14,7 @@ public class MudBehaviour : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") || collision.CompareTag("Crate"))
         {
             gameObject.layer = LayerMask.NameToLayer("OnlyPlayers");
         }

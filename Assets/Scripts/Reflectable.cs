@@ -68,8 +68,6 @@ public class Reflectable : MonoBehaviour
         if (_laserRenderer == null) return;
         _laserRenderer.LineRenderer.enabled = false;
         _laserRenderer.LineRenderer.useWorldSpace = true;
-        _laserRenderer.LineRenderer.startWidth = 0.08f;
-        _laserRenderer.LineRenderer.endWidth = 0.08f;
     }
 
     public virtual void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
@@ -80,12 +78,12 @@ public class Reflectable : MonoBehaviour
         UpdateColorLaser();
         _laserRenderer.LineRenderer.enabled = true;
         _onReflection += ReflectLaser;
+        _laserRenderer.ChangeSecondPosition(LaserOrigin, LaserDirection,true);
     }
 
     protected virtual void UpdateColorLaser()
     {
-        _laserRenderer.LineRenderer.startColor = Utilities.GetColor(_outputLaserColor);
-        _laserRenderer.LineRenderer.endColor = Utilities.GetColor(_outputLaserColor);
+        _laserRenderer.ChangeLaserColor(_outputLaserColor);
     }
 
     public virtual void StopReflection()
@@ -95,6 +93,8 @@ public class Reflectable : MonoBehaviour
         _laserRenderer.LineRenderer.enabled = false;
         _onReflection -= ReflectLaser;
         _nextReflectable?.StopReflection();
+        _nextReflectable = null;
+        _laserRenderer.ChangeSecondPosition(LaserOrigin, LaserDirection);
     }
 
     protected void Update()
@@ -106,7 +106,6 @@ public class Reflectable : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(LaserOrigin, LaserDirection, 15f, Utilities.LightLayerMask);
         _laserRenderer.LineRenderer.SetPosition(0, LaserOrigin);
-        _laserRenderer.LineRenderer.SetPosition(1, hit.collider != null ? hit.point : LaserOrigin);
         if (hit.collider == null) return;
         GameObject objectHit = hit.collider.gameObject;
         if (objectHit == (_nextReflectable?.gameObject ?? null))
@@ -115,17 +114,27 @@ public class Reflectable : MonoBehaviour
             {
                 _nextReflectable.StartReflection(LaserDirection, _outputLaserColor, hit, this);
             }
+            _laserRenderer.ChangeSecondPosition(hit.collider != null ? hit.point : LaserOrigin, hit.normal);
             return;
         }
         _nextReflectable?.StopReflection();
         _nextReflectable = objectHit.GetComponent<Reflectable>();
         if ((_nextReflectable?.IsReflecting) ?? true)
         {
-            _nextReflectable = null;
+            if (_nextReflectable == null)
+            {
+                _laserRenderer.ChangeSecondPosition(hit.collider != null ? hit.point : LaserOrigin, hit.normal, true);
+            }
+            else
+            {
+                _laserRenderer.ChangeSecondPosition(hit.collider != null ? hit.point : LaserOrigin,hit.normal);
+                _nextReflectable = null;
+            }
         }
         else
         {
             _nextReflectable?.StartReflection(LaserDirection, _outputLaserColor, hit, this);
+            _laserRenderer.ChangeSecondPosition(hit.collider != null ? hit.point : LaserOrigin, hit.normal);
         }
     }
 }

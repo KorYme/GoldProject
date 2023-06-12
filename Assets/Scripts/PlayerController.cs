@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using NaughtyAttributes.Test;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,7 +8,6 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEngine.UI.Image;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Transform _crystal;
     [SerializeField] PlayerReflection _playerReflection;
     [SerializeField] Animator _animator;
+    [SerializeField] Transform _moveableGFX;
+    [SerializeField] AnimatorManager _animatorManager;
 
     [Header("Movement Parameters")]
     [SerializeField] float _movementSpeed;
@@ -40,12 +42,20 @@ public class PlayerController : MonoBehaviour
     Coroutine _movementCoroutine;
     Coroutine _rotationCoroutine;
     Coroutine _moveCrateCoroutine;
+    Coroutine _wallHitCoroutine;
+    Coroutine _refuseCoroutine;
     RaycastHit2D _crateRay;
+    bool _playerStoppedByMud = false;
 
     const float ANGLE_TOLERANCE = 2f;
     public bool IsMoving
     {
         get => _movementCoroutine != null || _moveCrateCoroutine != null;
+    }
+
+    public bool IsHittingWall
+    {
+        get => _wallHitCoroutine != null;
     }
 
     public bool IsCrateMoving
@@ -80,26 +90,43 @@ public class PlayerController : MonoBehaviour
     public void SetNewDirection(Vector2 direction)
     {
         if (!InputManager.Instance.CanMoveAPlayer) return;
+        if (_refuseCoroutine != null)
+        {
+            StopCoroutine(_refuseCoroutine);
+        }
         RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, DETECTION_RANGE, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         if (!ray) return;
         RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position, direction, 1.25f, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         foreach (RaycastHit2D item in rays)
         {
-            if (item.transform.CompareTag("Player")) return;
+            if (item.transform.CompareTag("Player"))
+            {
+                _refuseCoroutine = StartCoroutine(RefuseMovement());
+                return;
+            }
         }
         if (ray.distance < 1f)
         {
-            if (ray.collider.CompareTag("Mud"))
-            {
-                _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
-                InputManager.Instance.MovementNumber++;
-            }
-            else if (ray.collider.CompareTag("Crate"))
+            if (ray.collider.CompareTag("Crate"))
             {
                 if (CheckCrateMovement(ray.transform, direction))
                 {
                     InputManager.Instance.MovementNumber++;
                 }
+                else
+                {
+                    _refuseCoroutine = StartCoroutine(RefuseMovement());
+                }
+            }
+            else if (ray.collider.CompareTag("Mud"))
+            {
+                _playerStoppedByMud = true;
+                _movementCoroutine = StartCoroutine(MovementCoroutine(direction, ray));
+                InputManager.Instance.MovementNumber++;
+            }
+            else
+            {
+                _refuseCoroutine = StartCoroutine(RefuseMovement());
             }
         }
         else
@@ -140,8 +167,24 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator MovementCoroutine(Vector2 direction, RaycastHit2D raycast)
     {
+        if (_wallHitCoroutine != null)
+        {
+            StopCoroutine(_wallHitCoroutine);
+        }
         InputManager.Instance.CanMoveAPlayer = false;
-        _animator.SetFloat("DirectionY", direction.y);
+        _moveableGFX.rotation = Quaternion.Euler(0, direction.x > 0.1f ? 180 : 0, 0);
+        if (direction.y == 0f)
+        {
+            _animatorManager.ChangeAnimation(ANIMATION_STATES.Slide_profil);
+        }
+        else if (direction.y > 0f)
+        {
+            _animatorManager.ChangeAnimation(ANIMATION_STATES.Slide_dos);
+        }
+        else
+        {
+            _animatorManager.ChangeAnimation(ANIMATION_STATES.Slide_face);
+        }
         _onPlayerMoveStarted?.Invoke();
         Vector3 initialPosition = transform.position;
         float distance = ((int)raycast.distance + (raycast.collider.CompareTag("Mud") ? 1 : 0));
@@ -157,8 +200,46 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         _onPlayerMoveStopped?.Invoke();
+        if (_playerStoppedByMud)
+        {
+            AudioManager.Instance.PlaySound("PlayerInMud");
+            _playerStoppedByMud = false;
+        }
+        else
+        {
+            switch (_playerReflection.ReflectionColor)
+            {
+                case Utilities.GAMECOLORS.Red:
+                    AudioManager.Instance.PlaySound("RedHitsWall");
+                    break;
+                case Utilities.GAMECOLORS.Blue:
+                    AudioManager.Instance.PlaySound("BlueHitsWall");
+                    break;
+                case Utilities.GAMECOLORS.Yellow:
+                    AudioManager.Instance.PlaySound("YellowHitsWall");
+                    break;
+                default:
+                    break;
+            }
+        }
+        if (direction.y == 0f)
+        {
+            _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager
+                .ChangeAnimation(Utilities.AllBrakeTags.Find(x => x == raycast.collider.tag) == default ? ANIMATION_STATES.Hit_profil : ANIMATION_STATES.Frein_profil)));
+        }
+        else if (direction.y > 0)
+        {
+            _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager
+                .ChangeAnimation(Utilities.AllBrakeTags.Find(x => x == raycast.collider.tag) == default ? ANIMATION_STATES.Hit_dos : ANIMATION_STATES.Frein_dos)));
+        }
+        else
+        {
+            _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager
+                .ChangeAnimation(Utilities.AllBrakeTags.Find(x => x == raycast.collider.tag) == default ? ANIMATION_STATES.Hit_face : ANIMATION_STATES.Frein_face)));
+        }
         transform.position = positionToGo;
         CheckCrateMovement(raycast.transform, direction);
+        _movementCoroutine = null;
     }
 
     private bool CheckCrateMovement(Transform hitObject, Vector2 direction)
@@ -167,12 +248,33 @@ public class PlayerController : MonoBehaviour
             && !Physics2D.OverlapCircle((Vector2)hitObject.position + direction, .45f, Utilities.MovementLayers[Utilities.GAMECOLORS.White]))
         {
             InputManager.Instance.CanMoveAPlayer = false;
+            if (direction.y == 0f)
+            {
+                if (direction.x > 0)
+                {
+                    hitObject.GetComponentInChildren<Animator>()?.SetTrigger("Right");
+                }
+                else
+                {
+                    hitObject.GetComponentInChildren<Animator>()?.SetTrigger("Left");
+                }
+            }
+            else
+            {
+                if (direction.y > 0)
+                {
+                    hitObject.GetComponentInChildren<Animator>()?.SetTrigger("Top");
+                }
+                else
+                {
+                    hitObject.GetComponentInChildren<Animator>()?.SetTrigger("Bot");
+                }
+            }
             _moveCrateCoroutine = StartCoroutine(MoveCrateCoroutine(hitObject.gameObject, direction));
             return true;
         }
         else
         {
-            _movementCoroutine = null;
             InputManager.Instance.CanMoveAPlayer = true;
             return false;
         }
@@ -191,7 +293,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator RotationCoroutine()
     {
-        AudioManager.Instance.PlaySound("PLACEHOLDER");
+        AudioManager.Instance.PlaySound("PlayerRotate");
         IsRotating = true;
         _onPlayerRotationStarted?.Invoke();
         float lerpValue = 0f;
@@ -223,6 +325,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator MoveCrateCoroutine(GameObject crate, Vector2 direction)
     {
+        AudioManager.Instance.PlaySound("CrateMoving");
         IsCrateMoving = true;
         _onCrateMoveStart?.Invoke();
         Vector3 initialPosition = crate.transform.position;
@@ -238,10 +341,12 @@ public class PlayerController : MonoBehaviour
                 * _movementSpeed * Time.deltaTime));
             crate.transform.position = Vector3.Lerp(initialPosition, positionToGo, lerpValue);
             yield return null;
-        }   
+        }
+        AudioManager.Instance.StopSound("CrateMoving");
+        AudioManager.Instance.PlaySound("CrateStopping");
+        crate.GetComponentInChildren<Animator>()?.SetTrigger("StopMovement");
         IsCrateMoving = false;
         _onCrateMoveStop?.Invoke();
-        _movementCoroutine = null;
         _moveCrateCoroutine = null;
         InputManager.Instance.CanMoveAPlayer = true;
     }
@@ -251,5 +356,20 @@ public class PlayerController : MonoBehaviour
         RaycastHit2D ray = Physics2D.Raycast(origin, direction, DETECTION_RANGE, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         if (!ray || (ray.distance < 1 && !ray.collider.CompareTag("Mud"))) return;
         _crateRay = ray;
+    }
+
+    IEnumerator WallHitCoroutine(float time)
+    {
+        yield return new WaitForSeconds(time);
+        _moveableGFX.rotation = Quaternion.Euler(0, 0, 0);
+        _animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
+        _wallHitCoroutine = null;
+    }
+
+    IEnumerator RefuseMovement()
+    {
+        Handheld.Vibrate();
+        yield return new WaitForSeconds(_animatorManager.ChangeAnimation(ANIMATION_STATES.Refuse, true));
+        _animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
     }
 }

@@ -53,7 +53,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 318e43844ca000f49911cc8c099491f7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -76,7 +76,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -85,7 +85,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.3
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -144,4 +144,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78ab26698ec1f87498148684941936d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _particleSystemPrefab: {fileID: 4355079309876472003, guid: c0a0d5448fdf91b4bb20a544535726ed, type: 3}
   _lineRenderer: {fileID: 4141730671707562850}
+  _materialsLaser:
+  - {fileID: 2100000, guid: 42104b8c951aa2942a7014c8b8271065, type: 2}
+  - {fileID: 2100000, guid: 2bc4e8d51cd63de4d884273063276e05, type: 2}
+  - {fileID: 2100000, guid: 05411979385be83489258f18f2b1778e, type: 2}
+  - {fileID: 2100000, guid: f91908cd5a8fee34fbaad6c0f0c7bd67, type: 2}
+  - {fileID: 2100000, guid: 318e43844ca000f49911cc8c099491f7, type: 2}
+  - {fileID: 2100000, guid: e87175e86b298b54bbc0855c5e318d3b, type: 2}
+  - {fileID: 2100000, guid: ebb7f9b8c80a145449bbd7fff7208a35, type: 2}
+  _laserWidth: 0.3
+  _laserColor: 4

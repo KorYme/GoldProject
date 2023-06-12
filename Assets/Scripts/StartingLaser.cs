@@ -31,10 +31,8 @@ public class StartingLaser : MonoBehaviour
         _nextReflectable = null;
         _raycastTarget = Utilities.GetDirection(_laserDir);
         _laserRenderer.LineRenderer.useWorldSpace = true;
-        _laserRenderer.LineRenderer.startWidth = 0.08f;
-        _laserRenderer.LineRenderer.endWidth = 0.08f;
-        _laserRenderer.LineRenderer.startColor = Utilities.GetColor(_initialColor);
-        _laserRenderer.LineRenderer.endColor = Utilities.GetColor(_initialColor);
+        _laserRenderer.ChangeLaserColor(_initialColor);
+        ApplyParameters(false);
     }
 
     private void Update()
@@ -47,6 +45,7 @@ public class StartingLaser : MonoBehaviour
         if (objectHit == (_nextReflectable?.gameObject ?? null)) return;
         _nextReflectable?.StopReflection();
         _nextReflectable = objectHit.GetComponent<Reflectable>();
+        _laserRenderer.ChangeSecondPosition(hit.collider is null ? transform.position + (_raycastTarget * 100f) : hit.point, hit.normal ,_nextReflectable == null);
         _nextReflectable?.StartReflection(_raycastTarget, _initialColor, hit, _thisReflectable);
     }
 

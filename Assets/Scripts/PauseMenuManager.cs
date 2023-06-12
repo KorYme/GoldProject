@@ -8,10 +8,16 @@ using TMPro;
 public class PauseMenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject _soundSlider;
-    [SerializeField] private GameObject _vibrationToggle;
-
     [SerializeField] private GameObject _pauseMenu;
     [SerializeField] private GameObject _gameMenu;
+    [SerializeField] private GameObject _creditMenu;
+
+    [SerializeField] private TextMeshProUGUI _levelText;
+
+    void Start()
+    {
+        _levelText.text = $"Level {SceneManager.GetActiveScene().name.Split('-')[1]}";
+    }
 
     public void ResumeButton()
     {
@@ -26,7 +32,14 @@ public class PauseMenuManager : MonoBehaviour
 
     public void CreditsMenuButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("CreditsMenu");
+        _pauseMenu.SetActive(false);
+        _creditMenu.SetActive(true);
+    }
+
+    public void BackButton()
+    {
+        _pauseMenu.SetActive(true);
+        _creditMenu.SetActive(false);
     }
 
     public void RestartButton()

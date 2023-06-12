@@ -4,8 +4,11 @@ using UnityEngine.Events;
 
 public class PlayerReflection : Reflectable
 {
+    bool _shouldPlayStartReflectSound = true;
+    
     [SerializeField] protected Transform _crystalTransform;
     [SerializeField] protected PlayerController _playerController;
+    [SerializeField] AnimatorManager _animatorManager;
 
     [Space(10f)]
     [SerializeField, Foldout("Events")] UnityEvent _onReflect;
@@ -41,10 +44,20 @@ public class PlayerReflection : Reflectable
 
     public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
+        if (_shouldPlayStartReflectSound)
+        {
+            AudioManager.Instance.NbOfPlayersReflecting++;
+            AudioManager.Instance.PlayPlayerReflectSound();
+            _shouldPlayStartReflectSound = false;
+        }
         base.StartReflection(laserDirection, laserColor, raycast, previous);
         if (previous == _previousReflectable)
         {
             ForbiddenAngle = ((int)(Mathf.Atan2(-laserDirection.y, -laserDirection.x) * Mathf.Rad2Deg) + 360) % 360;
+        }
+        if (!_playerController.IsMoving && !_playerController.IsHittingWall)
+        {
+            _animatorManager.ChangeAnimation(IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
         }
         _playerController?.CheckNeededRotation();
     }
@@ -53,5 +66,11 @@ public class PlayerReflection : Reflectable
     {
         base.StopReflection();
         ForbiddenAngle = -4000;
+        if (!_playerController.IsMoving)
+        {
+            _animatorManager.ChangeAnimation(ANIMATION_STATES.Idle);
+        }
+        AudioManager.Instance.NbOfPlayersReflecting--;
+        _shouldPlayStartReflectSound = true;
     }
 }
