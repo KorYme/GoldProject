@@ -171,6 +171,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 3091816}
   _spriteRenderer: {fileID: 3091815}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &3091815
 SpriteRenderer:
@@ -298,6 +300,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 5448562}
   _spriteRenderer: {fileID: 5448561}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &5448561
 SpriteRenderer:
@@ -425,6 +429,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 7642717}
   _spriteRenderer: {fileID: 7642716}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &7642716
 SpriteRenderer:
@@ -552,6 +558,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 69568860}
   _spriteRenderer: {fileID: 69568859}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &69568859
 SpriteRenderer:
@@ -679,6 +687,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 83779883}
   _spriteRenderer: {fileID: 83779882}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &83779882
 SpriteRenderer:
@@ -806,6 +816,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 122856251}
   _spriteRenderer: {fileID: 122856250}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &122856250
 SpriteRenderer:
@@ -966,6 +978,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 138468339}
   _spriteRenderer: {fileID: 138468338}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &138468338
 SpriteRenderer:
@@ -1155,6 +1169,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 152296918}
   _spriteRenderer: {fileID: 152296917}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &152296917
 SpriteRenderer:
@@ -1282,6 +1298,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 182753395}
   _spriteRenderer: {fileID: 182753394}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &182753394
 SpriteRenderer:
@@ -1559,6 +1577,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 257825307}
   _spriteRenderer: {fileID: 257825306}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &257825306
 SpriteRenderer:
@@ -1686,6 +1706,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 267834246}
   _spriteRenderer: {fileID: 267834245}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &267834245
 SpriteRenderer:
@@ -1813,6 +1835,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 286817159}
   _spriteRenderer: {fileID: 286817158}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &286817158
 SpriteRenderer:
@@ -1940,6 +1964,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 345861503}
   _spriteRenderer: {fileID: 345861502}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &345861502
 SpriteRenderer:
@@ -2067,6 +2093,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 374226772}
   _spriteRenderer: {fileID: 374226771}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &374226771
 SpriteRenderer:
@@ -2194,6 +2222,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 385452608}
   _spriteRenderer: {fileID: 385452607}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &385452607
 SpriteRenderer:
@@ -2321,6 +2351,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 389843154}
   _spriteRenderer: {fileID: 389843153}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &389843153
 SpriteRenderer:
@@ -2448,6 +2480,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 393634825}
   _spriteRenderer: {fileID: 393634824}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &393634824
 SpriteRenderer:
@@ -2575,6 +2609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 404513511}
   _spriteRenderer: {fileID: 404513510}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &404513510
 SpriteRenderer:
@@ -2702,6 +2738,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 406702371}
   _spriteRenderer: {fileID: 406702370}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &406702370
 SpriteRenderer:
@@ -2829,6 +2867,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 480523760}
   _spriteRenderer: {fileID: 480523759}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &480523759
 SpriteRenderer:
@@ -2956,6 +2996,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 538019932}
   _spriteRenderer: {fileID: 538019931}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &538019931
 SpriteRenderer:
@@ -3083,6 +3125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 656018307}
   _spriteRenderer: {fileID: 656018306}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &656018306
 SpriteRenderer:
@@ -3210,6 +3254,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 690519427}
   _spriteRenderer: {fileID: 690519426}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &690519426
 SpriteRenderer:
@@ -3337,6 +3383,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 711739561}
   _spriteRenderer: {fileID: 711739560}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &711739560
 SpriteRenderer:
@@ -3464,6 +3512,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 731362247}
   _spriteRenderer: {fileID: 731362246}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &731362246
 SpriteRenderer:
@@ -3591,6 +3641,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 750256942}
   _spriteRenderer: {fileID: 750256941}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &750256941
 SpriteRenderer:
@@ -3718,6 +3770,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 758586929}
   _spriteRenderer: {fileID: 758586928}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &758586928
 SpriteRenderer:
@@ -3911,6 +3965,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 829224249}
   _spriteRenderer: {fileID: 829224248}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &829224248
 SpriteRenderer:
@@ -4100,6 +4156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 861189864}
   _spriteRenderer: {fileID: 861189863}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &861189863
 SpriteRenderer:
@@ -4227,6 +4285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 920002070}
   _spriteRenderer: {fileID: 920002069}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &920002069
 SpriteRenderer:
@@ -4450,6 +4510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1033462748}
   _spriteRenderer: {fileID: 1033462747}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &1033462747
 SpriteRenderer:
@@ -4577,6 +4639,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1059857332}
   _spriteRenderer: {fileID: 1059857331}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &1059857331
 SpriteRenderer:
@@ -4704,6 +4768,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1131599510}
   _spriteRenderer: {fileID: 1131599509}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &1131599509
 SpriteRenderer:
@@ -4831,6 +4897,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1132510773}
   _spriteRenderer: {fileID: 1132510772}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &1132510772
 SpriteRenderer:
@@ -4958,6 +5026,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1185005461}
   _spriteRenderer: {fileID: 1185005460}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &1185005460
 SpriteRenderer:
@@ -5085,6 +5155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1217263467}
   _spriteRenderer: {fileID: 1217263466}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &1217263466
 SpriteRenderer:
@@ -5212,6 +5284,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1279574045}
   _spriteRenderer: {fileID: 1279574044}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &1279574044
 SpriteRenderer:
@@ -5339,6 +5413,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1294366259}
   _spriteRenderer: {fileID: 1294366258}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &1294366258
 SpriteRenderer:
@@ -5466,6 +5542,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1360616374}
   _spriteRenderer: {fileID: 1360616373}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &1360616373
 SpriteRenderer:
@@ -5593,6 +5671,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1380329282}
   _spriteRenderer: {fileID: 1380329281}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &1380329281
 SpriteRenderer:
@@ -5720,6 +5800,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1433781047}
   _spriteRenderer: {fileID: 1433781046}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &1433781046
 SpriteRenderer:
@@ -5847,6 +5929,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1441209991}
   _spriteRenderer: {fileID: 1441209990}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &1441209990
 SpriteRenderer:
@@ -5974,6 +6058,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1442721889}
   _spriteRenderer: {fileID: 1442721888}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &1442721888
 SpriteRenderer:
@@ -6101,6 +6187,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1446196354}
   _spriteRenderer: {fileID: 1446196353}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &1446196353
 SpriteRenderer:
@@ -6228,6 +6316,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1449598209}
   _spriteRenderer: {fileID: 1449598208}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &1449598208
 SpriteRenderer:
@@ -6355,6 +6445,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1539680443}
   _spriteRenderer: {fileID: 1539680442}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &1539680442
 SpriteRenderer:
@@ -6482,6 +6574,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1579857167}
   _spriteRenderer: {fileID: 1579857166}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &1579857166
 SpriteRenderer:
@@ -6609,6 +6703,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1585227391}
   _spriteRenderer: {fileID: 1585227390}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &1585227390
 SpriteRenderer:
@@ -6736,6 +6832,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1619076444}
   _spriteRenderer: {fileID: 1619076443}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &1619076443
 SpriteRenderer:
@@ -6863,6 +6961,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1623906411}
   _spriteRenderer: {fileID: 1623906410}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &1623906410
 SpriteRenderer:
@@ -6990,6 +7090,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1684193751}
   _spriteRenderer: {fileID: 1684193750}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &1684193750
 SpriteRenderer:
@@ -7117,6 +7219,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1735571610}
   _spriteRenderer: {fileID: 1735571609}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &1735571609
 SpriteRenderer:
@@ -7244,6 +7348,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1787777470}
   _spriteRenderer: {fileID: 1787777469}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &1787777469
 SpriteRenderer:
@@ -7371,6 +7477,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1865077616}
   _spriteRenderer: {fileID: 1865077615}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &1865077615
 SpriteRenderer:
@@ -7628,6 +7736,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1943712086}
   _spriteRenderer: {fileID: 1943712085}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &1943712085
 SpriteRenderer:
@@ -7755,6 +7865,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1962267124}
   _spriteRenderer: {fileID: 1962267123}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &1962267123
 SpriteRenderer:
@@ -7882,6 +7994,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1968343319}
   _spriteRenderer: {fileID: 1968343318}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 2
 --- !u!212 &1968343318
 SpriteRenderer:
@@ -8007,12 +8121,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 189713120}
   _tilesContainer: {fileID: 1912439695}
-  _player: {fileID: 143246169}
+  _bordersContainer: {fileID: 0}
   _tilePrefab: {fileID: 7251455584209451173, guid: f1aff5b576c367f48a2e57f556c5c5d6, type: 3}
   _mapSize: {x: 6, y: 6}
   _offsetOnSide: 0.5
-  _color1: 1
-  _color2: 2
+  _cameraOffsetY: 0
 --- !u!1 &1981712883
 GameObject:
   m_ObjectHideFlags: 0
@@ -8061,6 +8174,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 1981712887}
   _spriteRenderer: {fileID: 1981712886}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 0
 --- !u!212 &1981712886
 SpriteRenderer:
@@ -8188,6 +8303,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 2031619891}
   _spriteRenderer: {fileID: 2031619890}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &2031619890
 SpriteRenderer:
@@ -8364,6 +8481,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 2079796635}
   _spriteRenderer: {fileID: 2079796634}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &2079796634
 SpriteRenderer:
@@ -8491,6 +8610,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 2100549222}
   _spriteRenderer: {fileID: 2100549221}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &2100549221
 SpriteRenderer:
@@ -8618,6 +8739,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 2100692539}
   _spriteRenderer: {fileID: 2100692538}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &2100692538
 SpriteRenderer:
@@ -8745,6 +8868,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 2111775065}
   _spriteRenderer: {fileID: 2111775064}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &2111775064
 SpriteRenderer:
@@ -8872,6 +8997,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _collider: {fileID: 2143316589}
   _spriteRenderer: {fileID: 2143316588}
+  _prefabs: []
+  _currentTile: {fileID: 0}
   _type: 1
 --- !u!212 &2143316588
 SpriteRenderer:
