@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 using KorYmeLibrary.SaveSystem;
+using System.Linq;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -58,14 +59,26 @@ public class MainMenuManager : MonoBehaviour
 
     TweenCallback StarButtonTween()
     {
-        int latestLevel = DataManager.Instance.LevelDictionnary.Count;
-        if(latestLevel == 0)
-        {
-            latestLevel = 1;
-        }
-        Debug.Log(latestLevel);
-        SceneManager.LoadScene($"Level-{latestLevel + 1}");
+        SceneManager.LoadScene($"Level-{GetContinueLevel()}");
         return null;
+    }
+
+    int GetContinueLevel()
+    {
+        // A DEBUG
+        KeyValuePair<int, int> pair = new(0, 0);
+        foreach (KeyValuePair<int, int> item in DataManager.Instance.LevelDictionnary)
+        {
+            if (item.Key <= 0 || item.Key < pair.Key || item.Value == 0) continue;
+            pair = item;
+        }
+        if (DataManager.Instance.CanPlayThisLevel(pair.Key + 1)) return pair.Key + 1;
+        foreach (KeyValuePair<int, int> item in DataManager.Instance.LevelDictionnary)
+        {
+            if (item.Key <= 0 || item.Key > pair.Key || item.Value >= 3) continue;
+            pair = item;
+        }
+        return DataManager.Instance.CanPlayThisLevel(pair.Key) ? pair.Key : 1;
     }
 
     public void LevelMenu()

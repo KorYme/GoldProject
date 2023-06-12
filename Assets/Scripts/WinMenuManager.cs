@@ -54,7 +54,7 @@ public class WinMenuManager : MonoBehaviour
         yield return new WaitForSeconds(_victoryScreenDelay);
         _winMenu.SetActive(true);
         _gameMenu.SetActive(false);
-        UpdateWinMenu(_levelManager._LevelNumber , _levelManager._LevelPerfectScore, _levelManager._LevelThreeStarScore, _levelManager._LevelTwoStarScore, totalMove.ToString(), totalMove);
+        UpdateWinMenu(_levelManager.LevelNumber , _levelManager._LevelPerfectScore, _levelManager._LevelThreeStarScore, _levelManager._LevelTwoStarScore, totalMove.ToString(), totalMove);
     }
 
     void UpdateWinMenu(int _levelNumber, int _levelPerfectScore, int _levelThreeStarScore, int _levelTwoStarScore,  string TextMove, int TotalMove)
