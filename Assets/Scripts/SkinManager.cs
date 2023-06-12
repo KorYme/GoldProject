@@ -29,6 +29,7 @@ public class SkinManager : MonoBehaviour
             default:
                 return;
         }
+        if (!DataManager.Instance.SkinEquippedDictionnary.ContainsKey(_playerReflection.ReflectionColor)) return;
         if (DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor] == _skinPack) return;
         if (allSkins.Count <= (int)DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor]) return;
         Instantiate(allSkins[(int)DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor]], 
