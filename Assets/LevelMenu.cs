@@ -13,6 +13,19 @@ public class LevelMenu : MonoBehaviour
     [SerializeField] private GameObject _creditsMenu;
     [SerializeField] private Button _settingsButton;
     [SerializeField] private Button _skinButton;
+    [SerializeField] private TextMeshProUGUI _totalStarText;
+
+    void Start()
+    {
+        DOTween.Init();
+        UpdateTotalStarText(DataManager.Instance.TotalStarNumber);
+        DataManager.Instance.OnTotalStarChange += UpdateTotalStarText;
+    }
+
+    public void UpdateTotalStarText(int totalStarNumber)
+    {
+        _totalStarText.text = totalStarNumber.ToString() + "/192";
+    }
 
     public void ReturnMainMenu()
     {
