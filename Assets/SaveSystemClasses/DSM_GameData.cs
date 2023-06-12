@@ -22,14 +22,6 @@ namespace KorYmeLibrary.SaveSystem
    }
 
     [System.Serializable]
-    public enum SKINSTATE
-    {
-        NOT_ACQUIRED,
-        ACQUIRED,
-        EQUIPPED,
-    }
-
-    [System.Serializable]
     public enum SKINPACK
     {
         BASIC = 0,
