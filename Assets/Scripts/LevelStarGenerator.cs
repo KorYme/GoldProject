@@ -31,8 +31,8 @@ public class LevelStarGenerator : MonoBehaviour
 
     public void ResetStar()
     {
-        _stars[0].transform.position = new Vector3(-165, -1500, 0);
-        _stars[1].transform.position = new Vector3(585, -1500, 0);
-        _stars[2].transform.position = new Vector3(1335, -1500, 0);
+        _stars[0].transform.position = _stars[0].transform.position + new Vector3(-1000, -2500, 0);
+        _stars[1].transform.position = _stars[1].transform.position + new Vector3(0, -2500, 0);
+        _stars[2].transform.position = _stars[2].transform.position + new Vector3(1000, -2500, 0);
     }
 }
