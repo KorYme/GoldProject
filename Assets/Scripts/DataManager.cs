@@ -13,6 +13,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     [SerializeField] int _levelPerStage;
     [SerializeField] int _starSkippable;
     [SerializeField] int _lastLevelNumber;
+    [SerializeField] List<SKINPACK> _skinPackPerBonusLevel;
     public int LastLevelNumber
     {
         get => _lastLevelNumber;
@@ -41,6 +42,11 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     { 
         get; 
         set;
+    }
+
+    public Action OnSkinchange
+    {
+        get; set;
     }
     #endregion
 
@@ -124,6 +130,10 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         if (levelID > 0)
         {
             OnStarAdded?.Invoke(Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4));
+        }
+        else
+        {
+            UnlockNewSkin(_skinPackPerBonusLevel[-levelID - 1]);
         }
         LevelDictionnary[levelID] += Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4);
     }
@@ -221,5 +231,12 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     {
         if (SkinAcquiredList.Contains(skin)) return;
         SkinAcquiredList.Add(skin);
+    }
+
+    public void EquipSkin(Utilities.GAMECOLORS playerColor, SKINPACK skin)
+    {
+        if (!SkinEquippedDictionnary.ContainsKey(playerColor) || !SkinAcquiredList.Contains(skin)) return;
+        SkinEquippedDictionnary[playerColor] = skin;
+        OnSkinchange?.Invoke();
     }
 }
