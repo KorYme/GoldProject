@@ -24,9 +24,27 @@
 
 public static class GPGSIds
 {
+        public const string achievement_almost_there = "CgkIhpOPlaMXEAIQCA"; // <GPGSID>
+        public const string achievement_finir_lvl_bonus_2 = "CgkIhpOPlaMXEAIQEg"; // <GPGSID>
+        public const string achievement_you_got_the_moves = "CgkIhpOPlaMXEAIQCg"; // <GPGSID>
         public const string achievement_get_50_stars = "CgkIhpOPlaMXEAIQAQ"; // <GPGSID>
+        public const string achievement_perfect_3140 = "CgkIhpOPlaMXEAIQDw"; // <GPGSID>
+        public const string achievement_perfect_110 = "CgkIhpOPlaMXEAIQAg"; // <GPGSID>
+        public const string achievement_get_150_stars = "CgkIhpOPlaMXEAIQBQ"; // <GPGSID>
+        public const string achievement_perfect_2130 = "CgkIhpOPlaMXEAIQDg"; // <GPGSID>
+        public const string achievement_perfect_1120 = "CgkIhpOPlaMXEAIQDQ"; // <GPGSID>
+        public const string achievement_dont_even_think_about_it = "CgkIhpOPlaMXEAIQCQ"; // <GPGSID>
+        public const string achievement_finir_lvl_bonus_4 = "CgkIhpOPlaMXEAIQFA"; // <GPGSID>
+        public const string achievement_travail_bnvole = "CgkIhpOPlaMXEAIQBg"; // <GPGSID>
+        public const string achievement_dont_give_up__you_can_still_win_this = "CgkIhpOPlaMXEAIQCw"; // <GPGSID>
+        public const string achievement_finir_lvl_bonus_1 = "CgkIhpOPlaMXEAIQEQ"; // <GPGSID>
+        public const string achievement_finir_lvl_bonus_5 = "CgkIhpOPlaMXEAIQFQ"; // <GPGSID>
+        public const string achievement_get_100_stars = "CgkIhpOPlaMXEAIQBA"; // <GPGSID>
+        public const string achievement_congratulation__youve_won_nothing = "CgkIhpOPlaMXEAIQBw"; // <GPGSID>
+        public const string achievement_not_your_business = "CgkIhpOPlaMXEAIQDA"; // <GPGSID>
+        public const string achievement_finir_lvl_bonus_3 = "CgkIhpOPlaMXEAIQEw"; // <GPGSID>
         public const string achievement_first_time_here = "CgkIhpOPlaMXEAIQAw"; // <GPGSID>
-        public const string achievement_test_perfect_110 = "CgkIhpOPlaMXEAIQAg"; // <GPGSID>
+        public const string achievement_perfect_4150 = "CgkIhpOPlaMXEAIQEA"; // <GPGSID>
 
 }
 
