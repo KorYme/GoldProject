@@ -12,6 +12,11 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     [SerializeField] DSM_GameData dsm_GameData;
     [SerializeField] int _levelPerStage;
     [SerializeField] int _starSkippable;
+    [SerializeField] int _lastLevelNumber;
+    public int LastLevelNumber
+    {
+        get => _lastLevelNumber;
+    }
 
     [Header("SaveParameters")]
     [SerializeField] bool _destroySaveOnNewVersion;
@@ -146,6 +151,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 
     public bool CanPlayThisLevel(int level)
     {
+        if (level > _lastLevelNumber) return false;
         if (level < 0)
         {
             int currentStage = ((level + 1) * 10) / -(_levelPerStage * 2);
