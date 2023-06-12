@@ -18,6 +18,7 @@ namespace KorYmeLibrary.SaveSystem
         public List<SKINPACK> SkinAcquiredDictionnary;
         public float Volume;
         public string Version;
+        public bool VibrationEnabled;
    }
 
     [System.Serializable]
@@ -34,5 +35,9 @@ namespace KorYmeLibrary.SaveSystem
         BASIC = 0,
         CHIC = 1,
         CRISTAL = 2,
+        DARK = 3,
+        ELEMENT = 4,
+        SUMMER = 5,
+        PULV = 6,
     }
 }
