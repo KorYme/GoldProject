@@ -75,9 +75,9 @@ public class WinMenuManager : MonoBehaviour
         _starTwo.GetComponent<Image>().sprite = _starYellow;
         _starThree.GetComponent<Image>().sprite = _starYellow;
 
-        _starOne.transform.position = new Vector3(0, 0, 0);
-        _starTwo.transform.position = new Vector3(0, 0, 0);
-        _starThree.transform.position = new Vector3(0, 0, 0);
+        _starOne.transform.position = new Vector3(-500, -500, 0);
+        _starTwo.transform.position = new Vector3(-500, -500, 0);
+        _starThree.transform.position = new Vector3(-500, -500, 0);
 
         if(TotalMove <= _levelPerfectScore)
         {

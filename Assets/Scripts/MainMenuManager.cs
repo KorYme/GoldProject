@@ -15,13 +15,11 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private GameObject _levelMenu;
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject _skinMenu;
-    [SerializeField] private GameObject _leaderboardMenu;
     [SerializeField] private GameObject _trophyMenu;
 
     [Header("Tweening")]
     [SerializeField] private CanvasGroup _settingsCanvasGroup;
     [SerializeField] private CanvasGroup _skinCanvasGroup;
-    [SerializeField] private CanvasGroup _leaderboardCanvasGroup;
     [SerializeField] private CanvasGroup _trophyCanvasGroup;
 
     [Header("Tweening Button")]
@@ -29,7 +27,6 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Button _levelButton;
     [SerializeField] private Button _settingsButton;
     [SerializeField] private Button _skinButton;
-    [SerializeField] private Button _leaderboardButton;
     [SerializeField] private Button _trophyButton;
 
     [Header("Level")]
@@ -37,7 +34,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void UpdateTotalStarText(int totalStarNumber)
     {
-        _totalStarText.text = totalStarNumber.ToString() + "/120";
+        _totalStarText.text = totalStarNumber.ToString() + "/192";
     }
 
     bool _skinLevel = false;
@@ -108,7 +105,6 @@ public class MainMenuManager : MonoBehaviour
     {
         _mainMenu.SetActive(false);
         _settingsMenu.SetActive(true);
-        _settingsCanvasGroup.DOFade(1, 1f);
         return null;
     }
 
@@ -179,25 +175,6 @@ public class MainMenuManager : MonoBehaviour
             _skinMenu.SetActive(false);
             _mainMenu.SetActive(true);
         }
-    }
-
-    public void LeaderboardMenu()
-    {
-        _leaderboardButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LeaderboardMenuButtonTween());
-    }
-
-    TweenCallback LeaderboardMenuButtonTween()
-    {
-        _trophyButton.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);;
-        _mainMenu.SetActive(false);
-        _leaderboardMenu.SetActive(true);
-        return null;
-    }
-
-    public void ReturnToMainMenuFromLeaderboard()
-    {
-        _mainMenu.SetActive(true);
-        _leaderboardMenu.SetActive(false);
     }
 
     public void TrophyMenu()

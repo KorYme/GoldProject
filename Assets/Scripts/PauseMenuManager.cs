@@ -12,6 +12,13 @@ public class PauseMenuManager : MonoBehaviour
     [SerializeField] private GameObject _gameMenu;
     [SerializeField] private GameObject _creditMenu;
 
+    [SerializeField] private TextMeshProUGUI _levelText;
+
+    void Start()
+    {
+        _levelText.text = $"Level {SceneManager.GetActiveScene().name.Split('-')[1]}";
+    }
+
     public void ResumeButton()
     {
         _pauseMenu.SetActive(false);
