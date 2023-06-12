@@ -78,9 +78,9 @@ public class WinMenuManager : MonoBehaviour
         _starTwoImage.sprite = _starYellow;
         _starThreeImage.sprite = _starYellow;
 
-        _starOne.position = new Vector3(0, 0, 0);
-        _starTwo.position = new Vector3(0, 0, 0);
-        _starThree.position = new Vector3(0, 0, 0);
+        _starOne.transform.position = new Vector3(-500, -500, 0);
+        _starTwo.transform.position = new Vector3(-500, -500, 0);
+        _starThree.transform.position = new Vector3(-500, -500, 0);
 
         if (TotalMove <= _levelPerfectScore)
         {
