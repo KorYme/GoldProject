@@ -25,6 +25,7 @@ public class WinMenuManager : MonoBehaviour
     [SerializeField] Image _starThreeImage;
 
     [SerializeField] TextMeshProUGUI _moveText;
+    [SerializeField] TextMeshProUGUI _levelText;
 
     [Header("Menu")]
     [SerializeField] GameObject _winMenu;
@@ -68,7 +69,9 @@ public class WinMenuManager : MonoBehaviour
 
         _starOneText.text = "Finish the level"; 
 
-        _moveText.text = "Level " + _levelNumber + " - " + TextMove + " moves";
+        _levelText.text = "Level " + _levelNumber;
+        _moveText.text = TextMove + " moves";
+
 
         Vector3 starOnePosition = _starOne.transform.position;
         Vector3 starTwoPosition = _starTwo.transform.position;
