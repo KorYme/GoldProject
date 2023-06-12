@@ -11,6 +11,7 @@ public class LaserRenderer : MonoBehaviour
     [Header("References")]
     [SerializeField] LineRenderer _lineRenderer;
     [SerializeField] List<Material> _materialsLaser;
+    [SerializeField] List<Color> _colorsLaser;
 
     [Header("Parameters")]
     [SerializeField, Range(0f, 1f), OnValueChanged(nameof(ChangeValues))] float _laserWidth;
@@ -47,9 +48,9 @@ public class LaserRenderer : MonoBehaviour
 
     public void ChangeLaserColor(Utilities.GAMECOLORS color)
     {
-        if (_materialsLaser.Count <= (int)color) return;
+        if (_colorsLaser.Count <= (int)color) return;
         _laserColor = color;
-        _lineRenderer.material = _materialsLaser[(int)color];
+        _lineRenderer.material.SetColor("_Color", _colorsLaser[(int)color]);
     }
 
     private void ChangeValues()

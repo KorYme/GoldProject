@@ -16,7 +16,7 @@ public class PauseMenuManager : MonoBehaviour
 
     void Start()
     {
-        _levelText.text = $"Level {SceneManager.GetActiveScene().name.Split('-')[1]}";
+        _levelText.text = "Level " + (SceneManager.GetActiveScene().buildIndex - 1);
     }
 
     public void ResumeButton()
