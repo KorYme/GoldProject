@@ -13,6 +13,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     [SerializeField] int _levelPerStage;
     [SerializeField] int _starSkippable;
     [SerializeField] int _lastLevelNumber;
+    [SerializeField] List<SKINPACK> _skinPackPerBonusLevel;
     public int LastLevelNumber
     {
         get => _lastLevelNumber;
@@ -129,6 +130,13 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         if (levelID > 0)
         {
             OnStarAdded?.Invoke(Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4));
+        }
+        else
+        {
+            if (starsNumber >= 3)
+            {
+                UnlockNewSkin(_skinPackPerBonusLevel[levelID - 1]);
+            }
         }
         LevelDictionnary[levelID] += Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4);
     }
