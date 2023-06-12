@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using NaughtyAttributes.Test;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -42,6 +43,7 @@ public class PlayerController : MonoBehaviour
     Coroutine _rotationCoroutine;
     Coroutine _moveCrateCoroutine;
     Coroutine _wallHitCoroutine;
+    Coroutine _refuseCoroutine;
     RaycastHit2D _crateRay;
     bool _playerStoppedByMud = false;
 
@@ -88,6 +90,10 @@ public class PlayerController : MonoBehaviour
     public void SetNewDirection(Vector2 direction)
     {
         if (!InputManager.Instance.CanMoveAPlayer) return;
+        if (_refuseCoroutine != null)
+        {
+            StopCoroutine(_refuseCoroutine);
+        }
         RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, DETECTION_RANGE, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         if (!ray) return;
         RaycastHit2D[] rays = Physics2D.RaycastAll(transform.position, direction, 1.25f, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
@@ -95,7 +101,7 @@ public class PlayerController : MonoBehaviour
         {
             if (item.transform.CompareTag("Player"))
             {
-                Handheld.Vibrate();
+                _refuseCoroutine = StartCoroutine(RefuseMovement());
                 return;
             }
         }
@@ -109,7 +115,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    Handheld.Vibrate();
+                    _refuseCoroutine = StartCoroutine(RefuseMovement());
                 }
             }
             else if (ray.collider.CompareTag("Mud"))
@@ -120,7 +126,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                Handheld.Vibrate();
+                _refuseCoroutine = StartCoroutine(RefuseMovement());
             }
         }
         else
@@ -358,5 +364,12 @@ public class PlayerController : MonoBehaviour
         _moveableGFX.rotation = Quaternion.Euler(0, 0, 0);
         _animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
         _wallHitCoroutine = null;
+    }
+
+    IEnumerator RefuseMovement()
+    {
+        Handheld.Vibrate();
+        yield return new WaitForSeconds(_animatorManager.ChangeAnimation(ANIMATION_STATES.Refuse, true));
+        _animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
     }
 }
