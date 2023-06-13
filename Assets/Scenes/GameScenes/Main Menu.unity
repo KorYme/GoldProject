@@ -5342,10 +5342,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1536455530811160314, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1536455531345351219, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 767898255}
+    - target: {fileID: 8731662257748174863, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8904073247607076693, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef6540ad0de9d014cb8212c0b418d240, type: 3}
 --- !u!1 &1404454392
