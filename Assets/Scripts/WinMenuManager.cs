@@ -181,5 +181,4 @@ public class WinMenuManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         AudioManager.Instance.NbOfPlayersReflecting = 0;
     }
-
 }

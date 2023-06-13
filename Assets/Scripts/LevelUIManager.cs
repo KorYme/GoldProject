@@ -104,7 +104,11 @@ public class LevelUIManager : MonoBehaviour
     public TweenCallback LoadLevel()
     {
         Resize();
-        if (!CanPlay) return null;
+        if (!CanPlay)
+        {
+            AchievementManager.Instance.NotYourBusiness();
+            return null;
+        }
         SceneManager.LoadScene(SceneName);
         return null;
     }
