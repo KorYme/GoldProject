@@ -1,7 +1,10 @@
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class LaserRenderer : MonoBehaviour
 {   
@@ -14,6 +17,7 @@ public class LaserRenderer : MonoBehaviour
     [SerializeField] List<Color> _colorsLaser;
 
     [Header("Parameters")]
+    [SerializeField] float _intensity;
     [SerializeField, Range(0f, 1f), OnValueChanged(nameof(ChangeValues))] float _laserWidth;
     [SerializeField, OnValueChanged(nameof(ChangeValues))] Utilities.GAMECOLORS _laserColor;
 
@@ -21,13 +25,14 @@ public class LaserRenderer : MonoBehaviour
     {
         get => _lineRenderer;
     }
-    bool _isTouchingWall;
 
     private void Start()
     {
         ChangeValues();
         _pSystem = Instantiate(_particleSystemPrefab);
         _pSystem.Stop();
+
+        
     }
 
     public void ChangeSecondPosition(Vector2 position, Vector2 normal, bool isWall = false)
@@ -43,14 +48,15 @@ public class LaserRenderer : MonoBehaviour
             _pSystem.Stop();
         }
         LineRenderer.SetPosition(1, position);
-        //_isTouchingWall = isWall;
     }
 
     public void ChangeLaserColor(Utilities.GAMECOLORS color)
     {
         if (_colorsLaser.Count <= (int)color) return;
         _laserColor = color;
-        _lineRenderer.material.SetColor("_Color", _colorsLaser[(int)color]);
+        float factor = Mathf.Pow(2, _intensity);
+        Color colorToSet = new Color(_colorsLaser[(int)color].r * factor, _colorsLaser[(int)color].g * factor, _colorsLaser[(int)color].b * factor);
+        _lineRenderer.material.SetColor("_Color", colorToSet);
     }
 
     private void ChangeValues()
@@ -59,8 +65,10 @@ public class LaserRenderer : MonoBehaviour
         LineRenderer.startWidth = _laserWidth;
         ChangeLaserColor(_laserColor);
         if (_pSystem != null)
-        _pSystem.startColor = Utilities.GetColor(_laserColor);
-
+        {
+            var main = _pSystem.main;
+            main.startColor = Utilities.GetColor(_laserColor);
+        }
     }
 
 #if UNITY_EDITOR

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
-  m_Name: Box Volume Profile
+  m_Name: BloomVolume (DO NOT DELETE) Profile
   m_EditorClassIdentifier: 
   components:
-  - {fileID: 6033994582113191195}
---- !u!114 &6033994582113191195
+  - {fileID: 6798189546139350172}
+--- !u!114 &6798189546139350172
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29,10 +29,10 @@ MonoBehaviour:
   active: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0
+    m_Value: 1.03
   intensity:
     m_OverrideState: 1
-    m_Value: 30.05
+    m_Value: 1.5
   scatter:
     m_OverrideState: 0
     m_Value: 0.7

@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.DebugUI;
 
 public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 {
@@ -98,7 +99,20 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
                     value += Mathf.Clamp(item.Value, 0, 3);
                 }
             }
-            OnTotalStarChange?.Invoke(value);
+            return value;
+        }
+    }
+
+    public int RealTotalStarNumber
+    {
+        get
+        {
+            if (LevelDictionnary == null) return 0;
+            int value = 0;
+            foreach (var item in LevelDictionnary)
+            {
+                value += item.Value;
+            }
             return value;
         }
     }
@@ -136,6 +150,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
             UnlockNewSkin(_skinPackPerBonusLevel[-levelID - 1]);
         }
         LevelDictionnary[levelID] += Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4);
+        OnTotalStarChange?.Invoke(TotalStarNumber);
     }
 
     public void LoadData(GameData gameData)
@@ -169,6 +184,14 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void InitializeData()
     {
         _levelDictionnary = new SerializableDictionnary<int, int>();
+        for (int i = 1; i < 51; i++)
+        {
+            _levelDictionnary[i] = 0;
+        }
+        for (int y = 1; y < 6; y++)
+        {
+            _levelDictionnary[y] = 0;
+        }
         _skinAcquiredList = new List<SKINPACK>()
         {
             SKINPACK.BASIC,

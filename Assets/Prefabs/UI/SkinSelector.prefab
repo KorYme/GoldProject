@@ -171,7 +171,6 @@ MonoBehaviour:
   _skin: 0
   _selectedIcon: {fileID: 927872235510631927}
   _skinIcon: {fileID: 6852377148303875969}
-  _skinSprite: {fileID: 0}
 --- !u!114 &5225857547251432637
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +217,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8761253178584307809}
         m_TargetAssemblyTypeName: SkinSelector, Assembly-CSharp
-        m_MethodName: EquipeNewSkin
+        m_MethodName: EquipNewSkin
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
