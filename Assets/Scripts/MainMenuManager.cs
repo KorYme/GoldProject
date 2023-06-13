@@ -179,6 +179,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void OpenAchivement()
     {
-        //AchivementManager.Instance.DisplayAchivementUI();
+        AchievementManager.Instance.DisplayAchievementUI();
     }
 }

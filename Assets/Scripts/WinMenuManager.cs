@@ -178,7 +178,7 @@ public class WinMenuManager : MonoBehaviour
 
     public void MenuButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
         AudioManager.Instance.NbOfPlayersReflecting = 0;
     }
 
