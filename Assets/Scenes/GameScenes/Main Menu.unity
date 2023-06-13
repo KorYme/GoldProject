@@ -6962,6 +6962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _color1: 0
   _color2: 0
+  _skin: 0
 --- !u!1 &1715795329
 GameObject:
   m_ObjectHideFlags: 0

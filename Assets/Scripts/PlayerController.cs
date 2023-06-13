@@ -58,6 +58,12 @@ public class PlayerController : MonoBehaviour
         get => _wallHitCoroutine != null;
     }
 
+    bool _isRefusing;
+    public bool IsRefusing
+    {
+        get;
+    }
+
     public bool IsCrateMoving
     {
         get; private set;
@@ -93,6 +99,7 @@ public class PlayerController : MonoBehaviour
         if (_refuseCoroutine != null)
         {
             StopCoroutine(_refuseCoroutine);
+            _isRefusing = false;
         }
         RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, DETECTION_RANGE, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
         if (!ray) return;
@@ -368,6 +375,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator RefuseMovement()
     {
+        _isRefusing = true;
         Handheld.Vibrate();
         yield return new WaitForSeconds(_animatorManager.ChangeAnimation(ANIMATION_STATES.Refuse, true));
         _animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);

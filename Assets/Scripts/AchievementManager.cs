@@ -41,6 +41,14 @@ public class AchievementManager : MonoBehaviour
         OnMovementAdded += CheckMovementNumber;
     }
 
+    private void OnDestroy()
+    {
+        _dataManager.OnStarAdded -= CheckForAchievementWithStars;
+        _dataManager.OnLevelComplete -= CheckPerfectLevel;
+        _dataManager.OnLevelComplete -= CheckBonusLevel;
+        _dataManager.OnLevelComplete -= CheckVolunteerWork;
+        OnMovementAdded -= CheckMovementNumber;
+    }
     public void AchieveSuccess(bool success)
     {
         if (success)
