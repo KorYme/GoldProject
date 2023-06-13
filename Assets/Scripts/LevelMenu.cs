@@ -29,12 +29,12 @@ public class LevelMenu : MonoBehaviour
 
     public void UpdateTotalStarText(int totalStarNumber)
     {
-        _totalStarText.text = totalStarNumber.ToString() + "/192";
+        _totalStarText.text = totalStarNumber.ToString() + "/150";
     }
 
     public void ReturnMainMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        SceneManager.LoadScene(0);
     }
 
     public void SettingsMenu()

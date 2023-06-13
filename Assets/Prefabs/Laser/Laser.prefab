@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4141730671707562850}
   - component: {fileID: 8658229669280121888}
   m_Layer: 0
-  m_Name: LineRenderer
+  m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,14 +147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _particleSystemPrefab: {fileID: 4355079309876472003, guid: c0a0d5448fdf91b4bb20a544535726ed, type: 3}
   _lineRenderer: {fileID: 4141730671707562850}
-  _materialsLaser:
-  - {fileID: 2100000, guid: 76ad950a96f4ad24d8793ea5126bb35f, type: 2}
-  - {fileID: 2100000, guid: 76ad950a96f4ad24d8793ea5126bb35f, type: 2}
-  - {fileID: 2100000, guid: 76ad950a96f4ad24d8793ea5126bb35f, type: 2}
-  - {fileID: 2100000, guid: 76ad950a96f4ad24d8793ea5126bb35f, type: 2}
-  - {fileID: 2100000, guid: 76ad950a96f4ad24d8793ea5126bb35f, type: 2}
-  - {fileID: 2100000, guid: 76ad950a96f4ad24d8793ea5126bb35f, type: 2}
-  - {fileID: 2100000, guid: 76ad950a96f4ad24d8793ea5126bb35f, type: 2}
   _colorsLaser:
   - {r: 1, g: 1, b: 1, a: 0}
   - {r: 0.7169812, g: 0.050729793, b: 0.050729793, a: 1}

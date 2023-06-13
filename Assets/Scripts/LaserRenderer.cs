@@ -13,7 +13,6 @@ public class LaserRenderer : MonoBehaviour
 
     [Header("References")]
     [SerializeField] LineRenderer _lineRenderer;
-    [SerializeField] List<Material> _materialsLaser;
     [SerializeField] List<Color> _colorsLaser;
 
     [Header("Parameters")]

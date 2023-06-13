@@ -7680,11 +7680,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7987398883163487369, guid: 109336d91abaf974e961c82cfe18445e, type: 3}
       propertyPath: _skinPackPerBonusLevel.Array.data[1]
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7987398883163487369, guid: 109336d91abaf974e961c82cfe18445e, type: 3}
       propertyPath: _skinPackPerBonusLevel.Array.data[2]
-      value: 2
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987398883163487369, guid: 109336d91abaf974e961c82cfe18445e, type: 3}
+      propertyPath: _skinPackPerBonusLevel.Array.data[3]
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7987398883163487369, guid: 109336d91abaf974e961c82cfe18445e, type: 3}
+      propertyPath: _skinPackPerBonusLevel.Array.data[4]
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7987398883163487369, guid: 109336d91abaf974e961c82cfe18445e, type: 3}
       propertyPath: _skinPackPerBonusLevel.Array.data[5]

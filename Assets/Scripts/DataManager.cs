@@ -214,7 +214,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         {
             int currentStage = ((level + 1) * 10) / -(_levelPerStage * 2);
             for (int i = 1; i <= _levelPerStage * 2; i++)
-            {
+            {   
                 if (!LevelDictionnary.ContainsKey((currentStage * _levelPerStage * 2) + i) || LevelDictionnary[(currentStage * _levelPerStage * 2) + i] < 3) return false;
             }
             return true;
@@ -226,7 +226,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
             for (int i = 1; i <= levelStage * _levelPerStage; i++)
             {
                 if (!LevelDictionnary.ContainsKey(i)) continue;
-                value += LevelDictionnary[i];
+                value += Mathf.Clamp(LevelDictionnary[i], 0, 3);
             }
             return value >= (levelStage * _levelPerStage * 3) - _starSkippable;
         }
