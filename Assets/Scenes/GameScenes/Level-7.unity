@@ -1175,7 +1175,7 @@ PrefabInstance:
     - target: {fileID: 8359734098778516206, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _starCyan
       value: 
-      objectReference: {fileID: 21300000, guid: 6e1b2b13e84c9a042a90e2b9925ffef0, type: 3}
+      objectReference: {fileID: 21300000, guid: beebd0ba1b61a9b4dbb1a4e9c0226282, type: 3}
     - target: {fileID: 8359734098778516206, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _starGray
       value: 
@@ -1183,7 +1183,7 @@ PrefabInstance:
     - target: {fileID: 8359734098778516206, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _starYellow
       value: 
-      objectReference: {fileID: 21300000, guid: 8331a8ece78b1e949a1835ac75fe1408, type: 3}
+      objectReference: {fileID: 21300000, guid: 563e3ccb632e05f4290cfdfd823d5077, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
 --- !u!114 &414340013 stripped
