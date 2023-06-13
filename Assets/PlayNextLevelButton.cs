@@ -22,6 +22,11 @@ public class PlayNextLevelButton : MonoBehaviour
         if (!DataManager.Instance.CanPlayThisLevel(SceneManager.GetActiveScene().buildIndex))
         {
             _buttonImage.color = Color.grey;
+            _lockImage.SetActive(true);
+        }
+        else
+        {
+            _buttonImage.color = Color.grey;
             _lockImage.SetActive(false);
         }
     }
