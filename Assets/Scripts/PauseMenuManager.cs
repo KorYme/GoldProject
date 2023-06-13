@@ -28,7 +28,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void MainMenuButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
     public void CreditsMenuButton()
@@ -46,5 +46,10 @@ public class PauseMenuManager : MonoBehaviour
     public void RestartButton()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+    }
+
+    public void OpenAchivement()
+    {
+        AchievementManager.Instance.DisplayAchievementUI();
     }
 }

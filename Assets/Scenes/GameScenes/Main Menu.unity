@@ -2273,7 +2273,7 @@ MonoBehaviour:
   _pauseMenu: {fileID: 2008747037}
   _gameMenu: {fileID: 0}
   _creditMenu: {fileID: 362657267}
-  _levelText: {fileID: 1558868966}
+  _levelText: {fileID: 0}
 --- !u!114 &767898255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6862,7 +6862,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 767898255}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: TrophyMenu
+        m_MethodName: OpenAchivement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

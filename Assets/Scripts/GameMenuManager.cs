@@ -32,6 +32,11 @@ public class GameMenuManager : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
+    
+    public void LevelMenuButton()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+    }
 
     public void ReturnToGameFromSettings()
     {
