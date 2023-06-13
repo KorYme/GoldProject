@@ -16,6 +16,7 @@ public class PauseMenuManager : MonoBehaviour
 
     void Start()
     {
+        if(_levelText == null)return;
         _levelText.text = "Level " + (SceneManager.GetActiveScene().buildIndex - 1);
     }
 
