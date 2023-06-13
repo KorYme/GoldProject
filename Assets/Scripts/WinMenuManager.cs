@@ -168,12 +168,7 @@ public class WinMenuManager : MonoBehaviour
 
     public void NextLevelButton()
     {
-        NextLevel(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-    
-    void NextLevel(int levelIndex)
-    {
-        SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void MenuButton()

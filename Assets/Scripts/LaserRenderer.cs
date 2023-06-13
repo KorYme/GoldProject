@@ -10,7 +10,6 @@ public class LaserRenderer : MonoBehaviour
 {   
     [SerializeField] ParticleSystem _particleSystemPrefab;
     ParticleSystem _pSystem;
-    float _intensity = 3f;
 
     [Header("References")]
     [SerializeField] LineRenderer _lineRenderer;
@@ -18,6 +17,7 @@ public class LaserRenderer : MonoBehaviour
     [SerializeField] List<Color> _colorsLaser;
 
     [Header("Parameters")]
+    [SerializeField] float _intensity;
     [SerializeField, Range(0f, 1f), OnValueChanged(nameof(ChangeValues))] float _laserWidth;
     [SerializeField, OnValueChanged(nameof(ChangeValues))] Utilities.GAMECOLORS _laserColor;
 
