@@ -1,3 +1,4 @@
+using KorYmeLibrary.SaveSystem;
 using NaughtyAttributes;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ public class TestManager : MonoBehaviour
     [Header("TEST")]
     [SerializeField] Utilities.GAMECOLORS _color1;
     [SerializeField] Utilities.GAMECOLORS _color2;
+    [SerializeField] SKINPACK _skin;
 
     [Button]
     private void TestColorMix()
@@ -45,6 +47,16 @@ public class TestManager : MonoBehaviour
         for (int i = 11; i < 21; i++)
         {
             data.CompleteALevel(i, 3);
+        }
+    }
+
+    [Button]
+    private void UnlockSkin()
+    {
+        DataManager data = GetComponent<DataManager>();
+        for (int i = 11; i < 21; i++)
+        {
+            data.UnlockNewSkin(_skin);
         }
     }
 }

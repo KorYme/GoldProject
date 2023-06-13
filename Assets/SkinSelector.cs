@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class SkinSelector : MonoBehaviour
 {
     [Header("Parameters")]
-    [SerializeField] Utilities.GAMECOLORS _playerColor;
+    [SerializeField] Utilities.GAMECOLORS _playerColor; 
     [SerializeField] SKINPACK _skin;
 
     [Header("References")]
@@ -14,8 +14,13 @@ public class SkinSelector : MonoBehaviour
 
     private void Start()
     {
-        EnableOrNot();
         DataManager.Instance.OnSkinchange += EnableOrNot;
+        EnableOrNot();
+    }
+
+    private void OnDestroy()
+    {
+        DataManager.Instance.OnSkinchange -= EnableOrNot;
     }
 
     private void EnableOrNot()
@@ -33,7 +38,7 @@ public class SkinSelector : MonoBehaviour
         }
     }
 
-    public void EquipeNewSkin()
+    public void EquipNewSkin()
     {
         DataManager.Instance.EquipSkin(_playerColor, _skin);
     }

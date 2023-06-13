@@ -22,6 +22,11 @@ public class LevelMenu : MonoBehaviour
         DataManager.Instance.OnTotalStarChange += UpdateTotalStarText;
     }
 
+    private void OnDestroy()
+    {
+        DataManager.Instance.OnTotalStarChange -= UpdateTotalStarText;
+    }
+
     public void UpdateTotalStarText(int totalStarNumber)
     {
         _totalStarText.text = totalStarNumber.ToString() + "/192";
