@@ -53,7 +53,7 @@ public class AchievementManager : MonoBehaviour
     {
         if (success)
         {
-            Handheld.Vibrate();
+            //Handheld.Vibrate();
         } 
     }
 
