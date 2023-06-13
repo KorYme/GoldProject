@@ -42,6 +42,7 @@ public class AnimatorManager : MonoBehaviour
 
     public float ChangeAnimation(ANIMATION_STATES state, bool isForced = false)
     {
+        if (CurrentState == ANIMATION_STATES.Victory) return 0f;
         if (!isForced && CurrentState == state) return 0f;
         if (state == ANIMATION_STATES.Victory)
         {
