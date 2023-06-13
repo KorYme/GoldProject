@@ -208,8 +208,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 84
-  m_fontSizeBase: 84
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2298,6 +2298,7 @@ MonoBehaviour:
   _settingsButton: {fileID: 1404454396}
   _skinButton: {fileID: 1283314665}
   _trophyButton: {fileID: 1709913929}
+  _startText: {fileID: 121432349}
 --- !u!4 &767898257
 Transform:
   m_ObjectHideFlags: 0
@@ -7244,8 +7245,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 84
-  m_fontSizeBase: 84
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
