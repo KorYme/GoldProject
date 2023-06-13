@@ -24,6 +24,8 @@ public class WinMenuManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _starThreeText;
     [SerializeField] Image _starThreeImage;
 
+    [SerializeField] TextMeshProUGUI _perfectText;
+
     [SerializeField] TextMeshProUGUI _moveText;
     [SerializeField] TextMeshProUGUI _levelText;
 
@@ -87,17 +89,20 @@ public class WinMenuManager : MonoBehaviour
 
         if (TotalMove <= _levelPerfectScore)
         {
+            _perfectText.text = "";
             StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 4));
             DataManager.Instance.CompleteALevel(_levelNumber, 4);
         }
         else if (TotalMove <= _levelThreeStarScore)
         {
+            _perfectText.text = "Need " + _levelPerfectScore + " moves for perfect";
             StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 3));
             DataManager.Instance.CompleteALevel(_levelNumber, 3);
         }
         else if (TotalMove <= _levelTwoStarScore)
         {
             _starThreeImage.sprite = _starGray;
+            _perfectText.text = "";
             StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 2));
             DataManager.Instance.CompleteALevel(_levelNumber, 2);
         }
@@ -105,6 +110,7 @@ public class WinMenuManager : MonoBehaviour
         {
             _starTwoImage.sprite = _starGray;
             _starThreeImage.sprite = _starGray;
+            _perfectText.text = "";
             StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 1));
             DataManager.Instance.CompleteALevel(_levelNumber, 1);
         }
