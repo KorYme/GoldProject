@@ -55,7 +55,7 @@ public class PlayerReflection : Reflectable
         {
             ForbiddenAngle = ((int)(Mathf.Atan2(-laserDirection.y, -laserDirection.x) * Mathf.Rad2Deg) + 360) % 360;
         }
-        if (!_playerController.IsMoving && !_playerController.IsHittingWall)
+        if (!_playerController.IsMoving && !_playerController.IsHittingWall && !_playerController.IsRefusing)
         {
             _animatorManager.ChangeAnimation(IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
         }

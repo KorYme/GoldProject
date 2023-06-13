@@ -184,6 +184,14 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void InitializeData()
     {
         _levelDictionnary = new SerializableDictionnary<int, int>();
+        for (int i = 1; i < 51; i++)
+        {
+            _levelDictionnary[i] = 0;
+        }
+        for (int y = 1; y < 6; y++)
+        {
+            _levelDictionnary[y] = 0;
+        }
         _skinAcquiredList = new List<SKINPACK>()
         {
             SKINPACK.BASIC,
