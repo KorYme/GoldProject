@@ -208,8 +208,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 84
-  m_fontSizeBase: 84
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2273,7 +2273,7 @@ MonoBehaviour:
   _pauseMenu: {fileID: 2008747037}
   _gameMenu: {fileID: 0}
   _creditMenu: {fileID: 362657267}
-  _levelText: {fileID: 1558868966}
+  _levelText: {fileID: 0}
 --- !u!114 &767898255
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2298,6 +2298,7 @@ MonoBehaviour:
   _settingsButton: {fileID: 1404454396}
   _skinButton: {fileID: 1283314665}
   _trophyButton: {fileID: 1709913929}
+  _startText: {fileID: 121432349}
 --- !u!4 &767898257
 Transform:
   m_ObjectHideFlags: 0
@@ -6862,7 +6863,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 767898255}
         m_TargetAssemblyTypeName: MainMenuManager, Assembly-CSharp
-        m_MethodName: TrophyMenu
+        m_MethodName: OpenAchivement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -7245,8 +7246,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 84
-  m_fontSizeBase: 84
+  m_fontSize: 64
+  m_fontSizeBase: 64
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

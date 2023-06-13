@@ -28,12 +28,19 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Button _skinButton;
     [SerializeField] private Button _trophyButton;
 
+    [Header("TextMeshPro")]
+    [SerializeField] private TextMeshProUGUI _startText;
+
     bool _skinLevel = false;
     bool _settingsLevel = false;
 
     void Start()
     {
         DOTween.Init();
+        if(DataManager.Instance.TotalStarNumber != 0)	
+        {
+            _startText.text = "Continue";
+        }
         _mainMenu?.SetActive(true);
     }
 
@@ -179,6 +186,6 @@ public class MainMenuManager : MonoBehaviour
 
     public void OpenAchivement()
     {
-        //AchivementManager.Instance.DisplayAchivementUI();
+        AchievementManager.Instance.DisplayAchievementUI();
     }
 }
