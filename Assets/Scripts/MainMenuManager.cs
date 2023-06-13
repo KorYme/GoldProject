@@ -176,4 +176,9 @@ public class MainMenuManager : MonoBehaviour
         _mainMenu.SetActive(true);
         _trophyMenu.SetActive(false);
     }
+
+    public void OpenAchivement()
+    {
+        //AchivementManager.Instance.DisplayAchivementUI();
+    }
 }
