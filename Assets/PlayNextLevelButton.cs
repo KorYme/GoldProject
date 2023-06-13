@@ -26,7 +26,7 @@ public class PlayNextLevelButton : MonoBehaviour
         }
         else
         {
-            _buttonImage.color = Color.grey;
+            _buttonImage.color = Color.white;
             _lockImage.SetActive(false);
         }
     }
