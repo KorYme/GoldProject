@@ -160,6 +160,11 @@ public class AchievementManager : MonoBehaviour
     {
         Social.ReportProgress("CgkIhpOPlaMXEAIQDA", 100.0f, AchieveSuccess);
     }
+
+    public void DisplayAchievementUI()
+    {
+        Social.ShowAchievementsUI();
+    }
 }
 
 //<? xml version = "1.0" encoding = "utf-8" ?>
