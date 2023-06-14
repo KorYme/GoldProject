@@ -27,7 +27,7 @@ public class LevelMenu : MonoBehaviour
         DataManager.Instance.OnTotalStarChange -= UpdateTotalStarText;
     }
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKey(KeyCode.Escape))
         {
@@ -37,11 +37,7 @@ public class LevelMenu : MonoBehaviour
 
     private void ReturnButton()
     {
-        if (_creditsMenu.activeSelf)
-        {
-            CloseCreditsMenu();
-        }
-        else if (_skinMenu.activeSelf)
+        if (_skinMenu.activeSelf)
         {
             CloseSkinMenu();
         }

@@ -47,14 +47,6 @@ public class Colorblindness : MonoBehaviour
 
     public static Colorblindness Instance { get; private set; }
 
-    [UnityEditor.Callbacks.DidReloadScripts]
-    private static void OnScriptsReloaded()
-    {
-#if !RENDERPIPELINE
-        Debug.LogError("There is no type of <b>SRP</b> included in this project.");
-#endif
-    }
-
     void Awake()
     {
         if (Instance == null)

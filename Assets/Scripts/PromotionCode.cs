@@ -26,7 +26,7 @@ public class PromotionCode : MonoBehaviour
                 }
                 break;
             case "ALLSKINS":
-                for (int i = 0; i < Enum.GetValues(typeof(SKINPACK)).Length; i++)
+                for (int i = 0; i < 7; i++)
                 {
                     DataManager.Instance.UnlockNewSkin((SKINPACK)i);
                 }
