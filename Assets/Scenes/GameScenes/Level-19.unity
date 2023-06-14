@@ -1355,14 +1355,14 @@ PrefabInstance:
     - target: {fileID: 3172924481358171564, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d9af6d4673aa6de489e0a3351d71bd44, type: 3}
+      objectReference: {fileID: 21300000, guid: d85a3a5ff41bcde4ea14d28a309d3446, type: 3}
     - target: {fileID: 3429801988097763572, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: _laserDir
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3429801988097763572, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: _initialColor
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7251455584209451172, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: m_RootOrder
@@ -2215,6 +2215,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _LevelPerfectScore
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _LevelTwoStarScore
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _LevelThreeStarScore
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 724292645973140185, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.y
       value: 2.98
