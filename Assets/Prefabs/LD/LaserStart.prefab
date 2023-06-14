@@ -171,6 +171,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fab374d7ab94c2b4e8247ea55fe63dec, type: 3}
   - {fileID: 21300000, guid: 93ae7ad045870ea4198663a94d24058a, type: 3}
   - {fileID: 21300000, guid: 02f3ad6a87eaacd418eb0fe6c9bb0b98, type: 3}
+  _particlePrefab: {fileID: 3175965905303532705, guid: 5ea0433bd29cbe8448943910f0e45968, type: 3}
 --- !u!114 &1597245897395038073
 MonoBehaviour:
   m_ObjectHideFlags: 0
