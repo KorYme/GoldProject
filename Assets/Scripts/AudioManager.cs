@@ -4,8 +4,9 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using UnityEngine.Events;
+using KorYmeLibrary.SaveSystem;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
 {
     [Header("AudioSliders")]
     [SerializeField] Slider _musicSlider;
@@ -106,17 +107,23 @@ public class AudioManager : MonoBehaviour
         _sfxVolume = slider.value/100;
     }
 
-    //Init
-    //_musicSlider.value = _musicVolume;
-    //_sfxSlider.value = _sfxVolume;
+    public void InitializeData()
+    {
+        _musicSlider.value = _musicVolume;
+        _sfxSlider.value = _sfxVolume;
+    }
 
-    //Save data
-    //gameData.VolumeMusic = _musicVolume;
-    //gameData.VolumeSFX = _sfxVolume;
+    public void LoadData(GameData gameData)
+    {
+        _musicVolume = gameData.VolumeMusic;
+        _sfxVolume = gameData.VolumeSFX;
+        _musicSlider.value = _musicVolume;
+        _sfxSlider.value = _sfxVolume;
+    }
 
-    //Load data
-    //_musicVolume = gameData.VolumeMusic;
-    //_sfxVolume = gameData.VolumeSFX;
-    //_musicSlider.value = _musicVolume;
-    //_sfxSlider.value = _sfxVolume;
+    public void SaveData(ref GameData gameData)
+    {
+        gameData.VolumeMusic = _musicVolume;
+        gameData.VolumeSFX = _sfxVolume;
+    }
 }
