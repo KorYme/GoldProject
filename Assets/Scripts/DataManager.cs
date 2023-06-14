@@ -206,10 +206,11 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
             int neededLevel = level * -10;
             foreach (var item in LevelDictionnary)
             {
+                if (item.Key <= 0) continue;
                 if (item.Value == 4)
                 {
-                    level--;
-                    if (level <= 0) return true;
+                    neededLevel--;
+                    if (neededLevel <= 0) return true;
                 }
             }
             return false;
