@@ -8,9 +8,10 @@ using KorYmeLibrary.SaveSystem;
 
 public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
 {
-    [Header("AudioSliders")]
+    [Header("Parameters")]
     [SerializeField] Slider _musicSlider;
     [SerializeField] Slider _sfxSlider;
+    [SerializeField] Toggle _vibrationToggle;
 
 
     public static AudioManager Instance;
@@ -19,6 +20,7 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
     int _nbOfPlayersReflecting = 0;
     float _musicVolume = 0.5f;
     float _sfxVolume = 0.5f;
+    bool _vibration = true;
 
     [SerializeField] Sound[] _sounds;
 
@@ -107,10 +109,18 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
         _sfxVolume = slider.value/100;
     }
 
+    public void ChangeVibration(Toggle toggle)
+    {
+        _vibration = toggle.isOn;
+    }
+
+    //DATA
+
     public void InitializeData()
     {
         _musicSlider.value = _musicVolume;
         _sfxSlider.value = _sfxVolume;
+        _vibrationToggle.isOn = _vibration;
     }
 
     public void LoadData(GameData gameData)
@@ -119,11 +129,14 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
         _sfxVolume = gameData.VolumeSFX;
         _musicSlider.value = _musicVolume;
         _sfxSlider.value = _sfxVolume;
+        //_vibration = gameData.Vibration;
+        //_vibrationToggle.isOn = _vibration;
     }
 
     public void SaveData(ref GameData gameData)
     {
         gameData.VolumeMusic = _musicVolume;
         gameData.VolumeSFX = _sfxVolume;
+        //gameData.Vibration = _vibration;
     }
 }
