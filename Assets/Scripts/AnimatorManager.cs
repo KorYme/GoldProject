@@ -42,13 +42,13 @@ public class AnimatorManager : MonoBehaviour
 
     public float ChangeAnimation(ANIMATION_STATES state, bool isForced = false)
     {
-        if (CurrentState == ANIMATION_STATES.Victory) return 0f;
-        if (!isForced && CurrentState == state) return 0f;
+        if (!isForced && (CurrentState == ANIMATION_STATES.Victory || CurrentState == state)) return 0f;
         if (state == ANIMATION_STATES.Victory)
         {
             _animator.SetTrigger("Victory");
             return 2f;
         }
+        Debug.Log(state);
         CurrentState = state;
         _animator.Play($"{state}_{_playerName}");
         return _animator.runtimeAnimatorController.animationClips.First(x => x.name == $"{state}_{_playerName}").length;

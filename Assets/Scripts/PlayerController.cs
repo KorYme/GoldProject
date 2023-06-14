@@ -377,7 +377,10 @@ public class PlayerController : MonoBehaviour
     {
         _isRefusing = true;
         Handheld.Vibrate();
-        yield return new WaitForSeconds(_animatorManager.ChangeAnimation(ANIMATION_STATES.Refuse, true));
+        float time = _animatorManager.ChangeAnimation(ANIMATION_STATES.Refuse, true);
+        Debug.Log(time);
+        yield return new WaitForSeconds(time);
         _animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
+        _isRefusing = false;
     }
 }
