@@ -80,6 +80,7 @@ MonoBehaviour:
   _levelPerStage: 5
   _starSkippable: 7
   _lastLevelNumber: 50
+  _skinPackPerBonusLevel: 0100000002000000030000000400000005000000
   _destroySaveOnNewVersion: 0
 --- !u!114 &7430398456735609543
 MonoBehaviour:
@@ -94,3 +95,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dataManager: {fileID: 7987398883163487369}
+  _mickaLevelID: 38

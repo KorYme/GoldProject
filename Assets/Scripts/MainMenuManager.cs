@@ -12,7 +12,6 @@ public class MainMenuManager : MonoBehaviour
 {
     [Header("Menu")]
     [SerializeField] private GameObject _mainMenu;
-    [SerializeField] private GameObject _levelMenu;
     [SerializeField] private GameObject _settingsMenu;
     [SerializeField] private GameObject _skinMenu;
     [SerializeField] private GameObject _trophyMenu;
@@ -29,13 +28,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Button _skinButton;
     [SerializeField] private Button _trophyButton;
 
-    [Header("Level")]
-    [SerializeField] private TextMeshProUGUI _totalStarText;
-
-    public void UpdateTotalStarText(int totalStarNumber)
-    {
-        _totalStarText.text = totalStarNumber.ToString() + "/192";
-    }
+    [Header("TextMeshPro")]
+    [SerializeField] private TextMeshProUGUI _startText;
 
     bool _skinLevel = false;
     bool _settingsLevel = false;
@@ -43,10 +37,11 @@ public class MainMenuManager : MonoBehaviour
     void Start()
     {
         DOTween.Init();
-        _mainMenu.SetActive(true);
-        _levelMenu.SetActive(false);
-        UpdateTotalStarText(DataManager.Instance.TotalStarNumber);
-        DataManager.Instance.OnTotalStarChange += UpdateTotalStarText;
+        if(DataManager.Instance.TotalStarNumber != 0)	
+        {
+            _startText.text = "Continue";
+        }
+        _mainMenu?.SetActive(true);
     }
 
     public void StartLevel()
@@ -187,5 +182,10 @@ public class MainMenuManager : MonoBehaviour
     {
         _mainMenu.SetActive(true);
         _trophyMenu.SetActive(false);
+    }
+
+    public void OpenAchivement()
+    {
+        AchievementManager.Instance.DisplayAchievementUI();
     }
 }

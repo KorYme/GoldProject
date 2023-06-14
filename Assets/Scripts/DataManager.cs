@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEngine.Rendering.DebugUI;
 
 public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 {
@@ -13,6 +14,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     [SerializeField] int _levelPerStage;
     [SerializeField] int _starSkippable;
     [SerializeField] int _lastLevelNumber;
+    [SerializeField] List<SKINPACK> _skinPackPerBonusLevel;
     public int LastLevelNumber
     {
         get => _lastLevelNumber;
@@ -41,6 +43,11 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     { 
         get; 
         set;
+    }
+
+    public Action OnSkinchange
+    {
+        get; set;
     }
     #endregion
 
@@ -92,7 +99,20 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
                     value += Mathf.Clamp(item.Value, 0, 3);
                 }
             }
-            OnTotalStarChange?.Invoke(value);
+            return value;
+        }
+    }
+
+    public int RealTotalStarNumber
+    {
+        get
+        {
+            if (LevelDictionnary == null) return 0;
+            int value = 0;
+            foreach (var item in LevelDictionnary)
+            {
+                value += item.Value;
+            }
             return value;
         }
     }
@@ -125,7 +145,12 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         {
             OnStarAdded?.Invoke(Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4));
         }
+        else
+        {
+            UnlockNewSkin(_skinPackPerBonusLevel[-levelID - 1]);
+        }
         LevelDictionnary[levelID] += Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4);
+        OnTotalStarChange?.Invoke(TotalStarNumber);
     }
 
     public void LoadData(GameData gameData)
@@ -159,6 +184,14 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public void InitializeData()
     {
         _levelDictionnary = new SerializableDictionnary<int, int>();
+        for (int i = 1; i < 51; i++)
+        {
+            _levelDictionnary[i] = 0;
+        }
+        for (int y = 1; y < 6; y++)
+        {
+            _levelDictionnary[y] = 0;
+        }
         _skinAcquiredList = new List<SKINPACK>()
         {
             SKINPACK.BASIC,
@@ -181,7 +214,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         {
             int currentStage = ((level + 1) * 10) / -(_levelPerStage * 2);
             for (int i = 1; i <= _levelPerStage * 2; i++)
-            {
+            {   
                 if (!LevelDictionnary.ContainsKey((currentStage * _levelPerStage * 2) + i) || LevelDictionnary[(currentStage * _levelPerStage * 2) + i] < 3) return false;
             }
             return true;
@@ -193,7 +226,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
             for (int i = 1; i <= levelStage * _levelPerStage; i++)
             {
                 if (!LevelDictionnary.ContainsKey(i)) continue;
-                value += LevelDictionnary[i];
+                value += Mathf.Clamp(LevelDictionnary[i], 0, 3);
             }
             return value >= (levelStage * _levelPerStage * 3) - _starSkippable;
         }
@@ -221,5 +254,12 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     {
         if (SkinAcquiredList.Contains(skin)) return;
         SkinAcquiredList.Add(skin);
+    }
+
+    public void EquipSkin(Utilities.GAMECOLORS playerColor, SKINPACK skin)
+    {
+        if (!SkinEquippedDictionnary.ContainsKey(playerColor) || !SkinAcquiredList.Contains(skin)) return;
+        SkinEquippedDictionnary[playerColor] = skin;
+        OnSkinchange?.Invoke();
     }
 }

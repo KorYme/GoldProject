@@ -31,6 +31,7 @@ public class InputManager : MonoBehaviour
         set
         {
             _movementNumber = value;
+            AchievementManager.Instance.OnMovementAdded?.Invoke(value);
             _gameMenuManager?.UpdateMoveText(_movementNumber);
         }
     }
