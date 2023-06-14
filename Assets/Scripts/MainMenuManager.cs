@@ -44,6 +44,30 @@ public class MainMenuManager : MonoBehaviour
         _mainMenu?.SetActive(true);
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            ReturnButton();
+        }
+    }
+
+    private void ReturnButton()
+    {
+        if (_settingsMenu.activeSelf)
+        {
+            ReturnToMainMenuFromSettings();
+        }
+        else if (_skinMenu.activeSelf)
+        {
+            ReturnToMainMenuFromSkin();
+        }
+        else
+        {
+            Application.Quit();
+        }
+    }
+
     public void StartLevel()
     {
         _playButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => StarButtonTween());

@@ -1065,11 +1065,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _LevelTwoStarScore
-      value: 22
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _LevelThreeStarScore
-      value: 18
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 724292645973140185, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1177,26 +1177,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
---- !u!1 &414340013 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8359734098778516200, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
-  m_PrefabInstance: {fileID: 414340012}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &414340014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 414340013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6410a35ad41d0045b779c32b2abfa09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _LevelPerfectScore: 0
-  _LevelThreeStarScore: 0
-  _LevelTwoStarScore: 0
 --- !u!1001 &428606980
 PrefabInstance:
   m_ObjectHideFlags: 0

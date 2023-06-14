@@ -30,6 +30,10 @@ public class Reflectable : MonoBehaviour
     {
         get; set;
     }
+    public virtual LaserRenderer _LaserRenderer
+    {
+        get => _laserRenderer;
+    }
     protected Action _onReflection;
     protected Reflectable _nextReflectable;
     protected Reflectable _previousReflectable;

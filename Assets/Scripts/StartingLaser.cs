@@ -18,6 +18,9 @@ public class StartingLaser : MonoBehaviour
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
 
+    [SerializeField] ParticleSystem _particlePrefab;
+
+    ParticleSystem _pSystem;
     Vector3 _raycastTarget;
     Reflectable _nextReflectable;
 
@@ -33,6 +36,14 @@ public class StartingLaser : MonoBehaviour
         _laserRenderer.LineRenderer.useWorldSpace = true;
         _laserRenderer.ChangeLaserColor(_initialColor);
         ApplyParameters(false);
+
+        //Setup Particle system
+        _pSystem = Instantiate(_particlePrefab);
+        _pSystem.transform.position = transform.position;
+        var main = _pSystem.main;
+        main.startColor = Utilities.GetColor(_initialColor);
+        _pSystem.transform.rotation = Quaternion.LookRotation(_raycastTarget *- 1);
+        _pSystem.Play();
     }
 
     private void Update()

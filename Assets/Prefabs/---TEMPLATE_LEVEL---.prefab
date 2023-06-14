@@ -629,6 +629,30 @@ PrefabInstance:
       propertyPath: _buttonImage
       value: 
       objectReference: {fileID: 1835583298923384559}
+    - target: {fileID: 2175693368716041264, guid: 551a1efafbb36974496cea736fa0b58a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175693368716041264, guid: 551a1efafbb36974496cea736fa0b58a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175693368716041264, guid: 551a1efafbb36974496cea736fa0b58a, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175693368716041264, guid: 551a1efafbb36974496cea736fa0b58a, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175693368716041264, guid: 551a1efafbb36974496cea736fa0b58a, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175693368716041264, guid: 551a1efafbb36974496cea736fa0b58a, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2502637208300874242, guid: 551a1efafbb36974496cea736fa0b58a, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0.8
@@ -737,6 +761,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1287383133074396991}
+    - target: {fileID: 2636016668509941309, guid: 551a1efafbb36974496cea736fa0b58a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 42935311a1a4c064cb386e2c92749f24, type: 3}
     - target: {fileID: 6082549483651150875, guid: 551a1efafbb36974496cea736fa0b58a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

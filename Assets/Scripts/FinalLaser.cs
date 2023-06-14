@@ -33,7 +33,6 @@ public class FinalLaser : Reflectable, IUpdateableTile
         _pSystem = Instantiate(_particleSystem);
         _pSystem.Stop();
         _pSystem.transform.position = transform.position;// :) coucou Maxime
-        _pSystem.startColor = Utilities.GetColor(_targetColor);
     }
 
     protected override void Awake()
@@ -68,6 +67,8 @@ public class FinalLaser : Reflectable, IUpdateableTile
             
             if (laserColor == _targetColor)
             {
+                var main = _pSystem.main;
+                main.startColor = Utilities.GetColor(laserColor);
                 if (!_pSystem.isPlaying)
                 {
                     _pSystem.Play();
