@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using KorYmeLibrary.SaveSystem;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PromotionCode : MonoBehaviour
 {
@@ -22,6 +23,12 @@ public class PromotionCode : MonoBehaviour
                 for (int i = 1; i < 51; i++)
                 {
                     DataManager.Instance.CompleteALevel(i, 4);
+                }
+                break;
+            case "ALLSKINS":
+                for (int i = 0; i < Enum.GetValues(typeof(SKINPACK)).Length; i++)
+                {
+                    DataManager.Instance.UnlockNewSkin((SKINPACK)i);
                 }
                 break;
             case "RESET":
