@@ -13,11 +13,12 @@ namespace KorYmeLibrary.SaveSystem
    public class GameData : GameDataTemplate
    {
         // Create the values you want to save here
+        public string Version;
         public SerializableDictionnary<int, int> LevelDictionnary;
         public SerializableDictionnary<Utilities.GAMECOLORS, SKINPACK> SkinEquippedDictionnary;
         public List<SKINPACK> SkinAcquiredDictionnary;
-        public float Volume;
-        public string Version;
+        public float VolumeSFX;
+        public float VolumeMusic;
         public bool VibrationEnabled;
    }
 
