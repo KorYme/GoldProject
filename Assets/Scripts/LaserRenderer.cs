@@ -28,18 +28,21 @@ public class LaserRenderer : MonoBehaviour
     private void Start()
     {
         ChangeValues();
-        _pSystem = Instantiate(_particleSystemPrefab);
-        _pSystem.Stop();
-
-        
+        if (_pSystem == null)
+        {
+            _pSystem = Instantiate(_particleSystemPrefab);
+            _pSystem.Stop();
+        }
     }
 
     public void ChangeSecondPosition(Vector2 position, Vector2 normal, bool isWall = false)
     {
-        if (isWall)
+        if (isWall && _pSystem != null)
         {
             _pSystem.transform.position = position;
             _pSystem.transform.LookAt(_lineRenderer.GetPosition(0));
+            var main = _pSystem.main;
+            main.startColor = Utilities.GetColor(_laserColor);
             _pSystem.Play();
         }
         else if (!isWall)
@@ -56,6 +59,7 @@ public class LaserRenderer : MonoBehaviour
         float factor = Mathf.Pow(2, _intensity);
         Color colorToSet = new Color(_colorsLaser[(int)color].r * factor, _colorsLaser[(int)color].g * factor, _colorsLaser[(int)color].b * factor);
         _lineRenderer.material.SetColor("_Color", colorToSet);
+        
     }
 
     private void ChangeValues()
@@ -68,6 +72,8 @@ public class LaserRenderer : MonoBehaviour
             var main = _pSystem.main;
             main.startColor = Utilities.GetColor(_laserColor);
         }
+        else
+            Debug.Log("No particle system");
     }
 
 #if UNITY_EDITOR
