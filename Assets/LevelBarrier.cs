@@ -31,7 +31,6 @@ public class LevelBarrier : MonoBehaviour
             j = (k * 3) - 7;
             _levelText[i].text = DataManager.Instance.TotalStarNumber + "/" + j;
             k = k + 5;
-            Debug.Log(j);
         }
     }
 }
