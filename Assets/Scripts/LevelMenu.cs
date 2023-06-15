@@ -51,9 +51,9 @@ public class LevelMenu : MonoBehaviour
         }
     }
 
-    public void UpdateTotalStarText(int totalStarNumber)
+    public void UpdateTotalStarText(int UpdateTotalStarText)
     {
-        _totalStarText.text = totalStarNumber.ToString() + "/150";
+        _totalStarText.text = DataManager.Instance.TotalStarNumber.ToString() + "/150";
     }
 
     public void ReturnMainMenu()
