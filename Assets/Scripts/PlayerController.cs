@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, OnValueChanged(nameof(SetUpCrystalPosition))] Utilities.DIRECTIONS _initialDirection;
     [SerializeField, Range(0f,1f), OnValueChanged(nameof(SetUpCrystalPosition))] float _distance;
     [SerializeField] float _rotationSpeed;
+    [SerializeField] bool _isRotationClockWise;
     [SerializeField] bool _eightLaserDirections;
     [SerializeField, Tooltip("Movement curve of the crystal")] AnimationCurve _rotationCurve;
 
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
     bool _isRefusing;
     public bool IsRefusing
     {
-        get;
+        get => _isRefusing;
     }
 
     public bool IsCrateMoving
@@ -82,8 +83,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        Vector2 crystalDirection = _crystal.position - transform.position;
-        _targetAngle = Utilities.GetClosestInteger(Mathf.Atan2(crystalDirection.y, crystalDirection.x) * Mathf.Rad2Deg);
+        SetUpCrystalPosition();
     }
 
     private void SetUpCrystalPosition()
@@ -91,6 +91,7 @@ public class PlayerController : MonoBehaviour
         _crystal.position = (Vector3)Utilities.GetDirection(_initialDirection) * _distance + transform.position;
         Vector2 crystalDirection = _crystal.position - transform.position;
         _crystal.rotation = Quaternion.Euler(0, 0, Utilities.GetClosestInteger(Mathf.Atan2(crystalDirection.y, crystalDirection.x) * Mathf.Rad2Deg));
+        _targetAngle = Utilities.GetClosestInteger((Mathf.Atan2(crystalDirection.y, crystalDirection.x) * Mathf.Rad2Deg) + 360) % 360;
     }
 
     public void SetNewDirection(Vector2 direction)
@@ -99,6 +100,7 @@ public class PlayerController : MonoBehaviour
         if (_refuseCoroutine != null)
         {
             StopCoroutine(_refuseCoroutine);
+            _refuseCoroutine = null;
             _isRefusing = false;
         }
         RaycastHit2D ray = Physics2D.Raycast(transform.position, direction, DETECTION_RANGE, Utilities.MovementLayers[_playerReflection.ReflectionColor]);
@@ -143,17 +145,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void RotateCrystal(Vector2 direction)
+    public void RotateCrystal()
     {
-        if (direction == Vector2.zero)
-        {
-            _targetAngle += _eightLaserDirections ? 45 : 90;
-            _targetAngle %= 360;
-        }
-        else
-        {
-            _targetAngle = Utilities.GetClosestInteger(Mathf.Atan2(direction.y, direction.x));
-        }
+        int value = _eightLaserDirections ? 45 : 90;
+        _targetAngle += _isRotationClockWise ? 360 - value : value;
+        _targetAngle %= 360;
         if (CheckNeededRotation()) return;
         if (_rotationCoroutine != null)
         {
@@ -164,9 +160,9 @@ public class PlayerController : MonoBehaviour
 
     public bool CheckNeededRotation()
     {
-        if (Mathf.Abs(((360 - _targetAngle) % 360) - _playerReflection.ForbiddenAngle) < ANGLE_TOLERANCE)
+        if (Mathf.Abs(_targetAngle - _playerReflection.ForbiddenAngle) < ANGLE_TOLERANCE)
         {
-            RotateCrystal(Vector2.zero);
+            RotateCrystal();
             return true;
         }
         return false;
@@ -309,7 +305,7 @@ public class PlayerController : MonoBehaviour
         while (lerpValue < 1f)
         {
             lerpValue = Mathf.Clamp01(lerpValue + (Time.deltaTime * _rotationSpeed));
-            float lerpAngle = LerpAngleUnclamped(initialAngle, -_targetAngle, _rotationCurve.Evaluate(lerpValue));
+            float lerpAngle = LerpAngleUnclamped(initialAngle, _targetAngle, _rotationCurve.Evaluate(lerpValue));
             _crystal.position = new Vector3(Mathf.Cos(lerpAngle * Mathf.Deg2Rad) * _distance,
                 Mathf.Sin(lerpAngle * Mathf.Deg2Rad) * _distance, 0) + transform.position;
             _crystal.rotation = Quaternion.Euler(0, 0, lerpAngle);
@@ -318,10 +314,10 @@ public class PlayerController : MonoBehaviour
         IsRotating = false;
         _onPlayerRotationStopped?.Invoke();
         _crystal.position = new Vector3(
-            GetClosest(Mathf.Cos(-_targetAngle * Mathf.Deg2Rad)) * _distance,
-            GetClosest(Mathf.Sin(-_targetAngle * Mathf.Deg2Rad)) * _distance, 0) 
+            GetClosest(Mathf.Cos(_targetAngle * Mathf.Deg2Rad)) * _distance,
+            GetClosest(Mathf.Sin(_targetAngle * Mathf.Deg2Rad)) * _distance, 0) 
             + transform.position;
-        _crystal.rotation = Quaternion.Euler(0,0,-_targetAngle);
+        _crystal.rotation = Quaternion.Euler(0,0,_targetAngle);
         _rotationCoroutine = null;
     }
 
@@ -376,8 +372,13 @@ public class PlayerController : MonoBehaviour
     IEnumerator RefuseMovement()
     {
         _isRefusing = true;
-        Handheld.Vibrate();
+        if (DataManager.Instance.VibrationEnabled)
+        {
+            Handheld.Vibrate();
+        }
         yield return new WaitForSeconds(_animatorManager.ChangeAnimation(ANIMATION_STATES.Refuse, true));
         _animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
+        _isRefusing = false;
+        _refuseCoroutine = null;
     }
 }

@@ -43,6 +43,7 @@ public class AchievementManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (!enabled) return;
         _dataManager.OnStarAdded -= CheckForAchievementWithStars;
         _dataManager.OnLevelComplete -= CheckPerfectLevel;
         _dataManager.OnLevelComplete -= CheckBonusLevel;
@@ -77,8 +78,6 @@ public class AchievementManager : MonoBehaviour
         PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQAQ", Mathf.Clamp(starAdded, 1, 3), AchieveSuccess);
         PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQBA", Mathf.Clamp(starAdded, 1, 3), AchieveSuccess);
         PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQBQ", Mathf.Clamp(starAdded, 1, 3), AchieveSuccess);
-        if (DataManager.Instance.RealTotalStarNumber < 165) return;
-        // INSERT PERFECTION ACHIEVEMENT
     }
 
     void CheckPerfectLevel(int levelID, int star)
@@ -86,6 +85,10 @@ public class AchievementManager : MonoBehaviour
         if (star != 4) return;
         if (levelID <= 0) return;
         if (_dataManager.LevelDictionnary[levelID] == 4) return;
+        if (_dataManager.RealTotalStarNumber == 220)
+        {
+            PlayGamesPlatform.Instance.ReportProgress("CgkIhpOPlaMXEAIQFg", 100.0f, AchieveSuccess);
+        }
         switch ((levelID - 1) / 10)
         {
             case 0:
