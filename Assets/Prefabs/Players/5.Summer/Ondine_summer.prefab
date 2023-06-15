@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 250838969918027692, guid: c2e81b072eca29949b8012997d4c7a2c, type: 3}
+      propertyPath: _skinPack
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 278404942279939180, guid: c2e81b072eca29949b8012997d4c7a2c, type: 3}
       propertyPath: m_Sprite
       value: 
