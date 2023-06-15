@@ -33,10 +33,10 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Level-7.unity
     guid: f4f97f4003ee50349a908d5e6e7c3ee5
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-8.unity
+    path: Assets/Scenes/GameScenes/Level-9.unity
     guid: 66fcd9ce0e7e07c41a563dab37163914
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-9.unity
+    path: Assets/Scenes/GameScenes/Level-8.unity
     guid: 828c3385cd8a2a946a8de62dca2a9c98
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-10.unity
@@ -45,13 +45,13 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Level-11.unity
     guid: 42f3eef8885b23948befb28d35db569b
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-12.unity
+    path: Assets/Scenes/GameScenes/Level-14.unity
     guid: 870cad6eb4cdb33468fee01587811a46
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-13.unity
     guid: 9930eab4ae87ba442aca0046ec3059ed
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-14.unity
+    path: Assets/Scenes/GameScenes/Level-12.unity
     guid: e2cd1148f539dc34a821d12cd61a4f7c
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-15.unity
@@ -75,10 +75,10 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Level-21.unity
     guid: 3ff937faaa5e16947902db061cafd6a8
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-22.unity
+    path: Assets/Scenes/GameScenes/Level-23.unity
     guid: 3b87e4ec8e71ea7419115278af74d6dc
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-23.unity
+    path: Assets/Scenes/GameScenes/Level-22.unity
     guid: 5676ca613ab4a1e4e80de3d2c10f1d6d
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-24.unity
