@@ -4357,6 +4357,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Block1_1x1
       objectReference: {fileID: 0}
+    - target: {fileID: 3844022378490270626, guid: c8b5aaf29691976489e86626fbe28555, type: 3}
+      propertyPath: m_FlipX
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8118451692300114138, guid: c8b5aaf29691976489e86626fbe28555, type: 3}
       propertyPath: m_RootOrder
       value: 2
