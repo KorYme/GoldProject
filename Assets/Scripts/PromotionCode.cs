@@ -5,15 +5,33 @@ using UnityEngine.UI;
 using TMPro;
 using KorYmeLibrary.SaveSystem;
 using UnityEngine.SceneManagement;
+using System;
 
 public class PromotionCode : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] TMP_InputField inputField;
 
-    public void PromotionCodeField()
+    string tmpValue;
+
+    private void Awake()
     {
-        switch (inputField.text.ToUpper())
+        tmpValue = "";
+    }
+
+    public void KeepString(string str)
+    {
+        if (str == "") return;
+        tmpValue = str;
+    }
+
+    public void PromotionCodeField(string str)
+    {
+        if (str == "")
+        {
+            str = tmpValue;
+        }
+        switch (str.ToUpper())
         {
             case "PULV":
                 DataManager.Instance.UnlockNewSkin(SKINPACK.PULV);
@@ -24,6 +42,12 @@ public class PromotionCode : MonoBehaviour
                     DataManager.Instance.CompleteALevel(i, 4);
                 }
                 break;
+            case "ALLSKINS":
+                for (int i = 0; i < 7; i++)
+                {
+                    DataManager.Instance.UnlockNewSkin((SKINPACK)i);
+                }
+                break;
             case "RESET":
                 DataManager.Instance.InitializeData();
                 Application.Quit();
@@ -32,6 +56,7 @@ public class PromotionCode : MonoBehaviour
                 Debug.Log("No promotion code found");
                 break;
         }
-        inputField.text = string.Empty;
+        tmpValue = "";
+        inputField.text = "";
     }
 }

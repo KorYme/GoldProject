@@ -72,12 +72,6 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     {
         get => _levelDictionnary;
     }
-    
-    float _volume;
-    public float Volume
-    {
-        get => _volume;
-    }
 
     bool _vibrationEnabled;
     public bool VibrationEnabled
@@ -164,7 +158,6 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         _levelDictionnary = gameData.LevelDictionnary;
         _skinAcquiredList = gameData.SkinAcquiredDictionnary;
         _skinEquippedDictionnary = gameData.SkinEquippedDictionnary;
-        _volume = gameData.Volume;
         _vibrationEnabled = gameData.VibrationEnabled;
         CheckLevels();
         OnDataLoaded?.Invoke();
@@ -176,7 +169,6 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         gameData.LevelDictionnary = _levelDictionnary;
         gameData.SkinAcquiredDictionnary = _skinAcquiredList;
         gameData.SkinEquippedDictionnary = _skinEquippedDictionnary;
-        gameData.Volume = _volume;
         gameData.VibrationEnabled = _vibrationEnabled;
         gameData.Version = Application.version;
     }
@@ -202,7 +194,6 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
             { Utilities.GAMECOLORS.Blue, SKINPACK.BASIC },
             { Utilities.GAMECOLORS.Yellow, SKINPACK.BASIC },
         };
-        _volume = 0.8f;
         _vibrationEnabled = true;
         OnDataLoaded?.Invoke();
     }
@@ -212,12 +203,17 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         if (level > _lastLevelNumber) return false;
         if (level < 0)
         {
-            int currentStage = ((level + 1) * 10) / -(_levelPerStage * 2);
-            for (int i = 1; i <= _levelPerStage * 2; i++)
-            {   
-                if (!LevelDictionnary.ContainsKey((currentStage * _levelPerStage * 2) + i) || LevelDictionnary[(currentStage * _levelPerStage * 2) + i] < 3) return false;
+            int neededLevel = level * -10;
+            foreach (var item in LevelDictionnary)
+            {
+                if (item.Key <= 0) continue;
+                if (item.Value == 4)
+                {
+                    neededLevel--;
+                    if (neededLevel <= 0) return true;
+                }
             }
-            return true;
+            return false;
         }
         else
         {

@@ -68,7 +68,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
             if (laserColor == _targetColor)
             {
                 var main = _pSystem.main;
-                main.startColor = previous._LaserRenderer.LineRenderer.startColor;
+                main.startColor = Utilities.GetColor(laserColor);
                 if (!_pSystem.isPlaying)
                 {
                     _pSystem.Play();

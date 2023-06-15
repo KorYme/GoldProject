@@ -64,7 +64,7 @@ public class LaserRenderer : MonoBehaviour
 
     private void ChangeValues()
     {
-        LineRenderer.startWidth = _laserWidth;
+        LineRenderer.endWidth = _laserWidth;
         LineRenderer.startWidth = _laserWidth;
         ChangeLaserColor(_laserColor);
         if (_pSystem != null)

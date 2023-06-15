@@ -42,8 +42,6 @@ public class StartingLaser : MonoBehaviour
         _pSystem.transform.position = transform.position;
         var main = _pSystem.main;
         main.startColor = Utilities.GetColor(_initialColor);
-        Debug.Log("start color = " + main.startColor.color);
-        Debug.Log("line color = " + main.startColor.color);
         _pSystem.transform.rotation = Quaternion.LookRotation(_raycastTarget *- 1);
         _pSystem.Play();
     }
