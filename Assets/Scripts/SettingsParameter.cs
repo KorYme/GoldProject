@@ -19,6 +19,24 @@ public class SettingsParameter : MonoBehaviour, IDataSaveable<GameData>
     {
         _slider = GetComponent<Slider>();
         _toggle = GetComponent<Toggle>();
+
+        if (_slider != null)
+        {
+            switch (gameObject.name)
+            {
+                case "MusicManager":
+                    _slider.value = AudioManager.Instance.music._source.volume * 100;
+                    break;
+                case "SoundManager":
+                    _slider.value = AudioManager.Instance.sfxVolume * 100;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (_toggle != null)
+            _toggle.isOn = DataManager.Instance.VibrationEnabled;
     }
 
     public void ChangeMusicVolume(Slider slider)

@@ -18,9 +18,9 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
 
     public Sound music;
     int _nbOfPlayersReflecting = 0;
-    public float musicVolume = 0.5f;
-    public float sfxVolume = 0.5f;
-    bool _vibration = true;
+    public float musicVolume;
+    public float sfxVolume;
+    bool _vibration;
 
     [SerializeField] Sound[] _sounds;
 
@@ -35,6 +35,10 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
             Destroy(gameObject);
             return;
         }
+
+        sfxVolume = 0.5f;
+        musicVolume = 0.5f;
+        _vibration = true;
 
         foreach (Sound s in _sounds)
         {
@@ -105,7 +109,9 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
 
     public void InitializeData()
     {
-        
+        //_musicSlider.value = musicVolume;
+        //_sfxSlider.value = sfxVolume;
+        //_vibrationToggle.isOn = _vibration;
     }
 
     public void LoadData(GameData gameData)
