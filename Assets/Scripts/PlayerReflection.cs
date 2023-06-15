@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System.Data;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -38,6 +39,7 @@ public class PlayerReflection : Reflectable
 
     protected override void Awake()
     {
+        ForbiddenAngle = -4000;
         LensColor = Utilities.GAMECOLORS.White;
         base.Awake();
     }

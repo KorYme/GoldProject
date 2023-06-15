@@ -8,27 +8,21 @@ public class LevelGenerator : MonoBehaviour
 {
 #if UNITY_EDITOR
     [Header("References")]
-    [SerializeField] Camera _camera;
     [SerializeField] Transform _tilesContainer;
     [SerializeField] Transform _bordersContainer;
     [SerializeField] GameObject _tilePrefab;
 
     [Header("Parameters")]
     [SerializeField, MinMaxSlider(1,16)] Vector2Int _mapSize;
-    [SerializeField, Range(0f, 2f), OnValueChanged(nameof(ResizeCamera))] float _offsetOnSide;
-    [SerializeField, Range(-5f,5f), OnValueChanged(nameof(ReplaceCamera))] float _cameraOffsetY;
 
     private void Reset()
     {
-        _cameraOffsetY = 0;
         _mapSize = new Vector2Int(6, 8);
-        _offsetOnSide = 0;
     }
 
     [Button]
     private void GenerateLevel()
     {
-        _camera.orthographicSize = _mapSize.x + _offsetOnSide * 2;
         for (int x = 0; x < _mapSize.x + 2; x++)
         {
             for (int y = 0; y < _mapSize.y + 2; y++)
@@ -63,18 +57,6 @@ public class LevelGenerator : MonoBehaviour
         {
             DestroyImmediate(_bordersContainer.GetChild(y).gameObject);
         }
-    }
-
-    [Button]
-    private void ResizeCamera()
-    {
-        _camera.orthographicSize = _mapSize.x + _offsetOnSide * 2;
-    }
-
-    [Button]
-    private void ReplaceCamera()
-    {
-        _camera.transform.position = new Vector3(_camera.transform.position.x, _cameraOffsetY, -10);
     }
 #endif
 }
