@@ -3580,7 +3580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 724292645973140190, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: orthographic size
-      value: 10.036718
+      value: 9.25
       objectReference: {fileID: 0}
     - target: {fileID: 872963630411765587, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3596,7 +3596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4350047383333984264, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _bufferSize
-      value: 1.25
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4350047383333984264, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _exceptionObjects.Array.size
