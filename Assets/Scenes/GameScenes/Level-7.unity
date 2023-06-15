@@ -1171,16 +1171,36 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _levelPerfectScore
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _levelTwoStarScore
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _LevelThreeStarScore
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _levelThreeStarScore
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 724292645973140185, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 724292645973140185, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.13
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 724292645973140190, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: orthographic size
-      value: 5.46
+      value: 6.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 872963630411765587, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1101498700555979628, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_IsActive

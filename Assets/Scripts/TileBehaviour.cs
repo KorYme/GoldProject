@@ -60,6 +60,7 @@ public class TileBehaviour : MonoBehaviour
     [Button("Apply Parameters")]
     public void ChangeParameters(bool init = true)
     {
+        if (_spriteRenderer == null) return;
         if (init)
         {
             if (_currentTile != null)

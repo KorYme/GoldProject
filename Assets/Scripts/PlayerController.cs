@@ -248,7 +248,7 @@ public class PlayerController : MonoBehaviour
     private bool CheckCrateMovement(Transform hitObject, Vector2 direction)
     {
         if (hitObject.CompareTag("Crate") 
-            && !Physics2D.OverlapCircle((Vector2)hitObject.position + direction, .45f, Utilities.MovementLayers[Utilities.GAMECOLORS.White]))
+            && (Physics2D.OverlapCircle((Vector2)hitObject.position + direction, .3f, Utilities.MovementLayers[Utilities.GAMECOLORS.White])?.CompareTag("Mud") ?? true))
         {
             InputManager.Instance.CanMoveAPlayer = false;
             if (direction.y == 0f)
