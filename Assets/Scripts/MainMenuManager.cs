@@ -104,7 +104,7 @@ public class MainMenuManager : MonoBehaviour
 
     TweenCallback LevelButtonTween()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Level Menu");
         return null;
     }
 
