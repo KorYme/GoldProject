@@ -32,6 +32,7 @@ public class StartingLaser : MonoBehaviour
     private void Start()
     {
         _nextReflectable = null;
+        ChooseOrderInLayer(_laserDir);
         _raycastTarget = Utilities.GetDirection(_laserDir);
         _laserRenderer.LineRenderer.useWorldSpace = true;
         _laserRenderer.ChangeLaserColor(_initialColor);
@@ -75,6 +76,21 @@ public class StartingLaser : MonoBehaviour
         if (init)   
         {
             FindObjectsOfType<StartingLaser>().Where(x => x != this).ToList().ForEach(x => x.ApplyParameters(false));
+        }
+    }
+
+    private void ChooseOrderInLayer(Utilities.DIRECTIONS dir)
+    {
+        switch (dir)
+        {
+            case Utilities.DIRECTIONS.Up:
+                GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Tiles";
+                break;
+            case Utilities.DIRECTIONS.Down:
+                GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Tiles";
+                break;
+            default:
+                break;
         }
     }
 }
