@@ -4694,7 +4694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4082565426831954320, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _tutoPageThree
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5889506463730243264, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_IsActive
