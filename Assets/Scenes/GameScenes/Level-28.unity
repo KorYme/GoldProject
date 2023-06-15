@@ -992,6 +992,58 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.7071068
       objectReference: {fileID: 0}
+    - target: {fileID: 4082565426831954320, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: _tutoPageSeven
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395123923239538248, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395123923239538248, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395123923239538248, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395123923239538248, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395123923239538248, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395123923239538248, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395123923239538248, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395123923239538248, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395123923239538248, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395123923239538251, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395123923989855532, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5395123924734916736, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5572068046469195342, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
