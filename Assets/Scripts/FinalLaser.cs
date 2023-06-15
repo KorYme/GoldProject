@@ -13,6 +13,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
 
     [Space(5), Header("Final Target References")] 
     [SerializeField] ParticleSystem _particleSystem;
+    [SerializeField] ParticleSystem _winParticleSystemW;
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
 
@@ -24,7 +25,9 @@ public class FinalLaser : Reflectable, IUpdateableTile
     float _timeHitByLaser = 0;
     bool _isLevelComplete;
     bool _shouldPlayWrongColorSound = true;
+    bool _shouldPlayVictorySound = true;
     ParticleSystem _pSystem;
+    ParticleSystem _winPSystem;
 
     const float ANGLE_TOLERANCE = 3f;
 
@@ -33,6 +36,9 @@ public class FinalLaser : Reflectable, IUpdateableTile
         _pSystem = Instantiate(_particleSystem);
         _pSystem.Stop();
         _pSystem.transform.position = transform.position;// :) coucou Maxime
+
+        _winPSystem = Instantiate(_winParticleSystemW);
+        _winPSystem.Stop();
     }
 
     protected override void Awake()
@@ -113,8 +119,14 @@ public class FinalLaser : Reflectable, IUpdateableTile
 
     private void LevelCompleted()
     {
-
         _winMenuManager.Win(InputManager.Instance.MovementNumber);
+
+        if (_shouldPlayVictorySound)
+        {
+            _winPSystem.Play();
+            AudioManager.Instance.PlaySound("victory");
+            _shouldPlayVictorySound = false;
+        }
     }
 
 
