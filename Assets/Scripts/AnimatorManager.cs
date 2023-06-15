@@ -48,9 +48,9 @@ public class AnimatorManager : MonoBehaviour
             _animator.SetTrigger("Victory");
             return 2f;
         }
-        Debug.Log(state);
         CurrentState = state;
         _animator.Play($"{state}_{_playerName}");
+        //Debug.Log($"{state} : {_animator.runtimeAnimatorController.animationClips.First(x => x.name == $"{state}_{_playerName}").length}");
         return _animator.runtimeAnimatorController.animationClips.First(x => x.name == $"{state}_{_playerName}").length;
     }
 }

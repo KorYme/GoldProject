@@ -17,7 +17,6 @@ public class BackgroundAnimator : MonoBehaviour
     public void PlayAnimation()
     {
         if (_animationCoroutine != null) return;
-        Debug.Log("HEY");
         _animationCoroutine = StartCoroutine(AnimationCoroutine());
     }
 
