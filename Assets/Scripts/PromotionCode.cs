@@ -12,51 +12,44 @@ public class PromotionCode : MonoBehaviour
     [Header("References")]
     [SerializeField] TMP_InputField inputField;
 
-    string tmpValue;
-
-    private void Awake()
+    public void EraseString(string str)
     {
-        tmpValue = "";
-    }
-
-    public void KeepString(string str)
-    {
-        if (str == "") return;
-        tmpValue = str;
+        inputField.text = "";
     }
 
     public void PromotionCodeField(string str)
     {
-        if (str == "")
-        {
-            str = tmpValue;
-        }
-        switch (str.ToUpper())
+        switch (inputField.text.ToUpper())
         {
             case "PULV":
+                Debug.Log(inputField.text.ToUpper());
                 DataManager.Instance.UnlockNewSkin(SKINPACK.PULV);
                 break;
             case "ALLSTARS":
+                Debug.Log(inputField.text.ToUpper());
                 for (int i = 1; i < 51; i++)
+                {
+                    DataManager.Instance.CompleteALevel(i, 4);
+                }
+                for (int i = -1; i > -6; i--)
                 {
                     DataManager.Instance.CompleteALevel(i, 4);
                 }
                 break;
             case "ALLSKINS":
+                Debug.Log(inputField.text.ToUpper());
                 for (int i = 0; i < 7; i++)
                 {
                     DataManager.Instance.UnlockNewSkin((SKINPACK)i);
                 }
                 break;
             case "RESET":
+                Debug.Log(inputField.text.ToUpper());
                 DataManager.Instance.InitializeData();
                 Application.Quit();
                 break;
             default:
-                Debug.Log("No promotion code found");
                 break;
         }
-        tmpValue = "";
-        inputField.text = "";
     }
 }

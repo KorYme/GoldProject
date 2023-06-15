@@ -231,7 +231,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 
     private void CheckLevels()
     {
-        for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
+        for (int i = 2; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             if (LevelDictionnary.ContainsKey(i) && !CanPlayThisLevel(i))
             {

@@ -45,6 +45,11 @@ public class TileBehaviour : MonoBehaviour
         }
     }
 
+    public BoxCollider2D BoxCollider2D
+    {
+        get { return _collider; }
+    }
+
     private void OnDestroy()
     {
         if (_currentTile == null) return;
