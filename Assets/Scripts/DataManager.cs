@@ -77,6 +77,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
     public bool VibrationEnabled
     {
         get => _vibrationEnabled;
+        set => _vibrationEnabled = value;
     }
     #endregion
 
