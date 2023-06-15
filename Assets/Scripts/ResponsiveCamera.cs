@@ -17,7 +17,8 @@ public class ResponsiveCamera : MonoBehaviour
     private void ReplaceCamera()
     {
         Bounds bounds = new Bounds();
-        foreach (var tile in FindObjectsOfType<TileBehaviour>().Where(x => x.Type != TileBehaviour.TileType.Border))
+        foreach (var tile in FindObjectsOfType<TileBehaviour>().Where(x => x.Type != TileBehaviour.TileType.Border 
+        && x.Type != TileBehaviour.TileType.LaserStart))
         {
             if (_exceptionObjects.Contains(tile)) continue;
             bounds.Encapsulate(tile.BoxCollider2D.bounds);
