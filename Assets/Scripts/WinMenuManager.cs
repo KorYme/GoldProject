@@ -62,7 +62,7 @@ public class WinMenuManager : MonoBehaviour
         yield return new WaitForSeconds(_victoryScreenDelay);
         _winMenu.SetActive(true);
         _gameMenu.SetActive(false);
-        UpdateWinMenu(_levelManager.LevelNumber , _levelManager._LevelPerfectScore, _levelManager._LevelThreeStarScore, _levelManager._LevelTwoStarScore, totalMove.ToString(), totalMove);
+        UpdateWinMenu(_levelManager.LevelNumber , _levelManager.LevelPerfectScore, _levelManager.LevelThreeStarScore, _levelManager.LevelTwoStarScore, totalMove.ToString(), totalMove);
     }
 
     void UpdateWinMenu(int _levelNumber, int _levelPerfectScore, int _levelThreeStarScore, int _levelTwoStarScore,  string TextMove, int TotalMove)
@@ -75,7 +75,6 @@ public class WinMenuManager : MonoBehaviour
 
         if(_levelNumber < 0)
         {
-            _levelNumber = -_levelNumber;
             _levelText.text = "Bonus " + _levelNumber;
         }
         else
@@ -108,7 +107,6 @@ public class WinMenuManager : MonoBehaviour
         }
         else if (TotalMove <= _levelThreeStarScore)
         {
-            
             StartCoroutine(UpdateStarSound(playButtonPosition, starOnePosition, starTwoPosition, starThreePosition, 3, _levelPerfectScore));
             DataManager.Instance.CompleteALevel(_levelNumber, 3);
         }

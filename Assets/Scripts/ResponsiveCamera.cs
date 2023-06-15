@@ -8,22 +8,24 @@ public class ResponsiveCamera : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] Camera _camera;
+    [SerializeField] List<TileBehaviour> _exceptionObjects;
 
     [Header("Parameters")]
     [SerializeField, Range(-10f, 10f), OnValueChanged(nameof(ReplaceCamera))] float _bufferSize;
-    [SerializeField, Range(-10f, 10f), OnValueChanged(nameof(ReplaceCamera))] float _offsetY;
 
+    [Button]
     private void ReplaceCamera()
     {
         Bounds bounds = new Bounds();
         foreach (var tile in FindObjectsOfType<TileBehaviour>().Where(x => x.Type != TileBehaviour.TileType.Border))
         {
+            if (_exceptionObjects.Contains(tile)) continue;
             bounds.Encapsulate(tile.BoxCollider2D.bounds);
         }
         bounds.Expand(_bufferSize);
 
         float size = Mathf.Max(bounds.size.y, bounds.size.x * _camera.pixelHeight / _camera.pixelWidth) * .5f;
-        Vector3 center = bounds.center + new Vector3(0f, _offsetY, -10f);
+        Vector3 center = bounds.center + new Vector3(0f, 0f, -10f);
         _camera.transform.position = center;
         _camera.orthographicSize = size;
     }
