@@ -293,7 +293,7 @@ RectTransform:
   m_Children:
   - {fileID: 1958436892}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1372,6 +1372,7 @@ GameObject:
   m_Component:
   - component: {fileID: 402718855}
   - component: {fileID: 402718856}
+  - component: {fileID: 402718857}
   m_Layer: 5
   m_Name: SoundManager
   m_TagString: Untagged
@@ -1453,8 +1454,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+      - m_Target: {fileID: 402718857}
+        m_TargetAssemblyTypeName: SettingsParameter, Assembly-CSharp
         m_MethodName: ChangeSFXVolume
         m_Mode: 2
         m_Arguments:
@@ -1465,6 +1466,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &402718857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402718854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff301ebec746494bad24978022ffd8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &469617877
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,6 +2103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 729859323}
   - component: {fileID: 729859324}
+  - component: {fileID: 729859325}
   m_Layer: 5
   m_Name: MusicManager
   m_TagString: Untagged
@@ -2171,8 +2185,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+      - m_Target: {fileID: 729859325}
+        m_TargetAssemblyTypeName: SettingsParameter, Assembly-CSharp
         m_MethodName: ChangeMusicVolume
         m_Mode: 2
         m_Arguments:
@@ -2183,6 +2197,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &729859325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 729859322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ff301ebec746494bad24978022ffd8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &737815054
 GameObject:
   m_ObjectHideFlags: 0
@@ -2469,7 +2495,7 @@ Transform:
   - {fileID: 1107568208}
   - {fileID: 362657271}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &769339221
 GameObject:
@@ -4524,7 +4550,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!328 &1199122005
 VideoPlayer:
   m_ObjectHideFlags: 0
@@ -4573,7 +4599,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1199122007
 MonoBehaviour:
