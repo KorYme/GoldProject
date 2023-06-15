@@ -24,6 +24,8 @@ public class WinMenuManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI _starThreeText;
     [SerializeField] Image _starThreeImage;
 
+    [SerializeField] Image _playButton;
+
     [SerializeField] TextMeshProUGUI _perfectText;
 
     [SerializeField] TextMeshProUGUI _moveText;
@@ -65,19 +67,29 @@ public class WinMenuManager : MonoBehaviour
 
     void UpdateWinMenu(int _levelNumber, int _levelPerfectScore, int _levelThreeStarScore, int _levelTwoStarScore,  string TextMove, int TotalMove)
     {
-        _starThreeText.text = "Less than " + _levelThreeStarScore + " moves";
+        _starThreeText.text = _levelThreeStarScore + " moves";
 
-        _starTwoText.text = "Less than " + _levelTwoStarScore + " moves";
+        _starTwoText.text = _levelTwoStarScore + " moves";
 
         _starOneText.text = "Finish the level"; 
 
-        _levelText.text = "Level " + _levelNumber;
+        if(_levelNumber < 0)
+        {
+            _levelNumber = -_levelNumber;
+            _levelText.text = "Bonus " + _levelNumber;
+        }
+        else
+        {
+            _levelText.text = "Level " + _levelNumber;
+        }
+        
         _moveText.text = TextMove + " moves";
 
 
         Vector3 starOnePosition = _starOne.transform.position;
         Vector3 starTwoPosition = _starTwo.transform.position;
         Vector3 starThreePosition = _starThree.transform.position;
+        Vector3 playButtonPosition = _playButton.transform.position;
 
         _starOneImage.sprite = _starYellow;
         _starTwoImage.sprite = _starYellow;
@@ -86,24 +98,25 @@ public class WinMenuManager : MonoBehaviour
         _starOne.transform.position = new Vector3(-500, -500, 0);
         _starTwo.transform.position = new Vector3(-500, -500, 0);
         _starThree.transform.position = new Vector3(-500, -500, 0);
+        _playButton.transform.position = new Vector3(-500, -500, 0);
 
         if (TotalMove <= _levelPerfectScore)
         {
             _perfectText.text = "";
-            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 4));
+            StartCoroutine(UpdateStarSound(playButtonPosition, starOnePosition, starTwoPosition, starThreePosition, 4, _levelPerfectScore));
             DataManager.Instance.CompleteALevel(_levelNumber, 4);
         }
         else if (TotalMove <= _levelThreeStarScore)
         {
-            _perfectText.text = "Need " + _levelPerfectScore + " moves for perfect";
-            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 3));
+            
+            StartCoroutine(UpdateStarSound(playButtonPosition, starOnePosition, starTwoPosition, starThreePosition, 3, _levelPerfectScore));
             DataManager.Instance.CompleteALevel(_levelNumber, 3);
         }
         else if (TotalMove <= _levelTwoStarScore)
         {
             _starThreeImage.sprite = _starGray;
             _perfectText.text = "";
-            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 2));
+            StartCoroutine(UpdateStarSound(playButtonPosition, starOnePosition, starTwoPosition, starThreePosition, 2, _levelPerfectScore));
             DataManager.Instance.CompleteALevel(_levelNumber, 2);
         }
         else
@@ -111,12 +124,12 @@ public class WinMenuManager : MonoBehaviour
             _starTwoImage.sprite = _starGray;
             _starThreeImage.sprite = _starGray;
             _perfectText.text = "";
-            StartCoroutine(UpdateStarSound(starOnePosition, starTwoPosition, starThreePosition, 1));
+            StartCoroutine(UpdateStarSound(playButtonPosition, starOnePosition, starTwoPosition, starThreePosition, 1, _levelPerfectScore));
             DataManager.Instance.CompleteALevel(_levelNumber, 1);
         }
     }
 
-    IEnumerator UpdateStarSound(Vector3 starOnePosition, Vector3 starTwoPosition, Vector3 starThreePosition, int numberOfStar)
+    IEnumerator UpdateStarSound(Vector3 playButtonPosition, Vector3 starOnePosition, Vector3 starTwoPosition, Vector3 starThreePosition, int numberOfStar, int _levelPerfectScore)
     {
         if(numberOfStar >= 3)
         {
@@ -129,8 +142,11 @@ public class WinMenuManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             _starThree.transform.DOMove(starThreePosition, 0.5f, false);
             yield return new WaitForSeconds(0.5f);
+            _perfectText.text = "Perfect score :  " + _levelPerfectScore + " moves";
+            AudioManager.Instance.PlaySound("StarFail");
             if (numberOfStar == 4)
             {
+                _perfectText.text = "";
                 AudioManager.Instance.PlaySound("StarPlat");
                 yield return new WaitForSeconds(0.1f);
                 _starOne.transform.DOPunchScale(new Vector3(2, 2, 2), 0.25f, 2, 0).OnComplete(() => _starOneImage.sprite = _starCyan);
@@ -138,7 +154,9 @@ public class WinMenuManager : MonoBehaviour
                 _starTwo.transform.DOPunchScale(new Vector3(2, 2, 2), 0.25f, 2, 0).OnComplete(() => _starTwoImage.sprite = _starCyan);
                 yield return new WaitForSeconds(0.25f);
                 _starThree.transform.DOPunchScale(new Vector3(2, 2, 2), 0.25f, 2, 0).OnComplete(() => _starThreeImage.sprite = _starCyan);
+                _playButton.transform.DOMove(playButtonPosition, 0.5f, false);
             }
+            _playButton.transform.DOMove(playButtonPosition, 0.5f, false);
         }
         else if(numberOfStar == 2)
         {
@@ -151,6 +169,7 @@ public class WinMenuManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             _starThree.transform.DOMove(starThreePosition, 0.5f, false);
             yield return new WaitForSeconds(0.5f);
+            _playButton.transform.DOMove(playButtonPosition, 0.5f, false);
         }
         else if(numberOfStar == 1)
         {
@@ -163,6 +182,7 @@ public class WinMenuManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
             _starThree.transform.DOMove(starThreePosition, 0.5f, false);
             yield return new WaitForSeconds(0.5f);
+            _playButton.transform.DOMove(playButtonPosition, 0.5f, false);
         }        
     }
 
