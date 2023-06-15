@@ -110,7 +110,7 @@ MonoBehaviour:
     _source: {fileID: 0}
   - name: LensFilter
     _clip: {fileID: 8300000, guid: 6632404227ddeaa4688c5c9b0512a4ae, type: 3}
-    _volume: 0.185
+    _volume: 0.107
     _pitch: 1.05
     _source: {fileID: 0}
   - name: PlayerInMud
