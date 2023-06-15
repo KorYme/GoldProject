@@ -25,17 +25,17 @@ public class GameMenuManager : MonoBehaviour
 
     public void RestartLevelButton()
     {
-        SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void MainMenuButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Main Menu");
     }
     
     public void LevelMenuButton()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Level Menu");
     }
 
     public void ReturnToGameFromSettings()
@@ -64,6 +64,6 @@ public class GameMenuManager : MonoBehaviour
 
     public void ReloadLevel()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

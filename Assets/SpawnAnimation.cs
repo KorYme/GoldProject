@@ -13,6 +13,6 @@ public class SpawnAnimation : MonoBehaviour
     IEnumerator SpawnAnimationCoroutine()
     {
         yield return new WaitForSeconds(3.25f);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Main Menu");
     }
 }
