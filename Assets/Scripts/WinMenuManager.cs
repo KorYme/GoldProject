@@ -181,7 +181,7 @@ public class WinMenuManager : MonoBehaviour
             _starThree.transform.DOMove(starThreePosition, 0.5f, false);
             yield return new WaitForSeconds(0.5f);
             _playButton.transform.DOMove(playButtonPosition, 0.5f, false);
-        }        
+        }
     }
 
     public void NextLevelButton()

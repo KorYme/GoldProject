@@ -754,6 +754,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _buttonImage: {fileID: 5747111949411002388}
   _lockImage: {fileID: 3089107246940572665}
+  _levelManager: {fileID: 5857165663392768483}
 --- !u!1 &607005374619334986
 GameObject:
   m_ObjectHideFlags: 0
@@ -4241,9 +4242,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6410a35ad41d0045b779c32b2abfa09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _LevelPerfectScore: 0
-  _LevelThreeStarScore: 0
-  _LevelTwoStarScore: 0
+  _levelPerfectScore: 0
+  _levelThreeStarScore: 0
+  _levelTwoStarScore: 0
 --- !u!114 &2152383368056324475
 MonoBehaviour:
   m_ObjectHideFlags: 0

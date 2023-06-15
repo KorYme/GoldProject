@@ -34,7 +34,6 @@ public class PromotionCode : MonoBehaviour
             inputField.text = tmpValue;
         }
         PromotionCodeCheck(str);
-        inputField.text = str;
     }
 
     public void PromotionCodeCheck(string str)

@@ -18,7 +18,11 @@ public class PlayerReflection : Reflectable
     public override Vector2 LaserDirection { get => _crystalTransform.position - transform.position; }
 
     protected override Utilities.GAMECOLORS _outputLaserColor {
-        get => Utilities.GetSubtractedColor(base._outputLaserColor, LensColor);
+        get
+        {
+            Debug.Log("OutputlaserColor : " + Utilities.GetSubtractedColor(base._outputLaserColor, LensColor));
+            return Utilities.GetSubtractedColor(base._outputLaserColor, LensColor);
+        }
     }
 
     Utilities.GAMECOLORS _lensColor;
