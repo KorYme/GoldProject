@@ -57,7 +57,7 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
     public void PlaySound(string name, bool randomizePitch = false, float pitchRange = 1f)
     {
         Sound s = Array.Find(_sounds, sound => sound.name == name);
-        s._source.volume = _sfxVolume;
+        s._source.volume = _sfxVolume * s._volume;
         if (randomizePitch)
             s._source.pitch = UnityEngine.Random.Range(s._pitch - pitchRange, s._pitch + pitchRange);
         else
