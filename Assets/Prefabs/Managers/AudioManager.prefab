@@ -44,6 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bd47f7a345ae374ba886213927b0072, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _musicSlider: {fileID: 0}
+  _sfxSlider: {fileID: 0}
+  _vibrationToggle: {fileID: 0}
+  music:
+    name: 
+    _clip: {fileID: 0}
+    _volume: 0
+    _pitch: 0
+    _source: {fileID: 0}
+  musicVolume: 0
+  sfxVolume: 0
   _sounds:
   - name: moai
     _clip: {fileID: 8300000, guid: ac62c1c278778c34f83050c29adc694c, type: 3}
@@ -107,7 +118,7 @@ MonoBehaviour:
     _source: {fileID: 0}
   - name: LensFilter
     _clip: {fileID: 8300000, guid: 6632404227ddeaa4688c5c9b0512a4ae, type: 3}
-    _volume: 0.185
+    _volume: 0.107
     _pitch: 1.05
     _source: {fileID: 0}
   - name: PlayerInMud
@@ -144,4 +155,14 @@ MonoBehaviour:
     _clip: {fileID: 8300000, guid: 66208fc278a208849a5b01b4a7eeeabc, type: 3}
     _volume: 0.185
     _pitch: 1.05
+    _source: {fileID: 0}
+  - name: music
+    _clip: {fileID: 8300000, guid: a2a67de8a4e4f984089cc6a57fe9eb65, type: 3}
+    _volume: 0.185
+    _pitch: 1
+    _source: {fileID: 0}
+  - name: victory
+    _clip: {fileID: 8300000, guid: b5fdb913ad853194c88d7670f4340364, type: 3}
+    _volume: 0.185
+    _pitch: 1
     _source: {fileID: 0}

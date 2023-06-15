@@ -3,15 +3,24 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+using UnityEngine.Events;
+using KorYmeLibrary.SaveSystem;
 
-public class AudioManager : MonoBehaviour
+public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
 {
+    [Header("Parameters")]
+    [SerializeField] Slider _musicSlider;
+    [SerializeField] Slider _sfxSlider;
+    [SerializeField] Toggle _vibrationToggle;
+
+
     public static AudioManager Instance;
 
-    Sound _music;
+    public Sound music;
     int _nbOfPlayersReflecting = 0;
-    float _musicVolume = 0.5f;
-    float _sfxVolume = 0.5f;
+    public float musicVolume;
+    public float sfxVolume;
+    bool _vibration;
 
     [SerializeField] Sound[] _sounds;
 
@@ -27,6 +36,10 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+        sfxVolume = 0.5f;
+        musicVolume = 0.5f;
+        _vibration = true;
+
         foreach (Sound s in _sounds)
         {
             s._source = gameObject.AddComponent<AudioSource>();
@@ -36,8 +49,9 @@ public class AudioManager : MonoBehaviour
 
             if (s.name == "music")
             {
-                _music = s;
-                _music._source.Play();
+                music = s;
+                music._source.loop = true;
+                music._source.Play();
             }
         }
         transform.parent = null;
@@ -47,7 +61,7 @@ public class AudioManager : MonoBehaviour
     public void PlaySound(string name, bool randomizePitch = false, float pitchRange = 1f)
     {
         Sound s = Array.Find(_sounds, sound => sound.name == name);
-        s._volume = _sfxVolume;
+        s._source.volume = sfxVolume * s._volume;
         if (randomizePitch)
             s._source.pitch = UnityEngine.Random.Range(s._pitch - pitchRange, s._pitch + pitchRange);
         else
@@ -89,13 +103,25 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    public void ChangeMusicVolume(Slider slider)
+    
+
+    //DATA
+
+    public void InitializeData()
     {
-        _musicVolume = slider.value;
+        //_musicSlider.value = musicVolume;
+        //_sfxSlider.value = sfxVolume;
+        //_vibrationToggle.isOn = _vibration;
     }
 
-    public void ChangeSFXVolume(Slider slider)
+    public void LoadData(GameData gameData)
     {
-        _sfxVolume = slider.value;
+        
+    }
+
+    public void SaveData(ref GameData gameData)
+    {
+        
+    
     }
 }
