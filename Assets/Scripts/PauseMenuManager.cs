@@ -28,7 +28,7 @@ public class PauseMenuManager : MonoBehaviour
 
     public void MainMenuButton()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
     }
 
     public void CreditsMenuButton()
