@@ -132,6 +132,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _camera: {fileID: 6287534090499440090}
-  _bufferSize: 0.2
-  _offsetY: 3
-  _offsetX: 0
+  _exceptionObjects: []
+  _bufferSize: 1.8

@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,9 +8,23 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     [Header("Level Score")]
-    public int _LevelPerfectScore;
-    public int _LevelThreeStarScore;
-    public int _LevelTwoStarScore;
+    [SerializeField] int _levelPerfectScore;
+    public int LevelPerfectScore
+    {
+        get => _levelPerfectScore;
+    }
+
+    [SerializeField] int _levelThreeStarScore;
+    public int LevelThreeStarScore
+    {
+        get => _levelThreeStarScore;
+    }
+
+    [SerializeField] int _levelTwoStarScore;
+    public int LevelTwoStarScore
+    {
+        get => _levelTwoStarScore;
+    }
 
     public int LevelNumber
     {
@@ -26,5 +41,11 @@ public class LevelManager : MonoBehaviour
             }
             return 0;
         }
+    }
+
+    [Button]
+    private void Display()
+    {
+        Debug.Log(LevelNumber);
     }
 }
