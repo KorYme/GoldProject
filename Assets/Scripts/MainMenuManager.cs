@@ -81,7 +81,6 @@ public class MainMenuManager : MonoBehaviour
 
     int GetContinueLevel()
     {
-        // A DEBUG
         KeyValuePair<int, int> pair = new(0, 0);
         foreach (KeyValuePair<int, int> item in DataManager.Instance.LevelDictionnary)
         {
@@ -104,7 +103,7 @@ public class MainMenuManager : MonoBehaviour
 
     TweenCallback LevelButtonTween()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Level Menu");
         return null;
     }
 

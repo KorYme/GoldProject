@@ -12,14 +12,33 @@ public class PromotionCode : MonoBehaviour
     [Header("References")]
     [SerializeField] TMP_InputField inputField;
 
-    public void EraseString(string str)
+    string tmpValue = "";
+
+    public void ValueChange(string str)
     {
-        inputField.text = "";
+        if ((str == "" || str ==null) && tmpValue.Length > 1)
+        {
+            str = tmpValue;
+        }
+        else
+        {
+            tmpValue = str;
+        }
     }
 
-    public void PromotionCodeField(string str)
+    public void EndEdit(string str)
     {
-        switch (inputField.text.ToUpper())
+        if (str == "" && tmpValue != "")
+        {
+            str = tmpValue;
+            inputField.text = tmpValue;
+        }
+        PromotionCodeCheck(str);
+    }
+
+    public void PromotionCodeCheck(string str)
+    {
+        switch (str.ToUpper())
         {
             case "PULV":
                 Debug.Log(inputField.text.ToUpper());

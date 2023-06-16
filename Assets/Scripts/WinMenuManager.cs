@@ -181,23 +181,48 @@ public class WinMenuManager : MonoBehaviour
             _starThree.transform.DOMove(starThreePosition, 0.5f, false);
             yield return new WaitForSeconds(0.5f);
             _playButton.transform.DOMove(playButtonPosition, 0.5f, false);
-        }        
+        }
     }
 
     public void NextLevelButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int currentLevel = _levelManager.LevelNumber;
+        if (currentLevel == -5)
+        {
+            SceneManager.LoadScene("Level Menu");
+        }
+        else if (currentLevel == 50)
+        {
+            if (DataManager.Instance.CanPlayThisLevel(-1))
+            {
+                SceneManager.LoadScene("Bonus-1");
+            }
+        }
+        else if (currentLevel > 0)
+        {
+            if (DataManager.Instance.CanPlayThisLevel(currentLevel + 1))
+            {
+                SceneManager.LoadScene($"Level-{currentLevel + 1}");
+            }
+        }
+        else
+        {
+            if (DataManager.Instance.CanPlayThisLevel(-currentLevel - 1))
+            {
+                SceneManager.LoadScene($"Bonus-{-currentLevel - 1}");
+            }
+        }
     }
 
     public void MenuButton()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("Level Menu");
         AudioManager.Instance.NbOfPlayersReflecting = 0;
     }
 
     public void RestartLevelButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         AudioManager.Instance.NbOfPlayersReflecting = 0;
     }
 }

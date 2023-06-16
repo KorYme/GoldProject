@@ -85,9 +85,10 @@ public class Reflectable : MonoBehaviour
         _laserRenderer.ChangeSecondPosition(LaserOrigin, LaserDirection,true);
     }
 
-    protected virtual void UpdateColorLaser()
+    public virtual void UpdateColorLaser()
     {
-        _laserRenderer.ChangeLaserColor(_outputLaserColor);
+        _laserRenderer?.ChangeLaserColor(_outputLaserColor);
+        _nextReflectable?.UpdateColorLaser();
     }
 
     public virtual void StopReflection()
