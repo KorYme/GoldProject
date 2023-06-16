@@ -76,6 +76,11 @@ public class Reflectable : MonoBehaviour
 
     public virtual void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
+        if (previous == _previousReflectable)
+        {
+            _inputLaserColor = laserColor;
+            UpdateColorLaser();
+        }
         if (IsReflecting || !enabled) return;
         _previousReflectable = previous;
         _inputLaserColor = laserColor;
