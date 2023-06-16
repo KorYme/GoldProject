@@ -60,12 +60,34 @@ public class WinMenuManager : MonoBehaviour
     IEnumerator VictoryScreenAppearance(int totalMove)
     {
         yield return new WaitForSeconds(_victoryScreenDelay);
-        _winMenu.SetActive(true);
+        CompleteLevelWithStars(totalMove);
         _gameMenu.SetActive(false);
+        _winMenu.SetActive(true);
         UpdateWinMenu(_levelManager.LevelNumber , _levelManager.LevelPerfectScore, _levelManager.LevelThreeStarScore, _levelManager.LevelTwoStarScore, totalMove.ToString(), totalMove);
     }
 
-    void UpdateWinMenu(int _levelNumber, int _levelPerfectScore, int _levelThreeStarScore, int _levelTwoStarScore,  string TextMove, int TotalMove)
+
+    private void CompleteLevelWithStars(int totalMove)
+    {
+        if (totalMove <= _levelManager.LevelPerfectScore)
+        {
+            DataManager.Instance.CompleteALevel(_levelManager.LevelNumber, 4);
+        }
+        else if (totalMove <= _levelManager.LevelThreeStarScore)
+        {
+            DataManager.Instance.CompleteALevel(_levelManager.LevelNumber, 3);
+        }
+        else if (totalMove <= _levelManager.LevelTwoStarScore)
+        {
+            DataManager.Instance.CompleteALevel(_levelManager.LevelNumber, 2);
+        }
+        else
+        {
+            DataManager.Instance.CompleteALevel(_levelManager.LevelNumber, 1);
+        }
+    }
+
+    void UpdateWinMenu(int _levelNumber, int _levelPerfectScore, int _levelThreeStarScore, int _levelTwoStarScore,  string textMove, int totalMove)
     {
         _starThreeText.text = _levelThreeStarScore + " moves";
 
@@ -82,7 +104,7 @@ public class WinMenuManager : MonoBehaviour
             _levelText.text = "Level " + _levelNumber;
         }
         
-        _moveText.text = TextMove + " moves";
+        _moveText.text = textMove + " moves";
 
 
         Vector3 starOnePosition = _starOne.transform.position;
@@ -99,23 +121,20 @@ public class WinMenuManager : MonoBehaviour
         _starThree.transform.position = new Vector3(-500, -500, 0);
         _playButton.transform.position = new Vector3(-500, -500, 0);
 
-        if (TotalMove <= _levelPerfectScore)
+        if (totalMove <= _levelPerfectScore)
         {
             _perfectText.text = "";
             StartCoroutine(UpdateStarSound(playButtonPosition, starOnePosition, starTwoPosition, starThreePosition, 4, _levelPerfectScore));
-            DataManager.Instance.CompleteALevel(_levelNumber, 4);
         }
-        else if (TotalMove <= _levelThreeStarScore)
+        else if (totalMove <= _levelThreeStarScore)
         {
             StartCoroutine(UpdateStarSound(playButtonPosition, starOnePosition, starTwoPosition, starThreePosition, 3, _levelPerfectScore));
-            DataManager.Instance.CompleteALevel(_levelNumber, 3);
         }
-        else if (TotalMove <= _levelTwoStarScore)
+        else if (totalMove <= _levelTwoStarScore)
         {
             _starThreeImage.sprite = _starGray;
             _perfectText.text = "";
             StartCoroutine(UpdateStarSound(playButtonPosition, starOnePosition, starTwoPosition, starThreePosition, 2, _levelPerfectScore));
-            DataManager.Instance.CompleteALevel(_levelNumber, 2);
         }
         else
         {
@@ -123,7 +142,6 @@ public class WinMenuManager : MonoBehaviour
             _starThreeImage.sprite = _starGray;
             _perfectText.text = "";
             StartCoroutine(UpdateStarSound(playButtonPosition, starOnePosition, starTwoPosition, starThreePosition, 1, _levelPerfectScore));
-            DataManager.Instance.CompleteALevel(_levelNumber, 1);
         }
     }
 
