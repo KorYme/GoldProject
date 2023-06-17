@@ -16,7 +16,6 @@ public class Mirror : Reflectable
 
     public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
-        Debug.Log("LaserColor = " + laserColor + " OutputColor " + _outputLaserColor);
         _inputLaserColor = laserColor;
         LaserOrigin = transform.position;
         if (Vector2.Dot(laserDirection, transform.up) > 0)

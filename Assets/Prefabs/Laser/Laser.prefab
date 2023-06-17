@@ -155,6 +155,7 @@ MonoBehaviour:
   - {r: 1, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.16651759, b: 0, a: 1}
   - {r: 0.040452465, g: 0.8584906, b: 0, a: 1}
+  _colorblindTextures: {fileID: 11400000, guid: ba9bc1f68b53e354abe01634e10323d6, type: 2}
   _intensity: 9
   _laserWidth: 0.089
   _laserColor: 4
