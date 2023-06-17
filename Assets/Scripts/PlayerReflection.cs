@@ -20,7 +20,6 @@ public class PlayerReflection : Reflectable
     protected override Utilities.GAMECOLORS _outputLaserColor {
         get
         {
-            Debug.Log("OutputlaserColor : " + Utilities.GetSubtractedColor(base._outputLaserColor, LensColor));
             return Utilities.GetSubtractedColor(base._outputLaserColor, LensColor);
         }
     }

@@ -25,8 +25,29 @@ public class PauseMenuManager : MonoBehaviour
         _levelText.text = "Level " + (SceneManager.GetActiveScene().buildIndex - 2);
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            ReturnButton();
+        }
+    }
+
+    private void ReturnButton()
+    {
+        if (_pauseMenu != null && _pauseMenu.activeSelf)
+        {
+            ResumeButton();
+        }
+        else if (_creditMenu != null && _creditMenu.activeSelf)
+        {
+            BackButton();
+        }
+    }
+
     public void ResumeButton()
     {
+        if (_gameMenu == null || _pauseMenu == null) return;
         _pauseMenu.SetActive(false);
         _gameMenu.SetActive(true);
     }
@@ -38,12 +59,14 @@ public class PauseMenuManager : MonoBehaviour
 
     public void CreditsMenuButton()
     {
+        if (_creditMenu == null || _pauseMenu == null) return;
         _pauseMenu.SetActive(false);
         _creditMenu.SetActive(true);
     }
 
     public void BackButton()
     {
+        if (_creditMenu == null || _pauseMenu == null) return;
         _pauseMenu.SetActive(true);
         _creditMenu.SetActive(false);
     }

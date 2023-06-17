@@ -20,6 +20,7 @@ namespace KorYmeLibrary.SaveSystem
         public float VolumeSFX;
         public float VolumeMusic;
         public bool VibrationEnabled;
+        public bool ColorBlindModeEnabled;
    }
 
     [System.Serializable]

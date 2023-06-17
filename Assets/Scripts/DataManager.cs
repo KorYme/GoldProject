@@ -79,6 +79,13 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         get => _vibrationEnabled;
         set => _vibrationEnabled = value;
     }
+
+    bool _colorBlindModeEnabled;
+    public bool ColorBlindModeEnabled
+    {
+        get => _colorBlindModeEnabled;
+        set => _colorBlindModeEnabled = value;
+    }
     #endregion
 
     public int TotalStarNumber
@@ -160,6 +167,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         _skinAcquiredList = gameData.SkinAcquiredDictionnary;
         _skinEquippedDictionnary = gameData.SkinEquippedDictionnary;
         _vibrationEnabled = gameData.VibrationEnabled;
+        _colorBlindModeEnabled = gameData.ColorBlindModeEnabled;
         CheckLevels();
         OnDataLoaded?.Invoke();
     }
@@ -171,6 +179,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         gameData.SkinAcquiredDictionnary = _skinAcquiredList;
         gameData.SkinEquippedDictionnary = _skinEquippedDictionnary;
         gameData.VibrationEnabled = _vibrationEnabled;
+        gameData.ColorBlindModeEnabled = _colorBlindModeEnabled;
         gameData.Version = Application.version;
     }
 
@@ -196,6 +205,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
             { Utilities.GAMECOLORS.Yellow, SKINPACK.BASIC },
         };
         _vibrationEnabled = true;
+        _colorBlindModeEnabled = false;
         OnDataLoaded?.Invoke();
     }
 

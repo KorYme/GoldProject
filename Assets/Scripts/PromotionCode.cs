@@ -24,6 +24,7 @@ public class PromotionCode : MonoBehaviour
         {
             tmpValue = str;
         }
+        PromotionCodeCheck(tmpValue);
     }
 
     public void EndEdit(string str)
@@ -31,7 +32,6 @@ public class PromotionCode : MonoBehaviour
         if (str == "" && tmpValue != "")
         {
             str = tmpValue;
-            inputField.text = tmpValue;
         }
         PromotionCodeCheck(str);
     }
@@ -43,6 +43,7 @@ public class PromotionCode : MonoBehaviour
             case "PULV":
                 Debug.Log(inputField.text.ToUpper());
                 DataManager.Instance.UnlockNewSkin(SKINPACK.PULV);
+                inputField.text = "";
                 break;
             case "ALLSTARS":
                 Debug.Log(inputField.text.ToUpper());
@@ -54,6 +55,7 @@ public class PromotionCode : MonoBehaviour
                 {
                     DataManager.Instance.CompleteALevel(i, 4);
                 }
+                inputField.text = "";
                 break;
             case "ALLSKINS":
                 Debug.Log(inputField.text.ToUpper());
@@ -61,10 +63,12 @@ public class PromotionCode : MonoBehaviour
                 {
                     DataManager.Instance.UnlockNewSkin((SKINPACK)i);
                 }
+                inputField.text = "";
                 break;
             case "RESET":
                 Debug.Log(inputField.text.ToUpper());
                 DataManager.Instance.InitializeData();
+                inputField.text = "";
                 Application.Quit();
                 break;
             default:

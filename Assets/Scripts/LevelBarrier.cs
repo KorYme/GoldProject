@@ -15,7 +15,7 @@ public class LevelBarrier : MonoBehaviour
     {
         for(int i = 0; i < _levelBarrier.Length; i++)
         {
-            if(DataManager.Instance.TotalStarNumber >= 8 * (i + 1))
+            if(DataManager.Instance.TotalStarNumber >= (15 * (i + 1)) - 7)
             {
                 _levelBarrier[i].SetActive(false);
             }
@@ -24,13 +24,9 @@ public class LevelBarrier : MonoBehaviour
 
     private void Start()
     {
-        int k = 5;
-        int j = 0;
         for(int i = 0; i < _levelText.Length; i++)
         {
-            j = (k * 3) - 7;
-            _levelText[i].text = DataManager.Instance.TotalStarNumber + "/" + j;
-            k = k + 5;
+            _levelText[i].text = DataManager.Instance.TotalStarNumber + "/" + ((15 * (i + 1)) - 7).ToString();
         }
     }
 }
