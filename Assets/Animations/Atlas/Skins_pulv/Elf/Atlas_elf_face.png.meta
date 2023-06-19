@@ -1,0 +1,541 @@
+fileFormatVersion: 2
+guid: fb0820e9cd00ef6479e19a18329b49db
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: hair_top
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 813
+        width: 207
+        height: 104
+      alignment: 9
+      pivot: {x: 0.48262104, y: 0.63451797}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08d40bcaa7930e249b4938c09fe20b84
+      internalID: -309695242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye_g_open
+      rect:
+        serializedVersion: 2
+        x: 598
+        y: 828
+        width: 22
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 647e0dd7d1d4f6948a8780f01ca22ea9
+      internalID: -1801484654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye_d_open
+      rect:
+        serializedVersion: 2
+        x: 694
+        y: 828
+        width: 20
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 080702ba585e7b7468dbde745a938c01
+      internalID: 826371262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye_g_close
+      rect:
+        serializedVersion: 2
+        x: 759
+        y: 833
+        width: 26
+        height: 28
+      alignment: 9
+      pivot: {x: 0.53661406, y: 0.56232995}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 295eaaf0d9ab89a49b5f8c840a555ccb
+      internalID: -1322081110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: eye_d_close
+      rect:
+        serializedVersion: 2
+        x: 825
+        y: 832
+        width: 26
+        height: 27
+      alignment: 9
+      pivot: {x: 0.48779768, y: 0.54701066}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff925988f6522114cb5dd5fa33342930
+      internalID: -449190749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bouche_1
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 660
+        width: 32
+        height: 12
+      alignment: 9
+      pivot: {x: 0.5039358, y: 0.20611572}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3262fbd595bb2e40a82068f5f9d0d53
+      internalID: -1751627517
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bouche_2
+      rect:
+        serializedVersion: 2
+        x: 271
+        y: 654
+        width: 16
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b8bac8a2be7fc2499b8e23ac8fe090a
+      internalID: -438853909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tete
+      rect:
+        serializedVersion: 2
+        x: 379
+        y: 581
+        width: 177
+        height: 158
+      alignment: 9
+      pivot: {x: 0.49127007, y: 0.1264065}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c18b5f72e256fb84db55e4b6dd83df8c
+      internalID: -1679881242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ear_g
+      rect:
+        serializedVersion: 2
+        x: 639
+        y: 610
+        width: 81
+        height: 71
+      alignment: 9
+      pivot: {x: 0.8503207, y: 0.8279281}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7575f32347338fc4fa610f29c27a0820
+      internalID: -412529632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ear_d
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 607
+        width: 81
+        height: 71
+      alignment: 9
+      pivot: {x: 0.16555446, y: 0.8080169}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 922b7a3d0ed74ef4ab3d23a441d95cf4
+      internalID: -2048613925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: torse
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 447
+        width: 91
+        height: 72
+      alignment: 9
+      pivot: {x: 0.49447128, y: 0.061536152}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be155098b6361024b85554ceb91652ec
+      internalID: 2066129064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robe
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 432
+        width: 116
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5140336, y: 0.78096783}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f27f8de210f55e44eb0cda2807f838bc
+      internalID: 1130933892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arm_g
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 425
+        width: 48
+        height: 74
+      alignment: 9
+      pivot: {x: 0.7564538, y: 0.84262705}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bba4c2cb34f04b748803ab13a916bcab
+      internalID: -1889040210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: arm_d
+      rect:
+        serializedVersion: 2
+        x: 570
+        y: 416
+        width: 48
+        height: 74
+      alignment: 9
+      pivot: {x: 0.2413915, y: 0.8483953}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28d564ed403582445a233ff16af1d6b5
+      internalID: 377881441
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: couette_g
+      rect:
+        serializedVersion: 2
+        x: 695
+        y: 426
+        width: 20
+        height: 54
+      alignment: 9
+      pivot: {x: 0.5932129, y: 0.88222814}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 54423923bd81077428654da703cca842
+      internalID: -1326452128
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: couette_top_g
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 423
+        width: 63
+        height: 56
+      alignment: 9
+      pivot: {x: 0.5981668, y: 0.7254769}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fdd294ae209d2241af46bc6bc9c11f6
+      internalID: 2064654168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: couette_d
+      rect:
+        serializedVersion: 2
+        x: 129
+        y: 278
+        width: 21
+        height: 52
+      alignment: 9
+      pivot: {x: 0.34709167, y: 0.8859488}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bae902c6292c36147a6b9443cb3acf8e
+      internalID: 675274010
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: couette_top_d
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 259
+        width: 62
+        height: 56
+      alignment: 9
+      pivot: {x: 0.32251567, y: 0.7301859}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20383094007aab24abdf5abfc816c5a1
+      internalID: 1025294916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: shadow
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 177
+        width: 146
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6efac72baafe79e428acf83660ff6626
+      internalID: -1079119560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      arm_d: 377881441
+      arm_g: -1889040210
+      bouche_1: -1751627517
+      bouche_2: -438853909
+      couette_d: 675274010
+      couette_g: -1326452128
+      couette_top_d: 1025294916
+      couette_top_g: 2064654168
+      ear_d: -2048613925
+      ear_g: -412529632
+      eye_d_close: -449190749
+      eye_d_open: 826371262
+      eye_g_close: -1322081110
+      eye_g_open: -1801484654
+      hair_top: -309695242
+      robe: 1130933892
+      shadow: -1079119560
+      tete: -1679881242
+      torse: 2066129064
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
