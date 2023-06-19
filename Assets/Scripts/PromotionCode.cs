@@ -41,12 +41,12 @@ public class PromotionCode : MonoBehaviour
         switch (str.ToUpper())
         {
             case "PULV":
-                Debug.Log(inputField.text.ToUpper());
+                Debug.Log(str.ToUpper());
                 DataManager.Instance.UnlockNewSkin(SKINPACK.PULV);
                 inputField.text = "";
                 break;
             case "ALLSTARS":
-                Debug.Log(inputField.text.ToUpper());
+                Debug.Log(str.ToUpper());
                 for (int i = 1; i < 51; i++)
                 {
                     DataManager.Instance.CompleteALevel(i, 4);
@@ -58,7 +58,7 @@ public class PromotionCode : MonoBehaviour
                 inputField.text = "";
                 break;
             case "ALLSKINS":
-                Debug.Log(inputField.text.ToUpper());
+                Debug.Log(str.ToUpper());
                 for (int i = 0; i < 7; i++)
                 {
                     DataManager.Instance.UnlockNewSkin((SKINPACK)i);
@@ -66,7 +66,7 @@ public class PromotionCode : MonoBehaviour
                 inputField.text = "";
                 break;
             case "RESET":
-                Debug.Log(inputField.text.ToUpper());
+                Debug.Log(str.ToUpper());
                 DataManager.Instance.InitializeData();
                 inputField.text = "";
                 Application.Quit();
