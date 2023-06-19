@@ -96,7 +96,6 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
                 break;
             case 3:
                 PlaySound("PlayerReflect3");
-                Debug.Log("3 joueurs");
                 break;
             default:
                 break;
