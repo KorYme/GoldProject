@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] LayerMask _playerLayer;
 
     public static InputManager Instance;
+    [SerializeField] Event OnPlayerAction;
 
     PlayerController _currentPlayerTouched;
     GameMenuManager _gameMenuManager;
