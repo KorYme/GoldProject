@@ -2189,11 +2189,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _levelPerfectScore
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _levelTwoStarScore
-      value: 13
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _LevelThreeStarScore
@@ -2201,7 +2201,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 572044794836567832, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: _levelThreeStarScore
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 724292645973140185, guid: 1db53598381c5a44b955607bcc1cafec, type: 3}
       propertyPath: m_LocalPosition.x

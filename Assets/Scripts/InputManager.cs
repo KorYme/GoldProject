@@ -12,6 +12,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] float _swipeMinimumValue;
     [SerializeField] float _checkSize;
     [SerializeField] LayerMask _playerLayer;
+    [SerializeField] TutorialManager _tutorialManager;
 
     public static InputManager Instance;
 
@@ -103,6 +104,7 @@ public class InputManager : MonoBehaviour
             else
             {
                 _currentPlayerTouched.SetNewDirection(Vector2.down);
+                _tutorialManager?.OnPlayerMoveTutorial(Vector2.down);
             }
         }
         else
@@ -114,9 +116,11 @@ public class InputManager : MonoBehaviour
             else
             {
                 _currentPlayerTouched.SetNewDirection(Vector2.left);
+                _tutorialManager?.OnPlayerMoveTutorial(Vector2.left);
             }
         }
         _currentPlayerTouched = null;
+        
     }
 
     private void OnInputStopped(Finger finger)
@@ -127,6 +131,7 @@ public class InputManager : MonoBehaviour
         if (collider2D.GetComponent<PlayerController>() == _currentPlayerTouched)
         {
             _currentPlayerTouched.RotateCrystal();
+            _tutorialManager?.OnPlayerRotateTutorial();
         }
         _currentPlayerTouched = null;
     }
