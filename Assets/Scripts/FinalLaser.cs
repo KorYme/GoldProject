@@ -16,6 +16,8 @@ public class FinalLaser : Reflectable, IUpdateableTile
     [SerializeField] ParticleSystem _winParticleSystemW;
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
+    [SerializeField, Foldout("ColorblindMode")] Material _colorblindMaterial;
+    [SerializeField, Foldout("ColorblindMode")] ColorblindTextures _colorblindTextures;
 
     [Header("Final Target Parameters")]
     [SerializeField, OnValueChanged(nameof(ApplyChange))] Utilities.GAMECOLORS _targetColor;
@@ -26,6 +28,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
     bool _isLevelComplete;
     bool _shouldPlayWrongColorSound = true;
     bool _shouldPlayVictorySound = true;
+    bool _isColorBlind = false;
     ParticleSystem _pSystem;
     ParticleSystem _winPSystem;
 
@@ -33,19 +36,20 @@ public class FinalLaser : Reflectable, IUpdateableTile
 
     private void Start()
     {
+        _isColorBlind = DataManager.Instance.ColorBlindModeEnabled;
         _pSystem = Instantiate(_particleSystem);
         _pSystem.Stop();
-        _pSystem.transform.position = transform.position;// :) coucou Maxime
+        _pSystem.transform.position = transform.position;
 
         _winPSystem = Instantiate(_winParticleSystemW);
         _winPSystem.Stop();
+        UpdateTile(false);
     }
 
     protected override void Awake()
     {
         _onReflection = null;
         _isLevelComplete = false;
-        UpdateTile(false);
     }
 
     private void Reset()
@@ -124,7 +128,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
         if (_shouldPlayVictorySound)
         {
             _winPSystem.Play();
-            AudioManager.Instance.PlaySound("victory");
+            AudioManager.Instance.PlaySound("Victory");
             _shouldPlayVictorySound = false;
         }
     }
@@ -135,10 +139,16 @@ public class FinalLaser : Reflectable, IUpdateableTile
     public void UpdateTile(bool init = true)
     {
         _winMenuManager = FindObjectOfType<WinMenuManager>();
-        if (_sprites.Count > (int)_targetColor && _sprites[(int)_targetColor] != null)
+        if (_sprites.Count > (int)_targetColor && _sprites[(int)_targetColor] != null && !_isColorBlind)
         {
             _spriteRenderer.sprite = _sprites[(int)_targetColor];
             _spriteRenderer.color = Color.white;
+        }
+        else if (_isColorBlind)
+        {
+            _spriteRenderer.sprite = _sprites[0];
+            _spriteRenderer.material = _colorblindMaterial;
+            _spriteRenderer.material.SetTexture("_ColorTexture", _colorblindTextures.Textures[(int)_targetColor]);
         }
         else
         {

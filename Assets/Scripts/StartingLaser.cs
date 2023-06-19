@@ -18,12 +18,15 @@ public class StartingLaser : MonoBehaviour
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
 
+    [SerializeField, Foldout("Colorblind")] ColorblindTextures _colorblindTextures;
+    [SerializeField, Foldout("Colorblind")] Material _colorblindMaterial;
+
     [SerializeField] ParticleSystem _particlePrefab;
 
     ParticleSystem _pSystem;
     Vector3 _raycastTarget;
     Reflectable _nextReflectable;
-
+    bool _colorblindModeEnabled = false;
     private void Reset()
     {
         ApplyParameters(false);
@@ -36,6 +39,7 @@ public class StartingLaser : MonoBehaviour
         _raycastTarget = Utilities.GetDirection(_laserDir);
         _laserRenderer.LineRenderer.useWorldSpace = true;
         _laserRenderer.ChangeLaserColor(_initialColor);
+        _colorblindModeEnabled = DataManager.Instance.ColorBlindModeEnabled;
         ApplyParameters(false);
 
         //Setup Particle system
@@ -64,10 +68,16 @@ public class StartingLaser : MonoBehaviour
     [Button]
     public void ApplyParameters(bool init = true)
     {
-        if (_sprites.Count > (int)_initialColor && _sprites[(int)_initialColor] != null)
+        if (_sprites.Count > (int)_initialColor && _sprites[(int)_initialColor] != null && !_colorblindModeEnabled)
         {
             _spriteRenderer.sprite = _sprites[(int)_initialColor];
             _spriteRenderer.color = Color.white;
+        }
+        else if (_colorblindModeEnabled)
+        {
+            _spriteRenderer.sprite = _sprites[0];
+            _spriteRenderer.material = _colorblindMaterial;
+            _spriteRenderer.material.SetTexture("_ColorTexture", _colorblindTextures.Textures[(int)_initialColor]);
         }
         else
         {

@@ -8,24 +8,29 @@ using KorYmeLibrary.SaveSystem;
 
 public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
 {
-    [Header("Parameters")]
-    [SerializeField] Slider _musicSlider;
-    [SerializeField] Slider _sfxSlider;
-    [SerializeField] Toggle _vibrationToggle;
-
-
-    public static AudioManager Instance;
-
-    public Sound music;
-    int _nbOfPlayersReflecting = 0;
-    public float musicVolume;
-    public float sfxVolume;
-    bool _vibration;
-
     [SerializeField] Sound[] _sounds;
 
+    [HideInInspector] public Sound Music;
+    float _musicVolume;
+    public float MusicVolume
+    {
+        get => _musicVolume;
+        set
+        {
+            _musicVolume = value;
+            Music._source.volume = value;
+        }
+    }
+    float _sfxVolume;
+    public float SFXVolume
+    {
+        get => _sfxVolume; 
+        set => _sfxVolume = value;
+    }
+    int _nbOfPlayersReflecting = 0;
     public int NbOfPlayersReflecting { get => _nbOfPlayersReflecting; set => _nbOfPlayersReflecting = value; }
 
+    public static AudioManager Instance;
     private void Awake()
     {
         if (Instance == null)
@@ -36,10 +41,6 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
             return;
         }
 
-        sfxVolume = 0.5f;
-        musicVolume = 0.5f;
-        _vibration = true;
-
         foreach (Sound s in _sounds)
         {
             s._source = gameObject.AddComponent<AudioSource>();
@@ -47,11 +48,12 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
             s._source.volume = s._volume;
             s._source.pitch = s._pitch;
 
-            if (s.name == "music")
+            if (s.name == "Music")
             {
-                music = s;
-                music._source.loop = true;
-                music._source.Play();
+                Music = s;
+                Music._source.loop = true;
+                Music._source.volume = MusicVolume;
+                Music._source.Play();
             }
         }
         transform.parent = null;
@@ -61,7 +63,7 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
     public void PlaySound(string name, bool randomizePitch = false, float pitchRange = 1f)
     {
         Sound s = Array.Find(_sounds, sound => sound.name == name);
-        s._source.volume = sfxVolume * s._volume;
+        s._source.volume = _sfxVolume * s._volume;
         if (randomizePitch)
             s._source.pitch = UnityEngine.Random.Range(s._pitch - pitchRange, s._pitch + pitchRange);
         else
@@ -102,25 +104,21 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
         }
     }
 
-    
-
-    //DATA
-
     public void InitializeData()
     {
-        //_musicSlider.value = musicVolume;
-        //_sfxSlider.value = sfxVolume;
-        //_vibrationToggle.isOn = _vibration;
+        _sfxVolume = 0.5f;
+        _musicVolume = 0.5f;
     }
 
     public void LoadData(GameData gameData)
     {
-        
+        _sfxVolume = gameData.VolumeSFX;
+        _musicVolume = gameData.VolumeMusic;
     }
 
     public void SaveData(ref GameData gameData)
     {
-        
-    
+        gameData.VolumeSFX = _sfxVolume;
+        gameData.VolumeMusic = _musicVolume;
     }
 }

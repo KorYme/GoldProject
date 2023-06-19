@@ -1,123 +1,56 @@
-using KorYmeLibrary.SaveSystem;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SettingsParameter : MonoBehaviour, IDataSaveable<GameData>
+public class SettingsParameter : MonoBehaviour
 {
-    float _musicVolumeToSave;
-    float _sfxVolumeToSave;
-    bool _vibrationToSave;
-
-    Slider _slider;
-    Toggle _toggle;
-
+    [SerializeField] Slider _musicSlider, _sfxSlider;
+    [SerializeField] Toggle _vibrationToggle, _colorblindToggle;
+    bool _isInit = false;
 
     private void Start()
     {
-        _slider = GetComponent<Slider>();
-        _toggle = GetComponent<Toggle>();
-
-        if (_slider != null)
+        if (_musicSlider != null)
         {
-            switch (gameObject.name)
-            {
-                case "MusicManager":
-                    _slider.value = AudioManager.Instance.music._source.volume * 100;
-                    break;
-                case "SoundManager":
-                    _slider.value = AudioManager.Instance.sfxVolume * 100;
-                    break;
-                default:
-                    break;
-            }
+            _musicSlider.value = AudioManager.Instance.MusicVolume * 100;
         }
-
-        if (_toggle != null)
-            _toggle.isOn = DataManager.Instance.VibrationEnabled;
-    }
-
-    public void ChangeMusicVolume(Slider slider)
-    {
-        float _musicVolumeToSave = slider.value / 100;
-        AudioManager.Instance.music._source.volume = _musicVolumeToSave;
-    }
-
-    public void ChangeSFXVolume(Slider slider)
-    {
-        float _sfxVolumeToSave = slider.value / 100;
-        AudioManager.Instance.sfxVolume = _sfxVolumeToSave;
-    }
-
-    public void ChangeVibration(Toggle toggle)
-    {
-        DataManager.Instance.VibrationEnabled = toggle.isOn;
-    }
-    
-    public void InitializeData()
-    {
-        if (_slider != null)
+        if (_sfxSlider != null)
         {
-            switch (gameObject.name)
-            {
-                case "MusicManager":
-                    _slider.value = AudioManager.Instance.musicVolume;
-                    break;
-                case "SoundManager":
-                    _slider.value = AudioManager.Instance.sfxVolume;
-                    break;
-                default:
-                    break;
-            }
+            _sfxSlider.value = AudioManager.Instance.SFXVolume * 100;
         }
-
-        if (_toggle != null)
-            _toggle.isOn = DataManager.Instance.VibrationEnabled;
+        if (_vibrationToggle != null)
+        {
+            _vibrationToggle.isOn = DataManager.Instance.VibrationEnabled;
+        }
+        if (_colorblindToggle != null)
+        {
+            _colorblindToggle.isOn = DataManager.Instance.ColorBlindModeEnabled;
+        }
+        _isInit = true;
     }
 
-    public void LoadData(GameData gameData)
+    public void MusicSlider()
     {
-        if (_slider != null)
-        {
-            switch (gameObject.name)
-            {
-                case "MusicManager":
-                    _slider.value = gameData.VolumeMusic;
-                    AudioManager.Instance.musicVolume = gameData.VolumeMusic;
-                    break;
-                case "SoundManager":
-                    _slider.value = gameData.VolumeSFX;
-                    AudioManager.Instance.sfxVolume = gameData.VolumeSFX;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        if (_toggle != null)
-            _toggle.isOn = gameData.VibrationEnabled;
+        if (!_isInit) return;
+        AudioManager.Instance.MusicVolume = _musicSlider.value / 100f;
     }
 
-    public void SaveData(ref GameData gameData)
+    public void SFXSlider()
     {
-        if (_slider != null)
-        {
-            switch (gameObject.name)
-            {
-                case "MusicManager":
-                    gameData.VolumeMusic = _musicVolumeToSave;
-                    break;
-                case "SoundManager":
-                    gameData.VolumeSFX = _sfxVolumeToSave;
-                    break;
-                default:
-                    break;
-            }
-        }
+        if (!_isInit) return;
+        AudioManager.Instance.SFXVolume = _sfxSlider.value / 100f;
+    }
 
-        if (_toggle != null)
-            gameData.VibrationEnabled = _vibrationToSave;
+    public void VibrationToggle()
+    {
+        if (!_isInit) return;
+        DataManager.Instance.VibrationEnabled = _vibrationToggle.isOn;
+    }
+
+    public void ColorblindToggle()
+    {
+        if (!_isInit) return;
+        DataManager.Instance.ColorBlindModeEnabled = _colorblindToggle.isOn;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

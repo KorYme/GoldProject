@@ -1,5 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4352198164816112104
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 414180201835891841}
+  - component: {fileID: 848776637902155454}
+  m_Layer: 0
+  m_Name: Grass
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &414180201835891841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4352198164816112104}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4584966673770483574}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &848776637902155454
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4352198164816112104}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -18594011
+  m_SortingLayer: 5
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 21300000, guid: 433386a0077b53e43999f668929087e1, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &5328818790136128570
 GameObject:
   m_ObjectHideFlags: 0
@@ -28,7 +112,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 414180201835891841}
   m_Father: {fileID: 7251455584209451172}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,7 +137,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71,9 +156,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -18594011
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d85a3a5ff41bcde4ea14d28a309d3446, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1e8173fdf87ca594ca9d0715c5b2e7bf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -164,13 +249,15 @@ MonoBehaviour:
   _initialColor: 0
   _spriteRenderer: {fileID: 3172924481358171564}
   _sprites:
-  - {fileID: 21300000, guid: d85a3a5ff41bcde4ea14d28a309d3446, type: 3}
-  - {fileID: 21300000, guid: 95798e797cdf1d54e9510a3f26558016, type: 3}
-  - {fileID: 21300000, guid: d8d4401c032414d4e8734391abd359aa, type: 3}
-  - {fileID: 21300000, guid: d9af6d4673aa6de489e0a3351d71bd44, type: 3}
-  - {fileID: 21300000, guid: fab374d7ab94c2b4e8247ea55fe63dec, type: 3}
-  - {fileID: 21300000, guid: 93ae7ad045870ea4198663a94d24058a, type: 3}
-  - {fileID: 21300000, guid: 02f3ad6a87eaacd418eb0fe6c9bb0b98, type: 3}
+  - {fileID: 21300000, guid: 1e8173fdf87ca594ca9d0715c5b2e7bf, type: 3}
+  - {fileID: 21300000, guid: 7323f872f5aebaf4e9411edd5ad1fe4c, type: 3}
+  - {fileID: 21300000, guid: ee157afe4752bcd408317c2a006923e2, type: 3}
+  - {fileID: 21300000, guid: c17023039cf041242943d204881034ea, type: 3}
+  - {fileID: 21300000, guid: bb98cf24b1fb7f94f80659e607ad2d13, type: 3}
+  - {fileID: 21300000, guid: ca35b3f573c44134a8e2ad01b9e555f4, type: 3}
+  - {fileID: 21300000, guid: d3ab03aba2fe18d46ae82ef7a2efeebb, type: 3}
+  _colorblindTextures: {fileID: 11400000, guid: ba9bc1f68b53e354abe01634e10323d6, type: 2}
+  _colorblindMaterial: {fileID: 2100000, guid: 0a8824fbdae230142b1157fa704c82a1, type: 2}
   _particlePrefab: {fileID: 3175965905303532705, guid: 5ea0433bd29cbe8448943910f0e45968, type: 3}
 --- !u!114 &1597245897395038073
 MonoBehaviour:

@@ -42,7 +42,7 @@ public class Colorblindness : MonoBehaviour
     void SearchVolumes() => volumes = GameObject.FindObjectsOfType<Volume>();
 
     #region Enable/Disable
-    private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
+    //private void OnEnable() => SceneManager.sceneLoaded += OnSceneLoaded;
     #endregion
 
     public static Colorblindness Instance { get; private set; }
@@ -61,14 +61,14 @@ public class Colorblindness : MonoBehaviour
         }
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        SearchVolumes();
+    //void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    //{
+    //    SearchVolumes();
 
-        if (volumes == null || volumes.Length <= 0) return;
+    //    if (volumes == null || volumes.Length <= 0) return;
 
-        Change(-1);
-    }
+    //    Change(-1);
+    //}
 
     void Start()
     {
