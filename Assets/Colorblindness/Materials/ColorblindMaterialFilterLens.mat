@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ColorblindMaterial
+  m_Name: ColorblindMaterialFilterLens
   m_Shader: {fileID: -6465566751694194690, guid: 105872a42619b3441a8aca94974bdbc0, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -20,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _AlphaTexture:
+        m_Texture: {fileID: 2800000, guid: 16f7141b71d36dd4bac22a1abdc529ac, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _ColorTexture:
         m_Texture: {fileID: 2800000, guid: 2ec01f8be72869c4e8182280e6fb88a0, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -41,8 +45,10 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _OffsetY: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _LaserSpeed: {r: -0.2, g: 0, b: 0, a: 0}
+    - _LaserSpeed: {r: -0.5, g: 0, b: 0, a: 0}
+    - _Tiling: {r: 0.75, g: 0.75, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -11,6 +11,8 @@ public class LensFilter : Reflectable, IUpdateableTile
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] Animator _animator;
     [SerializeField] List<Sprite> _sprites;
+    [SerializeField, Foldout("Colorblind")] ColorblindTextures _colorblindTextures;
+    [SerializeField, Foldout("Colorblind")] Material _colorblindMaterial;
 
     [Header("Events")]
     [SerializeField] UnityEvent _onFilteringStart;
@@ -21,11 +23,18 @@ public class LensFilter : Reflectable, IUpdateableTile
     Coroutine _idleSpreadAnimationCoroutine;
     Coroutine _idleAnimationCoroutine;
     bool _shouldPlayReflectSound = false;
+    bool _colorblindModeEnabled = false;
 
     protected override void Awake()
     {
         base.Awake();
         _animator.Play("Lens_Idle_" + _reflectionColor.ToString());
+    }
+
+    private void Start()
+    {
+        _colorblindModeEnabled = DataManager.Instance.ColorBlindModeEnabled;
+        UpdateTile(false);
     }
 
     public override void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
@@ -97,9 +106,15 @@ public class LensFilter : Reflectable, IUpdateableTile
     [Button]
     public void UpdateTile(bool init = true)
     {
-        if (_sprites.Count > (int)_reflectionColor && _sprites[(int)_reflectionColor] != null)
+        if (_sprites.Count > (int)_reflectionColor && _sprites[(int)_reflectionColor] != null && !_colorblindModeEnabled)
         {
             _spriteRenderer.sprite = _sprites[(int)_reflectionColor];
+        }
+        else if (_colorblindModeEnabled)
+        {
+            _spriteRenderer.sprite = _sprites[0];
+            _spriteRenderer.material = _colorblindMaterial;
+            _spriteRenderer.material.SetTexture("_ColorTexture", _colorblindTextures.Textures[(int)_reflectionColor]);
         }
         else
         {
