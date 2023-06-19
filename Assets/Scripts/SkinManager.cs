@@ -9,6 +9,7 @@ public class SkinManager : MonoBehaviour
     [SerializeField] SKINPACK _skinPack;
 
     [Header("References")]
+    [SerializeField] PlayerController _playerController;
     [SerializeField] PlayerReflection _playerReflection;
     [SerializeField] SkinContainer _skinContainer;
 
@@ -32,8 +33,14 @@ public class SkinManager : MonoBehaviour
         if (!DataManager.Instance.SkinEquippedDictionnary.ContainsKey(_playerReflection.ReflectionColor)) return;
         if (DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor] == _skinPack) return;
         if (allSkins.Count <= (int)DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor]) return;
-        Instantiate(allSkins[(int)DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor]], 
+        GameObject newPlayer = Instantiate(allSkins[(int)DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor]], 
             transform.position, Quaternion.identity, transform.parent);
+        newPlayer.transform.localScale = transform.localScale;
+        newPlayer.GetComponent<PlayerReflection>().ReflectionTypeValue = _playerReflection.ReflectionTypeValue;
+        PlayerController pc = newPlayer.GetComponent<PlayerController>();
+        pc.EightLaserDirections = _playerController.EightLaserDirections;
+        pc.IsRotationClockWise = _playerController.IsRotationClockWise;
+        pc.InitialDirection = _playerController.InitialDirection;
         Destroy(gameObject);
     }
 }

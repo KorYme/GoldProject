@@ -33,9 +33,9 @@ public class PlayNextLevelButton : MonoBehaviour
         }
         else
         {
-            if (DataManager.Instance.CanPlayThisLevel(-currentLevel -1))
+            if (DataManager.Instance.CanPlayThisLevel(currentLevel -1))
             {
-                SceneManager.LoadScene($"Bonus-{-currentLevel - 1}");
+                SceneManager.LoadScene($"Bonus{currentLevel - 1}");
             }
         }
     }

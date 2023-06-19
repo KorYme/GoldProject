@@ -40,6 +40,24 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Foldout("Events")] UnityEvent _onCrateMoveStart;
     [SerializeField, Foldout("Events")] UnityEvent _onCrateMoveStop;
 
+    public bool IsRotationClockWise
+    {
+        get => _isRotationClockWise;
+        set => _isRotationClockWise = value;
+    }
+
+    public bool EightLaserDirections
+    {
+        get => _eightLaserDirections;
+        set => _eightLaserDirections = value;
+    }
+
+    public Utilities.DIRECTIONS InitialDirection
+    {
+        get => _initialDirection;
+        set => _initialDirection = value;
+    }
+
     Coroutine _movementCoroutine;
     Coroutine _rotationCoroutine;
     Coroutine _moveCrateCoroutine;

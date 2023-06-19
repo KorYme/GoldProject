@@ -16,6 +16,12 @@ public class Reflectable : MonoBehaviour
     [SerializeField] protected Utilities.GAMECOLORS _reflectionColor;
     [SerializeField] protected ReflectionType _reflectionType;
 
+    public ReflectionType ReflectionTypeValue
+    {
+        get => _reflectionType;
+        set => _reflectionType = value;
+    }
+
     public Utilities.GAMECOLORS ReflectionColor
     {
         get => _reflectionColor;
