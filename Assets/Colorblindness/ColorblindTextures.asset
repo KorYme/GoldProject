@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ColorblindTextures
   m_EditorClassIdentifier: 
   Textures:
-  - {fileID: 2800000, guid: eeffe6fc2a5beac4ca955d6afbbe2b22, type: 3}
-  - {fileID: 2800000, guid: eeffe6fc2a5beac4ca955d6afbbe2b22, type: 3}
-  - {fileID: 2800000, guid: eeffe6fc2a5beac4ca955d6afbbe2b22, type: 3}
-  - {fileID: 2800000, guid: eeffe6fc2a5beac4ca955d6afbbe2b22, type: 3}
-  - {fileID: 2800000, guid: eeffe6fc2a5beac4ca955d6afbbe2b22, type: 3}
-  - {fileID: 2800000, guid: eeffe6fc2a5beac4ca955d6afbbe2b22, type: 3}
-  - {fileID: 2800000, guid: eeffe6fc2a5beac4ca955d6afbbe2b22, type: 3}
+  - {fileID: 2800000, guid: 90879443e8ac2cf49b8d7927b7363a56, type: 3}
+  - {fileID: 2800000, guid: 993a9aeee0b784b4f9f7af8d5bf9b7d6, type: 3}
+  - {fileID: 2800000, guid: f7487c70880d9de478532501d98e16b5, type: 3}
+  - {fileID: 2800000, guid: 8aaa7c78d40f06548a64cd7413b2cc88, type: 3}
+  - {fileID: 2800000, guid: 2ec01f8be72869c4e8182280e6fb88a0, type: 3}
+  - {fileID: 2800000, guid: e6abb787d77319449ad9a52ced8e2679, type: 3}
+  - {fileID: 2800000, guid: baeaaa11b15cda64db39aa6fc82d0303, type: 3}
