@@ -58,6 +58,12 @@ TagManager:
   - name: Laser
     uniqueID: 1482015127
     locked: 0
+  - name: EmittingTiles
+    uniqueID: 4276373285
+    locked: 0
+  - name: Lenses
+    uniqueID: 3920266829
+    locked: 0
   - name: Player
     uniqueID: 967212001
     locked: 0

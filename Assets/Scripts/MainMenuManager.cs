@@ -44,9 +44,33 @@ public class MainMenuManager : MonoBehaviour
         _mainMenu?.SetActive(true);
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            ReturnButton();
+        }
+    }
+
+    private void ReturnButton()
+    {
+        if (_settingsMenu.activeSelf)
+        {
+            ReturnToMainMenuFromSettings();
+        }
+        else if (_skinMenu.activeSelf)
+        {
+            ReturnToMainMenuFromSkin();
+        }
+        else
+        {
+            Application.Quit();
+        }
+    }
+
     public void StartLevel()
     {
-        _playButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => StarButtonTween());
+        _playButton.transform.DOScale(1.2f, 0.125f).SetLoops(2, LoopType.Yoyo).OnComplete(() => StarButtonTween());
     }
 
     TweenCallback StarButtonTween()
@@ -57,7 +81,6 @@ public class MainMenuManager : MonoBehaviour
 
     int GetContinueLevel()
     {
-        // A DEBUG
         KeyValuePair<int, int> pair = new(0, 0);
         foreach (KeyValuePair<int, int> item in DataManager.Instance.LevelDictionnary)
         {
@@ -75,18 +98,18 @@ public class MainMenuManager : MonoBehaviour
 
     public void LevelMenu()
     {
-        _levelButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LevelButtonTween());
+        _levelButton.transform.DOScale(1.2f, 0.125f).SetLoops(2, LoopType.Yoyo).OnComplete(() => LevelButtonTween());
     }
 
     TweenCallback LevelButtonTween()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Level Menu");
         return null;
     }
 
     public void SettingsMenu()
     {
-        _settingsButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SettingsButtonTween());
+        _settingsButton.transform.DOScale(1.2f, 0.125f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SettingsButtonTween());
     }
 
     TweenCallback SettingsButtonTween()
@@ -112,7 +135,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void SkinMenu()
     {
-        _skinButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SkinMenuButtonTween());
+        _skinButton.transform.DOScale(1.2f, 0.125f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SkinMenuButtonTween());
     }
     
     TweenCallback SkinMenuButtonTween()
@@ -125,7 +148,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void SettingsMenuFromLevel()
     {
-        _settingsButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SettingsMenuFromLevelButtonTween());
+        _settingsButton.transform.DOScale(1.2f, 0.125f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SettingsMenuFromLevelButtonTween());
     }
 
     TweenCallback SettingsMenuFromLevelButtonTween()
@@ -138,7 +161,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void SkinMenuFromLevel()
     {
-        _skinButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SkinMenuFromLevelButtonTween());
+        _skinButton.transform.DOScale(1.2f, 0.125f).SetLoops(2, LoopType.Yoyo).OnComplete(() => SkinMenuFromLevelButtonTween());
         _skinLevel = true;
         _skinMenu.SetActive(true);
     }
@@ -167,7 +190,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void TrophyMenu()
     {
-        _trophyButton.transform.DOScale(1.2f, 0.25f).SetLoops(2, LoopType.Yoyo).OnComplete(() => TrophyMenuButtonTween());
+        _trophyButton.transform.DOScale(1.2f, 0.125f).SetLoops(2, LoopType.Yoyo).OnComplete(() => TrophyMenuButtonTween());
     }
 
     TweenCallback TrophyMenuButtonTween()

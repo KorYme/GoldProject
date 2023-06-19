@@ -104,7 +104,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 967212001
-  m_SortingLayer: 5
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -260,6 +260,7 @@ MonoBehaviour:
   _initialDirection: 3
   _distance: 0.382
   _rotationSpeed: 1
+  _isRotationClockWise: 1
   _eightLaserDirections: 0
   _rotationCurve:
     serializedVersion: 2
@@ -369,6 +370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _skinPack: 0
+  _playerController: {fileID: 2724373515318493286}
   _playerReflection: {fileID: 9177670462990222522}
   _skinContainer: {fileID: 11400000, guid: 1bcb5f921cbe002499305aae74b2b87f, type: 2}
 --- !u!1 &4394204038695093132
@@ -442,7 +444,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 959188173
-  m_SortingLayer: 6
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 1855b212856c7fe40bbfddf79e765249, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

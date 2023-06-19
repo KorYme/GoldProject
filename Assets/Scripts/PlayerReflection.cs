@@ -1,4 +1,5 @@
 using NaughtyAttributes;
+using System.Data;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -17,7 +18,10 @@ public class PlayerReflection : Reflectable
     public override Vector2 LaserDirection { get => _crystalTransform.position - transform.position; }
 
     protected override Utilities.GAMECOLORS _outputLaserColor {
-        get => Utilities.GetSubtractedColor(base._outputLaserColor, LensColor);
+        get
+        {
+            return Utilities.GetSubtractedColor(base._outputLaserColor, LensColor);
+        }
     }
 
     Utilities.GAMECOLORS _lensColor;
@@ -38,6 +42,7 @@ public class PlayerReflection : Reflectable
 
     protected override void Awake()
     {
+        ForbiddenAngle = -4000;
         LensColor = Utilities.GAMECOLORS.White;
         base.Awake();
     }

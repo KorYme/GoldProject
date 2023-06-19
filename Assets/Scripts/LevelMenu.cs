@@ -27,14 +27,38 @@ public class LevelMenu : MonoBehaviour
         DataManager.Instance.OnTotalStarChange -= UpdateTotalStarText;
     }
 
-    public void UpdateTotalStarText(int totalStarNumber)
+    void Update()
     {
-        _totalStarText.text = totalStarNumber.ToString() + "/150";
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            ReturnButton();
+        }
+    }
+
+    private void ReturnButton()
+    {
+        if (_skinMenu.activeSelf)
+        {
+            CloseSkinMenu();
+        }
+        else if (_settingsMenu.activeSelf)
+        {
+            CloseSettingsMenu();
+        }
+        else
+        {
+            ReturnMainMenu();
+        }
+    }
+
+    public void UpdateTotalStarText(int UpdateTotalStarText)
+    {
+        _totalStarText.text = DataManager.Instance.TotalStarNumber.ToString() + "/150";
     }
 
     public void ReturnMainMenu()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void SettingsMenu()

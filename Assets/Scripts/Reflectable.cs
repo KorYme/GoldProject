@@ -30,6 +30,10 @@ public class Reflectable : MonoBehaviour
     {
         get; set;
     }
+    public virtual LaserRenderer _LaserRenderer
+    {
+        get => _laserRenderer;
+    }
     protected Action _onReflection;
     protected Reflectable _nextReflectable;
     protected Reflectable _previousReflectable;
@@ -72,6 +76,11 @@ public class Reflectable : MonoBehaviour
 
     public virtual void StartReflection(Vector2 laserDirection, Utilities.GAMECOLORS laserColor, RaycastHit2D raycast, Reflectable previous)
     {
+        if (previous == _previousReflectable)
+        {
+            _inputLaserColor = laserColor;
+            UpdateColorLaser();
+        }
         if (IsReflecting || !enabled) return;
         _previousReflectable = previous;
         _inputLaserColor = laserColor;
@@ -81,9 +90,10 @@ public class Reflectable : MonoBehaviour
         _laserRenderer.ChangeSecondPosition(LaserOrigin, LaserDirection,true);
     }
 
-    protected virtual void UpdateColorLaser()
+    public virtual void UpdateColorLaser()
     {
-        _laserRenderer.ChangeLaserColor(_outputLaserColor);
+        _laserRenderer?.ChangeLaserColor(_outputLaserColor);
+        _nextReflectable?.UpdateColorLaser();
     }
 
     public virtual void StopReflection()

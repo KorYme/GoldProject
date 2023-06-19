@@ -18,6 +18,9 @@ public class StartingLaser : MonoBehaviour
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] List<Sprite> _sprites;
 
+    [SerializeField] ParticleSystem _particlePrefab;
+
+    ParticleSystem _pSystem;
     Vector3 _raycastTarget;
     Reflectable _nextReflectable;
 
@@ -29,10 +32,19 @@ public class StartingLaser : MonoBehaviour
     private void Start()
     {
         _nextReflectable = null;
+        ChooseOrderInLayer(_laserDir);
         _raycastTarget = Utilities.GetDirection(_laserDir);
         _laserRenderer.LineRenderer.useWorldSpace = true;
         _laserRenderer.ChangeLaserColor(_initialColor);
         ApplyParameters(false);
+
+        //Setup Particle system
+        _pSystem = Instantiate(_particlePrefab);
+        _pSystem.transform.position = transform.position;
+        var main = _pSystem.main;
+        main.startColor = Utilities.GetColor(_initialColor);
+        _pSystem.transform.rotation = Quaternion.LookRotation(_raycastTarget *- 1);
+        _pSystem.Play();
     }
 
     private void Update()
@@ -64,6 +76,21 @@ public class StartingLaser : MonoBehaviour
         if (init)   
         {
             FindObjectsOfType<StartingLaser>().Where(x => x != this).ToList().ForEach(x => x.ApplyParameters(false));
+        }
+    }
+
+    private void ChooseOrderInLayer(Utilities.DIRECTIONS dir)
+    {
+        switch (dir)
+        {
+            case Utilities.DIRECTIONS.Up:
+                GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Tiles";
+                break;
+            case Utilities.DIRECTIONS.Down:
+                GetComponentInChildren<SpriteRenderer>().sortingLayerName = "Tiles";
+                break;
+            default:
+                break;
         }
     }
 }

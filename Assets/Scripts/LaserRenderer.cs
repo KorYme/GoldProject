@@ -14,6 +14,7 @@ public class LaserRenderer : MonoBehaviour
     [Header("References")]
     [SerializeField] LineRenderer _lineRenderer;
     [SerializeField] List<Color> _colorsLaser;
+    [SerializeField] ColorblindTextures _colorblindTextures;
 
     [Header("Parameters")]
     [SerializeField] float _intensity;
@@ -25,8 +26,11 @@ public class LaserRenderer : MonoBehaviour
         get => _lineRenderer;
     }
 
+    bool _colorblindEnabled;
+
     private void Start()
     {
+        _colorblindEnabled = DataManager.Instance.ColorBlindModeEnabled;
         ChangeValues();
         if (_pSystem == null)
         {
@@ -54,18 +58,36 @@ public class LaserRenderer : MonoBehaviour
 
     public void ChangeLaserColor(Utilities.GAMECOLORS color)
     {
-        if (_colorsLaser.Count <= (int)color) return;
-        _laserColor = color;
-        float factor = Mathf.Pow(2, _intensity);
-        Color colorToSet = new Color(_colorsLaser[(int)color].r * factor, _colorsLaser[(int)color].g * factor, _colorsLaser[(int)color].b * factor);
-        _lineRenderer.material.SetColor("_Color", colorToSet);
-        
+        _lineRenderer.material.SetInt("_IsColorBlindActivated", _colorblindEnabled ? 1 : 0);
+        if (!_colorblindEnabled)
+        {
+            if (_colorsLaser.Count <= (int)color) return;
+            _laserColor = color;
+            float factor = Mathf.Pow(2, _intensity);
+            Color colorToSet = new Color(_colorsLaser[(int)color].r * factor, _colorsLaser[(int)color].g * factor, _colorsLaser[(int)color].b * factor);
+            _lineRenderer.material.SetColor("_Color", colorToSet);
+        }
+        else
+        {
+            if (_colorblindTextures.Textures.Count <= (int)color) return;
+            _laserColor = color;
+            _lineRenderer.material.SetColor("_Color", Color.white);
+            _lineRenderer.material.SetTexture("_ColorTexture", _colorblindTextures.Textures[(int)color]);
+        }
     }
 
     private void ChangeValues()
     {
-        LineRenderer.startWidth = _laserWidth;
-        LineRenderer.startWidth = _laserWidth;
+        if (_colorblindEnabled)
+        {
+            LineRenderer.startWidth = .6f;
+            LineRenderer.endWidth = .6f;
+        }
+        else
+        {
+            LineRenderer.startWidth = _laserWidth;
+            LineRenderer.endWidth = _laserWidth;
+        }
         ChangeLaserColor(_laserColor);
         if (_pSystem != null)
         {

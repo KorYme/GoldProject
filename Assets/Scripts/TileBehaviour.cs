@@ -45,6 +45,11 @@ public class TileBehaviour : MonoBehaviour
         }
     }
 
+    public BoxCollider2D BoxCollider2D
+    {
+        get { return _collider; }
+    }
+
     private void OnDestroy()
     {
         if (_currentTile == null) return;
@@ -55,6 +60,7 @@ public class TileBehaviour : MonoBehaviour
     [Button("Apply Parameters")]
     public void ChangeParameters(bool init = true)
     {
+        if (_spriteRenderer == null) return;
         if (init)
         {
             if (_currentTile != null)
