@@ -37,7 +37,7 @@ public class LevelManager : MonoBehaviour
             }
             else if (sceneName.Contains("Bonus"))
             {
-                return -int.Parse(sceneName.Replace("Bonus-", ""));
+                return int.Parse(sceneName.Replace("Bonus-", "")) * -1;
             }
             return 0;
         }
