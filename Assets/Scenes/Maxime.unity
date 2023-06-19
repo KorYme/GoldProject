@@ -5015,9 +5015,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2050955195}
     m_Modifications:
+    - target: {fileID: 3172924481358171564, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1e8173fdf87ca594ca9d0715c5b2e7bf, type: 3}
     - target: {fileID: 3429801988097763572, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: _laserDir
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429801988097763572, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
+      propertyPath: _initialColor
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7251455584209451172, guid: 8f91438238e897c4eaaed0154e1d914f, type: 3}
       propertyPath: m_RootOrder

@@ -26,7 +26,7 @@ public class LaserRenderer : MonoBehaviour
         get => _lineRenderer;
     }
 
-    bool _colorblindEnabled;
+    bool _colorblindEnabled = false;
 
     private void Start()
     {

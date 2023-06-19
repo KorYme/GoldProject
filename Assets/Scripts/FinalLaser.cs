@@ -124,7 +124,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
         if (_shouldPlayVictorySound)
         {
             _winPSystem.Play();
-            AudioManager.Instance.PlaySound("victory");
+            AudioManager.Instance.PlaySound("Victory");
             _shouldPlayVictorySound = false;
         }
     }
