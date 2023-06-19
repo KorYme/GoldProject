@@ -11,6 +11,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1377946504, guid: b806758a84d577049894987ecc910bb1, type: 3}
+    - target: {fileID: 250838969918027692, guid: c2e81b072eca29949b8012997d4c7a2c, type: 3}
+      propertyPath: _skinPack
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 386560190643524449, guid: c2e81b072eca29949b8012997d4c7a2c, type: 3}
       propertyPath: m_Sprite
       value: 

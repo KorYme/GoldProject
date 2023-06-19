@@ -36,6 +36,7 @@ public class SkinManager : MonoBehaviour
         GameObject newPlayer = Instantiate(allSkins[(int)DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor]], 
             transform.position, Quaternion.identity, transform.parent);
         newPlayer.transform.localScale = transform.localScale;
+        newPlayer.GetComponent<PlayerReflection>().ReflectionTypeValue = _playerReflection.ReflectionTypeValue;
         PlayerController pc = newPlayer.GetComponent<PlayerController>();
         pc.EightLaserDirections = _playerController.EightLaserDirections;
         pc.IsRotationClockWise = _playerController.IsRotationClockWise;
