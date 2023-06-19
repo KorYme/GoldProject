@@ -30,7 +30,7 @@ public class LaserRenderer : MonoBehaviour
 
     private void Start()
     {
-        _colorblindEnabled = false;
+        _colorblindEnabled = DataManager.Instance.ColorBlindModeEnabled;
         ChangeValues();
         if (_pSystem == null)
         {
