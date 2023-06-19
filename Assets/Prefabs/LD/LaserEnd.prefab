@@ -4895,6 +4895,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: a234453977e99af4087ac8e03a9cdbe9, type: 3}
   - {fileID: 21300000, guid: 3dda1586bedaad74a8914baf943bc877, type: 3}
   - {fileID: 21300000, guid: 6b6f19fe17c63f24d89d90795a863442, type: 3}
+  _colorblindMaterial: {fileID: 2100000, guid: 0a8824fbdae230142b1157fa704c82a1, type: 2}
+  _colorblindTextures: {fileID: 11400000, guid: ba9bc1f68b53e354abe01634e10323d6, type: 2}
   _targetColor: 0
   _sideTouchedNeeded: 0
   _winMenuManager: {fileID: 0}
@@ -4951,7 +4953,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0a8824fbdae230142b1157fa704c82a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
