@@ -71,4 +71,6 @@ public class ShowTuto : MonoBehaviour
         _tutoCanvas.SetActive(true);
     }
 
+
+
 }

@@ -24,6 +24,7 @@
 
 public static class GPGSIds
 {
+        public const string achievement_everything_by_design = "CgkIhpOPlaMXEAIQFg"; // <GPGSID>
         public const string achievement_almost_there = "CgkIhpOPlaMXEAIQCA"; // <GPGSID>
         public const string achievement_finir_lvl_bonus_2 = "CgkIhpOPlaMXEAIQEg"; // <GPGSID>
         public const string achievement_you_got_the_moves = "CgkIhpOPlaMXEAIQCg"; // <GPGSID>
