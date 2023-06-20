@@ -81,7 +81,7 @@ MonoBehaviour:
   _starSkippable: 7
   _lastLevelNumber: 50
   _skinPackPerBonusLevel: 020000000500000001000000040000000300000006000000
-  _destroySaveOnNewVersion: 1
+  _destroySaveOnNewVersion: 0
 --- !u!114 &7430398456735609543
 MonoBehaviour:
   m_ObjectHideFlags: 0
