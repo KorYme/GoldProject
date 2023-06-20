@@ -26,7 +26,7 @@ public class LaserRenderer : MonoBehaviour
         get => _lineRenderer;
     }
 
-    bool _colorblindEnabled;
+    bool _colorblindEnabled = false;
 
     private void Start()
     {
@@ -94,8 +94,6 @@ public class LaserRenderer : MonoBehaviour
             var main = _pSystem.main;
             main.startColor = Utilities.GetColor(_laserColor);
         }
-        else
-            Debug.Log("No particle system");
     }
 
 #if UNITY_EDITOR
