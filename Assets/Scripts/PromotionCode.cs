@@ -21,32 +21,32 @@ public class PromotionCode : MonoBehaviour
                 DataManager.Instance.UnlockNewSkin(SKINPACK.PULV);
                 inputField.text = "";
                 break;
-            case "ALLSTARS":
-                Debug.Log(inputField.text.ToUpper());
-                for (int i = 1; i < 51; i++)
-                {
-                    DataManager.Instance.CompleteALevel(i, 4);
-                }
-                for (int i = -1; i > -6; i--)
-                {
-                    DataManager.Instance.CompleteALevel(i, 4);
-                }
-                inputField.text = "";
-                break;
-            case "ALLSKINS":
-                Debug.Log(inputField.text.ToUpper());
-                for (int i = 0; i < 7; i++)
-                {
-                    DataManager.Instance.UnlockNewSkin((SKINPACK)i);
-                }
-                inputField.text = "";
-                break;
-            case "RESET":
-                Debug.Log(inputField.text.ToUpper());
-                DataManager.Instance.InitializeData();
-                inputField.text = "";
-                Application.Quit();
-                break;
+            //case "ALLSTARS":
+            //    Debug.Log(inputField.text.ToUpper());
+            //    for (int i = 1; i < 51; i++)
+            //    {
+            //        DataManager.Instance.CompleteALevel(i, 4);
+            //    }
+            //    for (int i = -1; i > -6; i--)
+            //    {
+            //        DataManager.Instance.CompleteALevel(i, 4);
+            //    }
+            //    inputField.text = "";
+            //    break;
+            //case "ALLSKINS":
+            //    Debug.Log(inputField.text.ToUpper());
+            //    for (int i = 0; i < 7; i++)
+            //    {
+            //        DataManager.Instance.UnlockNewSkin((SKINPACK)i);
+            //    }
+            //    inputField.text = "";
+            //    break;
+            //case "RESET":
+            //    Debug.Log(inputField.text.ToUpper());
+            //    DataManager.Instance.InitializeData();
+            //    inputField.text = "";
+            //    Application.Quit();
+            //    break;
             default:
                 break;
         }

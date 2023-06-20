@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
 using UnityEngine;
 
 public class ShowTuto : MonoBehaviour
@@ -18,6 +19,8 @@ public class ShowTuto : MonoBehaviour
 
     private void Start()
     {
+        int levelNumber = FindObjectOfType<LevelManager>().LevelNumber;
+        if (!DataManager.Instance.LevelDictionnary.ContainsKey(levelNumber) || DataManager.Instance.LevelDictionnary[levelNumber] != 0) return;
         if(_tutoPageOne)
         {
             ShowTutoCanvas();
@@ -70,7 +73,4 @@ public class ShowTuto : MonoBehaviour
     {
         _tutoCanvas.SetActive(true);
     }
-
-
-
 }

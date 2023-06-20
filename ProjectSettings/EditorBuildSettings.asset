@@ -36,10 +36,10 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Level-7.unity
     guid: f4f97f4003ee50349a908d5e6e7c3ee5
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-9.unity
+    path: Assets/Scenes/GameScenes/Level-8.unity
     guid: 66fcd9ce0e7e07c41a563dab37163914
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-8.unity
+    path: Assets/Scenes/GameScenes/Level-9.unity
     guid: 828c3385cd8a2a946a8de62dca2a9c98
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-10.unity
@@ -66,10 +66,10 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Level-17.unity
     guid: 8f32d1923b4a58349ae347a687fc3844
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-19.unity
+    path: Assets/Scenes/GameScenes/Level-18.unity
     guid: a40a626ff53be48438fca2960b6ef4a6
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Level-18.unity
+    path: Assets/Scenes/GameScenes/Level-19.unity
     guid: f101939d9a34d404698e99bb54b19aab
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-20.unity
@@ -88,10 +88,10 @@ EditorBuildSettings:
     guid: f715b1b8587eaa842b9b945f09da9f0f
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-25.unity
-    guid: 3a06540ee4258cd4cb488862303ac0a0
+    guid: 5d0866eacf034a947925b0c2d9ed59ac
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-26.unity
-    guid: 5d0866eacf034a947925b0c2d9ed59ac
+    guid: 3a06540ee4258cd4cb488862303ac0a0
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-27.unity
     guid: 77e16b1a612ce7044ac519f98b7fac84
@@ -109,7 +109,7 @@ EditorBuildSettings:
     guid: 581cc17a63abe0e4a8ed1b9dfeafdeb7
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-32.unity
-    guid: 8cb4297e24cc813479e2bf32032c3561
+    guid: e2c8e4694433b744aa9eaf277c42200e
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-33.unity
     guid: 67b3f925ffaba1a42be0da28361c8490
@@ -139,19 +139,16 @@ EditorBuildSettings:
     guid: e4a6c8e17cb0ab44dbade03e46212efb
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-42.unity
-    guid: 2943c388a2da6174c8593b2514973e93
+    guid: 8db255ee661b45945b20a6cabf111cc8
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-43.unity
-    guid: 8db255ee661b45945b20a6cabf111cc8
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    guid: 9ec5048a57ecd65468e73b2083cb9fad
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-44.unity
     guid: e8efc2d33ababfe4ba90e25c51847262
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-45.unity
-    guid: fa4926083c2d3f74aaa5700be85bea0b
+    guid: 2943c388a2da6174c8593b2514973e93
   - enabled: 1
     path: Assets/Scenes/GameScenes/Level-46.unity
     guid: 19658a6907e11d34792fb7f34db40af8
@@ -172,10 +169,7 @@ EditorBuildSettings:
     guid: 52bf56d6220e44445811edf9e31b19ac
   - enabled: 1
     path: Assets/Scenes/GameScenes/Bonus-2.unity
-    guid: 9cf15df96bad78244b1942c1bb93538e
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
+    guid: 4d30e5d187d2d2640ab9247936bc4d44
   - enabled: 1
     path: Assets/Scenes/GameScenes/Bonus-3.unity
     guid: 24e730302a48d434a97c715ed770b10b
