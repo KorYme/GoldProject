@@ -18,7 +18,7 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
         set
         {
             _musicVolume = value;
-            if (Music != null)
+            if (Music != null && Music._source != null)
             {
                 Music._source.volume = value;
             }
