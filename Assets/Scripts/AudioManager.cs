@@ -18,7 +18,10 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
         set
         {
             _musicVolume = value;
-            Music._source.volume = value;
+            if (Music != null)
+            {
+                Music._source.volume = value;
+            }
         }
     }
     float _sfxVolume;
@@ -106,14 +109,14 @@ public class AudioManager : MonoBehaviour, IDataSaveable<GameData>
 
     public void InitializeData()
     {
-        _sfxVolume = 0.5f;
-        _musicVolume = 0.5f;
+        SFXVolume = 0.5f;
+        MusicVolume = 0.5f;
     }
 
     public void LoadData(GameData gameData)
     {
-        _sfxVolume = gameData.VolumeSFX;
-        _musicVolume = gameData.VolumeMusic;
+        SFXVolume = gameData.VolumeSFX;
+        MusicVolume = gameData.VolumeMusic;
     }
 
     public void SaveData(ref GameData gameData)
