@@ -22,6 +22,7 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
 
     [Header("SaveParameters")]
     [SerializeField] bool _destroySaveOnNewVersion;
+    [SerializeField] bool _isSkinPULVUnlocked;
 
     #region ACTIONS
     public Action<int> OnTotalStarChange
@@ -153,6 +154,10 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         }
         LevelDictionnary[levelID] += Mathf.Clamp(starsNumber - LevelDictionnary[levelID], 0, 4);
         OnTotalStarChange?.Invoke(TotalStarNumber);
+        if (_isSkinPULVUnlocked)
+        {
+            UnlockNewSkin(SKINPACK.PULV);
+        }
     }
 
     public void LoadData(GameData gameData)
@@ -170,6 +175,10 @@ public class DataManager : MonoBehaviour, IDataSaveable<GameData>
         _colorBlindModeEnabled = gameData.ColorBlindModeEnabled;
         CheckLevels();
         OnDataLoaded?.Invoke();
+        if (_isSkinPULVUnlocked)
+        {
+            UnlockNewSkin(SKINPACK.PULV);
+        }
     }
 
 

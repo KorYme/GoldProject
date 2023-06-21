@@ -97,15 +97,14 @@ public class WinMenuManager : MonoBehaviour
 
         if(_levelNumber < 0)
         {
-            _levelText.text = "Bonus " + _levelNumber;
+            _levelText.text = "Bonus " + Mathf.Abs(_levelNumber);
         }
         else
         {
             _levelText.text = "Level " + _levelNumber;
         }
-        
-        _moveText.text = textMove + " moves";
 
+        _moveText.text = textMove + " move" + (totalMove > 1 ? "s" : "");
 
         Vector3 starOnePosition = _starOne.transform.position;
         Vector3 starTwoPosition = _starTwo.transform.position;
