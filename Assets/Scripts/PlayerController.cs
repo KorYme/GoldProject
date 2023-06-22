@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(_wallHitCoroutine);
         }
         InputManager.Instance.CanMoveAPlayer = false;
-        _moveableGFX.rotation = Quaternion.Euler(0, direction.x > 0.1f ? 180 : 0, 0);
+        _moveableGFX.rotation = Quaternion.Euler(0, (direction.x > 0.1f ? 180 : 0) * (transform.rotation.eulerAngles.z ==  180f ? -1 : 1), 0);
         if (direction.y == 0f)
         {
             _animatorManager.ChangeAnimation(ANIMATION_STATES.Slide_profil);

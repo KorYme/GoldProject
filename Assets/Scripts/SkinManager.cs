@@ -12,7 +12,6 @@ public class SkinManager : MonoBehaviour
     [SerializeField] PlayerController _playerController;
     [SerializeField] PlayerReflection _playerReflection;
     [SerializeField] SkinContainer _skinContainer;
-
     private void Start()
     {
         List<GameObject> allSkins;
@@ -34,7 +33,7 @@ public class SkinManager : MonoBehaviour
         if (DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor] == _skinPack) return;
         if (allSkins.Count <= (int)DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor]) return;
         GameObject newPlayer = Instantiate(allSkins[(int)DataManager.Instance.SkinEquippedDictionnary[_playerReflection.ReflectionColor]], 
-            transform.position, Quaternion.identity, transform.parent);
+            transform.position, transform.rotation, transform.parent);
         newPlayer.transform.localScale = transform.localScale;
         newPlayer.GetComponent<PlayerReflection>().ReflectionTypeValue = _playerReflection.ReflectionTypeValue;
         PlayerController pc = newPlayer.GetComponent<PlayerController>();
