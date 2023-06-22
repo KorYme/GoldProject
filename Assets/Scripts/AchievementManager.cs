@@ -1,5 +1,7 @@
+#if UNITY_ANDROID
 using GooglePlayGames.BasicApi;
 using GooglePlayGames;
+#endif
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +14,7 @@ using UnityEngine.UIElements;
 
 public class AchievementManager : MonoBehaviour
 {
+#if UNITY_ANDROID
     [SerializeField] DataManager _dataManager;
     [SerializeField] int _mickaLevelID;
     [SerializeField] int _emileLevelID;
@@ -183,74 +186,5 @@ public class AchievementManager : MonoBehaviour
     {
         Social.ShowAchievementsUI();
     }
+#endif
 }
-
-//<? xml version = "1.0" encoding = "utf-8" ?>
-//< !--Google Play game services IDs. Save this file as res/values/games-ids.xml in your project.-->
-//<resources>
-//  <!--app_id-->
-//  <string name="app_id" translatable="false">799713511814</string>
-//  <!--package_name-->
-//  <string name="package_name" translatable="false">com.Team501.Iridescence</string>
-
-
-//  DONE
-//  <!--achievement First Time Here ?-->
-//  <string name="achievement_first_time_here" translatable="false">CgkIhpOPlaMXEAIQAw</string>
-
-
-//  DONE
-//  <!--achievement Get 50 stars-->
-//  <string name="achievement_get_50_stars" translatable="false">CgkIhpOPlaMXEAIQAQ</string>
-//  <!--achievement Get 100 stars-->
-//  <string name="achievement_get_100_stars" translatable="false">CgkIhpOPlaMXEAIQBA</string>
-//  <!--achievement Get 150 Stars-->
-//  <string name="achievement_get_150_stars" translatable="false">CgkIhpOPlaMXEAIQBQ</string>
-
-
-//  DONE
-//  <!--achievement Perfect 1-10-->
-//  <string name="achievement_perfect_110" translatable="false">CgkIhpOPlaMXEAIQAg</string>
-//  <!--achievement Perfect 11-20-->
-//  <string name="achievement_perfect_1120" translatable="false">CgkIhpOPlaMXEAIQDQ</string>
-//  <!--achievement Perfect 21-30-->
-//  <string name="achievement_perfect_2130" translatable="false">CgkIhpOPlaMXEAIQDg</string>
-//  <!--achievement Perfect 31-40-->
-//  <string name="achievement_perfect_3140" translatable="false">CgkIhpOPlaMXEAIQDw</string>
-//  <!--achievement Perfect 41-50-->
-//  <string name="achievement_perfect_4150" translatable="false">CgkIhpOPlaMXEAIQEA</string>
-
-//  DONE
-//  <!--achievement Travail bénévole-->
-//  <string name="achievement_travail_bnvole" translatable="false">CgkIhpOPlaMXEAIQBg</string>
-
-//  DONE
-//  <!--achievement Not your business-->
-//  <string name="achievement_not_your_business" translatable="false">CgkIhpOPlaMXEAIQDA</string>
-
-
-//  DONE
-//  <!--achievement Don't give up ! You can still win this !-->
-//  <string name="achievement_dont_give_up__you_can_still_win_this" translatable="false">CgkIhpOPlaMXEAIQCw</string>
-//  <!--achievement You got the moves !-->
-//  <string name="achievement_you_got_the_moves" translatable="false">CgkIhpOPlaMXEAIQCg</string>
-//  <!--achievement Don't even think about it-->
-//  <string name="achievement_dont_even_think_about_it" translatable="false">CgkIhpOPlaMXEAIQCQ</string>
-//  <!--achievement Almost there !-->
-//  <string name="achievement_almost_there" translatable="false">CgkIhpOPlaMXEAIQCA</string>
-//  <!--achievement Congratulation ! You've won nothing-->
-//  <string name="achievement_congratulation__youve_won_nothing" translatable="false">CgkIhpOPlaMXEAIQBw</string>
-
-
-//  DONE
-//  <!--achievement Finir lvl bonus 1-->
-//  <string name="achievement_finir_lvl_bonus_1" translatable="false">CgkIhpOPlaMXEAIQEQ</string>
-//  <!--achievement Finir lvl bonus 2-->
-//  <string name="achievement_finir_lvl_bonus_2" translatable="false">CgkIhpOPlaMXEAIQEg</string>
-//  <!--achievement Finir lvl bonus 3-->
-//  <string name="achievement_finir_lvl_bonus_3" translatable="false">CgkIhpOPlaMXEAIQEw</string>
-//  <!--achievement Finir lvl bonus 4-->
-//  <string name="achievement_finir_lvl_bonus_4" translatable="false">CgkIhpOPlaMXEAIQFA</string>
-//  <!--achievement Finir lvl bonus 5-->
-//  <string name="achievement_finir_lvl_bonus_5" translatable="false">CgkIhpOPlaMXEAIQFQ</string>
-//</resources>

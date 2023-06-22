@@ -106,7 +106,9 @@ public class LevelUIManager : MonoBehaviour
         Resize();
         if (!CanPlay)
         {
+#if UNITY_ANDROID
             AchievementManager.Instance.NotYourBusiness();
+#endif
             return null;
         }
         SceneManager.LoadScene(SceneName);

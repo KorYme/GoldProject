@@ -78,6 +78,8 @@ public class PauseMenuManager : MonoBehaviour
 
     public void OpenAchivement()
     {
+#if UNITY_ANDROID
         AchievementManager.Instance.DisplayAchievementUI();
+#endif
     }
 }
