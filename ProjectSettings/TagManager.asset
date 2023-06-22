@@ -55,11 +55,11 @@ TagManager:
   - name: Particles
     uniqueID: 3238556931
     locked: 0
-  - name: Laser
-    uniqueID: 1482015127
-    locked: 0
   - name: EmittingTiles
     uniqueID: 4276373285
+    locked: 0
+  - name: Laser
+    uniqueID: 1482015127
     locked: 0
   - name: Lenses
     uniqueID: 3920266829

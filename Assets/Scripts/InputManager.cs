@@ -32,7 +32,9 @@ public class InputManager : MonoBehaviour
         set
         {
             _movementNumber = value;
+#if UNITY_ANDROID
             AchievementManager.Instance.OnMovementAdded?.Invoke(value);
+#endif
             _gameMenuManager?.UpdateMoveText(_movementNumber);
         }
     }
