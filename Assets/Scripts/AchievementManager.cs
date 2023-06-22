@@ -14,6 +14,7 @@ public class AchievementManager : MonoBehaviour
 {
     [SerializeField] DataManager _dataManager;
     [SerializeField] int _mickaLevelID;
+    [SerializeField] int _emileLevelID;
 
     public Action<int> OnMovementAdded
     {
@@ -101,7 +102,7 @@ public class AchievementManager : MonoBehaviour
                 PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQDg", 1, AchieveSuccess);
                 return;
             case 3:
-                PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQDw", 1, AchieveSuccess);
+                PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQGQ", 1, AchieveSuccess);
                 return;
             case 4:
                 PlayGamesPlatform.Instance.IncrementAchievement("CgkIhpOPlaMXEAIQEA", 1, AchieveSuccess);
@@ -139,19 +140,25 @@ public class AchievementManager : MonoBehaviour
 
     void CheckVolunteerWork(int levelID, int star)
     {
-        if (levelID != _mickaLevelID || star <= 0) return;
-        Social.ReportProgress("CgkIhpOPlaMXEAIQBg", 100.0f, AchieveSuccess);
+        if (levelID == _mickaLevelID && star > 0)
+        {
+            Social.ReportProgress("CgkIhpOPlaMXEAIQBg", 100.0f, AchieveSuccess);
+        }
+        else if (levelID == _emileLevelID && star == 4)
+        {
+            Social.ReportProgress("CgkIhpOPlaMXEAIQGQ", 100.0f, AchieveSuccess);
+        }
     }
 
     void CheckMovementNumber(int number)
     {
         if (number >= 999)
         {
-            Social.ReportProgress("CgkIhpOPlaMXEAIQCw", 100.0f, AchieveSuccess);
+            Social.ReportProgress("CgkIhpOPlaMXEAIQBw", 100.0f, AchieveSuccess);
         }
         else if (number >= 750)
         {
-            Social.ReportProgress("CgkIhpOPlaMXEAIQCg", 100.0f, AchieveSuccess);
+            Social.ReportProgress("CgkIhpOPlaMXEAIQCA", 100.0f, AchieveSuccess);
         }
         else if (number >= 500)
         {
@@ -159,11 +166,11 @@ public class AchievementManager : MonoBehaviour
         }
         else if (number >= 250)
         {
-            Social.ReportProgress("CgkIhpOPlaMXEAIQCA", 100.0f, AchieveSuccess);
+            Social.ReportProgress("CgkIhpOPlaMXEAIQCg", 100.0f, AchieveSuccess);
         }
         else if (number >= 100)
         {
-            Social.ReportProgress("CgkIhpOPlaMXEAIQBw", 100.0f, AchieveSuccess);
+            Social.ReportProgress("CgkIhpOPlaMXEAIQCw", 100.0f, AchieveSuccess);
         }
     }
 

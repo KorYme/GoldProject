@@ -110,7 +110,7 @@ public class FinalLaser : Reflectable, IUpdateableTile
 
     protected override void ReflectLaser()
     {
-        if (_timeHitByLaser >= 2f && InputManager.Instance.CanMoveAPlayer)
+        if (_timeHitByLaser >= 1f && InputManager.Instance.CanMoveAPlayer)
         {
             _isLevelComplete = true;
             LevelCompleted();

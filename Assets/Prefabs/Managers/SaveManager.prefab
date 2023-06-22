@@ -82,7 +82,7 @@ MonoBehaviour:
   _lastLevelNumber: 50
   _skinPackPerBonusLevel: 020000000500000001000000040000000300000006000000
   _destroySaveOnNewVersion: 0
-  _isSkinPULVUnlocked: 0
+  _isSkinPULVUnlocked: 1
 --- !u!114 &7430398456735609543
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,3 +97,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _dataManager: {fileID: 7987398883163487369}
   _mickaLevelID: 38
+  _emileLevelID: -2
