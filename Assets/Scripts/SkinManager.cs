@@ -12,6 +12,13 @@ public class SkinManager : MonoBehaviour
     [SerializeField] PlayerController _playerController;
     [SerializeField] PlayerReflection _playerReflection;
     [SerializeField] SkinContainer _skinContainer;
+    [SerializeField] Transform _moveableGFX;
+
+    public Transform MoveableGFX
+    {
+        get { return _moveableGFX; }
+    }
+
     private void Start()
     {
         List<GameObject> allSkins;
@@ -40,6 +47,7 @@ public class SkinManager : MonoBehaviour
         pc.EightLaserDirections = _playerController.EightLaserDirections;
         pc.IsRotationClockWise = _playerController.IsRotationClockWise;
         pc.InitialDirection = _playerController.InitialDirection;
+        newPlayer.GetComponent<SkinManager>().MoveableGFX.rotation = _moveableGFX.rotation;
         Destroy(gameObject);
     }
 }

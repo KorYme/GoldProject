@@ -2667,6 +2667,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+      propertyPath: _moveableGFX
+      value: 
+      objectReference: {fileID: 5017714410290142224}
+    - target: {fileID: 2556708471304962642, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
       propertyPath: _gfxTransform
       value: 
       objectReference: {fileID: 35884903379019176}
@@ -2807,5 +2811,10 @@ PrefabInstance:
 --- !u!4 &35884903379019176 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8625558762639472543, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
+  m_PrefabInstance: {fileID: 8632097425656812087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5017714410290142224 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3632679165916171815, guid: f69d44d629ec6114ba7bdfec662e2057, type: 3}
   m_PrefabInstance: {fileID: 8632097425656812087}
   m_PrefabAsset: {fileID: 0}

@@ -193,18 +193,19 @@ public class PlayerController : MonoBehaviour
             StopCoroutine(_wallHitCoroutine);
         }
         InputManager.Instance.CanMoveAPlayer = false;
-        _moveableGFX.rotation = Quaternion.Euler(0, (direction.x > 0.1f ? 180 : 0) * (transform.rotation.eulerAngles.z ==  180f ? -1 : 1), 0);
+        _moveableGFX.rotation = Quaternion.Euler(0, (direction.x > 0.1f ? 180 : 0) + (_moveableGFX.rotation.eulerAngles.z == 180f ? 180 : 0),
+            _moveableGFX.rotation.eulerAngles.z);
         if (direction.y == 0f)
         {
             _animatorManager.ChangeAnimation(ANIMATION_STATES.Slide_profil);
         }
         else if (direction.y > 0f)
         {
-            _animatorManager.ChangeAnimation(ANIMATION_STATES.Slide_dos);
+            _animatorManager.ChangeAnimation(_moveableGFX.rotation.eulerAngles.z == 0f ? ANIMATION_STATES.Slide_dos : ANIMATION_STATES.Slide_face);
         }
         else
         {
-            _animatorManager.ChangeAnimation(ANIMATION_STATES.Slide_face);
+            _animatorManager.ChangeAnimation(_moveableGFX.rotation.eulerAngles.z == 0f ? ANIMATION_STATES.Slide_face : ANIMATION_STATES.Slide_dos);
         }
         _onPlayerMoveStarted?.Invoke();
         Vector3 initialPosition = transform.position;
@@ -246,17 +247,23 @@ public class PlayerController : MonoBehaviour
         if (direction.y == 0f)
         {
             _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager
-                .ChangeAnimation(Utilities.AllBrakeTags.Find(x => x == raycast.collider.tag) == default ? ANIMATION_STATES.Hit_profil : ANIMATION_STATES.Frein_profil)));
+                .ChangeAnimation(Utilities.AllBrakeTags.Find(x => x == raycast.collider.tag) == default ? 
+                ANIMATION_STATES.Hit_profil : 
+                ANIMATION_STATES.Frein_profil)));
         }
         else if (direction.y > 0)
         {
             _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager
-                .ChangeAnimation(Utilities.AllBrakeTags.Find(x => x == raycast.collider.tag) == default ? ANIMATION_STATES.Hit_dos : ANIMATION_STATES.Frein_dos)));
+                .ChangeAnimation(Utilities.AllBrakeTags.Find(x => x == raycast.collider.tag) == default ?
+                _moveableGFX.rotation.eulerAngles.z == 0f ? ANIMATION_STATES.Hit_dos : ANIMATION_STATES.Hit_face :
+                _moveableGFX.rotation.eulerAngles.z == 0f ? ANIMATION_STATES.Frein_dos : ANIMATION_STATES.Frein_face)));
         }
         else
         {
             _wallHitCoroutine = StartCoroutine(WallHitCoroutine(_animatorManager
-                .ChangeAnimation(Utilities.AllBrakeTags.Find(x => x == raycast.collider.tag) == default ? ANIMATION_STATES.Hit_face : ANIMATION_STATES.Frein_face)));
+                .ChangeAnimation(Utilities.AllBrakeTags.Find(x => x == raycast.collider.tag) == default ?
+                _moveableGFX.rotation.eulerAngles.z == 0f ? ANIMATION_STATES.Hit_face : ANIMATION_STATES.Hit_dos :
+                _moveableGFX.rotation.eulerAngles.z == 0f ? ANIMATION_STATES.Frein_face : ANIMATION_STATES.Frein_dos)));
         }
         transform.position = positionToGo;
         CheckCrateMovement(raycast.transform, direction);
@@ -382,7 +389,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator WallHitCoroutine(float time)
     {
         yield return new WaitForSeconds(time);
-        _moveableGFX.rotation = Quaternion.Euler(0, 0, 0);
+        _moveableGFX.rotation = Quaternion.Euler(0, 0, _moveableGFX.rotation.eulerAngles.z);
         _animatorManager.ChangeAnimation(_playerReflection.IsReflecting ? ANIMATION_STATES.Reflection : ANIMATION_STATES.Idle);
         _wallHitCoroutine = null;
     }
