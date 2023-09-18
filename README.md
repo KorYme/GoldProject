@@ -1,3 +1,5 @@
+![alt text](https://cdn.discordapp.com/attachments/713925664465748034/1153412285088411730/rarB3l.png)
+
 Context
 Use light reflection and color additivity to solve puzzles!
 
@@ -18,3 +20,12 @@ Game Programers : Maxime CORBY, Lucas GUICHARD, Romain MOUSTY
 
 Contact
 E-mail : iridescence.thegame@gmail.com
+
+Take a look at our trailer ! :
+[![Watch the trailer !](https://img.youtube.com/vi/OVtsevekV_o/maxresdefault.jpg)](https://youtu.be/OVtsevekV_o)
+
+More images from the game :
+
+![alt text](https://cdn.discordapp.com/attachments/713925664465748034/1153412807916798022/tEGe0Z.png)
+![alt text](https://cdn.discordapp.com/attachments/713925664465748034/1153412471885926481/BUYvHz.png)
+![alt text](https://cdn.discordapp.com/attachments/713925664465748034/1153412485878120581/2FzcVQG.png)
